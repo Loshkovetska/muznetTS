@@ -1,0 +1,15 @@
+<svg id="Слой_1" data-name="Слой 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #0c0c0e;
+      }
+    </style>
+  </defs>
+  <g>
+    <circle class="cls-1" cx="10" cy="10" r="1"/>
+    <circle class="cls-1" cx="14" cy="10" r="1"/>
+    <circle class="cls-1" cx="6" cy="10" r="1"/>
+    <path class="cls-1" d="M12,2A10,10,0,0,0,2,12V22H12A10,10,0,0,0,12,2Zm0,18H4V12a8,8,0,1,1,8,8Z" transform="translate(-2 -2)"/>
+  </g>
+</svg>
