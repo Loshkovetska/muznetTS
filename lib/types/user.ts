@@ -1,71 +1,62 @@
-import { ReviewType } from "@/lib/types/review";
+import { LocationType } from "@/lib/types/common";
+
+type CommonUserType = {
+  email: string;
+  sing_by_ear: boolean;
+  play_by_ear: boolean;
+  read_sheet_music: boolean;
+  musical_instruments: string[];
+  musical_genres: string[];
+  description: string;
+  willing_to_travel: boolean;
+  address: string;
+  group_members: string[];
+  price_per_hour: number;
+  name: string;
+  surname: string;
+  user_type: "contractor" | "musician";
+};
 
 type UserType = {
-  id: number;
-  userType: string;
-  userNickName: string;
-  userAvatar: string;
-  userPricePerHour: number;
-  userCurrencyType: string;
-  userFirstName: string;
-  userLastName: string;
-  userLocation: string;
-  userGenres: string[];
-  userReview: ReviewType[];
-  userEmail: string;
-  userAddress: string;
-  userPhoneNumber: string;
-  userMusicalInstrument: string[];
-  willingToTravel: boolean;
-  userSkills: UserSkillsType;
-  userNotification: UserNotification;
-  userDeals: UserDealsType;
-  userMembers: any;
+  id: string;
+  password: string;
+  user_name: string;
+  photo: string[] | null;
+  position: string;
+  location: LocationType;
+  rate: {
+    rate: number;
+    totalReviews: number;
+  };
+} & CommonUserType;
+
+type SignInRequestType = {
+  email: string;
+  password: string;
 };
 
-type UserDealsType = {
-  activeDeals: UserDealType[];
-  closedDeals: UserDealType[];
+type SignUpRequestType = {
+  photo: any;
+  password: string;
+  user_name: string;
+  position: string;
+} & CommonUserType;
+
+type UpdateInfoType = {
+  id: string;
+  old_photo: string[];
+  photo: any[];
+} & Omit<CommonUserType, "user_type">;
+
+type UpdatePasswordRequestType = {
+  id: string;
+  new_password: string;
 };
 
-type UserSkillsType = {
-  singByEar: boolean;
-  playByEar: boolean;
-  readSheetMusic: boolean;
+export type {
+  SignInRequestType,
+  SignUpRequestType,
+  UpdateInfoType,
+  UpdatePasswordRequestType,
+  UserType,
 };
-
-type UserNotification = {
-  userNewReview: boolean;
-  userNewOffer: boolean;
-  userNewMessage: boolean;
-  userNewProfileView: boolean;
-  userLoginAtteptOnAccount: boolean;
-  userTransaction: boolean;
-};
-
-type DateType = {
-  milliseconds: number;
-  string: string;
-};
-
-type UserDealType = {
-  dealId: number;
-  dealUserName: string;
-  dealNumber: number;
-  dealStatus: boolean;
-  userPricePerHour: number;
-  userCurrencyType: string;
-  adDate: DateType;
-  eventStart: DateType;
-  eventEnd: DateType;
-  adTitle: string;
-  adLocation: string;
-  dealPhoneNumber: string;
-  paymentMethod: string;
-  perfomanceCost: number;
-  muznetFee: number;
-  totalPrice: number;
-  moreDetails: string;
-};
-
-export type { UserType };

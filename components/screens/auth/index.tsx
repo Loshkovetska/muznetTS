@@ -1,40 +1,30 @@
-import Logo from "@/assets/images/partial-react-logo.png";
-import { colors, typography } from "@/tamagui.config";
-import { Text, YStack, styled } from "tamagui";
+import AuthSignIn from "@/components/screens/auth/sign-in";
+import AuthSignUp from "@/components/screens/auth/sign-up";
+import { useMemo } from "react";
+import { KeyboardAvoidingView, Platform } from "react-native";
 
-const Container = styled(YStack, {
-  width: "100%",
-  backgroundColor: colors["white"],
-  paddingHorizontal: 20,
-});
+type AuthWrapperPropType = {
+  type: "sign-in" | "sign-up";
+};
 
-const Content = styled(YStack, {
-  paddingTop: "20%",
-  width: "100%",
-  alignItems: "center",
-  backgroundColor: colors["white"],
-});
+export default function AuthWrapper({ type }: AuthWrapperPropType) {
+  const component = useMemo(() => {
+    switch (type) {
+      case "sign-in":
+        return <AuthSignIn />;
+      case "sign-up":
+        return <AuthSignUp />;
+      default:
+        return <AuthSignIn />;
+    }
+  }, [type]);
 
-export default function AuthWrapper() {
   return (
-    <Container>
-      <Content>
-        <Logo />
-        {/* <PlainLogo
-            width={101}
-            height={35}
-            resizeMode="cover"
-          /> */}
-
-        <Text
-          {...typography["heading-28"]}
-          marginTop="17%"
-          marginBottom={32}
-          width="100%"
-        >
-          Welcome Back!
-        </Text>
-      </Content>
-    </Container>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={{ flexGrow: 1 }}
+    >
+      {component}
+    </KeyboardAvoidingView>
   );
 }

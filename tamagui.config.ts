@@ -32,12 +32,18 @@ export const colors = {
   "s-black": "#636364",
   black: "#0C0C0E",
   "input-cursor": "#B9B9BA",
-  placeholder: "#636364",
   white: "#FEFEFE",
   "lighter-white": "#ffffff4c",
   "light-white": "#00000088",
-  red: "#F43B3B",
-  green: "#3AC946",
+  error: "#F43B3B",
+  success: "#3AC946",
+  disabled: "#5C6574",
+  blue: "#1877F2",
+  "default-gray": "#c4c4c4",
+  "light-error": "rgba(244,59,59,0.05)",
+  "gray-20": "rgba(185,185,186,0.2)",
+  "dark-gray": "#8E8E93",
+  "search-gray": "#f3f3f3",
 };
 
 export const typography = {
@@ -45,6 +51,11 @@ export const typography = {
     fontSize: 10,
     fontFamily: "MulishBold",
     lineHeight: 13,
+  },
+  "heading-14": {
+    fontSize: 14,
+    fontFamily: "MulishBold",
+    lineHeight: 20,
   },
   "heading-15": {
     fontSize: 15,
@@ -77,7 +88,12 @@ export const typography = {
     lineHeight: 30,
   },
   "heading-28": {
-    fontSize: 24,
+    fontSize: 28,
+    fontFamily: "MulishBold",
+    lineHeight: 35,
+  },
+  "heading-ext28": {
+    fontSize: 28,
     fontFamily: "MulishExtraBold",
     lineHeight: 35,
   },

@@ -1,8 +1,5 @@
-import RateStarIcon from "@/assets/images/icon/rate_star_icon.svg";
-import { ReviewType } from "@/lib/types";
-import { rateAverageCount } from "@/lib/utils";
 import { colors, typography } from "@/tamagui.config";
-import { useMemo } from "react";
+import { StarFull } from "@tamagui/lucide-icons";
 import { Text, XStack, styled } from "tamagui";
 
 const Container = styled(XStack, {
@@ -50,28 +47,43 @@ const RateText = styled(Text, {
 
 type RateBlockPropType = {
   screenType: "list" | "card" | "card-list" | "fullscreen";
-  reviewData: ReviewType[];
+  withTotal?: boolean;
+  withTitle?: boolean;
+  reviewData: {
+    rate: number;
+    totalReviews: number;
+  };
 };
 
 export default function RateBlock({
   screenType,
   reviewData,
+  withTotal = true,
+  withTitle = false,
 }: RateBlockPropType) {
-  console.log("heee");
-  const rateAverage = useMemo(() => rateAverageCount(reviewData), [reviewData]);
   return (
-    <Container variant={screenType === "list" ? screenType : "default"}>
-      <RateStarIcon
-        width={screenType === "list" ? 10 : 20}
-        height={screenType === "list" ? 9 : 19}
-      />
-      <RateText variant={screenType}>{rateAverage}</RateText>
-      <RateText
-        variant={screenType}
-        textColor="gray"
-      >
-        ({reviewData.length})
+    <Container
+      alignItems="center"
+      variant={screenType === "list" ? screenType : "default"}
+    >
+      <StarFull size={screenType === "list" ? 16 : 18} />
+      <RateText variant={screenType}>
+        {Number.isInteger(reviewData.rate)
+          ? String(reviewData.rate).padEnd(3, ".0")
+          : reviewData.rate}
       </RateText>
+      {withTotal && (
+        <RateText
+          variant={screenType}
+          textColor={screenType === "fullscreen" ? "default" : "gray"}
+        >
+          ({reviewData.totalReviews}
+          {withTitle
+            ? " Review" + (reviewData.totalReviews > 1 ? "s" : "")
+            : ""}
+          )
+        </RateText>
+      )}
     </Container>
   );
 }

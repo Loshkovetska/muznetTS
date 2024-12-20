@@ -1,15 +1,12 @@
+import IndicatorBlock from "@/components/indicator-block";
 import Button from "@/components/ui/button";
+import { SCREEN_WIDTH } from "@/lib/constants";
 import { colors, typography } from "@/tamagui.config";
 import { ArrowRight } from "@tamagui/lucide-icons";
-import { Link, useNavigation } from "expo-router";
+import { Link } from "expo-router";
 import { useState } from "react";
-import { Image, Stack, Text, XStack, YStack, styled } from "tamagui";
+import { Image, Text, XStack, YStack, styled } from "tamagui";
 import { ONBOARDING_CONTENT } from "./constants";
-
-const StyledImage = styled(Image, {
-  width: "112%",
-  maxHeight: "100%",
-});
 
 const StyledContainer = styled(YStack, {
   height: "100%",
@@ -18,12 +15,10 @@ const StyledContainer = styled(YStack, {
 });
 
 const StyledImageBlock = styled(YStack, {
-  width: "100%",
-  height: "100%",
-  maxHeight: 432,
-  justifyContent: "flex-start",
+  width: SCREEN_WIDTH,
+  height: SCREEN_WIDTH + 100,
   alignItems: "center",
-  backgroundColor: colors["white"],
+  justifyContent: "flex-end",
 });
 
 const StyledContent = styled(YStack, {
@@ -35,32 +30,6 @@ const StyledContent = styled(YStack, {
   flexGrow: 1,
 });
 
-const IndicatorBlock = styled(XStack, {
-  width: 61,
-  marginTop: 16,
-  marginBottom: 20,
-  alignItems: "center",
-  justifyContent: "space-between",
-});
-
-const IndicatorThumb = styled(Stack, {
-  height: 6,
-  width: 20,
-  borderRadius: 3,
-  backgroundColor: colors["black"],
-  position: "absolute",
-  top: 0,
-  left: 0,
-  zIndex: 10,
-});
-
-const IndicatorItem = styled(Stack, {
-  height: 6,
-  width: 6,
-  borderRadius: 3,
-  backgroundColor: colors["gray"],
-});
-
 const ButtonsBlock = styled(XStack, {
   height: 56,
   width: "100%",
@@ -70,14 +39,18 @@ const ButtonsBlock = styled(XStack, {
 });
 
 export default function OnboardingContent() {
-  const navigation = useNavigation();
   const [screenNumber, setScreenNumber] = useState(0);
   const CONTENT = ONBOARDING_CONTENT[screenNumber];
 
   return (
     <StyledContainer>
       <StyledImageBlock>
-        <StyledImage source={CONTENT.image} />
+        <Image
+          width={SCREEN_WIDTH}
+          height={SCREEN_WIDTH}
+          source={CONTENT.image}
+          resizeMode="cover"
+        />
       </StyledImageBlock>
       <StyledContent>
         <Text
@@ -92,13 +65,10 @@ export default function OnboardingContent() {
         >
           {CONTENT.text}
         </Text>
-        <IndicatorBlock>
-          <IndicatorThumb left={CONTENT.thumbOffsetLeft} />
-          {Object.keys(ONBOARDING_CONTENT).map((key) => (
-            <IndicatorItem key={key} />
-          ))}
-          <IndicatorItem />
-        </IndicatorBlock>
+        <IndicatorBlock
+          currentIndex={screenNumber}
+          list={Object.keys(ONBOARDING_CONTENT)}
+        />
         <ButtonsBlock>
           {screenNumber < 3 ? (
             <>
@@ -107,21 +77,19 @@ export default function OnboardingContent() {
                 href="/sign-in"
               >
                 <Button
-                  size="lg"
-                  flexGrow={1 / 2}
+                  sizeB="lg"
+                  variant="transparent"
                   width="auto"
                 >
                   Skip
                 </Button>
               </Link>
               <Button
-                size="lg"
-                variant="dark"
-                flexGrow={1 / 2}
-                maxWidth="50%"
+                sizeB="lg"
+                variant="transparent"
                 width="auto"
                 onPress={() => setScreenNumber((prev) => prev + 1)}
-                iconRight={<ArrowRight color={colors["white"]} />}
+                iconRight={<ArrowRight color={colors["black"]} />}
               >
                 Next
               </Button>
@@ -132,7 +100,7 @@ export default function OnboardingContent() {
               href="/sign-in"
             >
               <Button
-                size="lg"
+                sizeB="lg"
                 variant="dark"
               >
                 Get Started

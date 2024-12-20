@@ -4,14 +4,25 @@ import { GetProps, Spinner, Button as TButton, Text, styled } from "tamagui";
 const ButtonTextStyled = styled(Text, {
   color: colors["white"],
   variants: {
-    size: {
+    sizeB: {
       sm: typography["label-13"],
       sm14: typography["label-14"],
-      lg: typography["label-20"],
+      sm15: typography["heading-15"],
+      lg: typography["label-16"],
+      sm17: typography["paragraph-17"],
+    },
+    variant: {
+      default: { color: colors["black"] },
+      dark: { color: colors["white"] },
+      white: { color: colors["black"] },
+      "black/50": { color: colors["white"] },
+      "white/50": { color: colors["black"] },
+      outlined: { color: colors["black"] },
+      transparent: { color: colors["black"] },
     },
   } as const,
   defaultVariants: {
-    size: "sm",
+    sizeB: "sm",
   },
 });
 const ButtonStyled = styled(TButton, {
@@ -20,8 +31,17 @@ const ButtonStyled = styled(TButton, {
   alignItems: "center",
   padding: 0,
   variants: {
-    size: {
+    sizeB: {
       sm: {
+        width: "auto",
+        height: 32,
+        borderRadius: 6,
+      },
+      sm17: {
+        width: "auto",
+        height: "auto",
+      },
+      sm15: {
         width: "auto",
         height: 32,
         borderRadius: 6,
@@ -31,23 +51,56 @@ const ButtonStyled = styled(TButton, {
         height: 56,
         borderRadius: 12,
       },
+      social: {
+        width: 60,
+        height: 60,
+      },
+      icon: {
+        width: 48,
+        height: 48,
+        borderRadius: 24,
+      },
     },
     variant: {
+      transparent: {
+        backgroundColor: "transparent",
+        borderWidth: 0,
+        focusStyle: {
+          backgroundColor: "transparent",
+          borderWidth: 0,
+        },
+        hoverStyle: { backgroundColor: "transparent", borderWidth: 0 },
+        pressStyle: { backgroundColor: "transparent", borderWidth: 0 },
+      },
       default: {
         backgroundColor: colors["gray"],
       },
       dark: {
         backgroundColor: colors["black"],
       },
-      disabled: {
-        opacity: 0.5,
+      white: {
+        backgroundColor: colors["white"],
+        borderWidth: 1,
+        borderColor: colors["black"],
+      },
+      "black/50": {
+        backgroundColor: "rgba(0,0,0,0.5)",
+      },
+      "white/50": {
+        backgroundColor: "rgba(256,256,256,0.5)",
+      },
+    },
+    disabled: {
+      true: {
+        backgroundColor: colors["gray"],
         pointerEvents: "none",
+        color: colors["disabled"],
       },
     },
   } as const,
   defaultVariants: {
     variant: "default",
-    size: "sm",
+    sizeB: "sm",
   },
 });
 
@@ -59,13 +112,17 @@ type ButtonPropType = {
   React.PropsWithChildren;
 
 export default function Button(props: ButtonPropType) {
-  const { children, loading, iconLeft, iconRight, ...rest } = props;
+  const { children, loading, iconLeft, iconRight, variant, ...rest } = props;
   return (
-    <ButtonStyled {...rest}>
+    <ButtonStyled
+      variant={variant}
+      {...rest}
+    >
       {loading && <Spinner size="small" />}
       {iconLeft}
       <ButtonTextStyled
-        size={props.size as "sm"}
+        sizeB={props.sizeB as "sm"}
+        variant={variant}
         unstyled
       >
         {children}

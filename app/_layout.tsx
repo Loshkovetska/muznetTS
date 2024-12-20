@@ -1,14 +1,16 @@
+import Providers from "@/components/providers";
 import Navigation from "@/navigation";
-import tamaguiConfig from "@/tamagui.config";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFonts } from "expo-font";
-import { SplashScreen } from "expo-router";
-import { useEffect } from "react";
+import { SplashScreen, router } from "expo-router";
+import { useCallback, useEffect, useState } from "react";
 import { StatusBar } from "react-native";
-import { TamaguiProvider } from "tamagui";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+  const [show, setShow] = useState(true);
+
   const [loaded] = useFonts({
     MulishLight: require("../assets/fonts/Mulish-Light.otf"),
     MulishRegular: require("../assets/fonts/Mulish-Regular.otf"),
@@ -25,18 +27,31 @@ export default function RootLayout() {
     }
   }, [loaded]);
 
+  const checkUserStatus = useCallback(async () => {
+    const exist = await AsyncStorage.getItem("enter");
+    const user = await AsyncStorage.getItem("user");
+    if (exist && user) return setShow(false);
+    if (exist && !user) return router.navigate("/sign-in");
+
+    await AsyncStorage.setItem("enter", "true");
+  }, []);
+
+  useEffect(() => {
+    checkUserStatus();
+  }, [checkUserStatus]);
+
   if (!loaded) {
     return null;
   }
   return (
-    <TamaguiProvider config={tamaguiConfig}>
+    <Providers>
       <StatusBar
         barStyle="dark-content"
         hidden={false}
         backgroundColor="white"
         translucent
       />
-      <Navigation />
-    </TamaguiProvider>
+      <Navigation firstLoad={show} />
+    </Providers>
   );
 }
