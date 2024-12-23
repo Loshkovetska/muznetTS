@@ -1,3 +1,4 @@
+import { uploadImage } from "@/lib/actions/upload-image";
 import {
   SignInRequestType,
   SignUpRequestType,
@@ -30,19 +31,7 @@ class AuthServiceClass {
     const copy = JSON.parse(JSON.stringify(params));
     delete copy.photo;
 
-    const imagesUrls = [];
-
-    for (let i = 0; i < params.photo.length; i++) {
-      const file = params.photo[i];
-
-      const bucket = await supabase.storage
-        .from("Images")
-        .upload(file.filePath, Buffer.from(file.base64).toString("base64"), {
-          contentType: file.contentType,
-        });
-      console.log("va", bucket);
-      bucket.data && imagesUrls.push(bucket.data?.path);
-    }
+    const imagesUrls = await uploadImage(params.photo);
 
     const user = await supabase
       .from("users")
@@ -53,7 +42,6 @@ class AuthServiceClass {
     if (!user.error) {
       return user.data;
     }
-    console.log(user);
     throw new Error("Cant sign up");
   }
 
@@ -91,24 +79,7 @@ class AuthServiceClass {
         .single();
 
       if (user.data) {
-        const imagesUrls = [];
-
-        for (let i = 0; i < params.photo.length; i++) {
-          const file = params.photo[i];
-          const bucket = await supabase.storage
-            .from("Images")
-            .upload(
-              file.filePath,
-              Buffer.from(file.base64).toString("base64"),
-              {
-                contentType: file.contentType,
-              }
-            );
-
-          if (bucket.error) throw new Error("Can't upload image to Storage");
-
-          imagesUrls.push(bucket.data.path);
-        }
+        const imagesUrls = await uploadImage(params.photo);
 
         const user = await supabase
           .from("users")
@@ -124,6 +95,13 @@ class AuthServiceClass {
       console.log(e);
     }
     throw new Error("Cant update user");
+  }
+
+  async getUser(id: string): Promise<UserType | null> {
+    const user = await supabase.from("users").select().eq("id", id).single();
+    if (user.data) return user.data;
+
+    return null;
   }
 }
 

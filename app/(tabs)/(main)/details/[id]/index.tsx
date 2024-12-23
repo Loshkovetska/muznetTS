@@ -4,7 +4,8 @@ import { useUser } from "@/components/providers/user-provider";
 import BottomBar from "@/components/screens/details/bottom-bar";
 import MainInfo from "@/components/screens/details/main-info";
 import { QUERY_TAGS } from "@/lib/constants";
-import UserService from "@/lib/services/user";
+import AdService from "@/lib/services/ad";
+import UsersServiceClass from "@/lib/services/user";
 import { useQuery } from "@tanstack/react-query";
 import { useLocalSearchParams } from "expo-router";
 import { useState } from "react";
@@ -16,12 +17,19 @@ export default function Index() {
   const [isFullSliderOpen, setOpen] = useState(-1);
   const [openReviews, setOpenReviews] = useState(false);
 
-  const { data } = useQuery({
+  const { data: musician } = useQuery({
     queryKey: [QUERY_TAGS.MUSICIAN, id],
-    queryFn: () => UserService.getMusician(id as string),
+    queryFn: () => UsersServiceClass.getMusician(id as string),
     enabled: user?.user_type === "contractor",
   });
 
+  const { data: ad } = useQuery({
+    queryKey: [QUERY_TAGS.AD, id],
+    queryFn: () => AdService.getAd(id as string),
+    enabled: user?.user_type !== "contractor",
+  });
+
+  const data = user?.user_type !== "contractor" ? ad : musician;
   if (!data) return null;
 
   const images = data.photo?.length ? data.photo : [];

@@ -10,17 +10,19 @@ import {
 } from "react-native";
 
 type SearchWithFilterPropType = {
-  filter?: boolean;
+  onFilter?: () => void;
 };
 
-export default function SearchWithFilter({ filter }: SearchWithFilterPropType) {
+export default function SearchWithFilter({
+  onFilter,
+}: SearchWithFilterPropType) {
   const [value, setValue] = useState("");
 
   const onSubmit = useCallback(
     (e: NativeSyntheticEvent<TextInputSubmitEditingEventData>) => {
-      if (!filter) router.push("/search");
+      if (!onFilter) router.push("/search");
     },
-    [filter]
+    [onFilter]
   );
   return (
     <Input
@@ -34,11 +36,12 @@ export default function SearchWithFilter({ filter }: SearchWithFilterPropType) {
         />
       }
       iconRight={
-        filter ? (
+        onFilter ? (
           <Button
             variant="dark"
             width={28}
             height={28}
+            onPress={onFilter}
           >
             <Settings2
               color={colors["white"]}

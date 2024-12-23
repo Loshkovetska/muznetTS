@@ -89,6 +89,7 @@ export type InputPropType = Omit<
     iconLeft?: React.ReactNode;
     iconRight?: React.ReactNode;
     animate?: boolean;
+    wrapper?: GetProps<typeof StyledInputContainer>;
   };
 
 const Input = React.forwardRef<TextInput, InputPropType>(
@@ -100,6 +101,7 @@ const Input = React.forwardRef<TextInput, InputPropType>(
       variant = "default",
       sizeB = "default",
       animate = true,
+      wrapper,
       ...props
     },
     ref
@@ -116,6 +118,7 @@ const Input = React.forwardRef<TextInput, InputPropType>(
         focused={variant !== "default" ? false : isFocused}
         justifyContent={sizeB == "code" ? "center" : undefined}
         disabled={disabled}
+        {...wrapper}
       >
         {iconLeft}
         <StyledInputWrapper>

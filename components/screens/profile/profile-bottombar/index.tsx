@@ -1,7 +1,9 @@
 import { colors } from "@/tamagui.config";
-import { XStack } from "tamagui";
+import { XStack, XStackProps } from "tamagui";
 
-export default function ProfileBottomBar(props: React.PropsWithChildren) {
+export default function ProfileBottomBar(
+  props: React.PropsWithChildren & XStackProps
+) {
   return (
     <XStack
       width="100%"
@@ -13,8 +15,9 @@ export default function ProfileBottomBar(props: React.PropsWithChildren) {
       paddingTop={8}
       paddingBottom={24}
       backgroundColor={colors["white"]}
-    >
-      {props.children}
-    </XStack>
+      borderWidth={1}
+      borderColor={colors["light-gray"]}
+      {...props}
+    />
   );
 }

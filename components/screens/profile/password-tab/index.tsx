@@ -7,7 +7,6 @@ import AuthService from "@/lib/services/auth";
 import { UpdatePasswordRequestType, UserType } from "@/lib/types";
 import { colors, typography } from "@/tamagui.config";
 import { zodResolver } from "@hookform/resolvers/zod";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useMutation } from "@tanstack/react-query";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
@@ -36,7 +35,6 @@ export default function PasswordTab({ user, header }: PasswordTabPropType) {
     mutationFn: (params: UpdatePasswordRequestType) =>
       AuthService.updatePassword(params),
     onSuccess: async (data) => {
-      await AsyncStorage.setItem("user", JSON.stringify(data));
       updateUser();
       form.reset();
     },

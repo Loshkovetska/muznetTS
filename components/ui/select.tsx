@@ -1,9 +1,10 @@
 import { useSelectContext } from "@/components/providers/select-provider";
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/lib/constants";
 import { colors, typography } from "@/tamagui.config";
 import { ChevronDown, ChevronUp } from "@tamagui/lucide-icons";
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useRef } from "react";
 import { FlatList, GestureResponderEvent, View } from "react-native";
-import { Text, XStack, styled } from "tamagui";
+import { GetProps, Text, XStack, YStack, styled } from "tamagui";
 
 type SelectPropType = {
   value: string;
@@ -12,7 +13,7 @@ type SelectPropType = {
   name: string;
 };
 
-const SelectTrigger = styled(XStack, {
+const StyledSelectTrigger = styled(XStack, {
   flexDirection: "row",
   paddingHorizontal: 16,
   paddingVertical: 12,
@@ -22,7 +23,7 @@ const SelectTrigger = styled(XStack, {
   variants: {
     open: {
       true: {
-        borderBottomWidth: 0,
+        borderBottomColor: "transparent",
         borderBottomRightRadius: 0,
         borderBottomLeftRadius: 0,
       },
@@ -67,6 +68,30 @@ const SelectItem = styled(Text, {
   color: colors["black"],
 });
 
+type SelectTriggerPropType = {
+  value: string;
+  placeholder: string;
+  isOpen: boolean;
+  onPress: (e: GestureResponderEvent) => void;
+  triggerIcon?: React.ReactNode;
+} & GetProps<typeof StyledSelectTrigger>;
+
+export const SelectTrigger = React.forwardRef<View, SelectTriggerPropType>(
+  ({ isOpen, value, placeholder, triggerIcon, onPress, ...props }, ref) => {
+    return (
+      <StyledSelectTrigger
+        open={isOpen}
+        ref={ref}
+        onPress={onPress}
+        {...props}
+      >
+        <SelectValue>{value || placeholder}</SelectValue>
+        {triggerIcon || (isOpen ? <ChevronUp /> : <ChevronDown />)}
+      </StyledSelectTrigger>
+    );
+  }
+);
+
 export default function Select({
   value,
   placeholder,
@@ -74,35 +99,31 @@ export default function Select({
   name,
 }: SelectPropType) {
   const triggerRef = useRef<View>(null);
-  const { isOpen, ref, setOpen, setOptions, setName, setPosition } =
+  const { isOpen, ref, setOpen, setOptions, setName, setPosition, ...rest } =
     useSelectContext();
 
   const onPress = useCallback(
     (e: GestureResponderEvent) => {
       setOpen(!isOpen);
+      setName(!isOpen ? name : "");
+      setOptions(!isOpen ? options : []);
       if (ref && triggerRef.current) {
         triggerRef.current.measureLayout(ref as any, (x, y, width, height) => {
           setPosition({ x, y: y + height });
         });
       }
     },
-    [ref, isOpen, setOpen]
+    [ref, isOpen, options, setOpen, setName, setOptions]
   );
-
-  useEffect(() => {
-    setOptions(isOpen ? options : []);
-    setName(isOpen ? name : "");
-  }, [isOpen, name, options, setOptions, setName]);
 
   return (
     <SelectTrigger
-      open={isOpen}
-      onPress={onPress}
       ref={triggerRef}
-    >
-      <SelectValue>{value || placeholder}</SelectValue>
-      {isOpen ? <ChevronUp /> : <ChevronDown />}
-    </SelectTrigger>
+      value={value}
+      isOpen={rest.name === name ? isOpen : false}
+      placeholder={placeholder}
+      onPress={onPress}
+    />
   );
 }
 
@@ -120,21 +141,37 @@ export function SelectContent({
     [onValueChange, setOpen]
   );
   return (
-    <StyledSelectContent
-      open={isOpen}
-      top={position.y}
-      left={position.x}
-    >
-      <FlatList
-        nestedScrollEnabled
-        data={options}
-        style={{ width: "100%" }}
-        contentContainerStyle={{ gap: 16 }}
-        renderItem={({ item }) => (
-          <SelectItem onPress={() => onChange(name, item)}>{item}</SelectItem>
-        )}
-        keyExtractor={(item) => item}
+    <>
+      <StyledSelectContent
+        open={isOpen}
+        top={position.y - 1}
+        left={position.x}
+        width={SCREEN_WIDTH - position.x * 2}
+      >
+        <FlatList
+          nestedScrollEnabled
+          data={options}
+          style={{ width: "100%", zIndex: 1 }}
+          contentContainerStyle={{ gap: 16 }}
+          renderItem={({ item }) => (
+            <SelectItem
+              zIndex={2}
+              onPress={() => onChange(name, item)}
+            >
+              {item}
+            </SelectItem>
+          )}
+          keyExtractor={(item) => item}
+        />
+      </StyledSelectContent>
+      <YStack
+        position="absolute"
+        zIndex={0}
+        width={SCREEN_WIDTH}
+        height={SCREEN_HEIGHT}
+        opacity={isOpen ? 1 : 0}
+        onPress={() => setOpen(false)}
       />
-    </StyledSelectContent>
+    </>
   );
 }

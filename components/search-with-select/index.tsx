@@ -9,10 +9,13 @@ import { UseFormReturn, useWatch } from "react-hook-form";
 import { XStack, YStack } from "tamagui";
 
 type SearchWithSelectPropType = {
-  form: UseFormReturn<any>;
+  form?: UseFormReturn<any>;
   name: string;
   options: string[];
   placeholder: string;
+  edit?: boolean;
+  selected?: string[];
+  onChange?: (name: string, value: string[]) => void;
 };
 
 export default function SearchWithSelect({
@@ -20,9 +23,14 @@ export default function SearchWithSelect({
   name,
   options,
   placeholder,
+  edit = false,
+  selected = [],
+  onChange,
 }: SearchWithSelectPropType) {
   const [value, setValue] = useState("");
-  const selectedItems: string[] = useWatch({ control: form.control, name });
+  const selectedItems: string[] = form
+    ? useWatch({ control: form?.control, name })
+    : selected;
 
   const searchedOptions = useMemo(() => {
     if (!value.length)
@@ -41,23 +49,29 @@ export default function SearchWithSelect({
 
   const onDelete = useCallback(
     (option: string) => {
-      setValueToForm(
-        form,
+      form &&
+        setValueToForm(
+          form,
+          name,
+          selectedItems.filter((s) => s !== option)
+        );
+      onChange?.(
         name,
         selectedItems.filter((s) => s !== option)
       );
     },
-    [selectedItems, form, name]
+    [selectedItems, form, name, onChange]
   );
 
   const onSelect = useCallback(
     (v: string) => {
-      setValueToForm(form, name, [...selectedItems, v]);
+      form && setValueToForm(form, name, [...selectedItems, v]);
+      onChange?.(name, [...selectedItems, v]);
     },
-    [form, name, selectedItems]
+    [form, name, selectedItems, onChange]
   );
   return (
-    <YStack>
+    <YStack gap={16}>
       <Input
         animate={false}
         variant="search"
@@ -75,10 +89,7 @@ export default function SearchWithSelect({
         onChangeText={setValue}
       />
       {selectedItems.length > 0 && (
-        <YStack
-          gap={8}
-          marginTop={16}
-        >
+        <YStack gap={8}>
           <XStack
             flexWrap="wrap"
             gap={8}
@@ -88,27 +99,29 @@ export default function SearchWithSelect({
                 text={selected}
                 key={selected + "selected"}
                 onDelete={() => onDelete(selected)}
+                dark={edit}
               />
             ))}
           </XStack>
-          <Separator />
+          {value.length > 0 && <Separator />}
         </YStack>
       )}
 
-      <XStack
-        gap={10}
-        flexWrap="wrap"
-        width="100%"
-        marginTop={24}
-      >
-        {searchedOptions.map((option) => (
-          <SearchOption
-            text={option}
-            key={option}
-            onSelect={() => onSelect(option)}
-          />
-        ))}
-      </XStack>
+      {(!edit || (edit && value.length > 0)) && searchedOptions.length > 0 && (
+        <XStack
+          gap={10}
+          flexWrap="wrap"
+          width="100%"
+        >
+          {searchedOptions.map((option) => (
+            <SearchOption
+              text={option}
+              key={option}
+              onSelect={() => onSelect(option)}
+            />
+          ))}
+        </XStack>
+      )}
     </YStack>
   );
 }

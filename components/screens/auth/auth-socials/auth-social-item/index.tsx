@@ -15,7 +15,7 @@ export default function AuthSocialItem({
       alignItems="center"
     >
       <Button
-        variant="white"
+        variant="outlined"
         sizeB="social"
       >
         {icon}

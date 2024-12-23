@@ -6,6 +6,7 @@ const ItemInfoCostValue = styled(Text, {
     sizeB: {
       sm: typography["heading-18"],
       lg: typography["heading-24"],
+      "sm-16": typography["heading-16"],
     },
   },
   defaultVariants: { sizeB: "sm" },
@@ -15,6 +16,7 @@ const ItemInfoCostValuePostfix = styled(Text, {
   variants: {
     sizeB: {
       sm: typography["paragraph-14"],
+      "sm-16": typography["paragraph-14"],
       lg: typography["paragraph-17"],
     },
   },
@@ -26,7 +28,7 @@ export default function PricePerHour({
   sizeB = "sm",
 }: {
   price: number;
-  sizeB?: "sm" | "lg";
+  sizeB?: "sm" | "lg" | "sm-16";
 }) {
   return (
     <XStack

@@ -1,10 +1,9 @@
 import { colors, typography } from "@/tamagui.config";
 import { MapPin } from "@tamagui/lucide-icons";
-import { Text, XStack, styled } from "tamagui";
+import { GetProps, Text, XStack, styled } from "tamagui";
 
 const ItemInfoLocation = styled(XStack, {
   alignItems: "center",
-  paddingRight: 75,
   gap: 5,
 });
 
@@ -23,12 +22,13 @@ const ItemInfoLocationText = styled(Text, {
 export default function ProfileLocation({
   address,
   sizeB = "sm",
+  ...props
 }: {
   address: string;
   sizeB?: "sm" | "lg";
-}) {
+} & GetProps<typeof ItemInfoLocation>) {
   return (
-    <ItemInfoLocation>
+    <ItemInfoLocation {...props}>
       <MapPin
         size={sizeB === "sm" ? 14 : 16}
         color={colors["s-black"]}

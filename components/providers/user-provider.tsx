@@ -1,5 +1,8 @@
+import { QUERY_TAGS } from "@/lib/constants";
+import AuthService from "@/lib/services/auth";
 import { UserType } from "@/lib/types";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useQuery } from "@tanstack/react-query";
 import { router } from "expo-router";
 import {
   createContext,
@@ -24,7 +27,13 @@ const UserContext = createContext<{
 export const useUser = () => useContext(UserContext);
 
 export default function UserProvider(props: React.PropsWithChildren) {
-  const [user, setUser] = useState<UserType | null>(null);
+  const [userId, setUserId] = useState<string | null>(null);
+
+  const { data: user = null, refetch } = useQuery({
+    queryKey: [QUERY_TAGS.USER],
+    queryFn: () => AuthService.getUser(userId as string),
+    enabled: !!userId,
+  });
 
   const logOut = useCallback(() => {
     AsyncStorage.clear()
@@ -33,14 +42,15 @@ export default function UserProvider(props: React.PropsWithChildren) {
   }, []);
 
   const updateUser = useCallback(() => {
-    AsyncStorage.getItem("user").then((res) => {
-      setUser(JSON.parse(res || "null"));
+    AsyncStorage.getItem("user").then((r) => {
+      setUserId(r);
+      refetch();
     });
-  }, []);
+  }, [refetch]);
 
   useEffect(() => {
-    updateUser();
-  }, [updateUser]);
+    AsyncStorage.getItem("user").then((r) => setUserId(r));
+  }, []);
 
   return (
     <UserContext.Provider

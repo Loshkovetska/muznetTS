@@ -66,7 +66,7 @@ export default function RateBlock({
       alignItems="center"
       variant={screenType === "list" ? screenType : "default"}
     >
-      <StarFull size={screenType === "list" ? 16 : 18} />
+      <StarFull size={screenType === "list" ? 14 : 16} />
       <RateText variant={screenType}>
         {Number.isInteger(reviewData.rate)
           ? String(reviewData.rate).padEnd(3, ".0")

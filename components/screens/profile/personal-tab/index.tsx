@@ -1,8 +1,11 @@
 import AddInfoForm from "@/components/forms/add-info-form";
 import { useUser } from "@/components/providers/user-provider";
+import MediaSelect from "@/components/screens/profile/personal-tab/media-select";
 import ProfileBottomBar from "@/components/screens/profile/profile-bottombar";
+import SearchWithSelect from "@/components/search-with-select";
 import Button from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
+import { GENRES, GROUP_MEMBERS, INSTRUMENTS } from "@/lib/constants/lists";
 import {
   updateContractorInfoScheme,
   updateMusicianInfoScheme,
@@ -11,7 +14,6 @@ import AuthService from "@/lib/services/auth";
 import { UpdateInfoType, UserType } from "@/lib/types";
 import { colors } from "@/tamagui.config";
 import { zodResolver } from "@hookform/resolvers/zod";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useMutation } from "@tanstack/react-query";
 import { useCallback, useMemo } from "react";
 import { useForm } from "react-hook-form";
@@ -33,7 +35,7 @@ export default function PersonalTab({ user, header }: PersonalTabPropType) {
 
   const form = useForm({
     defaultValues: {
-      photo: [],
+      photo: user?.photo || [],
       name: user?.name || "",
       surname: user?.surname || "",
       email: user?.email || "",
@@ -49,15 +51,12 @@ export default function PersonalTab({ user, header }: PersonalTabPropType) {
       price_per_hour: String(user?.price_per_hour || ""),
     },
     mode: "onChange",
-    resolver: zodResolver(
-      isMusician ? updateMusicianInfoScheme : updateContractorInfoScheme
-    ),
+    resolver: zodResolver(scheme),
   });
 
-  const { mutate: updateInfo } = useMutation({
+  const { mutate: updateInfo, isPending } = useMutation({
     mutationFn: (body: UpdateInfoType) => AuthService.updateInfo(body),
     onSuccess: async (data) => {
-      await AsyncStorage.setItem("user", JSON.stringify(data));
       updateUser();
       form.reset();
     },
@@ -88,7 +87,39 @@ export default function PersonalTab({ user, header }: PersonalTabPropType) {
             form={form}
             user_type={user?.user_type || "contractor"}
             hide={["password"]}
-          />
+          >
+            {isMusician && (
+              <YStack
+                gap={16}
+                marginBlock={8}
+              >
+                {user?.position === "band" && (
+                  <SearchWithSelect
+                    name="group_members"
+                    form={form}
+                    placeholder="Search group members"
+                    options={GROUP_MEMBERS}
+                    edit
+                  />
+                )}
+                <SearchWithSelect
+                  name="musical_instruments"
+                  form={form}
+                  placeholder="Search instruments"
+                  options={INSTRUMENTS}
+                  edit
+                />
+                <SearchWithSelect
+                  name="musical_genres"
+                  form={form}
+                  placeholder="Search music genres"
+                  options={GENRES}
+                  edit
+                />
+                <MediaSelect form={form} />
+              </YStack>
+            )}
+          </AddInfoForm>
         </ScrollView>
       </YStack>
       <ProfileBottomBar>
@@ -97,6 +128,7 @@ export default function PersonalTab({ user, header }: PersonalTabPropType) {
           sizeB="lg"
           disabled={!form.formState.isDirty || !form.formState.isValid}
           onPress={form.handleSubmit(onSubmit)}
+          loading={isPending}
         >
           Update Info
         </Button>

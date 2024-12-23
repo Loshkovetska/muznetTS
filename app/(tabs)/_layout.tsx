@@ -1,21 +1,18 @@
 import TabbarIcon from "@/navigation/tabbar-icon";
-import {
-  Tabs,
-  useLocalSearchParams,
-  usePathname,
-  useSegments,
-} from "expo-router";
+import { Tabs, useSegments } from "expo-router";
 import { useState } from "react";
 
 export default function RootLayout() {
   const segments = useSegments();
-  const seachParams = useLocalSearchParams();
-  const cs = usePathname();
   const [tabbarVisible, setVisible] = useState(true);
 
-  const hideTabBar = [...segments].includes("details");
+  const hideTabBar =
+    [...segments].includes("details") || [...segments].includes("search");
+
+  console.log(segments);
   return (
     <Tabs
+      initialRouteName="(main)"
       screenOptions={{
         headerShown: false,
         tabBarStyle: {

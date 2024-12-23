@@ -14,6 +14,7 @@ import PasswordInput from "@/components/inputs/password-input";
 import CheckboxWithLabel from "@/components/ui/checkbox";
 import Input, { InputPropType } from "@/components/ui/input";
 import TextArea from "@/components/ui/textarea";
+import { formateDate, formateTime } from "@/lib/utils";
 import { colors, typography } from "@/tamagui.config";
 import { GetProps, Text, YStack } from "tamagui";
 
@@ -123,6 +124,7 @@ FormMessage.displayName = "FormMessage";
 
 type FormElementPropType = {
   type?: "password" | "textarea" | "checkbox";
+  inputType?: "date" | "time";
   name: string;
   withIcons?: boolean;
 } & InputPropType;
@@ -137,11 +139,23 @@ const FormElement = ({ type, ...props }: FormElementPropType) => {
         : Input,
     [type]
   );
+
+  const getValue = React.useCallback(
+    (value: string) => {
+      if (props.inputType) {
+        if (props.inputType === "date") return formateDate(value);
+        if (props.inputType === "time") return formateTime(value);
+      }
+
+      return value;
+    },
+    [props]
+  );
   return (
     <FormField
       name={props.name}
       render={({ field, fieldState }) => (
-        <FormItem>
+        <FormItem flexGrow={1}>
           {type === "checkbox" && (
             <CheckboxWithLabel
               label={props.placeholder || ""}
@@ -159,6 +173,7 @@ const FormElement = ({ type, ...props }: FormElementPropType) => {
                   : undefined
               }
               {...field}
+              value={getValue(field.value)}
               onChangeText={field.onChange}
               {...(props as any)}
             />

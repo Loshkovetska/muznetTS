@@ -13,7 +13,7 @@ const StyledCheckBox = styled(Checkbox, {
   variants: {
     checked: {
       true: {
-        backgroundColor: colors["white"],
+        backgroundColor: colors["black"],
       },
     },
   },
@@ -41,13 +41,18 @@ export default function CheckboxWithLabel({
         checked={checked as boolean}
         onCheckedChange={onCheckedChange}
       >
-        <Checkbox.Indicator>
-          <CheckIcon />
-        </Checkbox.Indicator>
+        {checked && (
+          <CheckIcon
+            size={16}
+            color={colors["white"]}
+          />
+        )}
       </StyledCheckBox>
       <Label
+        htmlFor={id}
         {...typography["label-15"]}
         color={colors["s-black"]}
+        onPress={() => onCheckedChange?.(!checked)}
       >
         {label}
       </Label>

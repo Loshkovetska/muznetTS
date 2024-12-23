@@ -7,9 +7,9 @@ export default function Providers(props: React.PropsWithChildren) {
   return (
     <TamaguiProvider config={tamaguiConfig}>
       <PortalProvider>
-        <UserProvider>
-          <QueryProvider>{props.children}</QueryProvider>
-        </UserProvider>
+        <QueryProvider>
+          <UserProvider>{props.children}</UserProvider>
+        </QueryProvider>
       </PortalProvider>
     </TamaguiProvider>
   );

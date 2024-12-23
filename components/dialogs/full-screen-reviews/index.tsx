@@ -26,21 +26,17 @@ export default function FullScreenReviews({
       opacity={!open ? 0 : 1}
       animateOnly={["opacity"]}
       paddingTop={64}
+      gap={16}
+      paddingHorizontal={16}
     >
-      <YStack
-        gap={16}
-        width="100%"
-        paddingHorizontal={16}
-      >
-        <ChevronLeft
-          size={24}
-          onPress={onOpenChange}
-        />
-        <ReviewsList
-          type="full"
-          rate={rate}
-        />
-      </YStack>
+      <ChevronLeft
+        size={24}
+        onPress={onOpenChange}
+      />
+      <ReviewsList
+        type="full"
+        rate={rate}
+      />
     </YStack>
   );
 }

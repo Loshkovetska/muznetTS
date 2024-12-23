@@ -29,7 +29,7 @@ export default function ProfileMenu({
     <YStack
       gap={32}
       flexGrow={1}
-      paddingBottom={32}
+      paddingBottom={120}
       paddingTop={68}
       backgroundColor={colors["white"]}
       paddingHorizontal={16}

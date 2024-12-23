@@ -1,7 +1,7 @@
 import { UserType } from "@/lib/types";
 import { supabase } from "@/lib/utils/supabase";
 
-class UserServiceClass {
+class UsersServiceClass {
   constructor() {}
 
   async getMusicians(id?: string): Promise<UserType[]> {
@@ -37,6 +37,6 @@ class UserServiceClass {
   }
 }
 
-const UserService = new UserServiceClass();
+const UsersService = new UsersServiceClass();
 
-export default UserService;
+export default UsersService;

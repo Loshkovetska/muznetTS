@@ -1,25 +1,27 @@
 import { colors, typography } from "@/tamagui.config";
 import { X } from "@tamagui/lucide-icons";
-import { Text, XStack } from "tamagui";
+import { Stack, Text, XStack } from "tamagui";
 
 type SearchOptionPropType = {
   text: string;
+  dark?: boolean;
   onDelete?: () => void;
   onSelect?: () => void;
 };
 
 export default function SearchOption({
   text,
+  dark,
   onDelete,
   onSelect,
 }: SearchOptionPropType) {
   return (
     <XStack
       borderWidth={1}
-      borderRadius={6}
-      backgroundColor="white"
+      borderRadius={18}
+      backgroundColor={colors["black"]}
       borderColor={colors["gray-20"]}
-      height={32}
+      height={34}
       paddingLeft={onDelete ? 16 : 9}
       paddingRight={9}
       alignItems="center"
@@ -29,15 +31,25 @@ export default function SearchOption({
       <Text
         {...typography["label-13"]}
         flexGrow={1}
+        color={colors["white"]}
       >
         {text}
       </Text>
       {onDelete && (
-        <X
-          size={18}
+        <Stack
           onPress={onDelete}
-          color={colors["input-cursor"]}
-        />
+          width={16}
+          height={16}
+          alignItems="center"
+          justifyContent="center"
+          backgroundColor="rgba(254,254,254,0.2)"
+          borderRadius={dark ? 8 : undefined}
+        >
+          <X
+            size={12}
+            color="#B9B9BA"
+          />
+        </Stack>
       )}
     </XStack>
   );

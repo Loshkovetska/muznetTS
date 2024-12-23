@@ -114,18 +114,14 @@ export default function Dialog({
               alignSelf="flex-end"
               gap="$4"
             >
-              <TDialog.Close
-                displayWhenAdapted
-                asChild
+              <Button
+                aria-label="Close"
+                variant="dark"
+                sizeB="lg"
+                onPress={() => onOpenChange(false)}
               >
-                <Button
-                  aria-label="Close"
-                  variant="dark"
-                  sizeB="lg"
-                >
-                  {buttonText || "Save"}
-                </Button>
-              </TDialog.Close>
+                {buttonText || "Save"}
+              </Button>
             </XStack>
           </YStack>
         </TDialog.Content>

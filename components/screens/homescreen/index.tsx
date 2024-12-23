@@ -2,9 +2,7 @@ import { useUser } from "@/components/providers/user-provider";
 import AdsList from "@/components/screens/homescreen/ads-list";
 import MapImage from "@/components/screens/homescreen/map-image";
 import SearchWithFilter from "@/components/search-with-filter";
-import Button from "@/components/ui/button";
 import { typography } from "@/tamagui.config";
-import { Link } from "expo-router";
 import { ScrollView, Text, XStack, YStack, styled } from "tamagui";
 
 const Content = styled(YStack, {
@@ -37,18 +35,6 @@ export default function HomeScreen() {
         >
           Welcome 👋🏻
         </Text>
-        <Link
-          href="/"
-          asChild
-        >
-          <Button
-            sizeB="sm"
-            variant="dark"
-            width={125}
-          >
-            Promote my ad
-          </Button>
-        </Link>
       </Header>
       <SearchWithFilter />
       <ScrollView

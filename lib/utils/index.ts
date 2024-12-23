@@ -1,7 +1,10 @@
-import dayjs from "dayjs";
+import { AdType } from "@/lib/types";
+import dayjs, { Dayjs } from "dayjs";
 import { UseFormReturn } from "react-hook-form";
 
 const DAY_IN_MILLISECONDS = 86400000;
+const MINUTE_IN_MILLISECONDS = 60000;
+
 export const getReviewDate = (created_at: string) => {
   const today = dayjs();
   const date = dayjs(created_at);
@@ -13,8 +16,35 @@ export const getReviewDate = (created_at: string) => {
   return date.format("DD MMM YYYY");
 };
 
-export const generateImagesList = (images: string[]): string | null => {
-  return images?.[0] || null;
+export const getTimePeriod = (start: Dayjs, end: Dayjs) => {
+  const minutes = Math.round(end.diff(start) / MINUTE_IN_MILLISECONDS);
+  const countHours = Math.floor(minutes / 60);
+  return {
+    output: `(${countHours}h ${minutes % 60}m)`,
+    num: minutes / 60,
+  };
+};
+
+export const getPeriod = (start: string, end: string, time = false) => {
+  const startDate = dayjs(start);
+  const endDate = dayjs(end);
+
+  const startTime = startDate.format("HH:mma");
+  const endTime = endDate.format("HH:mma");
+
+  if (time) {
+    return `${startDate.format("HH:mm")}-${endDate.format("HH:mma")} ${
+      getTimePeriod(startDate, endDate).output
+    }`;
+  }
+
+  const oneDay = startDate.date() === endDate.date();
+  if (oneDay) {
+    return `${startDate.format("DD MMM")}, ${startTime} to ${endTime}`;
+  }
+  return `${startDate.format("DD MMM")}, ${startTime} to ${endDate.format(
+    "DD MMM"
+  )}, ${endTime}`;
 };
 
 export const setValueToForm = (
@@ -27,4 +57,52 @@ export const setValueToForm = (
     shouldTouch: true,
     shouldValidate: true,
   });
+};
+
+export const generateDealList = (deal: AdType) => {
+  const timeWithCost = getTimePeriod(
+    dayjs(deal.start_date),
+    dayjs(deal.end_date)
+  );
+  const cost = timeWithCost.num * deal.price_per_hour;
+  return {
+    Status: `${deal.status[0].toUpperCase()}${deal.status.slice(1)}`,
+    Date: `${dayjs(deal.start_date).toDate().toLocaleDateString("en-En", {
+      weekday: "long",
+    })}, ${dayjs(deal.start_date).format("DD MMM YYYY")}`,
+    Time: getPeriod(deal.start_date, deal.end_date, true),
+    Location: deal.address,
+    Price: `$${deal.price_per_hour} per hour`,
+    "Performance Cost": `$${cost} ${timeWithCost.output}`,
+    "Muznet Fee": "$9",
+    Total: `$${cost + 9}`,
+  };
+};
+
+export const formateDate = (value: string) => {
+  const cleaned = value.replace(/\D/g, "");
+  const limitedValue = cleaned.trim().replaceAll("/", "");
+  const year = limitedValue.slice(0, 4);
+  const month = limitedValue.slice(4, 6);
+  const day = limitedValue.slice(6, 8);
+
+  return limitedValue.length > 1 ? `${year}/${month}/${day}` : limitedValue;
+};
+
+export const formateTime = (value: string) => {
+  const cleaned = value.replace(/\D/g, "");
+  const limitedValue = cleaned.trim().replaceAll(":", "");
+  const hours = limitedValue.slice(0, 2);
+  const minutes = limitedValue.slice(2, 4);
+
+  return limitedValue.length > 1
+    ? `${Number(hours) > 23 ? 23 : hours}:${
+        Number(minutes) > 59 ? 59 : minutes
+      }`
+    : limitedValue;
+};
+
+export const is2HoursBetweenDates = (startDate: Date, endDate: Date) => {
+  const diff = getTimePeriod(dayjs(startDate), dayjs(endDate)).num;
+  return diff > 0 && diff <= 2;
 };

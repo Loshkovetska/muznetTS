@@ -2,7 +2,6 @@ import Button from "@/components/ui/button";
 import { setValueToForm } from "@/lib/utils";
 import { colors, typography } from "@/tamagui.config";
 import { AlertCircle, Pencil, UploadCloud } from "@tamagui/lucide-icons";
-import * as FileSystem from "expo-file-system";
 import * as ImagePickerNative from "expo-image-picker";
 import { useCallback, useEffect, useState } from "react";
 import { UseFormReturn, useWatch } from "react-hook-form";
@@ -64,35 +63,38 @@ export default function ImagePicker({ error, form }: ImagePickerPropType) {
     const result = await ImagePickerNative.launchImageLibraryAsync({
       mediaTypes: ["images"],
       allowsEditing: true,
-      quality: 1,
+      quality: 0.5,
       selectionLimit: 1,
     });
 
-    if (result.assets?.length) {
-      const file = result.assets[0];
-      setUrl(file.uri);
-
-      const base64 = await FileSystem.readAsStringAsync(file.uri, {
-        encoding: "base64",
-      });
-      const filePath = `${new Date().getTime()}_${form.getValues(
-        "surname"
-      )}.png`;
-      console.log(filePath);
-      const contentType = "image/png";
-
-      setValueToForm(form, "photo", [{ base64, filePath, contentType }]);
-    }
     if (!result.canceled) {
-      console.log(result);
+      if (result.assets?.length) {
+        const file = result.assets[0];
+        setUrl(file.uri);
+
+        const images = storedImage.filter((_: any, ind: number) => !!ind);
+        setValueToForm(form, "photo", [
+          {
+            ...file,
+            fileName: `${new Date().getTime()}_${form.getValues(
+              "surname"
+            )}.png`,
+          },
+          ...images,
+        ]);
+      }
     } else {
       alert("You did not select any image.");
     }
-  }, [form]);
+  }, [form, storedImage]);
 
   useEffect(() => {
-    if (!!storedImage && typeof storedImage === "string") {
-      setUrl(storedImage);
+    if (typeof storedImage?.[0] === "string") {
+      setUrl(process.env.EXPO_PUBLIC_SUPABASE_STORAGE + "/" + storedImage[0]);
+    }
+
+    if (!storedImage.length) {
+      setUrl(null);
     }
   }, [storedImage]);
 

@@ -20,15 +20,8 @@ const ItemContainer = styled(XStack, {
 
 const ItemInfo = styled(YStack, {
   marginLeft: 12,
-  justifyContent: "space-between", //flex-start
-  minHeight: 100,
-  width: "61%", //65%
-});
-
-const ItemInfoName = styled(Text, {
-  paddingTop: 4,
-  paddingBottom: 7,
-  ...typography["heading-16"],
+  justifyContent: "space-between",
+  width: "61%",
 });
 
 export default function AdsItem(data: UserType | AdType) {
@@ -39,10 +32,7 @@ export default function AdsItem(data: UserType | AdType) {
     [data]
   );
 
-  const cardImage = useMemo(
-    () => (isMusician ? data.photo?.[0] : data.images?.[0]) || null,
-    [data]
-  );
+  const cardImage = useMemo(() => data.photo?.[0] || null, [data]);
 
   return (
     <Link
@@ -65,18 +55,23 @@ export default function AdsItem(data: UserType | AdType) {
           borderRadius={6}
         />
         <ItemInfo>
-          <ProfileLocation address={data.address} />
-          <ItemInfoName
+          <ProfileLocation
+            address={data.address}
+            maxWidth="70%"
+          />
+          <Text
             numberOfLines={2}
             ellipsizeMode="tail"
+            {...typography["heading-16"]}
           >
             {isMusician ? `${data.name} ${data.surname}` : data.title}
-          </ItemInfoName>
+          </Text>
           {isMusician && genres.length > 0 && <GenresList genres={genres} />}
           {!isMusician && (
             <Text
               {...typography["paragraph-12"]}
               fontFamily="MulishSemiBold"
+              numberOfLines={1}
             >
               {data.description}
             </Text>

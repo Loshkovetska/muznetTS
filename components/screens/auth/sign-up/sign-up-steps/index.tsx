@@ -1,3 +1,4 @@
+import ResultDialog from "@/components/dialogs/result-dialog";
 import AddInfoForm from "@/components/forms/add-info-form";
 import SelectProvider from "@/components/providers/select-provider";
 import ContractorTypeSelect from "@/components/screens/auth/sign-up/contractor-type-select";
@@ -29,7 +30,7 @@ export default function SignUpSteps({ email }: { email: string }) {
   const [scheme, setScheme] = useState(signUpStep0);
   const [ref, setRef] = useState<ScrollView | null>(null);
   const [coords, setCoords] = useState({ x: 0, y: 0 });
-  const { signUp, isSignUpPending } = useAuth();
+  const { isSignUpPending, isOpenDialog, signUp, onSignIn } = useAuth();
 
   const form = useForm({
     defaultValues: {
@@ -102,7 +103,6 @@ export default function SignUpSteps({ email }: { email: string }) {
         setStep={() => onStepChange(-1)}
       />
       <ScrollView
-        key={3}
         ref={(e) => {
           setRef(e);
         }}
@@ -213,6 +213,14 @@ export default function SignUpSteps({ email }: { email: string }) {
       </Button>
       <SelectContent
         onValueChange={(name, v) => setValueToForm(form, name, v)}
+      />
+      <ResultDialog
+        open={!!isOpenDialog}
+        title="Great!"
+        description="Your account has been successfully created"
+        buttonText="Go to Home!"
+        onOpenChange={onSignIn}
+        type="success"
       />
     </SelectProvider>
   );

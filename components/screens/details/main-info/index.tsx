@@ -5,6 +5,7 @@ import DetailsCarousel from "@/components/screens/details/carousel";
 import DetailsDescription from "@/components/screens/details/description";
 import DetailsList from "@/components/screens/details/details-list";
 import DetailsMedia from "@/components/screens/details/details-media";
+import DetailsPeriod from "@/components/screens/details/details-period";
 import ReviewsList from "@/components/screens/details/reviews-list";
 import AdsList from "@/components/screens/homescreen/ads-list";
 import Separator from "@/components/ui/separator";
@@ -43,10 +44,26 @@ export default function MainInfo(data: MainInfoPropType) {
       : [];
   }, [isMusician, data]);
 
+  const title = useMemo(
+    () => (
+      <Text
+        {...typography[isMusician ? "heading-28" : "heading-20"]}
+        numberOfLines={2}
+        ellipsizeMode="tail"
+        marginTop={8}
+        marginBottom={13}
+        fontFamily="MulishExtraBold"
+      >
+        {isMusician ? `${data.name} ${data.surname}` : data.title}
+      </Text>
+    ),
+    [data, isMusician]
+  );
+
   return (
     <>
       <DetailsCarousel
-        images={isMusician && data.photo?.length ? data.photo : null}
+        images={data.photo?.length ? data.photo : null}
         onOpen={data.openFullDialog}
       />
       <Container>
@@ -54,24 +71,31 @@ export default function MainInfo(data: MainInfoPropType) {
           alignItems="center"
           justifyContent="space-between"
         >
-          <ProfileLocation
-            address={data.address}
-            sizeB="lg"
-          />
+          {!isMusician ? title : null}
+          {isMusician && (
+            <ProfileLocation
+              address={data.address}
+              sizeB="lg"
+            />
+          )}
           <RateBlock
             screenType="card"
             reviewData={data.rate}
           />
         </XStack>
-        <Text
-          {...typography["heading-ext28"]}
-          numberOfLines={2}
-          ellipsizeMode="tail"
-          marginTop={8}
-          marginBottom={13}
-        >
-          {isMusician ? `${data.name} ${data.surname}` : data.title}
-        </Text>
+        {!isMusician && (
+          <ProfileLocation
+            address={data.address}
+            sizeB="lg"
+          />
+        )}
+        {!isMusician && (
+          <DetailsPeriod
+            start_date={data.start_date}
+            end_date={data.end_date}
+          />
+        )}
+        {isMusician ? title : null}
         {isMusician && (
           <GenresList
             genres={data.musical_genres}
@@ -83,14 +107,18 @@ export default function MainInfo(data: MainInfoPropType) {
           marginTop={20}
           width="100%"
         >
-          <DetailsDescription text={data.description} />
+          {!isMusician && <Separator />}
+          <DetailsDescription
+            title={isMusician ? undefined : "We are looking for:"}
+            text={data.description}
+          />
           {isMusician && data.group_members?.length > 0 && (
             <DetailsList
               title="Band members:"
               list={data.group_members}
             />
           )}
-          {isMusician && data.musical_instruments?.length > 0 && (
+          {data.musical_instruments?.length > 0 && (
             <DetailsList
               title="Instruments:"
               list={data.musical_instruments}

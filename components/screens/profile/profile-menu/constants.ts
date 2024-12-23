@@ -9,6 +9,11 @@ const MENU = [
     title: "Change Password",
     tab: "password",
   },
+  {
+    id: "3",
+    title: "Deals",
+    tab: "deals",
+  },
 ];
 
 export { MENU };

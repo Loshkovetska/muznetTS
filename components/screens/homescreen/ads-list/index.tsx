@@ -1,4 +1,6 @@
+import { useUser } from "@/components/providers/user-provider";
 import AdsItem from "@/components/screens/homescreen/ads-list/ads-item";
+import useAds from "@/lib/hooks/ads.hook";
 import useMusicians from "@/lib/hooks/musicians.hook";
 import { typography } from "@/tamagui.config";
 import { Link } from "expo-router";
@@ -11,9 +13,16 @@ type AdsListPropType = {
 };
 
 export default function AdsList({ type, title, id }: AdsListPropType) {
-  const { musicians } = useMusicians({ id });
+  const { user } = useUser();
+  const { musicians } = useMusicians({
+    id,
+    enabled: user?.user_type === "contractor",
+  });
+  const { ads } = useAds({ id, enabled: user?.user_type !== "contractor" });
 
-  if (!musicians?.length) return null;
+  const data = user?.user_type === "contractor" ? musicians : ads;
+  if (!data?.length) return null;
+
   return (
     <YStack
       width="100%"
@@ -25,7 +34,6 @@ export default function AdsList({ type, title, id }: AdsListPropType) {
         justifyContent="space-between"
       >
         <Text {...typography["heading-20"]}>{title}</Text>
-
         {type === "popular" && (
           <Link
             href="/"
@@ -39,7 +47,7 @@ export default function AdsList({ type, title, id }: AdsListPropType) {
         width="100%"
         gap={8}
       >
-        {musicians?.map((ad) => (
+        {data?.map((ad) => (
           <AdsItem
             {...ad}
             key={ad.id}

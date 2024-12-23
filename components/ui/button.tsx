@@ -60,6 +60,11 @@ const ButtonStyled = styled(TButton, {
         height: 48,
         borderRadius: 24,
       },
+      "icon-sm": {
+        width: 24,
+        height: 24,
+        borderRadius: 6,
+      },
     },
     variant: {
       transparent: {
@@ -116,6 +121,7 @@ export default function Button(props: ButtonPropType) {
   return (
     <ButtonStyled
       variant={variant}
+      pointerEvents={loading ? "none" : "auto"}
       {...rest}
     >
       {loading && <Spinner size="small" />}
