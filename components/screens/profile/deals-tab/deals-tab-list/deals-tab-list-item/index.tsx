@@ -1,9 +1,10 @@
 import ProfileLocation from "@/components/profile-location";
+import ProfileUser from "@/components/profile-user";
 import { useUser } from "@/components/providers/user-provider";
 import DetailsPeriod from "@/components/screens/details/details-period";
 import { AdType } from "@/lib/types";
 import { colors, typography } from "@/tamagui.config";
-import { Award, User } from "@tamagui/lucide-icons";
+import { Award } from "@tamagui/lucide-icons";
 import { Text, XStack, YStack } from "tamagui";
 
 export default function DealsTabListItem(ad: AdType & { onPress: () => void }) {
@@ -52,18 +53,7 @@ export default function DealsTabListItem(ad: AdType & { onPress: () => void }) {
           end_date={ad.end_date}
           noMargin
         />
-        <XStack
-          gap={5}
-          alignItems="center"
-        >
-          <User
-            size={16}
-            color={colors["s-black"]}
-          />
-          <Text {...typography["paragraph-17"]}>
-            {user?.name} {user?.surname}
-          </Text>
-        </XStack>
+        <ProfileUser user={user} />
       </YStack>
     </YStack>
   );

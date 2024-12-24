@@ -1,10 +1,10 @@
-import DatePicker from "@/components/date-picker";
 import {
   MUSICAL_POSITION,
   SORT_BY,
 } from "@/components/dialogs/filter-dialog/constants";
 import PriceRange from "@/components/dialogs/filter-dialog/price-range";
 import SkillsList from "@/components/forms/skills-list";
+import DatePickerInput from "@/components/inputs/date-picker-input";
 import SelectProvider from "@/components/providers/select-provider";
 import ProfileBottomBar from "@/components/screens/profile/profile-bottombar";
 import SearchWithSelect from "@/components/search-with-select";
@@ -167,7 +167,7 @@ export default function FilterDialog({
             />
           )}
           {selectedFilters.user_type === "contractor" && (
-            <DatePicker
+            <DatePickerInput
               selectedDate={selectedFilters.date || dayjs().toDate()}
               onSelect={(date) => onValueChange("date", date)}
             />

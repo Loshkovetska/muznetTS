@@ -7,7 +7,9 @@ class AdServiceClass {
 
   async getAds(args: { id?: string; user_id?: string }): Promise<AdType[]> {
     try {
-      const request = supabase.from("ads").select();
+      const request = supabase
+        .from("ads")
+        .select("*, creator:user_id(name, surname, id)");
       let ads;
 
       if (!args.id && !args.user_id) {
