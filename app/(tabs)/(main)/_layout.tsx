@@ -9,7 +9,7 @@ export default function Layout() {
     >
       <Stack.Screen name="index" />
       <Stack.Screen name="details/[id]/index" />
-      <Stack.Screen name="search/index" />
+      <Stack.Screen name="search" />
     </Stack>
   );
 }

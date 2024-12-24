@@ -8,16 +8,33 @@ class SearchServiceClass {
     try {
       let request;
 
-      if (params.user_type === "musician") {
-        request = supabase
-          .from("users")
-          .select()
-          .eq("user_type", "musician")
-          .eq("willing_to_travel", params.willing_to_travel);
+      const isMusician = params.user_type === "musician";
+
+      if (isMusician) {
+        request = supabase.from("users").select().eq("user_type", "musician");
       }
 
-      if (params.user_type === "contractor") {
+      if (params.willing_to_travel) {
+        request = request?.eq("willing_to_travel", params.willing_to_travel);
+      }
+
+      if (!isMusician) {
         request = supabase.from("ads").select();
+      }
+
+      if (params.q) {
+        if (isMusician) {
+          request = request?.or(
+            `name.like.%${params.q}%,surname.like.%${params.q}%`
+          );
+        }
+        if (!isMusician) {
+          request = request?.like("title", `%${params.q}%`);
+        }
+      }
+
+      if (params.position && isMusician) {
+        request = request?.eq("position", params.position);
       }
 
       if (params.location) {
@@ -35,27 +52,45 @@ class SearchServiceClass {
         );
       }
 
-      request = request?.in("price_per_hour", [
-        params.price_range.min,
-        params.price_range.min,
-      ]);
+      if (params.sing_by_ear) {
+        request = request?.eq("sing_by_ear", params.sing_by_ear);
+      }
 
+      if (params.play_by_ear) {
+        request = request?.eq("play_by_ear", params.play_by_ear);
+      }
+
+      if (params.read_sheet_music) {
+        request = request?.eq("read_sheet_music", params.read_sheet_music);
+      }
+
+      request = request
+        ?.gte("price_per_hour", params.price_range.min)
+        ?.lte("price_per_hour", params.price_range.max);
+
+      console.log(params.sort_by);
       if (params.sort_by) {
         switch (params.sort_by) {
           case "rating":
             request = request?.order("rate->rate", { ascending: false });
-          case "price_acs":
+            break;
+          case "price_asc":
             request = request?.order("price_per_hour", { ascending: true });
+            break;
           case "price_desc":
             request = request?.order("price_per_hour", { ascending: false });
+            break;
         }
       }
 
       const response = await request;
+
+      console.log(response?.data?.map((d) => d.price_per_hour));
+
       if (response?.data) return response.data;
       throw new Error("Something went wrong");
     } catch (e) {
-      //   console.log(e);
+      console.log(e);
     }
     return [];
   }

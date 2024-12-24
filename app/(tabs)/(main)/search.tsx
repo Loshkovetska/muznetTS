@@ -8,6 +8,7 @@ import SearchService from "@/lib/services/search";
 import { FiltersType } from "@/lib/types";
 import { colors } from "@/tamagui.config";
 import { useQuery } from "@tanstack/react-query";
+import { router, useLocalSearchParams } from "expo-router";
 import { useCallback, useState } from "react";
 import { FlatList } from "react-native";
 import { YStack } from "tamagui";
@@ -29,11 +30,13 @@ const DEFAULT_VALUES = {
 
 export default function Page() {
   const { isMusician } = useUser();
+  const local = useLocalSearchParams();
 
   const [isOpen, setOpen] = useState(false);
 
   const [filters, setFilters] = useState<FiltersType>({
     ...DEFAULT_VALUES,
+    q: local?.q as string,
     user_type: isMusician ? "contractor" : "musician",
   });
 
@@ -41,8 +44,9 @@ export default function Page() {
     queryKey: [
       isMusician ? QUERY_TAGS.MUSICIAN : QUERY_TAGS.AD,
       ...Object.values(filters),
+      local?.q as string,
     ],
-    queryFn: () => SearchService.search(filters),
+    queryFn: () => SearchService.search({ ...filters, q: local?.q as string }),
   });
 
   const onFilterChange = useCallback((name: string, value: any) => {
@@ -54,6 +58,7 @@ export default function Page() {
       ...prev,
       ...DEFAULT_VALUES,
     }));
+    router.setParams({ q: "" });
   }, []);
 
   return (
@@ -65,7 +70,10 @@ export default function Page() {
         gap={16}
       >
         <CommonHeader title="Search" />
-        <SearchWithFilter onFilter={() => setOpen(true)} />
+        <SearchWithFilter
+          q={local?.q as string}
+          onFilter={() => setOpen(true)}
+        />
         <FlatList
           data={data || []}
           keyExtractor={(item) => item.id}

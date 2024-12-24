@@ -1,4 +1,5 @@
 import { colors, typography } from "@/tamagui.config";
+import React from "react";
 import { GetProps, Spinner, Button as TButton, Text, styled } from "tamagui";
 
 const ButtonTextStyled = styled(Text, {
@@ -116,24 +117,29 @@ type ButtonPropType = {
 } & GetProps<typeof ButtonStyled> &
   React.PropsWithChildren;
 
-export default function Button(props: ButtonPropType) {
-  const { children, loading, iconLeft, iconRight, variant, ...rest } = props;
-  return (
-    <ButtonStyled
-      variant={variant}
-      pointerEvents={loading ? "none" : "auto"}
-      {...rest}
-    >
-      {loading && <Spinner size="small" />}
-      {iconLeft}
-      <ButtonTextStyled
-        sizeB={props.sizeB as "sm"}
+const Button = React.forwardRef<any, ButtonPropType>(
+  (props: ButtonPropType, ref) => {
+    const { children, loading, iconLeft, iconRight, variant, ...rest } = props;
+    return (
+      <ButtonStyled
+        ref={ref}
         variant={variant}
-        unstyled
+        pointerEvents={loading ? "none" : "auto"}
+        {...rest}
       >
-        {children}
-      </ButtonTextStyled>
-      {iconRight}
-    </ButtonStyled>
-  );
-}
+        {loading && <Spinner size="small" />}
+        {iconLeft}
+        <ButtonTextStyled
+          sizeB={props.sizeB as "sm"}
+          variant={variant}
+          unstyled
+        >
+          {children}
+        </ButtonTextStyled>
+        {iconRight}
+      </ButtonStyled>
+    );
+  }
+);
+
+export default Button;

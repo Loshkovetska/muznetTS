@@ -47,7 +47,7 @@ const StyledSelectContent = styled(XStack, {
   borderInlineWidth: 1,
   borderBlockWidth: 1,
   maxHeight: 200,
-  zIndex: 2000,
+  zIndex: 200_001,
   borderEndEndRadius: 6,
   borderEndStartRadius: 6,
   borderColor: colors["default-gray"],
@@ -166,7 +166,7 @@ export function SelectContent({
       </StyledSelectContent>
       <YStack
         position="absolute"
-        zIndex={0}
+        zIndex={200_000}
         width={SCREEN_WIDTH}
         height={SCREEN_HEIGHT}
         opacity={isOpen ? 1 : 0}
