@@ -1,15 +1,17 @@
 import CommonHeader from "@/components/common-header";
 import AdForm from "@/components/forms/ad-form";
+import LocationsProvider from "@/components/providers/locations-provider";
 import ProfileBottomBar from "@/components/screens/profile/profile-bottombar";
 import Button from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import useAds from "@/lib/hooks/ads.hook";
 import { adScheme } from "@/lib/scheme";
-import { AdType } from "@/lib/types";
+import { AdType, PredictionType } from "@/lib/types";
+import { setValueToForm } from "@/lib/utils";
 import { colors, typography } from "@/tamagui.config";
 import { zodResolver } from "@hookform/resolvers/zod";
 import dayjs from "dayjs";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { ScrollView, Spinner, Text, XStack, YStack } from "tamagui";
 import { z } from "zod";
@@ -25,6 +27,8 @@ export default function AddEditAdDialog({
   user_id,
   onOpenChange,
 }: AddEditAdDialogPropType) {
+  const [coords, setCoords] = useState({ x: 0, y: 0 });
+  const [ref, setRef] = useState<ScrollView | null>(null);
   const {
     addAd,
     updateAd,
@@ -55,6 +59,12 @@ export default function AddEditAdDialog({
       sing_by_ear: selectedAd?.sing_by_ear || false,
       play_by_ear: selectedAd?.play_by_ear || false,
       read_sheet_music: selectedAd?.read_sheet_music || false,
+      location: selectedAd?.location || {
+        longitude: 0,
+        latitude: 0,
+        latitudeDelta: 0,
+        longitudeDelta: 0,
+      },
     },
     resolver: zodResolver(adScheme),
     mode: "onChange",
@@ -87,44 +97,70 @@ export default function AddEditAdDialog({
     [selectedAd, user_id, updateAd, addAd]
   );
 
+  const onAddressSelect = useCallback(
+    (item: PredictionType) => {
+      setValueToForm(form, "location", {
+        latitude: item.properties.lat,
+        longitude: item.properties.lon,
+        latitudeDelta: 0,
+        longitudeDelta: 0,
+      });
+      setValueToForm(form, "address", item.properties.formatted);
+    },
+    [form]
+  );
+
   return (
     <>
-      <YStack
-        backgroundColor={colors["white"]}
-        paddingHorizontal={16}
-        gap={16}
-        flexGrow={1}
+      <LocationsProvider
+        defaultValue={form.getValues("address")}
+        scrollRef={ref}
+        coords={coords}
+        onValueChange={onAddressSelect}
       >
-        <CommonHeader
-          title={`${selectedAd ? "Edit " : "Add  "}ad`}
-          onBack={onOpenChange}
-        />
-        <Form {...form}>
-          <ScrollView
-            contentContainerStyle={{ gap: 8, paddingBottom: 220 }}
-            showsVerticalScrollIndicator={false}
-          >
-            <AdForm form={form} />
-            {selectedAd && (
-              <XStack
-                alignItems="center"
-                marginTop={24}
-                gap={8}
-              >
-                <Text
-                  {...typography["paragraph-17"]}
-                  color="#636364"
-                  textDecorationLine="underline"
-                  onPress={() => deleteAd(selectedAd.id)}
+        <YStack
+          backgroundColor={colors["white"]}
+          paddingHorizontal={16}
+          gap={16}
+          flexGrow={1}
+        >
+          <CommonHeader
+            title={`${selectedAd ? "Edit " : "Add  "}ad`}
+            onBack={onOpenChange}
+          />
+          <Form {...form}>
+            <ScrollView
+              contentContainerStyle={{ gap: 8, paddingBottom: 220 }}
+              showsVerticalScrollIndicator={false}
+              onLayout={({ nativeEvent: { layout } }) =>
+                setCoords({ x: layout.x, y: layout.y })
+              }
+              ref={(e) => {
+                setRef(e);
+              }}
+            >
+              <AdForm form={form} />
+              {selectedAd && (
+                <XStack
+                  alignItems="center"
+                  marginTop={24}
+                  gap={8}
                 >
-                  Delete Add
-                </Text>
-                {isDeletePending && <Spinner size="small" />}
-              </XStack>
-            )}
-          </ScrollView>
-        </Form>
-      </YStack>
+                  <Text
+                    {...typography["paragraph-17"]}
+                    color="#636364"
+                    textDecorationLine="underline"
+                    onPress={() => deleteAd(selectedAd.id)}
+                  >
+                    Delete Add
+                  </Text>
+                  {isDeletePending && <Spinner size="small" />}
+                </XStack>
+              )}
+            </ScrollView>
+          </Form>
+        </YStack>
+      </LocationsProvider>
       <ProfileBottomBar>
         <Button
           variant="dark"

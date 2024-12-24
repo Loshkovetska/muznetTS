@@ -46,7 +46,7 @@ export default function MapImage() {
           Nearby
         </Text>
         <Link
-          href="/"
+          href="/map"
           asChild
         >
           <Button

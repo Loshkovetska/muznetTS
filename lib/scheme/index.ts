@@ -52,6 +52,7 @@ const commonSignUpScheme = z.object({
   position: z.string(),
   description: z.string().min(10),
   address: z.string().min(6),
+  location: z.any().optional(),
 });
 
 let musicianScheme = z.object({
@@ -105,6 +106,7 @@ const adScheme = z
     title: z.string().min(3),
     description: z.string().min(10),
     address: z.string().min(6),
+    location: z.any().optional(),
     photo: z.any(),
     basic_date: z.string().refine((arg) => {
       const [year, month, date] = arg.split("/");

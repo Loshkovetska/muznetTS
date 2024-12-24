@@ -25,6 +25,7 @@ type FilterDialogPropType = {
   open: boolean;
   selectedFilters: FiltersType;
   totalCount: number;
+  hideAddress?: boolean;
   onFilterChange: (name: string, value: any) => void;
   onOpenChange: () => void;
   resetFilters: () => void;
@@ -34,6 +35,7 @@ export default function FilterDialog({
   open,
   selectedFilters,
   totalCount,
+  hideAddress,
   onOpenChange,
   onFilterChange,
   resetFilters,
@@ -157,11 +159,13 @@ export default function FilterDialog({
             onChange={onValueChange}
             edit
           />
-          <Input
-            placeholder="Enter location"
-            value={selectedFilters.location}
-            onChangeText={(v) => onValueChange("location", v)}
-          />
+          {!hideAddress && (
+            <Input
+              placeholder="Enter location"
+              value={selectedFilters.location}
+              onChangeText={(v) => onValueChange("location", v)}
+            />
+          )}
           {selectedFilters.user_type === "contractor" && (
             <DatePicker
               selectedDate={selectedFilters.date || dayjs().toDate()}

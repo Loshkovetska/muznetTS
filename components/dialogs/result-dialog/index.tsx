@@ -1,4 +1,4 @@
-import Dialog from "@/components/ui/dialog";
+import InfoDialog from "@/components/dialogs/info-dialog";
 import { colors } from "@/tamagui.config";
 import { AlertCircle, CircleCheck } from "@tamagui/lucide-icons";
 
@@ -20,7 +20,7 @@ export default function ResultDialog({
   onOpenChange,
 }: ResultDialogPropType) {
   return (
-    <Dialog
+    <InfoDialog
       open={open}
       onOpenChange={onOpenChange}
       icon={

@@ -3,8 +3,15 @@ import { useInput } from "@/lib/hooks/input.hook";
 import { colors } from "@/tamagui.config";
 import { AlertCircle, CircleCheck } from "@tamagui/lucide-icons";
 import React from "react";
-import { TextInput } from "react-native";
-import { GetProps, Input as InputT, XStack, YStack, styled } from "tamagui";
+import { TextInput, View } from "react-native";
+import {
+  GetProps,
+  Input as InputT,
+  StackProps,
+  XStack,
+  YStack,
+  styled,
+} from "tamagui";
 
 const StyledInputContainer = styled(XStack, {
   width: "100%",
@@ -65,6 +72,7 @@ const StyledInputContainer = styled(XStack, {
 
 const StyledInput = styled(InputT, {
   width: "100%",
+  maxWidth: "80%",
   height: "auto",
   color: colors["black"],
   placeholderTextColor: colors["s-black"],
@@ -89,7 +97,8 @@ export type InputPropType = Omit<
     iconLeft?: React.ReactNode;
     iconRight?: React.ReactNode;
     animate?: boolean;
-    wrapper?: GetProps<typeof StyledInputContainer>;
+    wrapper?: GetProps<typeof StyledInputContainer> & StackProps;
+    getWrapperRef?: (ref: View) => void;
   };
 
 const Input = React.forwardRef<TextInput, InputPropType>(
@@ -102,6 +111,7 @@ const Input = React.forwardRef<TextInput, InputPropType>(
       sizeB = "default",
       animate = true,
       wrapper,
+      getWrapperRef,
       ...props
     },
     ref
@@ -119,6 +129,9 @@ const Input = React.forwardRef<TextInput, InputPropType>(
         justifyContent={sizeB == "code" ? "center" : undefined}
         disabled={disabled}
         {...wrapper}
+        ref={(ref) => {
+          ref && getWrapperRef?.(ref as any);
+        }}
       >
         {iconLeft}
         <StyledInputWrapper>

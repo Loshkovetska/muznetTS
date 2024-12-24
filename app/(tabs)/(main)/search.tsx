@@ -1,66 +1,22 @@
 import CommonHeader from "@/components/common-header";
 import FilterDialog from "@/components/dialogs/filter-dialog";
-import { useUser } from "@/components/providers/user-provider";
 import AdsItem from "@/components/screens/homescreen/ads-list/ads-item";
 import SearchWithFilter from "@/components/search-with-filter";
-import { QUERY_TAGS } from "@/lib/constants";
-import SearchService from "@/lib/services/search";
-import { FiltersType } from "@/lib/types";
+import useSearch from "@/lib/hooks/search.hook";
 import { colors } from "@/tamagui.config";
-import { useQuery } from "@tanstack/react-query";
-import { router, useLocalSearchParams } from "expo-router";
-import { useCallback, useState } from "react";
 import { FlatList } from "react-native";
 import { YStack } from "tamagui";
 
-const DEFAULT_VALUES = {
-  sort_by: undefined,
-  musical_genres: [],
-  musical_instruments: [],
-  location: "",
-  willing_to_travel: false,
-  price_range: {
-    min: 0,
-    max: 1000,
-  },
-  sing_by_ear: false,
-  play_by_ear: false,
-  read_sheet_music: false,
-};
-
 export default function Page() {
-  const { isMusician } = useUser();
-  const local = useLocalSearchParams();
-
-  const [isOpen, setOpen] = useState(false);
-
-  const [filters, setFilters] = useState<FiltersType>({
-    ...DEFAULT_VALUES,
-    q: local?.q as string,
-    user_type: isMusician ? "contractor" : "musician",
-  });
-
-  const { data } = useQuery({
-    queryKey: [
-      isMusician ? QUERY_TAGS.MUSICIAN : QUERY_TAGS.AD,
-      ...Object.values(filters),
-      local?.q as string,
-    ],
-    queryFn: () => SearchService.search({ ...filters, q: local?.q as string }),
-  });
-
-  const onFilterChange = useCallback((name: string, value: any) => {
-    setFilters((prev) => ({ ...prev, [name]: value }));
-  }, []);
-
-  const onResetFilters = useCallback(() => {
-    setFilters((prev) => ({
-      ...prev,
-      ...DEFAULT_VALUES,
-    }));
-    router.setParams({ q: "" });
-  }, []);
-
+  const {
+    data,
+    isOpen,
+    local,
+    filters,
+    onResetFilters,
+    onFilterChange,
+    setOpen,
+  } = useSearch();
   return (
     <>
       <YStack

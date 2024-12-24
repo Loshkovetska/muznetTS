@@ -37,7 +37,10 @@ export default function AdsTabItem(ad: AdType & { onEdit: () => void }) {
             alignItems="center"
             justifyContent="space-between"
           >
-            <ProfileLocation address={ad.address} />
+            <ProfileLocation
+              address={ad.address}
+              maxWidth="60%"
+            />
             <PricePerHour
               price={ad.price_per_hour}
               sizeB="sm-16"

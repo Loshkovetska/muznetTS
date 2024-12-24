@@ -7,7 +7,7 @@ type AdType = {
   title: string;
   description: string;
   address: string;
-  coordinates: LocationType;
+  location: LocationType;
   start_date: string;
   end_date: string;
   photo: string[];

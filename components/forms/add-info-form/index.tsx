@@ -59,8 +59,8 @@ export default function AddInfoForm({
       <FormElement
         name="address"
         placeholder="Add address"
+        type="location"
       />
-
       {children}
 
       {user_type === "musician" && <SkillsList />}

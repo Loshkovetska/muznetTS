@@ -66,6 +66,10 @@ const ButtonStyled = styled(TButton, {
         height: 24,
         borderRadius: 6,
       },
+      "icon-filter": {
+        width: 28,
+        height: 28,
+      },
     },
     variant: {
       transparent: {

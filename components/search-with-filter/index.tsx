@@ -8,15 +8,21 @@ import {
   NativeSyntheticEvent,
   TextInputSubmitEditingEventData,
 } from "react-native";
+import { StackProps } from "tamagui";
 
 type SearchWithFilterPropType = {
   q?: string;
+  iconLeft?: React.ReactNode;
+  placeholder?: string;
   onFilter?: () => void;
-};
+} & StackProps;
 
 export default function SearchWithFilter({
   q,
+  iconLeft,
+  placeholder,
   onFilter,
+  ...rest
 }: SearchWithFilterPropType) {
   const [value, setValue] = useState("");
 
@@ -34,14 +40,17 @@ export default function SearchWithFilter({
 
   return (
     <Input
+      wrapper={rest as any}
       animate={false}
       variant="search-filter"
       sizeB="s40"
       iconLeft={
-        <Search
-          size={14}
-          color={colors["dark-gray"]}
-        />
+        iconLeft || (
+          <Search
+            size={14}
+            color={colors["dark-gray"]}
+          />
+        )
       }
       iconRight={
         onFilter ? (
@@ -65,7 +74,7 @@ export default function SearchWithFilter({
         ) : undefined
       }
       value={value}
-      placeholder="Search"
+      placeholder={placeholder || "Search"}
       onChangeText={setValue}
       onSubmitEditing={onSubmit}
     />

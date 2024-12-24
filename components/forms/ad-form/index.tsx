@@ -21,6 +21,7 @@ export default function AdForm({ form }: { form: UseFormReturn<any> }) {
       <FormElement
         name="address"
         placeholder="Enter ad address"
+        type="location"
       />
       <DateTimePicker form={form} />
       <FormElement

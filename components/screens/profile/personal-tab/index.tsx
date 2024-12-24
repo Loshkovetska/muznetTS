@@ -1,4 +1,5 @@
 import AddInfoForm from "@/components/forms/add-info-form";
+import LocationsProvider from "@/components/providers/locations-provider";
 import { useUser } from "@/components/providers/user-provider";
 import MediaSelect from "@/components/screens/profile/personal-tab/media-select";
 import ProfileBottomBar from "@/components/screens/profile/profile-bottombar";
@@ -11,11 +12,12 @@ import {
   updateMusicianInfoScheme,
 } from "@/lib/scheme";
 import AuthService from "@/lib/services/auth";
-import { UpdateInfoType, UserType } from "@/lib/types";
+import { PredictionType, UpdateInfoType, UserType } from "@/lib/types";
+import { setValueToForm } from "@/lib/utils";
 import { colors } from "@/tamagui.config";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { ScrollView, YStack } from "tamagui";
 
@@ -26,6 +28,9 @@ type PersonalTabPropType = {
 
 export default function PersonalTab({ user, header }: PersonalTabPropType) {
   const { updateUser } = useUser();
+  const [coords, setCoords] = useState({ x: 0, y: 0 });
+  const [ref, setRef] = useState<ScrollView | null>(null);
+
   const isMusician = user?.user_type === "musician";
 
   const scheme = useMemo(
@@ -39,8 +44,8 @@ export default function PersonalTab({ user, header }: PersonalTabPropType) {
       name: user?.name || "",
       surname: user?.surname || "",
       email: user?.email || "",
-      description: user?.description,
-      address: user?.address,
+      description: user?.description || "",
+      address: user?.address || "",
       sing_by_ear: user?.sing_by_ear || false,
       play_by_ear: user?.play_by_ear || false,
       read_sheet_music: user?.read_sheet_music || false,
@@ -49,6 +54,12 @@ export default function PersonalTab({ user, header }: PersonalTabPropType) {
       musical_genres: user?.musical_genres || [],
       group_members: user?.group_members || [],
       price_per_hour: String(user?.price_per_hour || ""),
+      location: user?.location || {
+        longitude: 0,
+        latitude: 0,
+        latitudeDelta: 0,
+        longitudeDelta: 0,
+      },
     },
     mode: "onChange",
     resolver: zodResolver(scheme),
@@ -62,66 +73,95 @@ export default function PersonalTab({ user, header }: PersonalTabPropType) {
     },
   });
 
-  const onSubmit = useCallback(
-    (values: any) => {
-      updateInfo({ ...values, id: user?.id || "", old_photo: user?.photo });
+  const onSubmit = useCallback(() => {
+    const values = form.getValues();
+    updateInfo({
+      ...values,
+      id: user?.id || "",
+      old_photo: user?.photo || [],
+      price_per_hour: Number(values.price_per_hour),
+    });
+  }, [user, form, updateInfo]);
+
+  const onAddressSelect = useCallback(
+    (item: PredictionType) => {
+      setValueToForm(form, "location", {
+        latitude: item.properties.lat,
+        longitude: item.properties.lon,
+        latitudeDelta: 0,
+        longitudeDelta: 0,
+      });
+      setValueToForm(form, "address", item.properties.formatted);
     },
-    [user, updateInfo]
+    [form]
   );
 
   return (
     <Form {...form}>
-      <YStack
-        paddingHorizontal={16}
-        backgroundColor={colors["white"]}
+      <LocationsProvider
+        defaultValue={form.getValues("address")}
+        scrollRef={ref}
+        coords={coords}
+        onValueChange={onAddressSelect}
       >
-        {header}
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          marginTop={32}
-          contentContainerStyle={{
-            paddingBottom: 120,
-          }}
+        <YStack
+          paddingHorizontal={16}
+          backgroundColor={colors["white"]}
         >
-          <AddInfoForm
-            form={form}
-            user_type={user?.user_type || "contractor"}
-            hide={["password"]}
+          {header}
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            marginTop={32}
+            contentContainerStyle={{
+              paddingBottom: 120,
+            }}
+            onLayout={({ nativeEvent: { layout } }) =>
+              setCoords({ x: layout.x, y: layout.y })
+            }
+            ref={(e) => {
+              setRef(e);
+            }}
           >
-            {isMusician && (
-              <YStack
-                gap={16}
-                marginBlock={8}
-              >
-                {user?.position === "band" && (
+            <AddInfoForm
+              form={form}
+              user_type={user?.user_type || "contractor"}
+              hide={["password"]}
+            >
+              {isMusician && (
+                <YStack
+                  gap={16}
+                  marginBlock={8}
+                >
+                  {user?.position === "band" && (
+                    <SearchWithSelect
+                      name="group_members"
+                      form={form}
+                      placeholder="Search group members"
+                      options={GROUP_MEMBERS}
+                      edit
+                    />
+                  )}
                   <SearchWithSelect
-                    name="group_members"
+                    name="musical_instruments"
                     form={form}
-                    placeholder="Search group members"
-                    options={GROUP_MEMBERS}
+                    placeholder="Search instruments"
+                    options={INSTRUMENTS}
                     edit
                   />
-                )}
-                <SearchWithSelect
-                  name="musical_instruments"
-                  form={form}
-                  placeholder="Search instruments"
-                  options={INSTRUMENTS}
-                  edit
-                />
-                <SearchWithSelect
-                  name="musical_genres"
-                  form={form}
-                  placeholder="Search music genres"
-                  options={GENRES}
-                  edit
-                />
-                <MediaSelect form={form} />
-              </YStack>
-            )}
-          </AddInfoForm>
-        </ScrollView>
-      </YStack>
+                  <SearchWithSelect
+                    name="musical_genres"
+                    form={form}
+                    placeholder="Search music genres"
+                    options={GENRES}
+                    edit
+                  />
+                  <MediaSelect form={form} />
+                </YStack>
+              )}
+            </AddInfoForm>
+          </ScrollView>
+        </YStack>
+      </LocationsProvider>
       <ProfileBottomBar>
         <Button
           variant="dark"

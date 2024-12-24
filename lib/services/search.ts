@@ -68,7 +68,6 @@ class SearchServiceClass {
         ?.gte("price_per_hour", params.price_range.min)
         ?.lte("price_per_hour", params.price_range.max);
 
-      console.log(params.sort_by);
       if (params.sort_by) {
         switch (params.sort_by) {
           case "rating":
@@ -84,8 +83,6 @@ class SearchServiceClass {
       }
 
       const response = await request;
-
-      console.log(response?.data?.map((d) => d.price_per_hour));
 
       if (response?.data) return response.data;
       throw new Error("Something went wrong");

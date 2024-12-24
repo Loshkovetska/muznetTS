@@ -11,6 +11,7 @@ import {
 } from "react-hook-form";
 
 import PasswordInput from "@/components/inputs/password-input";
+import LocationSearch from "@/components/location-search";
 import CheckboxWithLabel from "@/components/ui/checkbox";
 import Input, { InputPropType } from "@/components/ui/input";
 import TextArea from "@/components/ui/textarea";
@@ -123,7 +124,7 @@ const FormMessage = ({
 FormMessage.displayName = "FormMessage";
 
 type FormElementPropType = {
-  type?: "password" | "textarea" | "checkbox";
+  type?: "password" | "textarea" | "checkbox" | "location";
   inputType?: "date" | "time";
   name: string;
   withIcons?: boolean;
@@ -156,6 +157,18 @@ const FormElement = ({ type, ...props }: FormElementPropType) => {
       name={props.name}
       render={({ field, fieldState }) => (
         <FormItem flexGrow={1}>
+          {type === "location" && (
+            <LocationSearch
+              placeholder={props.placeholder || ""}
+              variant={
+                (fieldState.error
+                  ? "error"
+                  : fieldState.isDirty && !fieldState.invalid
+                  ? "success"
+                  : "default") as "default"
+              }
+            />
+          )}
           {type === "checkbox" && (
             <CheckboxWithLabel
               label={props.placeholder || ""}
@@ -163,7 +176,7 @@ const FormElement = ({ type, ...props }: FormElementPropType) => {
               onCheckedChange={field.onChange}
             />
           )}
-          {type !== "checkbox" && (
+          {type !== "checkbox" && type !== "location" && (
             <InputComp
               variant={
                 fieldState.error

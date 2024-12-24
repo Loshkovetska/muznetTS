@@ -1,15 +1,19 @@
 import TabbarIcon from "@/navigation/tabbar-icon";
 import { Tabs, useSegments } from "expo-router";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+
+const HIDE_TABBAR_SCREENS = ["search", "details", "map"];
 
 export default function RootLayout() {
   const segments = useSegments();
   const [tabbarVisible, setVisible] = useState(true);
 
-  const hideTabBar =
-    [...segments].includes("details") || [...segments].includes("search");
+  const hideTabBar = useMemo(
+    () =>
+      HIDE_TABBAR_SCREENS.some((s) => [...segments].includes(s as "details")),
+    [segments]
+  );
 
-  console.log(segments);
   return (
     <Tabs
       initialRouteName="(main)"

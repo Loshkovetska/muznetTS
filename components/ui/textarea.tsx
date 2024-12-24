@@ -2,6 +2,8 @@ import Label from "@/components/ui/label";
 import { useInput } from "@/lib/hooks/input.hook";
 import { colors } from "@/tamagui.config";
 import { AlertCircle, CircleCheck } from "@tamagui/lucide-icons";
+import React from "react";
+import { TextInput } from "react-native";
 import { GetProps, TextArea as InputT, XStack, YStack, styled } from "tamagui";
 
 const StyledInputContainer = styled(XStack, {
@@ -66,55 +68,61 @@ type InputPropType = GetProps<typeof StyledInputContainer> &
     iconRight?: React.ReactNode;
   };
 
-const TextArea = ({
-  iconLeft,
-  iconRight,
-  variant = "default",
-  sizeB = "default",
-  placeholder,
-  disabled,
-  ...props
-}: InputPropType) => {
-  const { isFocused, onBlur, onFocus } = useInput({
-    onBlur: props.onBlur,
-    onFocus: props.onFocus,
-  });
-  return (
-    <StyledInputContainer
-      variant={variant}
-      sizeB={sizeB}
-      focused={variant !== "default" ? false : isFocused}
-      disabled={disabled}
-    >
-      {iconLeft}
-      <YStack
-        height="100%"
-        flexGrow={1}
+const TextArea = React.forwardRef<TextInput, InputPropType>(
+  (
+    {
+      iconLeft,
+      iconRight,
+      variant = "default",
+      sizeB = "default",
+      placeholder,
+      disabled,
+      ...props
+    },
+    ref
+  ) => {
+    const { isFocused, onBlur, onFocus } = useInput({
+      onBlur: props.onBlur,
+      onFocus: props.onFocus,
+    });
+    return (
+      <StyledInputContainer
+        variant={variant}
+        sizeB={sizeB}
+        focused={variant !== "default" ? false : isFocused}
+        disabled={disabled}
       >
-        {placeholder && isFocused && <Label sizeB="sm">{placeholder}</Label>}
-        <StyledInput
-          {...props}
-          placeholder={placeholder}
-          onFocus={onFocus}
-          onBlur={onBlur}
-        />
-      </YStack>
-      {iconRight}
-      {variant === "error" && (
-        <AlertCircle
-          color={colors["error"]}
-          size={20}
-        />
-      )}
-      {variant === "success" && (
-        <CircleCheck
-          color={colors["white"]}
-          fill={colors["success"]}
-          size={20}
-        />
-      )}
-    </StyledInputContainer>
-  );
-};
+        {iconLeft}
+        <YStack
+          height="100%"
+          flexGrow={1}
+        >
+          {placeholder && isFocused && <Label sizeB="sm">{placeholder}</Label>}
+          <StyledInput
+            ref={ref}
+            {...props}
+            placeholder={placeholder}
+            onFocus={onFocus}
+            onBlur={onBlur}
+          />
+        </YStack>
+        {iconRight}
+        {variant === "error" && (
+          <AlertCircle
+            color={colors["error"]}
+            size={20}
+          />
+        )}
+        {variant === "success" && (
+          <CircleCheck
+            color={colors["white"]}
+            fill={colors["success"]}
+            size={20}
+          />
+        )}
+      </StyledInputContainer>
+    );
+  }
+);
 
 export default TextArea;

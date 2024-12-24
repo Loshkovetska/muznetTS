@@ -15,6 +15,7 @@ type CommonUserType = {
   name: string;
   surname: string;
   user_type: "contractor" | "musician";
+  location: LocationType;
 };
 
 type UserType = {
@@ -23,7 +24,6 @@ type UserType = {
   user_name: string;
   photo: string[] | null;
   position: string;
-  location: LocationType;
   rate: {
     rate: number;
     totalReviews: number;

@@ -5,7 +5,7 @@ import { typography } from "@/tamagui.config";
 import { Text, YStack } from "tamagui";
 
 type SkillsListPropType = {
-  selectedValues: FiltersType;
+  selectedValues?: FiltersType;
   onChange?: (name: string, value: boolean) => void;
 };
 
@@ -49,19 +49,19 @@ export default function SkillsList({
             <CheckboxWithLabel
               name="sing_by_ear"
               label="Sing by ear"
-              checked={selectedValues.sing_by_ear}
+              checked={selectedValues?.sing_by_ear}
               onCheckedChange={(v) => onChange("sing_by_ear", v as boolean)}
             />
             <CheckboxWithLabel
               name="play_by_ear"
               label="Play by ear"
-              checked={selectedValues.play_by_ear}
+              checked={selectedValues?.play_by_ear}
               onCheckedChange={(v) => onChange("play_by_ear", v as boolean)}
             />
             <CheckboxWithLabel
               name="read_sheet_music"
               label="Read sheet music"
-              checked={selectedValues.read_sheet_music}
+              checked={selectedValues?.read_sheet_music}
               onCheckedChange={(v) =>
                 onChange("read_sheet_music", v as boolean)
               }
