@@ -22,9 +22,14 @@ const Container = styled(XStack, {
 type BottomBarPropType = {
   price: number;
   buttonTitle: string;
+  onPress: () => void;
 };
 
-export default function BottomBar({ price, buttonTitle }: BottomBarPropType) {
+export default function BottomBar({
+  price,
+  buttonTitle,
+  onPress,
+}: BottomBarPropType) {
   return (
     <Container>
       <PricePerHour
@@ -35,6 +40,7 @@ export default function BottomBar({ price, buttonTitle }: BottomBarPropType) {
         sizeB="lg"
         variant="dark"
         maxWidth={227}
+        onPress={onPress}
       >
         {buttonTitle}
       </Button>

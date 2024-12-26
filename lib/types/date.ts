@@ -1,54 +1,18 @@
 import { CalendarActionKind } from "@/lib/constants/date-picker";
 import type { Dayjs } from "dayjs";
-import type { ReactNode } from "react";
-import type { TextStyle, ViewStyle } from "react-native";
 
 export type DateType = string | number | Dayjs | Date | null | undefined;
 
-export type HeaderButtonPositions = "around" | "right" | "left";
-
 export type LocalState = {
   date: DateType;
-  startDate: DateType;
-  endDate: DateType;
-  dates: DateType[];
   currentDate: DateType; // used for latest state of calendar based on Month and Year
   currentYear: number;
+  horizontal: boolean;
 };
 
 export type CalendarAction = {
   type: CalendarActionKind;
   payload: any;
-};
-
-export type CalendarThemeProps = {
-  headerButtonsPosition?: HeaderButtonPositions;
-  headerContainerStyle?: ViewStyle;
-  headerTextContainerStyle?: ViewStyle;
-  headerTextStyle?: TextStyle;
-  headerButtonStyle?: ViewStyle;
-  headerButtonColor?: string;
-  headerButtonSize?: number;
-  dayContainerStyle?: ViewStyle;
-  todayContainerStyle?: ViewStyle;
-  todayTextStyle?: TextStyle;
-  monthContainerStyle?: ViewStyle;
-  yearContainerStyle?: ViewStyle;
-  weekDaysContainerStyle?: ViewStyle;
-  weekDaysTextStyle?: TextStyle;
-  calendarTextStyle?: TextStyle;
-  selectedTextStyle?: TextStyle;
-  selectedItemColor?: string;
-  timePickerContainerStyle?: ViewStyle;
-  timePickerTextStyle?: TextStyle;
-  timePickerIndicatorStyle?: ViewStyle;
-  timePickerDecelerationRate?: "normal" | "fast" | number;
-  selectedRangeBackgroundColor?: string;
-};
-
-export type HeaderProps = {
-  buttonPrevIcon?: ReactNode;
-  buttonNextIcon?: ReactNode;
 };
 
 export interface IDayObject {
@@ -65,17 +29,6 @@ export interface IDayObject {
 
 export type SingleChange = (params: { date: DateType }) => void;
 
-export type RangeChange = (params: {
-  startDate: DateType;
-  endDate: DateType;
-}) => any;
-
-export type MultiChange = (params: {
-  dates: DateType[];
-  datePressed: DateType;
-  change: "added" | "removed";
-}) => any;
-
 export interface DatePickerBaseProps {
   locale?: string | ILocale;
   startYear?: number;
@@ -85,11 +38,20 @@ export interface DatePickerBaseProps {
   disabledDates?: DateType[] | ((date: DateType) => boolean);
   firstDayOfWeek?: number;
   displayFullDays?: boolean;
-  timePicker?: boolean;
   date?: DateType;
-  dates?: DateType[];
-  startDate?: DateType;
-  endDate?: DateType;
-  onChange?: SingleChange | RangeChange | MultiChange;
   markedDates?: Dayjs[];
+  onChange?: (params: { date: DateType }) => void;
 }
+
+export type DaysGridItemType =
+  | (Omit<IDayObject, "day"> & {
+      isToday: boolean;
+      isSelected: boolean;
+      isMarked: boolean;
+    })
+  | null;
+
+export type DatePickerListPropType = {
+  daysGrid: Array<DaysGridItemType>;
+  getItem: (day: any, index: number) => React.ReactNode;
+};

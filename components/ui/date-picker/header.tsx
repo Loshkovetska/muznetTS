@@ -1,26 +1,26 @@
-import { HeaderProps } from "@/lib/types/date";
 import { typography } from "@/tamagui.config";
+import { ChevronLeft, ChevronRight } from "@tamagui/lucide-icons";
 import dayjs from "dayjs";
-import React, { useCallback } from "react";
-import { Pressable, View } from "react-native";
+import React, { useCallback, useMemo } from "react";
+import { Pressable } from "react-native";
 import { Text, XStack } from "tamagui";
 import { useCalendarContext } from "./calendar-context";
 
-const Header = ({ buttonPrevIcon, buttonNextIcon }: HeaderProps) => {
-  const { currentDate, theme, locale, onChangeMonth } = useCalendarContext();
+const Header = () => {
+  const { currentDate, locale, onChangeMonth } = useCalendarContext();
 
-  const currentMonthText = dayjs(currentDate).locale(locale).format("MMMM");
+  const currentText = useMemo(
+    () =>
+      `${dayjs(currentDate).locale(locale).format("MMMM")} ${dayjs(
+        currentDate
+      ).format("YYYY")}`,
+    [currentDate, locale]
+  );
 
   const button = useCallback(
     (type: "prev" | "next") => (
-      <Pressable
-        onPress={() => onChangeMonth(type === "prev" ? -1 : 1)}
-        accessibilityRole="button"
-        accessibilityLabel={type === "prev" ? "Prev" : "Next"}
-      >
-        <View style={[theme?.headerButtonStyle]}>
-          {type === "prev" ? buttonPrevIcon : buttonNextIcon}
-        </View>
+      <Pressable onPress={() => onChangeMonth(type === "prev" ? -1 : 1)}>
+        {type === "prev" ? <ChevronLeft /> : <ChevronRight />}
       </Pressable>
     ),
     [onChangeMonth]
@@ -30,11 +30,10 @@ const Header = ({ buttonPrevIcon, buttonNextIcon }: HeaderProps) => {
     <XStack
       alignItems="center"
       justifyContent="space-between"
-      accessibilityRole="header"
+      height={44}
+      paddingHorizontal={12}
     >
-      <Text {...typography["heading-17"]}>
-        {currentMonthText} {dayjs(currentDate).format("YYYY")}
-      </Text>
+      <Text {...typography["heading-17"]}>{currentText}</Text>
       <XStack alignItems="center">
         {button("prev")}
         {button("next")}

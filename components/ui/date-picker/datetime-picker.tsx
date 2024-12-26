@@ -2,32 +2,35 @@ import Calendar from "@/components/ui/date-picker/calendar";
 import { CalendarActionKind } from "@/lib/constants/date-picker";
 import {
   CalendarAction,
-  CalendarThemeProps,
   DatePickerBaseProps,
   DateType,
-  HeaderProps,
   LocalState,
   SingleChange,
 } from "@/lib/types/date";
 import { getDate, getFormated, getStartOfDay } from "@/lib/utils/date-picker";
-import { ChevronLeft, ChevronRight } from "@tamagui/lucide-icons";
 import dayjs, { Dayjs } from "dayjs";
 import localeData from "dayjs/plugin/localeData";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import relativeTime from "dayjs/plugin/relativeTime";
-import React, { memo, useCallback, useEffect, useReducer } from "react";
+import React, {
+  memo,
+  useCallback,
+  useEffect,
+  useMemo,
+  useReducer,
+} from "react";
 import CalendarContext from "./calendar-context";
 
 dayjs.extend(localeData);
 dayjs.extend(relativeTime);
 dayjs.extend(localizedFormat);
 
-export interface DatePickerSingleProps
-  extends CalendarThemeProps,
-    HeaderProps,
-    DatePickerBaseProps {
+export interface DatePickerSingleProps extends DatePickerBaseProps {
   date?: DateType;
   markedDates?: Dayjs[];
+  subBlock?: boolean;
+  horizontal: boolean;
+  resize?: boolean;
   onChange?: SingleChange;
 }
 
@@ -35,51 +38,40 @@ const DateTimePicker = (props: DatePickerSingleProps) => {
   const {
     locale = "en",
     displayFullDays = false,
-    timePicker = false,
     firstDayOfWeek,
-    buttonPrevIcon,
-    buttonNextIcon,
     minDate,
     maxDate,
     disabledDates,
     date,
-    startDate,
-    endDate,
-    dates,
-    onChange,
+    subBlock,
     markedDates,
-    ...rest
+    horizontal,
+    resize,
+    onChange,
   } = props;
 
   dayjs.locale(locale);
 
-  const initialCalendarView = "day";
+  const firstDay = useMemo(
+    () =>
+      firstDayOfWeek && firstDayOfWeek > 0 && firstDayOfWeek <= 6
+        ? firstDayOfWeek
+        : 0,
+    [firstDayOfWeek]
+  );
 
-  const firstDay =
-    firstDayOfWeek && firstDayOfWeek > 0 && firstDayOfWeek <= 6
-      ? firstDayOfWeek
-      : 0;
-
-  let currentDate = dayjs();
-
-  if (date) {
-    currentDate = dayjs(date);
-  }
-
-  if (minDate && currentDate.isBefore(minDate)) {
-    currentDate = dayjs(minDate);
-  }
-
-  let currentYear = currentDate.year();
+  const { currentDate, currentYear } = useMemo(() => {
+    const currentDate =
+      minDate && dayjs(date).isBefore(minDate) ? dayjs(minDate) : dayjs(date);
+    return {
+      currentDate,
+      currentYear: currentDate.year(),
+    };
+  }, [date, minDate]);
 
   const [state, dispatch] = useReducer(
     (prevState: LocalState, action: CalendarAction) => {
       switch (action.type) {
-        case CalendarActionKind.SET_CALENDAR_VIEW:
-          return {
-            ...prevState,
-            calendarView: action.payload,
-          };
         case CalendarActionKind.CHANGE_CURRENT_DATE:
           return {
             ...prevState,
@@ -90,6 +82,11 @@ const DateTimePicker = (props: DatePickerSingleProps) => {
             ...prevState,
             currentYear: action.payload,
           };
+        case CalendarActionKind.CHANGE_VIEW:
+          return {
+            ...prevState,
+            horizontal: action.payload,
+          };
         case CalendarActionKind.CHANGE_SELECTED_DATE:
           const { date } = action.payload;
           return {
@@ -97,41 +94,24 @@ const DateTimePicker = (props: DatePickerSingleProps) => {
             date,
             currentDate: date,
           };
-        case CalendarActionKind.CHANGE_SELECTED_RANGE:
-          const { startDate, endDate } = action.payload;
-          return {
-            ...prevState,
-            startDate,
-            endDate,
-          };
-        case CalendarActionKind.CHANGE_SELECTED_MULTIPLE:
-          const { dates } = action.payload;
-          return {
-            ...prevState,
-            dates,
-          };
       }
     },
     {
       date,
-      startDate,
-      endDate,
-      dates,
-      calendarView: initialCalendarView,
       currentDate,
       currentYear,
+      horizontal,
     }
   );
 
   useEffect(() => {
-    const newDate =
-      (date && (timePicker ? date : getStartOfDay(date))) ?? minDate;
+    const newDate = (date && getStartOfDay(date)) ?? minDate;
 
     dispatch({
       type: CalendarActionKind.CHANGE_SELECTED_DATE,
       payload: { date: newDate },
     });
-  }, [date, startDate, endDate, dates, minDate, timePicker]);
+  }, [date, minDate]);
 
   const onSelectDate = useCallback(
     (date: DateType) => {
@@ -143,42 +123,12 @@ const DateTimePicker = (props: DatePickerSingleProps) => {
           payload: newDate,
         });
 
-        (onChange as SingleChange)({
+        onChange({
           date: newDate,
         });
       }
     },
-    [onChange, state.startDate, state.endDate, state.dates]
-  );
-
-  const onSelectMonth = useCallback(
-    (month: number) => {
-      const newDate = getDate(state.currentDate).month(month);
-      dispatch({
-        type: CalendarActionKind.CHANGE_CURRENT_DATE,
-        payload: getFormated(newDate),
-      });
-      dispatch({
-        type: CalendarActionKind.SET_CALENDAR_VIEW,
-        payload: "day",
-      });
-    },
-    [state.currentDate]
-  );
-
-  const onSelectYear = useCallback(
-    (year: number) => {
-      const newDate = getDate(state.currentDate).year(year);
-      dispatch({
-        type: CalendarActionKind.CHANGE_CURRENT_DATE,
-        payload: getFormated(newDate),
-      });
-      dispatch({
-        type: CalendarActionKind.SET_CALENDAR_VIEW,
-        payload: "day",
-      });
-    },
-    [state.currentDate]
+    [dispatch, onChange]
   );
 
   const onChangeMonth = useCallback(
@@ -189,15 +139,18 @@ const DateTimePicker = (props: DatePickerSingleProps) => {
         payload: getFormated(newDate),
       });
     },
-    [state.currentDate]
+    [state.currentDate, dispatch]
   );
 
-  const onChangeYear = useCallback((year: number) => {
-    dispatch({
-      type: CalendarActionKind.CHANGE_CURRENT_YEAR,
-      payload: year,
-    });
-  }, []);
+  const onViewChange = useCallback(
+    (hz: boolean) => {
+      dispatch({
+        type: CalendarActionKind.CHANGE_VIEW,
+        payload: hz,
+      });
+    },
+    [dispatch]
+  );
 
   return (
     <CalendarContext.Provider
@@ -205,23 +158,19 @@ const DateTimePicker = (props: DatePickerSingleProps) => {
         ...state,
         locale,
         displayFullDays,
-        timePicker,
         minDate,
         maxDate,
         disabledDates,
         firstDayOfWeek: firstDay,
-        theme: rest,
         markedDates,
         onSelectDate,
-        onSelectMonth,
-        onSelectYear,
         onChangeMonth,
-        onChangeYear,
+        onViewChange,
       }}
     >
       <Calendar
-        buttonPrevIcon={<ChevronLeft />}
-        buttonNextIcon={<ChevronRight />}
+        resize={resize}
+        subBlock={subBlock}
       />
     </CalendarContext.Provider>
   );

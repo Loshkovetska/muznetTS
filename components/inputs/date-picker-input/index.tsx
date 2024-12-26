@@ -33,6 +33,7 @@ export default function DatePickerInput({
       {isOpen && (
         <DatePicker
           selectedDate={dayjs(selectedDate)}
+          subBlock
           onSelect={onSelect}
         />
       )}

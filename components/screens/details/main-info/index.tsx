@@ -1,4 +1,5 @@
 import GenresList from "@/components/genres-list";
+import InfoMessage from "@/components/info-message";
 import ProfileLocation from "@/components/profile-location";
 import RateBlock from "@/components/rate-block";
 import DetailsCarousel from "@/components/screens/details/carousel";
@@ -11,7 +12,6 @@ import AdsList from "@/components/screens/homescreen/ads-list";
 import Separator from "@/components/ui/separator";
 import { AdType, UserType } from "@/lib/types";
 import { colors, typography } from "@/tamagui.config";
-import { AlertCircle } from "@tamagui/lucide-icons";
 import { useMemo } from "react";
 import { Text, XStack, YStack, styled } from "tamagui";
 
@@ -150,20 +150,7 @@ export default function MainInfo(data: MainInfoPropType) {
             onOpen={data.openReviews}
           />
           <Separator />
-          <XStack
-            gap={8}
-            alignItems="center"
-          >
-            <AlertCircle color="#B9B9BA" />
-            <Text
-              {...typography["paragraph-14"]}
-              fontSize={13}
-              color="#717171"
-            >
-              To protect your payment, never transfer money or communicate
-              outside of the MuzNet app
-            </Text>
-          </XStack>
+          <InfoMessage text="To protect your payment, never transfer money or communicate outside of the MuzNet app" />
           <AdsList
             title="You also may like"
             type="similar"

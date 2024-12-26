@@ -5,6 +5,29 @@ import { supabase } from "@/lib/utils/supabase";
 class AdServiceClass {
   constructor() {}
 
+  async getAdsByParam(params: {
+    user_id?: string;
+    performer_id?: string;
+  }): Promise<AdType[]> {
+    let request = supabase
+      .from("ads")
+      .select(
+        "*, creator:user_id(name, surname, id), performer:performer_id(name, surname, id)"
+      );
+
+    if (params.user_id) {
+      request = request.eq("user_id", params.user_id);
+    }
+
+    if (params.performer_id) {
+      request = request.eq("performer_id", params.performer_id);
+    }
+
+    const response = await request;
+
+    return response?.data || [];
+  }
+
   async getAds(args: { id?: string; user_id?: string }): Promise<AdType[]> {
     try {
       const request = supabase
@@ -76,6 +99,7 @@ class AdServiceClass {
     }
     throw new Error("Cant add ad");
   }
+
   async updatedAd(params: AddUpdateAdRequestType): Promise<AdType> {
     const imagesUrls = await uploadImage(params.photo);
     const copy = JSON.parse(JSON.stringify(params));

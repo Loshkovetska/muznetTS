@@ -47,7 +47,7 @@ export default function RootLayout() {
         }}
       />
       <Tabs.Screen
-        name="chat/[id]/index"
+        name="chat"
         options={{
           title: "",
           tabBarIcon: ({ focused }) => (

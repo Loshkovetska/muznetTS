@@ -1,11 +1,16 @@
+import CalendarItem from "@/components/screens/calendar";
 import DatePicker from "@/components/ui/date-picker";
-import useAds from "@/lib/hooks/ads.hook";
-import { colors } from "@/tamagui.config";
+import useCalendar from "@/lib/hooks/calendar.hook";
+import { colors, typography } from "@/tamagui.config";
 import dayjs from "dayjs";
-import { Text, YStack } from "tamagui";
+import { useState } from "react";
+import { FlatList } from "react-native";
+import { Text, XStack, YStack } from "tamagui";
 
 export default function Calendar() {
-  const { ads } = useAds({});
+  const { ads, markedDates, selectedDate, setSelectedDate } = useCalendar();
+  const [height, setHeight] = useState(300);
+
   return (
     <YStack
       paddingTop={88}
@@ -14,24 +19,42 @@ export default function Calendar() {
       flexGrow={1}
       gap={24}
     >
-      <Text
-        fontSize={34}
-        lineHeight={41}
-        fontFamily="MulishBold"
+      <YStack
+        gap={24}
+        onLayout={({ nativeEvent: { layout } }) => setHeight(layout.height)}
       >
-        Calendar
-      </Text>
-      <DatePicker
-        selectedDate={dayjs()}
-        onSelect={() => {}}
-        borderWidth={1}
-        borderRadius={6}
-      />
-      {/* {ads && (
+        <XStack
+          alignItems="center"
+          justifyContent="space-between"
+        >
+          <Text
+            fontSize={34}
+            lineHeight={41}
+            fontFamily="MulishBold"
+          >
+            Calendar
+          </Text>
+          <Text
+            {...typography["label-17"]}
+            onPress={() => setSelectedDate(undefined)}
+          >
+            See all
+          </Text>
+        </XStack>
+        <DatePicker
+          horizontal
+          resize
+          markedDates={markedDates}
+          selectedDate={selectedDate ? dayjs(selectedDate) : undefined}
+          onSelect={setSelectedDate}
+        />
+      </YStack>
+      {ads?.length > 0 && (
         <FlatList
-          data={[...ads, ...ads]}
+          data={ads}
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ gap: 16, paddingBottom: 300 }}
+          style={{ flexGrow: 1 }}
+          contentContainerStyle={{ gap: 16, paddingBottom: height + 150 }}
           keyExtractor={(i) => i.id}
           renderItem={({ item, index }) => (
             <CalendarItem
@@ -41,7 +64,22 @@ export default function Calendar() {
             />
           )}
         />
-      )} */}
+      )}
+      {!ads.length && (
+        <YStack
+          flexGrow={1}
+          alignItems="center"
+          justifyContent="center"
+          paddingBottom={150}
+        >
+          <Text
+            textAlign="center"
+            {...typography["heading-18"]}
+          >
+            No ads were found on this date!
+          </Text>
+        </YStack>
+      )}
     </YStack>
   );
 }

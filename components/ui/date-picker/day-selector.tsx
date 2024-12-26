@@ -1,9 +1,13 @@
-import dayjs from "dayjs";
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 
-import Day, { EmptyDay } from "@/components/ui/date-picker/day";
+import DatePickerResize from "@/components/ui/date-picker/date-picker-resize";
+import Day from "@/components/ui/date-picker/day";
+import DaysHZList from "@/components/ui/date-picker/days-hz-list";
+import DaysVerticalList from "@/components/ui/date-picker/days-vertical-list";
+import { SCREEN_WIDTH } from "@/lib/constants";
 import {
   areDatesOnSameDay,
+  getClearDate,
   getDate,
   getDaysInMonth,
   getFormated,
@@ -12,27 +16,44 @@ import {
   getWeekdaysMin,
 } from "@/lib/utils/date-picker";
 import { typography } from "@/tamagui.config";
-import { Text, XStack, YStack } from "tamagui";
+import { Stack, Text, XStack, YStack, styled } from "tamagui";
 import { useCalendarContext } from "./calendar-context";
 
-const DaySelector = () => {
+const WeekDay = styled(Text, {
+  ...typography["paragraph-12"],
+  fontFamily: "MulishBold",
+  textTransform: "uppercase",
+  color: "rgba(60,60,67,0.3)",
+  textAlign: "center",
+  minWidth: 35,
+  maxWidth: 35,
+});
+
+const Wrapper = styled(Stack, {
+  alignItems: "center",
+  justifyContent: "center",
+});
+
+const DaySelector = ({ resize }: { resize?: boolean }) => {
   const {
     date,
-    startDate,
-    endDate,
-    dates,
     currentDate,
     displayFullDays,
     minDate,
     maxDate,
     disabledDates,
     firstDayOfWeek,
-    theme,
     markedDates,
+    horizontal,
     onSelectDate,
   } = useCalendarContext();
 
-  const { year, month, hour, minute } = getParsedDate(currentDate);
+  const [width, setWidth] = useState(SCREEN_WIDTH - 48);
+
+  const { year, month, hour, minute } = useMemo(
+    () => getParsedDate(currentDate),
+    [currentDate]
+  );
 
   const daysGrid = useMemo(() => {
     const today = new Date();
@@ -52,14 +73,16 @@ const DaySelector = () => {
       disabledDates
     ).map((day) => {
       if (day) {
-        let leftCrop = day.dayOfMonth === 1;
-        let rightCrop = day.dayOfMonth === fullDaysInMonth;
+        const leftCrop = day.dayOfMonth === 1;
+        const rightCrop = day.dayOfMonth === fullDaysInMonth;
 
         const isToday = areDatesOnSameDay(day.date, today);
-        let inRange = false;
-        let isSelected = areDatesOnSameDay(day.date, date);
+        const inRange = false;
+        const isSelected = areDatesOnSameDay(day.date, date);
 
-        const isMarked = markedDates?.includes(dayjs(day.date));
+        const isMarked = !!markedDates?.find(
+          (item) => item.toISOString() === getClearDate(day.date).toISOString()
+        );
 
         return {
           ...day,
@@ -82,74 +105,80 @@ const DaySelector = () => {
     maxDate,
     disabledDates,
     date,
-    startDate,
-    endDate,
-    dates,
     markedDates,
   ]);
 
   const handleSelectDate = useCallback(
     (date: string) => {
       const newDate = getDate(date).hour(hour).minute(minute);
-
       onSelectDate(getFormated(newDate));
     },
-    [onSelectDate, hour, minute]
+    [hour, minute, onSelectDate]
+  );
+
+  const getItem = useCallback(
+    (day: any, index: number) => (
+      <Wrapper
+        key={index}
+        width={(width - 33) / 7}
+      >
+        {day && (
+          <Day
+            date={day.date}
+            text={day.text}
+            disabled={day.disabled}
+            isCurrentMonth={day.isCurrentMonth}
+            isToday={day.isToday}
+            isSelected={day.isSelected}
+            inRange={day.inRange}
+            leftCrop={day.leftCrop}
+            rightCrop={day.rightCrop}
+            isMarked={day.isMarked}
+            onSelectDate={handleSelectDate}
+          />
+        )}
+      </Wrapper>
+    ),
+    [width, handleSelectDate]
   );
 
   return (
     <YStack
       flexGrow={1}
       width="100%"
+      marginTop={4}
+      paddingHorizontal={4}
+      onLayout={({ nativeEvent: { layout } }) => setWidth(layout.width)}
     >
       <XStack
+        justifyContent="space-between"
         alignItems="center"
-        justifyContent="center"
-        gap={12}
+        width="100%"
+        marginBottom={10}
       >
-        {getWeekdaysMin(firstDayOfWeek)?.map((item, index) => (
-          <Text
+        {getWeekdaysMin(firstDayOfWeek)?.map((item) => (
+          <Wrapper
             key={item}
-            {...typography["paragraph-12"]}
-            fontFamily="MulishBold"
-            textTransform="uppercase"
-            color="rgba(60,60,67,0.3)"
-            textAlign="center"
-            minWidth={35}
-            maxWidth={35}
+            width={(width - 28) / 7}
           >
-            {item}
-          </Text>
+            <WeekDay>{item}</WeekDay>
+          </Wrapper>
         ))}
       </XStack>
-      <XStack
-        flexWrap="wrap"
-        gap={12}
-        maxWidth={317}
-        width="100%"
-      >
-        {daysGrid?.map((day, index) => {
-          return day ? (
-            <Day
-              key={index}
-              date={day.date}
-              text={day.text}
-              disabled={day.disabled}
-              isCurrentMonth={day.isCurrentMonth}
-              theme={theme}
-              isToday={day.isToday}
-              isSelected={day.isSelected}
-              inRange={day.inRange}
-              leftCrop={day.leftCrop}
-              rightCrop={day.rightCrop}
-              isMarked={day.isMarked || false}
-              onSelectDate={handleSelectDate}
-            />
-          ) : (
-            <EmptyDay key={index} />
-          );
-        })}
-      </XStack>
+      {horizontal && (
+        <DaysHZList
+          key={month}
+          daysGrid={daysGrid}
+          getItem={getItem}
+        />
+      )}
+      {!horizontal && (
+        <DaysVerticalList
+          daysGrid={daysGrid}
+          getItem={getItem}
+        />
+      )}
+      {resize && <DatePickerResize />}
     </YStack>
   );
 };

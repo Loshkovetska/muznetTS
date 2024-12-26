@@ -112,6 +112,11 @@ export const typography = {
     fontFamily: "MulishRegular",
     lineHeight: 19,
   },
+  "paragraph-16": {
+    fontSize: 16,
+    fontFamily: "MulishRegular",
+    lineHeight: 24,
+  },
   "paragraph-17": {
     fontSize: 17,
     fontFamily: "MulishRegular",

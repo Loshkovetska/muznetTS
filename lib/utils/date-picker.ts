@@ -44,23 +44,6 @@ export function areDatesOnSameDay(a: DateType, b: DateType) {
   return date_a === date_b;
 }
 
-export function isDateBetween(
-  date: DateType,
-  {
-    startDate,
-    endDate,
-  }: {
-    startDate?: DateType;
-    endDate?: DateType;
-  }
-): boolean {
-  if (!startDate || !endDate) {
-    return false;
-  }
-
-  return dayjs(date) <= endDate && dayjs(date) >= startDate;
-}
-
 export function isDateDisabled(
   date: dayjs.Dayjs,
   {
@@ -95,16 +78,6 @@ export const getFormatedDate = (date: DateType, format: string) =>
 
 export const getDate = (date: DateType) => dayjs(date, DATE_FORMAT);
 
-export const getYearRange = (year: number) => {
-  const endYear = YEAR_PAGE_SIZE * Math.ceil(year / YEAR_PAGE_SIZE);
-  let startYear = endYear === year ? endYear : endYear - YEAR_PAGE_SIZE;
-
-  if (startYear < 0) {
-    startYear = 0;
-  }
-  return Array.from({ length: YEAR_PAGE_SIZE }, (_, i) => startYear + i);
-};
-
 export function getDaysInMonth(
   date: DateType,
   displayFullDays: boolean | undefined,
@@ -135,24 +108,8 @@ export function getDaysInMonth(
   };
 }
 
-export function getFirstDayOfMonth(
-  date: DateType,
-  firstDayOfWeek: number
-): number {
-  const d = getDate(date);
-  return d.date(1 - firstDayOfWeek).day();
-}
-
 export function getStartOfDay(date: DateType): DateType {
   return dayjs(date).startOf("day");
-}
-
-export function getEndOfDay(date: DateType): DateType {
-  return dayjs(date).endOf("day");
-}
-
-export function dateToUnix(date: DateType): number {
-  return dayjs(date).unix();
 }
 
 /**
@@ -277,24 +234,6 @@ const generateDayObject = (
   };
 };
 
-export function addColorAlpha(color: string | undefined, opacity: number) {
-  //if it has an alpha, remove it
-  if (!color) {
-    color = "#000000";
-  }
-
-  if (color.length > 7) {
-    color = color.substring(0, color.length - 2);
-  }
-
-  // coerce values so ti is between 0 and 1.
-  const _opacity = Math.round(Math.min(Math.max(opacity, 0), 1) * 255);
-  let opacityHex = _opacity.toString(16).toUpperCase();
-
-  // opacities near 0 need a trailing 0
-  if (opacityHex.length === 1) {
-    opacityHex = "0" + opacityHex;
-  }
-
-  return color + opacityHex;
+export function getClearDate(date: string | Date) {
+  return dayjs(date).set("hours", 0).set("minutes", 0).set("milliseconds", 0);
 }
