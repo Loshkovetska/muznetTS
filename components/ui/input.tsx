@@ -80,6 +80,7 @@ const StyledInput = styled(InputT, {
   backgroundColor: "transparent",
   borderWidth: 0,
   padding: 0,
+  fontFamily: "MulishRegular",
 });
 
 const StyledInputWrapper = styled(YStack, {
@@ -129,6 +130,8 @@ const Input = React.forwardRef<TextInput, InputPropType>(
         justifyContent={sizeB == "code" ? "center" : undefined}
         disabled={disabled}
         {...wrapper}
+        paddingRight={iconRight ? 8 : undefined}
+        paddingLeft={iconLeft ? 8 : undefined}
         ref={(ref) => {
           ref && getWrapperRef?.(ref as any);
         }}

@@ -235,5 +235,9 @@ const generateDayObject = (
 };
 
 export function getClearDate(date: string | Date) {
-  return dayjs(date).set("hours", 0).set("minutes", 0).set("milliseconds", 0);
+  return dayjs(date)
+    .set("hours", 0)
+    .set("minutes", 0)
+    .set("seconds", 0)
+    .set("milliseconds", 0);
 }

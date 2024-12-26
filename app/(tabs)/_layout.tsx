@@ -8,11 +8,14 @@ export default function RootLayout() {
   const segments = useSegments();
   const [tabbarVisible, setVisible] = useState(true);
 
-  const hideTabBar = useMemo(
-    () =>
-      HIDE_TABBAR_SCREENS.some((s) => [...segments].includes(s as "details")),
-    [segments]
-  );
+  const hideTabBar = useMemo(() => {
+    const sgs = [...segments];
+    return HIDE_TABBAR_SCREENS.some(
+      (s) =>
+        sgs.includes(s as "details") ||
+        (sgs.includes("chat") && sgs.includes("[id]"))
+    );
+  }, [segments]);
 
   return (
     <Tabs
@@ -47,7 +50,7 @@ export default function RootLayout() {
         }}
       />
       <Tabs.Screen
-        name="chat"
+        name="chat/index"
         options={{
           title: "",
           tabBarIcon: ({ focused }) => (
@@ -92,6 +95,12 @@ export default function RootLayout() {
               focused={focused}
             />
           ),
+        }}
+      />
+      <Tabs.Screen
+        name="chat/[id]/index"
+        options={{
+          tabBarItemStyle: { display: "none" },
         }}
       />
     </Tabs>

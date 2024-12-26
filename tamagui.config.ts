@@ -82,6 +82,11 @@ export const typography = {
     fontFamily: "MulishBold",
     lineHeight: 25,
   },
+  "heading-22": {
+    fontSize: 22,
+    fontFamily: "MulishBold",
+    lineHeight: 27,
+  },
   "heading-24": {
     fontSize: 24,
     fontFamily: "MulishBold",

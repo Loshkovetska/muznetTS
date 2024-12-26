@@ -27,10 +27,6 @@ export default function ContactUserDialog({
   isMusician,
   onOpenChange,
 }: ContactUserDialogPropType) {
-  const { sendMessage, isSendPending } = useMessages({
-    navigate: true,
-    enabled: false,
-  });
   const form = useForm({
     defaultValues: { text: "", from, to },
     mode: "onChange",
@@ -41,6 +37,15 @@ export default function ContactUserDialog({
         text: z.string().min(6, "Too short message"),
       })
     ),
+  });
+
+  const { sendMessage, isSendPending } = useMessages({
+    navigate: true,
+    enabled: false,
+    onSuccess: () => {
+      onOpenChange();
+      form.reset();
+    },
   });
 
   const onSubmit = useCallback(

@@ -4,6 +4,7 @@ import * as FileSystem from "expo-file-system";
 import { ImagePickerAsset } from "expo-image-picker";
 
 export const uploadImage = async (photo: ImagePickerAsset[] | string[]) => {
+  if (!photo.length) return [];
   const imagesUrls = [];
   const old_photos = photo.filter((photo) => typeof photo === "string");
   const new_photos = photo.filter((photo) => typeof photo !== "string");
