@@ -1,8 +1,6 @@
+import CommonDialogWrapper from "@/components/common-dialog-wrapper";
 import ReviewsList from "@/components/screens/details/reviews-list";
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/lib/constants";
-import { colors } from "@/tamagui.config";
 import { ChevronLeft } from "@tamagui/lucide-icons";
-import { YStack } from "tamagui";
 
 type FullScreenReviewsPropType = {
   open: boolean;
@@ -16,19 +14,7 @@ export default function FullScreenReviews({
   onOpenChange,
 }: FullScreenReviewsPropType) {
   return (
-    <YStack
-      position="absolute"
-      width={SCREEN_WIDTH}
-      height={SCREEN_HEIGHT}
-      top={0}
-      left={0}
-      backgroundColor={colors["white"]}
-      opacity={!open ? 0 : 1}
-      animateOnly={["opacity"]}
-      paddingTop={64}
-      gap={16}
-      paddingHorizontal={16}
-    >
+    <CommonDialogWrapper open={open}>
       <ChevronLeft
         size={24}
         onPress={onOpenChange}
@@ -37,6 +23,6 @@ export default function FullScreenReviews({
         type="full"
         rate={rate}
       />
-    </YStack>
+    </CommonDialogWrapper>
   );
 }

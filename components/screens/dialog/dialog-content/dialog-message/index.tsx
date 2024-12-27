@@ -23,8 +23,8 @@ const MessageContainer = styled(YStack, {
     },
     sameTime: {
       true: {
-        borderBottomLeftRadius: 6,
-        borderBottomRightRadius: 6,
+        borderBottomLeftRadius: 12,
+        borderBottomRightRadius: 12,
       },
     },
   },
@@ -105,12 +105,14 @@ export default function DialogMessage(
               maxWidth="80%"
               width="100%"
             >
-              <Text
-                {...typography["label-14"]}
-                color={isSender ? colors["white"] : "#333333"}
-              >
-                {message.text}
-              </Text>
+              {message.text?.length > 0 && (
+                <Text
+                  {...typography["label-14"]}
+                  color={isSender ? colors["white"] : "#333333"}
+                >
+                  {message.text}
+                </Text>
+              )}
               {message.files.length > 0 && (
                 <DialogMedia
                   file={message.files?.[0]}

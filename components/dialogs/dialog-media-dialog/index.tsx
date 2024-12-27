@@ -1,7 +1,8 @@
+import CommonDialogWrapper from "@/components/common-dialog-wrapper";
 import CommonImage from "@/components/common-image";
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/lib/constants";
+import { SCREEN_WIDTH } from "@/lib/constants";
 import { UserType } from "@/lib/types";
-import { colors, typography } from "@/tamagui.config";
+import { typography } from "@/tamagui.config";
 import { ChevronLeft } from "@tamagui/lucide-icons";
 import { FlatList } from "react-native";
 import { Text, YStack } from "tamagui";
@@ -20,19 +21,7 @@ export default function DialogMediaDialog({
   onOpenChange,
 }: DialogMediaDialogPropType) {
   return (
-    <YStack
-      position="absolute"
-      width={SCREEN_WIDTH}
-      height={SCREEN_HEIGHT}
-      top={0}
-      left={0}
-      backgroundColor={colors["white"]}
-      opacity={!open ? 0 : 1}
-      animateOnly={["opacity"]}
-      paddingTop={64}
-      gap={16}
-      paddingHorizontal={16}
-    >
+    <CommonDialogWrapper open={open}>
       <ChevronLeft onPress={onOpenChange} />
       <YStack
         width="100%"
@@ -78,6 +67,6 @@ export default function DialogMediaDialog({
           />
         </YStack>
       )}
-    </YStack>
+    </CommonDialogWrapper>
   );
 }

@@ -98,6 +98,10 @@ class MessageServiceClass {
 
     return messages?.data || [];
   }
+
+  async readMessages(ids: string[]): Promise<void> {
+    await supabase.from("messages").update({ read_to: true }).in("id", ids);
+  }
 }
 
 const MessageService = new MessageServiceClass();

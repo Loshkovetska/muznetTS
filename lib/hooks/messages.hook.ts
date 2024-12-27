@@ -9,12 +9,14 @@ import { useCallback, useMemo, useState } from "react";
 
 type UseMessagesPropType = {
   enabled?: boolean;
+  enabledMessages?: boolean;
   navigate?: boolean;
   onSuccess?: () => void;
 };
 
 export default function useMessages({
-  enabled = true,
+  enabled = false,
+  enabledMessages = false,
   navigate = false,
   onSuccess,
 }: UseMessagesPropType) {
@@ -33,7 +35,7 @@ export default function useMessages({
   const { data: messages } = useQuery({
     queryKey: [QUERY_TAGS.MESSAGES, selectedChat],
     queryFn: () => MessageService.getMessages(selectedChat || ""),
-    enabled: !!selectedChat,
+    enabled: !!selectedChat && enabledMessages,
   });
 
   const { mutate: sendMessage, isPending: isSendPending } = useMutation({
@@ -52,6 +54,21 @@ export default function useMessages({
         navigate && router.navigate("/chat/index");
         onSuccess?.();
       }
+    },
+  });
+
+  const { mutate: readMessages } = useMutation({
+    mutationFn: (ids: string[]) => MessageService.readMessages(ids),
+    onSuccess: (_, vars) => {
+      selectedChat &&
+        queryClient.setQueryData(
+          [QUERY_TAGS.MESSAGES, selectedChat],
+          (old: MessageItemType[]) =>
+            old.map((i) => ({
+              ...i,
+              read_to: vars.includes(i.id) ? true : i.read_to,
+            }))
+        );
     },
   });
 
@@ -119,5 +136,6 @@ export default function useMessages({
     setSearchValue,
     addEmptyMessage,
     removeEmptyMessage,
+    readMessages,
   };
 }

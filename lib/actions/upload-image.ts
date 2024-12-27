@@ -1,9 +1,13 @@
+import { detectFileType } from "@/lib/utils";
 import { supabase } from "@/lib/utils/supabase";
 import { decode } from "base64-arraybuffer";
+import { DocumentPickerAsset } from "expo-document-picker";
 import * as FileSystem from "expo-file-system";
 import { ImagePickerAsset } from "expo-image-picker";
 
-export const uploadImage = async (photo: ImagePickerAsset[] | string[]) => {
+export const uploadImage = async (
+  photo: Array<DocumentPickerAsset | ImagePickerAsset | string>
+) => {
   if (!photo.length) return [];
   const imagesUrls = [];
   const old_photos = photo.filter((photo) => typeof photo === "string");
@@ -14,7 +18,7 @@ export const uploadImage = async (photo: ImagePickerAsset[] | string[]) => {
   }
 
   for (let i = 0; i < new_photos.length; i++) {
-    const file = new_photos[i] as ImagePickerAsset;
+    const file = new_photos[i] as any;
 
     const base64Str = await FileSystem.readAsStringAsync(file.uri, {
       encoding: "base64",
@@ -22,10 +26,14 @@ export const uploadImage = async (photo: ImagePickerAsset[] | string[]) => {
 
     const buffer = decode(base64Str);
 
+    const uriParts = file.uri.split("/");
+    const fileName = uriParts[uriParts.length - 1];
+    const { isImage, isVideo } = detectFileType(fileName);
+
     const bucket = await supabase.storage
       .from("Images")
-      .upload(file.fileName || "", buffer, {
-        contentType: file.type === "image" ? "image/png" : "video/mp4",
+      .upload(file.fileName || file?.name || fileName, buffer, {
+        contentType: isImage ? "image/png" : isVideo ? "video/mp4" : undefined,
       });
 
     if (bucket.error) throw new Error("Can't upload image to Storage");

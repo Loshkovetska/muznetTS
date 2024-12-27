@@ -1,11 +1,12 @@
+import CommonDialogWrapper from "@/components/common-dialog-wrapper";
 import CommonHeader from "@/components/common-header";
 import InfoMessage from "@/components/info-message";
 import ProfileBottomBar from "@/components/screens/profile/profile-bottombar";
 import Button from "@/components/ui/button";
 import { Form, FormElement } from "@/components/ui/form";
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/lib/constants";
+import { SCREEN_WIDTH } from "@/lib/constants";
 import useMessages from "@/lib/hooks/messages.hook";
-import { colors, typography } from "@/tamagui.config";
+import { typography } from "@/tamagui.config";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
@@ -41,7 +42,6 @@ export default function ContactUserDialog({
 
   const { sendMessage, isSendPending } = useMessages({
     navigate: true,
-    enabled: false,
     onSuccess: () => {
       onOpenChange();
       form.reset();
@@ -55,19 +55,7 @@ export default function ContactUserDialog({
     [sendMessage]
   );
   return (
-    <YStack
-      position="absolute"
-      width={SCREEN_WIDTH}
-      height={SCREEN_HEIGHT}
-      top={0}
-      left={0}
-      backgroundColor={colors["white"]}
-      opacity={!open ? 0 : 1}
-      animateOnly={["opacity"]}
-      paddingTop={64}
-      gap={16}
-      paddingHorizontal={16}
-    >
+    <CommonDialogWrapper open={open}>
       <CommonHeader
         marginTop={0}
         onBack={onOpenChange}
@@ -102,6 +90,6 @@ export default function ContactUserDialog({
           Contact
         </Button>
       </ProfileBottomBar>
-    </YStack>
+    </CommonDialogWrapper>
   );
 }

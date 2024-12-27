@@ -1,5 +1,6 @@
 import CommonImage from "@/components/common-image";
 import Button from "@/components/ui/button";
+import useImagePicker from "@/lib/hooks/image-picker.hook";
 import { setValueToForm } from "@/lib/utils";
 import { colors, typography } from "@/tamagui.config";
 import { Plus, Trash } from "@tamagui/lucide-icons";
@@ -21,33 +22,20 @@ const Container = styled(Stack, {
 
 export default function MediaSelect({ form }: { form: UseFormReturn<any> }) {
   const photos = useWatch({ control: form.control, name: "photo" });
+  const onSuccess = useCallback(
+    (file: ImagePickerNative.ImagePickerAsset) => {
+      setValueToForm(form, "photo", [
+        ...photos,
+        {
+          ...file,
+          fileName: `${new Date().getTime()}_${form.getValues("surname")}.png`,
+        },
+      ]);
+    },
+    [form, photos]
+  );
 
-  const pickImage = useCallback(async () => {
-    const result = await ImagePickerNative.launchImageLibraryAsync({
-      mediaTypes: ["images"],
-      allowsEditing: true,
-      quality: 0.5,
-      selectionLimit: 1,
-    });
-
-    if (!result.canceled) {
-      if (result.assets?.length) {
-        const file = result.assets[0];
-
-        setValueToForm(form, "photo", [
-          ...photos,
-          {
-            ...file,
-            fileName: `${new Date().getTime()}_${form.getValues(
-              "surname"
-            )}.png`,
-          },
-        ]);
-      }
-    } else {
-      alert("You did not select any image.");
-    }
-  }, [form, photos]);
+  const { pickImage } = useImagePicker(onSuccess);
 
   const onDelete = useCallback(
     (id: number) => {

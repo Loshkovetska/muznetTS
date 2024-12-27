@@ -1,3 +1,4 @@
+import CommonDialogWrapper from "@/components/common-dialog-wrapper";
 import {
   MUSICAL_POSITION,
   SORT_BY,
@@ -15,11 +16,11 @@ import Select, { SelectContent } from "@/components/ui/select";
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/lib/constants";
 import { GENRES, INSTRUMENTS } from "@/lib/constants/lists";
 import { FiltersType } from "@/lib/types";
-import { colors, typography } from "@/tamagui.config";
+import { typography } from "@/tamagui.config";
 import { X } from "@tamagui/lucide-icons";
 import dayjs from "dayjs";
 import { useCallback, useMemo, useState } from "react";
-import { ScrollView, Text, XStack, YStack } from "tamagui";
+import { ScrollView, Text, XStack } from "tamagui";
 
 type FilterDialogPropType = {
   open: boolean;
@@ -83,17 +84,9 @@ export default function FilterDialog({
       coords={coords}
       scrollRef={ref}
     >
-      <YStack
-        position="absolute"
-        width={SCREEN_WIDTH}
-        height={SCREEN_HEIGHT}
-        top={0}
-        left={0}
-        backgroundColor={colors["white"]}
-        opacity={!open ? 0 : 1}
-        animateOnly={["opacity"]}
-        paddingTop={64}
-        gap={16}
+      <CommonDialogWrapper
+        open={open}
+        paddingHorizontal={0}
       >
         <XStack
           alignItems="center"
@@ -212,7 +205,7 @@ export default function FilterDialog({
             {selectedFilters?.user_type === "musician" ? "musicians" : "ads"}
           </Button>
         </ProfileBottomBar>
-      </YStack>
+      </CommonDialogWrapper>
       <SelectContent onValueChange={onValueChange} />
     </SelectProvider>
   );

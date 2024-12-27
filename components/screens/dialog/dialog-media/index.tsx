@@ -1,4 +1,5 @@
 import CommonImage from "@/components/common-image";
+import { detectFileType } from "@/lib/utils";
 import { colors, typography } from "@/tamagui.config";
 import { Paperclip } from "@tamagui/lucide-icons";
 import { Text, XStack } from "tamagui";
@@ -9,10 +10,8 @@ type DialogMediaPropType = {
 };
 
 export default function DialogMedia({ file, imageSize }: DialogMediaPropType) {
-  const isImage = file.includes(".png");
-  const isFile = [".pdf", ".doc", "docx"].some((r) => file.includes(r));
-
-  if (isFile) {
+  const { isImage, isVideo } = detectFileType(file);
+  if (!isImage && !isVideo) {
     return (
       <XStack
         borderWidth={1}

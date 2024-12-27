@@ -1,4 +1,5 @@
 import DialogMessage from "@/components/screens/dialog/dialog-content/dialog-message";
+import useMessages from "@/lib/hooks/messages.hook";
 import { MessageItemType, UserType } from "@/lib/types";
 import { typography } from "@/tamagui.config";
 import dayjs from "dayjs";
@@ -17,6 +18,7 @@ export default function DialogContent({
 }: DialogContentPropType) {
   const ref = useRef<SectionList>(null);
   const today = dayjs().format("DD MMM YYYY");
+  const { readMessages } = useMessages({});
 
   const isSame = useCallback(
     (item: MessageItemType, nextItem?: MessageItemType) => {
@@ -32,17 +34,40 @@ export default function DialogContent({
     []
   );
 
+  const updateMessagesStatus = useCallback(
+    (
+      messages: {
+        title: string;
+        data: MessageItemType[];
+      }[]
+    ) => {
+      const needToBeRead = messages.flatMap((me) =>
+        me.data
+          .filter((m) => !m.read_to && m.to.id === currentUser?.id && !m.empty)
+          .map((m) => m.id)
+      );
+
+      if (needToBeRead.length > 0) {
+        readMessages(needToBeRead);
+      }
+    },
+    [currentUser, readMessages]
+  );
+
   useEffect(() => {
     if (ref.current && messages && (messages?.length || 0) > 0) {
       const lastSectionIndex = messages?.length - 1;
 
-      ref.current.scrollToLocation({
-        animated: false,
-        sectionIndex: lastSectionIndex,
-        itemIndex: messages[lastSectionIndex]?.data?.length - 1 || 0,
-      });
+      setTimeout(() => {
+        ref.current?.scrollToLocation({
+          animated: false,
+          sectionIndex: lastSectionIndex,
+          itemIndex: messages[lastSectionIndex]?.data?.length - 1 || 0,
+        });
+      }, 1000);
+      updateMessagesStatus(messages);
     }
-  }, [messages]);
+  }, [messages, updateMessagesStatus]);
   return (
     <SectionList
       ref={ref}

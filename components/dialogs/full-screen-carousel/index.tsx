@@ -1,10 +1,11 @@
+import CommonDialogWrapper from "@/components/common-dialog-wrapper";
 import SingleCarousel from "@/components/single-carousel";
 import Button from "@/components/ui/button";
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/lib/constants";
+import { SCREEN_WIDTH } from "@/lib/constants";
 import { colors } from "@/tamagui.config";
 import { ChevronLeft } from "@tamagui/lucide-icons";
 import { useState } from "react";
-import { Text, XStack, YStack } from "tamagui";
+import { Text, XStack } from "tamagui";
 
 type FullScreenCarouselPropType = {
   ind: number;
@@ -19,17 +20,12 @@ export default function FullScreenCarousel({
 }: FullScreenCarouselPropType) {
   const [currentInd, setCurrentIndex] = useState(0);
   return (
-    <YStack
-      position="absolute"
-      width={SCREEN_WIDTH}
-      height={SCREEN_HEIGHT}
-      top={0}
-      left={0}
-      backgroundColor={colors["black"]}
-      opacity={ind === -1 ? 0 : 1}
-      animateOnly={["opacity"]}
+    <CommonDialogWrapper
+      open={!(ind === -1)}
+      light={false}
       justifyContent="center"
       alignItems="center"
+      paddingHorizontal={0}
     >
       <XStack
         position="absolute"
@@ -65,6 +61,6 @@ export default function FullScreenCarousel({
         resizeMode="contain"
         onIndexChange={setCurrentIndex}
       />
-    </YStack>
+    </CommonDialogWrapper>
   );
 }

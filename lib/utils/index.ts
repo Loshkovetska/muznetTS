@@ -106,3 +106,9 @@ export const is2HoursBetweenDates = (startDate: Date, endDate: Date) => {
   const diff = getTimePeriod(dayjs(startDate), dayjs(endDate)).num;
   return diff > 0 && diff <= 2;
 };
+
+export const detectFileType = (fileName: string) => {
+  const isImage = /\.(gif|jpg|jpeg|tiff|png)$/i.test(fileName);
+  const isVideo = /\.(MOV|mp4)$/i.test(fileName);
+  return { isImage, isVideo };
+};

@@ -1,4 +1,5 @@
 import Button from "@/components/ui/button";
+import useImagePicker from "@/lib/hooks/image-picker.hook";
 import { setValueToForm } from "@/lib/utils";
 import { colors, typography } from "@/tamagui.config";
 import { AlertCircle, Pencil, UploadCloud } from "@tamagui/lucide-icons";
@@ -59,34 +60,23 @@ export default function ImagePicker({ error, form }: ImagePickerPropType) {
   const [imageUrl, setUrl] = useState<string | null>(null);
   const storedImage = useWatch({ control: form.control, name: "photo" });
 
-  const pickImage = useCallback(async () => {
-    const result = await ImagePickerNative.launchImageLibraryAsync({
-      mediaTypes: ["images"],
-      allowsEditing: true,
-      quality: 0.5,
-      selectionLimit: 1,
-    });
+  const onSuccess = useCallback(
+    (file: ImagePickerNative.ImagePickerAsset) => {
+      setUrl(file.uri);
 
-    if (!result.canceled) {
-      if (result.assets?.length) {
-        const file = result.assets[0];
-        setUrl(file.uri);
+      const images = storedImage.filter((_: any, ind: number) => !!ind);
+      setValueToForm(form, "photo", [
+        {
+          ...file,
+          fileName: `${new Date().getTime()}_${form.getValues("surname")}.png`,
+        },
+        ...images,
+      ]);
+    },
+    [form, storedImage]
+  );
 
-        const images = storedImage.filter((_: any, ind: number) => !!ind);
-        setValueToForm(form, "photo", [
-          {
-            ...file,
-            fileName: `${new Date().getTime()}_${form.getValues(
-              "surname"
-            )}.png`,
-          },
-          ...images,
-        ]);
-      }
-    } else {
-      alert("You did not select any image.");
-    }
-  }, [form, storedImage]);
+  const { pickImage } = useImagePicker(onSuccess);
 
   useEffect(() => {
     if (typeof storedImage?.[0] === "string") {

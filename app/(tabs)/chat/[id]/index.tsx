@@ -7,8 +7,6 @@ import { useState } from "react";
 import { YStack } from "tamagui";
 
 //TODO:
-// - add read message
-// - add scroll to last
 // - add sending docs/images
 // - add download docs & images from messages
 // - add ability to make offer
@@ -17,7 +15,7 @@ import { YStack } from "tamagui";
 export default function Page() {
   const [isOpen, setOpen] = useState(false);
   const { messagesList, currentUser, dialogMedia, chatUser } = useMessages({
-    enabled: false,
+    enabledMessages: true,
   });
 
   return (
