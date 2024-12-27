@@ -6,7 +6,7 @@ import CameraFunc from "@/components/dialogs/camera-dialog/camera-func";
 import CameraModeBlock from "@/components/dialogs/camera-dialog/camera-mode-block";
 import useCamera from "@/lib/hooks/camera.hook";
 import { RefreshCcw, RefreshCw, Zap, ZapOff } from "@tamagui/lucide-icons";
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 
 type CameraDialogPropType = {
   open: boolean;
@@ -20,24 +20,28 @@ export default function CameraDialog({
   onSendMessage,
 }: CameraDialogPropType) {
   const {
-    facing,
-    flash,
-    mode,
+    cameraState,
     cameraRef,
-    isRecording,
-    preview,
-    setMode,
-    setFacing,
-    setFlash,
+    time,
+    toggleState,
     onCameraPress,
     retake,
+    resetParams,
   } = useCamera();
 
-  const FlashIcon = useMemo(() => (flash === "on" ? Zap : ZapOff), [flash]);
-  const FacingIcon = useMemo(
-    () => (facing === "back" ? RefreshCw : RefreshCcw),
-    [facing]
+  const FlashIcon = useMemo(
+    () => (cameraState.flash === "on" ? Zap : ZapOff),
+    [cameraState.flash]
   );
+  const FacingIcon = useMemo(
+    () => (cameraState.facing === "back" ? RefreshCw : RefreshCcw),
+    [cameraState.facing]
+  );
+
+  const onClose = useCallback(() => {
+    resetParams();
+    onOpenChange();
+  }, [resetParams, onOpenChange]);
 
   return (
     <CommonDialogWrapper
@@ -49,33 +53,38 @@ export default function CameraDialog({
     >
       <CameraActionButton
         Icon={FlashIcon}
-        onPress={() => setFlash((prev) => (prev === "off" ? "on" : "off"))}
+        onPress={() =>
+          toggleState({ flash: cameraState.flash === "off" ? "on" : "off" })
+        }
       />
       <CameraBlock
         cameraRef={cameraRef}
-        facing={facing}
-        flash={flash}
-        mode={mode}
-        preview={preview}
+        {...cameraState}
+        time={cameraState.mode === "video" ? time : undefined}
       />
-      <CameraDialogButtons
-        retake={retake}
-        onAccept={() => onSendMessage([preview])}
-        text={mode === "picture" ? "Photo" : "Video"}
-      />
+      {cameraState.preview && (
+        <CameraDialogButtons
+          retake={retake}
+          onAccept={() => onSendMessage([cameraState.preview])}
+          text={cameraState.mode === "picture" ? "Photo" : "Video"}
+        />
+      )}
       <CameraFunc
-        visible={!preview}
+        key={open ? 1 : 0}
+        visible={!cameraState.preview}
         FacingIcon={FacingIcon}
-        onOpenChange={onOpenChange}
+        onOpenChange={onClose}
         onFacing={() =>
-          setFacing((prev) => (prev === "back" ? "front" : "back"))
+          toggleState({
+            facing: cameraState.facing === "back" ? "front" : "back",
+          })
         }
       >
         <CameraModeBlock
-          mode={mode}
-          isRecording={isRecording}
+          mode={cameraState.mode}
+          isRecording={cameraState.isRecording}
           onPress={onCameraPress}
-          onMode={setMode}
+          onMode={(mode) => toggleState({ mode })}
         />
       </CameraFunc>
     </CommonDialogWrapper>

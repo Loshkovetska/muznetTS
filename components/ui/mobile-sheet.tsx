@@ -20,7 +20,7 @@ export const MobileSheet = ({
       snapPointsMode="fit"
       dismissOnSnapToBottom
       zIndex={100_000}
-      animation="lazy"
+      animation="fast"
     >
       <Sheet.Overlay
         animation="lazy"

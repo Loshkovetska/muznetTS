@@ -1,9 +1,10 @@
 import CommonImage from "@/components/common-image";
 import CommonVideo from "@/components/common-video";
+import VideoTime from "@/components/video-time";
 import { SCREEN_WIDTH } from "@/lib/constants";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import { CameraMode, CameraType, CameraView, FlashMode } from "expo-camera";
-import { Stack, Text, XStack, styled } from "tamagui";
+import { Stack, styled } from "tamagui";
 
 const Frame = styled(Stack, {
   width: 24,
@@ -47,6 +48,7 @@ type CameraBlockPropType = {
   mode: CameraMode;
   cameraRef: React.RefObject<CameraView>;
   preview: any;
+  time?: string;
 };
 
 export default function CameraBlock({
@@ -55,6 +57,7 @@ export default function CameraBlock({
   mode,
   cameraRef,
   preview,
+  time,
 }: CameraBlockPropType) {
   return (
     <Stack
@@ -68,29 +71,14 @@ export default function CameraBlock({
       <Frame variant="topright" />
       <Frame variant="bottomleft" />
       <Frame variant="bottomright" />
-      <XStack
-        backgroundColor="rgba(0,0,0,0.5)"
-        borderRadius={58}
-        position="absolute"
-        top={16}
-        left="50%"
-        zIndex={200}
-        height={32}
-        maxWidth={100}
-        minWidth={88}
-        transform={[
-          {
-            translateX: "-50%",
-          },
-        ]}
-      >
-        <Text
-          {...typography["heading-17"]}
-          color={colors["white"]}
-        >
-          00:00:00
-        </Text>
-      </XStack>
+      {time && (
+        <VideoTime
+          variant="absolute-center"
+          bg="dark"
+          sizeB="lg"
+          time={time}
+        />
+      )}
       {preview && (
         <>
           {!preview?.uri.includes("mov") && (
@@ -105,7 +93,8 @@ export default function CameraBlock({
             <CommonVideo
               width="100%"
               height="100%"
-              source={preview}
+              source={preview.uri}
+              local
             />
           )}
         </>
@@ -121,7 +110,6 @@ export default function CameraBlock({
           facing={facing}
           flash={flash}
           mode={mode}
-          onCameraReady={() => console.log("ready")}
         />
       )}
     </Stack>

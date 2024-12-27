@@ -33,6 +33,7 @@ export default function DialogBar({ chatUser }: { chatUser?: UserType }) {
         text: message,
       });
       setEmptyMessage(false);
+      setDialogs((prev) => ({ ...prev, camera: false }));
     },
     [currentUser, chatUser, message, sendMessage]
   );

@@ -22,6 +22,18 @@ const animations = createAnimations({
     mass: 1.2,
     stiffness: 250,
   },
+  fast: {
+    type: "timing",
+    damping: 10,
+    mass: 1,
+    stiffness: 100,
+  },
+  medium: {
+    type: "timing",
+    damping: 10,
+    mass: 0.9,
+    stiffness: 100,
+  },
 });
 
 export const colors = {

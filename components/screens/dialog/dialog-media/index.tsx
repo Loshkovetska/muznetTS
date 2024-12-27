@@ -1,4 +1,5 @@
 import CommonImage from "@/components/common-image";
+import CommonVideo from "@/components/common-video";
 import { detectFileType } from "@/lib/utils";
 import { colors, typography } from "@/tamagui.config";
 import { Paperclip } from "@tamagui/lucide-icons";
@@ -46,5 +47,11 @@ export default function DialogMedia({ file, imageSize }: DialogMediaPropType) {
       />
     );
   }
-  return null;
+  return (
+    <CommonVideo
+      source={file}
+      borderRadius={4}
+      {...imageSize}
+    />
+  );
 }

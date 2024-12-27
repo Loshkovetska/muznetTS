@@ -1,5 +1,6 @@
 import { colors, typography } from "@/tamagui.config";
 import { CameraMode } from "expo-camera";
+import { useRef } from "react";
 import { FlatList } from "react-native";
 import { Stack, Text, YStack, styled } from "tamagui";
 
@@ -53,6 +54,7 @@ export default function CameraModeBlock({
   onPress,
   onMode,
 }: CameraModeBlockPropType) {
+  const ref = useRef<FlatList>(null);
   return (
     <YStack
       gap={16}
@@ -60,17 +62,26 @@ export default function CameraModeBlock({
       alignItems="center"
     >
       <FlatList
+        ref={ref}
         data={["picture", "video"]}
         horizontal
         pagingEnabled
         showsHorizontalScrollIndicator={false}
-        style={{ maxWidth: 97 }}
-        contentContainerStyle={{ gap: 10, paddingRight: 26, paddingLeft: 24 }}
+        style={{ maxWidth: 120 }}
         keyExtractor={(item) => item}
-        renderItem={({ item }) => (
+        snapToAlignment="center"
+        renderItem={({ item, index }) => (
           <Text
             {...typography["heading-17"]}
             color={mode === item ? colors["white"] : "#5C6574"}
+            paddingLeft={!index ? 32 : 5}
+            paddingRight={index + 1 === 2 ? 40 : 5}
+            onPress={() =>
+              ref.current?.scrollToIndex({
+                animated: true,
+                index,
+              })
+            }
           >
             {item === "picture" ? "Photo" : "Video"}
           </Text>

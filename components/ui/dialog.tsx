@@ -39,7 +39,7 @@ export default function Dialog({
         platform="touch"
       >
         <Sheet
-          animation="lazy"
+          animation="fast"
           zIndex={200000}
           modal
           snapPointsMode="fit"
