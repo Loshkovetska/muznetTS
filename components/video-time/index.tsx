@@ -36,10 +36,6 @@ const TimeWrapper = styled(XStack, {
       },
     },
   } as const,
-  defaultVariants: {
-    variant: "absolute-center",
-    bgColor: "dark",
-  },
 });
 
 const TimeText = styled(Text, {
