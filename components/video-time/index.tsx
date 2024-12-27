@@ -20,7 +20,7 @@ const TimeWrapper = styled(XStack, {
         zIndex: 1,
       },
     },
-    bg: {
+    bgColor: {
       transparent: {
         width: "auto",
       },
@@ -31,9 +31,15 @@ const TimeWrapper = styled(XStack, {
         minWidth: 88,
         alignItems: "center",
         justifyContent: "center",
+        paddingHorizontal: 9,
+        paddingVertical: 5.5,
       },
     },
   } as const,
+  defaultVariants: {
+    variant: "absolute-center",
+    bgColor: "dark",
+  },
 });
 
 const TimeText = styled(Text, {
@@ -61,7 +67,7 @@ export default function VideoTime({
   return (
     <TimeWrapper
       variant={variant}
-      bg={bg}
+      bgColor={bg}
     >
       <TimeText
         sizeB={sizeB}
