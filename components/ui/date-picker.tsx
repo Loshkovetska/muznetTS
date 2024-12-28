@@ -22,7 +22,7 @@ export default function DatePicker({
     <DTPicker
       date={selectedDate}
       markedDates={markedDates}
-      minDate={dayjs().set("d", -1)}
+      minDate={dayjs().add(-1, "d")}
       subBlock={subBlock}
       horizontal={horizontal}
       resize={resize}

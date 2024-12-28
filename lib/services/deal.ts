@@ -46,16 +46,29 @@ class DealServiceClass {
   }
 
   async getDealsByParams(
-    user_id: string,
-    performer_id: string
+    user_id?: string,
+    performer_id?: string
   ): Promise<DealType[] | undefined> {
     try {
-      const deals = await supabase
+      let request = supabase
         .from("deals")
-        .select("*, ad:ads_id(*), performer:performer_id(id, name, surname)")
-        .eq("ad.user_id", user_id)
-        .eq("performer_id", performer_id);
+        .select("*, ad:ads_id(*), performer:performer_id(id, name, surname)");
 
+      if (user_id && performer_id) {
+        request = request
+          .eq("ad.user_id", user_id)
+          .eq("performer_id", performer_id);
+      }
+
+      if (user_id && !performer_id) {
+        request = request.eq("ad.user_id", user_id);
+      }
+
+      if (!user_id && performer_id) {
+        request = request.eq("performer_id", performer_id);
+      }
+
+      const deals = await request;
       if (!deals.data) throw new Error("No Deal");
       return deals.data;
     } catch (e) {

@@ -106,6 +106,7 @@ const DaySelector = ({ resize }: { resize?: boolean }) => {
     disabledDates,
     date,
     markedDates,
+    currentDate,
   ]);
 
   const handleSelectDate = useCallback(

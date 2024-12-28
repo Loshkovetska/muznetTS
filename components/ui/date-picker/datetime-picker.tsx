@@ -104,15 +104,6 @@ const DateTimePicker = (props: DatePickerSingleProps) => {
     }
   );
 
-  useEffect(() => {
-    const newDate = (date && getStartOfDay(date)) ?? minDate;
-
-    dispatch({
-      type: CalendarActionKind.CHANGE_SELECTED_DATE,
-      payload: { date: newDate },
-    });
-  }, [date, minDate]);
-
   const onSelectDate = useCallback(
     (date: DateType) => {
       if (onChange) {
@@ -151,6 +142,15 @@ const DateTimePicker = (props: DatePickerSingleProps) => {
     },
     [dispatch]
   );
+
+  useEffect(() => {
+    const newDate =
+      (date && getStartOfDay(date)) ?? dayjs(minDate).add(1, "day");
+    dispatch({
+      type: CalendarActionKind.CHANGE_SELECTED_DATE,
+      payload: { date: newDate },
+    });
+  }, [date, minDate]);
 
   return (
     <CalendarContext.Provider

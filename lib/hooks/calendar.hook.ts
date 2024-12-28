@@ -1,6 +1,6 @@
 import { useUser } from "@/components/providers/user-provider";
 import { QUERY_TAGS } from "@/lib/constants";
-import AdService from "@/lib/services/ad";
+import DealService from "@/lib/services/deal";
 import { getClearDate } from "@/lib/utils/date-picker";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
@@ -12,14 +12,15 @@ export default function useCalendar() {
   const { data = [] } = useQuery({
     queryKey: [QUERY_TAGS.CALENDAR],
     queryFn: () =>
-      AdService.getAdsByParam({
-        user_id: !isMusician ? user?.id : undefined,
-        performer_id: isMusician ? user?.id : undefined,
-      }),
+      DealService.getDealsByParams(
+        !isMusician ? user?.id : undefined,
+        isMusician ? user?.id : undefined
+      ),
+    enabled: !!user?.id,
   });
 
   const markedDates = useMemo(
-    () => data?.map((d) => getClearDate(d.start_date)),
+    () => data?.map((d) => getClearDate(d.ad.start_date)),
     [data]
   );
 
@@ -28,7 +29,7 @@ export default function useCalendar() {
 
     return data?.filter(
       (d) =>
-        getClearDate(d.start_date).toISOString() ===
+        getClearDate(d.ad.start_date).toISOString() ===
         getClearDate(selectedDate).toISOString()
     );
   }, [selectedDate]);

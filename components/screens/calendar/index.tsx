@@ -3,7 +3,7 @@ import Image2 from "@/assets/images/screens/calendar/calendar_bg_2.png";
 import ProfileLocation from "@/components/profile-location";
 import ProfileUser from "@/components/profile-user";
 import DetailsPeriod from "@/components/screens/details/details-period";
-import { AdType } from "@/lib/types";
+import { DealType } from "@/lib/types/deal";
 import { colors, typography } from "@/tamagui.config";
 import { Image, Text, YStack, styled } from "tamagui";
 
@@ -24,9 +24,10 @@ const Content = styled(YStack, {
 
 type CalendarItemPropType = {
   order: number;
-} & AdType;
+} & DealType;
 
-export default function CalendarItem({ order, ...ad }: CalendarItemPropType) {
+export default function CalendarItem(props: CalendarItemPropType) {
+  const { ad, order, ...deal } = props;
   const imgSource = !(order % 2) ? Image1 : Image2;
   return (
     <Container>
@@ -48,7 +49,7 @@ export default function CalendarItem({ order, ...ad }: CalendarItemPropType) {
             address={ad.address}
             sizeB="lg"
           />
-          <ProfileUser user={ad.creator} />
+          <ProfileUser user={deal.performer} />
         </YStack>
       </Content>
     </Container>
