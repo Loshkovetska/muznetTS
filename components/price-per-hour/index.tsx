@@ -26,9 +26,11 @@ const ItemInfoCostValuePostfix = styled(Text, {
 export default function PricePerHour({
   price,
   sizeB = "sm",
+  hours,
 }: {
   price: number;
   sizeB?: "sm" | "lg" | "sm-16";
+  hours?: string;
 }) {
   return (
     <XStack
@@ -36,7 +38,9 @@ export default function PricePerHour({
       gap={5}
     >
       <ItemInfoCostValue sizeB={sizeB}>${price}</ItemInfoCostValue>
-      <ItemInfoCostValuePostfix sizeB={sizeB}>/ hour</ItemInfoCostValuePostfix>
+      <ItemInfoCostValuePostfix sizeB={sizeB}>
+        {hours ? hours : "/ hour"}
+      </ItemInfoCostValuePostfix>
     </XStack>
   );
 }

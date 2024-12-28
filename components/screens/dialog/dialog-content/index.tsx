@@ -29,7 +29,7 @@ export default function DialogContent({
         dayjs(item.created_at).format("HH:MM") ===
         dayjs(nextItem?.created_at).format("HH:MM");
 
-      return startMessage && isSame;
+      return startMessage && isSame && !nextItem?.deal;
     },
     []
   );
@@ -60,7 +60,7 @@ export default function DialogContent({
 
       setTimeout(() => {
         ref.current?.scrollToLocation({
-          animated: false,
+          animated: true,
           sectionIndex: lastSectionIndex,
           itemIndex: messages[lastSectionIndex]?.data?.length - 1 || 0,
         });
@@ -77,7 +77,7 @@ export default function DialogContent({
       stickySectionHeadersEnabled={false}
       contentContainerStyle={{
         paddingHorizontal: 16,
-        paddingTop: 16,
+        paddingTop: currentUser?.user_type === "contractor" ? 64 : 16,
         gap: 16,
         paddingBottom: 250,
       }}

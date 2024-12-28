@@ -1,3 +1,4 @@
+import BottomBar from "@/components/bottom-bar";
 import CommonDialogWrapper from "@/components/common-dialog-wrapper";
 import {
   MUSICAL_POSITION,
@@ -7,7 +8,6 @@ import PriceRange from "@/components/dialogs/filter-dialog/price-range";
 import SkillsList from "@/components/forms/skills-list";
 import DatePickerInput from "@/components/inputs/date-picker-input";
 import SelectProvider from "@/components/providers/select-provider";
-import ProfileBottomBar from "@/components/screens/profile/profile-bottombar";
 import SearchWithSelect from "@/components/search-with-select";
 import Button from "@/components/ui/button";
 import CheckboxWithLabel from "@/components/ui/checkbox";
@@ -181,7 +181,7 @@ export default function FilterDialog({
             onChange={onValueChange}
           />
         </ScrollView>
-        <ProfileBottomBar
+        <BottomBar
           alignItems="center"
           gap={32}
           justifyContent="space-between"
@@ -204,7 +204,7 @@ export default function FilterDialog({
             Show {totalCount > 200 ? "200+" : totalCount}{" "}
             {selectedFilters?.user_type === "musician" ? "musicians" : "ads"}
           </Button>
-        </ProfileBottomBar>
+        </BottomBar>
       </CommonDialogWrapper>
       <SelectContent onValueChange={onValueChange} />
     </SelectProvider>

@@ -1,18 +1,27 @@
 import CommonImage from "@/components/common-image";
 import CommonVideo from "@/components/common-video";
+import useDocument from "@/lib/hooks/document.hook";
 import { detectFileType } from "@/lib/utils";
 import { colors, typography } from "@/tamagui.config";
 import { Paperclip } from "@tamagui/lucide-icons";
-import { Text, XStack } from "tamagui";
+import { useCallback } from "react";
+import { Stack, Text, XStack } from "tamagui";
 
 type DialogMediaPropType = {
   file: string;
-  imageSize: { width: number | string; height: number };
+  imageSize: { width: number | string; height: number | string };
 };
 
 export default function DialogMedia({ file, imageSize }: DialogMediaPropType) {
-  const { isImage, isVideo } = detectFileType(file);
-  if (!isImage && !isVideo) {
+  const { isImage, isVideo, isFile } = detectFileType(file);
+  const { downloadFile } = useDocument();
+
+  const onDownload = useCallback(
+    () => downloadFile(process.env.EXPO_PUBLIC_SUPABASE_STORAGE + "/" + file),
+    [file]
+  );
+
+  if (isFile) {
     return (
       <XStack
         borderWidth={1}
@@ -23,6 +32,7 @@ export default function DialogMedia({ file, imageSize }: DialogMediaPropType) {
         borderRadius={16}
         gap={4}
         alignItems="center"
+        onPress={onDownload}
       >
         <Paperclip
           size={16}
@@ -40,11 +50,16 @@ export default function DialogMedia({ file, imageSize }: DialogMediaPropType) {
   }
   if (isImage) {
     return (
-      <CommonImage
+      <Stack
         borderRadius={4}
         {...imageSize}
-        source={file}
-      />
+        onPress={onDownload}
+      >
+        <CommonImage
+          {...imageSize}
+          source={file}
+        />
+      </Stack>
     );
   }
   return (

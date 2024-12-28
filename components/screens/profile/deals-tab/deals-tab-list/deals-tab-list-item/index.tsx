@@ -2,12 +2,14 @@ import ProfileLocation from "@/components/profile-location";
 import ProfileUser from "@/components/profile-user";
 import { useUser } from "@/components/providers/user-provider";
 import DetailsPeriod from "@/components/screens/details/details-period";
-import { AdType } from "@/lib/types";
+import { DealType } from "@/lib/types/deal";
 import { colors, typography } from "@/tamagui.config";
 import { Award } from "@tamagui/lucide-icons";
 import { Text, XStack, YStack } from "tamagui";
 
-export default function DealsTabListItem(ad: AdType & { onPress: () => void }) {
+export default function DealsTabListItem(
+  deal: DealType & { onPress: () => void }
+) {
   const { user } = useUser();
   return (
     <YStack
@@ -18,19 +20,19 @@ export default function DealsTabListItem(ad: AdType & { onPress: () => void }) {
       borderRadius={12}
       backgroundColor={colors["white"]}
       gap={16}
-      onPress={ad.onPress}
+      onPress={deal.onPress}
     >
       <XStack
         alignItems="center"
         justifyContent="space-between"
       >
-        <Text {...typography["heading-17"]}>Deal № {ad.deal_number}</Text>
+        <Text {...typography["heading-17"]}>Deal № {deal.deal_num}</Text>
         <Text
           {...typography["heading-17"]}
-          color={colors[ad.status === "active" ? "success" : "disabled"]}
+          color={colors[deal.status === "active" ? "success" : "disabled"]}
         >
-          {ad.status[0].toUpperCase()}
-          {ad.status.slice(1)}
+          {deal.status[0].toUpperCase()}
+          {deal.status.slice(1)}
         </Text>
       </XStack>
       <YStack gap={8}>
@@ -42,18 +44,18 @@ export default function DealsTabListItem(ad: AdType & { onPress: () => void }) {
             size={16}
             color={colors["s-black"]}
           />
-          <Text {...typography["paragraph-17"]}>{ad.title}</Text>
+          <Text {...typography["paragraph-17"]}>{deal.ad.title}</Text>
         </XStack>
         <ProfileLocation
           sizeB="lg"
-          address={ad.address}
+          address={deal.ad.address}
         />
         <DetailsPeriod
-          start_date={ad.start_date}
-          end_date={ad.end_date}
+          start_date={deal.ad.start_date}
+          end_date={deal.ad.end_date}
           noMargin
         />
-        <ProfileUser user={user} />
+        <ProfileUser user={deal.performer} />
       </YStack>
     </YStack>
   );

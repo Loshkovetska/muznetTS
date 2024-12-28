@@ -1,5 +1,5 @@
+import BottomBar from "@/components/bottom-bar";
 import { useUser } from "@/components/providers/user-provider";
-import ProfileBottomBar from "@/components/screens/profile/profile-bottombar";
 import Button from "@/components/ui/button";
 import { Form, FormElement } from "@/components/ui/form";
 import { updatePasswordScheme } from "@/lib/scheme";
@@ -61,31 +61,40 @@ export default function PasswordTab({ user, header }: PasswordTabPropType) {
         backgroundColor={colors["white"]}
       >
         {header}
-        <FormElement
-          name="old_password"
-          placeholder="Enter current password"
-          type="password"
-        />
-        <YStack gap={8}>
+        <YStack>
+          <FormElement
+            name="old_password"
+            placeholder="Enter current password"
+            type="password"
+          />
+        </YStack>
+        <YStack
+          gap={8}
+          flexGrow={1}
+        >
           <Text
             {...typography["heading-17"]}
             marginBottom={8}
           >
             New password
           </Text>
-          <FormElement
-            name="new_password"
-            placeholder="Enter new password"
-            type="password"
-          />
-          <FormElement
-            name="rep_password"
-            placeholder="Repeat New Password"
-            type="password"
-          />
+          <YStack>
+            <FormElement
+              name="new_password"
+              placeholder="Enter new password"
+              type="password"
+            />
+          </YStack>
+          <YStack>
+            <FormElement
+              name="rep_password"
+              placeholder="Repeat New Password"
+              type="password"
+            />
+          </YStack>
         </YStack>
       </YStack>
-      <ProfileBottomBar>
+      <BottomBar>
         <Button
           variant="dark"
           sizeB="lg"
@@ -95,7 +104,7 @@ export default function PasswordTab({ user, header }: PasswordTabPropType) {
         >
           Update password
         </Button>
-      </ProfileBottomBar>
+      </BottomBar>
     </Form>
   );
 }

@@ -1,7 +1,7 @@
+import BottomBar from "@/components/bottom-bar";
 import CommonHeader from "@/components/common-header";
 import AdForm from "@/components/forms/ad-form";
 import LocationsProvider from "@/components/providers/locations-provider";
-import ProfileBottomBar from "@/components/screens/profile/profile-bottombar";
 import Button from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import useAds from "@/lib/hooks/ads.hook";
@@ -161,7 +161,7 @@ export default function AddEditAdDialog({
           </Form>
         </YStack>
       </LocationsProvider>
-      <ProfileBottomBar>
+      <BottomBar>
         <Button
           variant="dark"
           sizeB="lg"
@@ -171,7 +171,7 @@ export default function AddEditAdDialog({
         >
           {selectedAd ? "Edit " : "Add new "}ad
         </Button>
-      </ProfileBottomBar>
+      </BottomBar>
     </>
   );
 }

@@ -6,12 +6,6 @@ import useMessages from "@/lib/hooks/messages.hook";
 import { useState } from "react";
 import { YStack } from "tamagui";
 
-//TODO:
-// - add sending docs/images
-// - add download docs & images from messages
-// - add ability to make offer
-// - fix nav to chats
-
 export default function Page() {
   const [isOpen, setOpen] = useState(false);
   const { messagesList, currentUser, dialogMedia, chatUser } = useMessages({
@@ -25,21 +19,25 @@ export default function Page() {
         flexGrow={1}
       >
         <DialogHeader
-          onOpen={() => setOpen(true)}
           chatUser={chatUser}
+          currentUser={currentUser || undefined}
+          onOpen={() => setOpen(true)}
         />
+
         <DialogContent
           currentUser={currentUser || undefined}
           messages={messagesList}
         />
       </YStack>
       <DialogBar chatUser={chatUser} />
-      <DialogMediaDialog
-        open={isOpen}
-        chatUser={chatUser}
-        media={dialogMedia}
-        onOpenChange={() => setOpen(false)}
-      />
+      {isOpen && (
+        <DialogMediaDialog
+          open={isOpen}
+          chatUser={chatUser}
+          media={dialogMedia}
+          onOpenChange={() => setOpen(false)}
+        />
+      )}
     </>
   );
 }

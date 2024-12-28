@@ -3,15 +3,17 @@ import { QUERY_TAGS } from "@/lib/constants";
 import MessageService from "@/lib/services/message";
 import { MessageItemType, SendMessageRequestType } from "@/lib/types";
 import { generateMessagesList } from "@/lib/utils/message";
+import { supabase } from "@/lib/utils/supabase";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { router, useLocalSearchParams } from "expo-router";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 type UseMessagesPropType = {
   enabled?: boolean;
   enabledMessages?: boolean;
   navigate?: boolean;
   onSuccess?: () => void;
+  onSuccessDelete?: () => void;
 };
 
 export default function useMessages({
@@ -19,6 +21,7 @@ export default function useMessages({
   enabledMessages = false,
   navigate = false,
   onSuccess,
+  onSuccessDelete,
 }: UseMessagesPropType) {
   const { user } = useUser();
   const queryClient = useQueryClient();
@@ -32,7 +35,7 @@ export default function useMessages({
     enabled: !!user?.id && enabled,
   });
 
-  const { data: messages } = useQuery({
+  const { data: messages, refetch } = useQuery({
     queryKey: [QUERY_TAGS.MESSAGES, selectedChat],
     queryFn: () => MessageService.getMessages(selectedChat || ""),
     enabled: !!selectedChat && enabledMessages,
@@ -72,6 +75,19 @@ export default function useMessages({
     },
   });
 
+  const { mutate: deleteMessage, isPending: isDeletePending } = useMutation({
+    mutationFn: (id: string) => MessageService.deleteMessage(id),
+    onSuccess: (data, vars) => {
+      if (data) {
+        queryClient.setQueryData(
+          [QUERY_TAGS.MESSAGES, selectedChat],
+          (old: MessageItemType[]) => old.filter((i) => i.id !== vars)
+        );
+        onSuccessDelete?.();
+      }
+    },
+  });
+
   const chatsList = useMemo(() => {
     if (!searchValue.length) return chats;
     return chats?.filter((chat) => {
@@ -99,6 +115,11 @@ export default function useMessages({
       : firstMessage?.from;
   }, [messages, user]);
 
+  const messageWithDeal = useMemo(
+    () => messages?.find((m) => m.deal),
+    [messages]
+  );
+
   const addEmptyMessage = useCallback(() => {
     queryClient.setQueryData(
       [QUERY_TAGS.MESSAGES, selectedChat],
@@ -123,6 +144,17 @@ export default function useMessages({
     );
   }, [chatUser, user, selectedChat]);
 
+  useEffect(() => {
+    supabase
+      .channel("supabase_realtime")
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "messages" },
+        () => refetch()
+      )
+      .subscribe();
+  }, []);
+
   return {
     isSendPending,
     chats: chatsList || [],
@@ -132,10 +164,14 @@ export default function useMessages({
     searchValue,
     dialogMedia,
     chatUser,
+    messageWithDeal,
+    isDeletePending,
     sendMessage,
     setSearchValue,
     addEmptyMessage,
     removeEmptyMessage,
     readMessages,
+    refetch,
+    deleteMessage,
   };
 }

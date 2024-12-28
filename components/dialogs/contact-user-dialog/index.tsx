@@ -1,7 +1,7 @@
+import BottomBar from "@/components/bottom-bar";
 import CommonDialogWrapper from "@/components/common-dialog-wrapper";
 import CommonHeader from "@/components/common-header";
 import InfoMessage from "@/components/info-message";
-import ProfileBottomBar from "@/components/screens/profile/profile-bottombar";
 import Button from "@/components/ui/button";
 import { Form, FormElement } from "@/components/ui/form";
 import { SCREEN_WIDTH } from "@/lib/constants";
@@ -79,7 +79,7 @@ export default function ContactUserDialog({
           <InfoMessage text="For your payment and safety never transfer money or communicate outside of the MuzNet app" />
         </YStack>
       </Form>
-      <ProfileBottomBar width={SCREEN_WIDTH}>
+      <BottomBar width={SCREEN_WIDTH}>
         <Button
           sizeB="lg"
           variant="dark"
@@ -89,7 +89,7 @@ export default function ContactUserDialog({
         >
           Contact
         </Button>
-      </ProfileBottomBar>
+      </BottomBar>
     </CommonDialogWrapper>
   );
 }

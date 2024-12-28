@@ -27,15 +27,6 @@ export default function RootLayout() {
           opacity: hideTabBar || !tabbarVisible ? 0 : 1,
         },
       }}
-      screenListeners={{
-        state: (st) => {
-          const lastRoute =
-            st.data.state.routes?.[st.data.state.routes.length - 1];
-          if (lastRoute.name === "user" && !!lastRoute.params) {
-            setVisible((lastRoute.params as any)?.tabbarVisible === "true");
-          }
-        },
-      }}
     >
       <Tabs.Screen
         name="(main)"
@@ -50,7 +41,7 @@ export default function RootLayout() {
         }}
       />
       <Tabs.Screen
-        name="chat/index"
+        name="(chat)"
         options={{
           title: "",
           tabBarIcon: ({ focused }) => (
@@ -87,6 +78,16 @@ export default function RootLayout() {
       />
       <Tabs.Screen
         name="user"
+        listeners={{
+          state: (e) => {
+            const routes = e.data.state.routes;
+            const lastRoute = routes[routes.length - 1];
+            const visible =
+              !lastRoute.params ||
+              !(lastRoute.params as { tab: null | string })?.tab;
+            setVisible(visible);
+          },
+        }}
         options={{
           title: "",
           tabBarIcon: ({ focused }) => (
@@ -95,6 +96,12 @@ export default function RootLayout() {
               focused={focused}
             />
           ),
+        }}
+      />
+      <Tabs.Screen
+        name="chat/index"
+        options={{
+          tabBarItemStyle: { display: "none" },
         }}
       />
       <Tabs.Screen

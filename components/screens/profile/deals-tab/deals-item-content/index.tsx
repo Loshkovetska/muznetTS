@@ -1,40 +1,24 @@
+import BottomBar from "@/components/bottom-bar";
 import CommonHeader from "@/components/common-header";
-import ProfileBottomBar from "@/components/screens/profile/profile-bottombar";
+import DealsItemInfo from "@/components/screens/profile/deals-tab/deals-item-content/deals-item-info";
 import Button from "@/components/ui/button";
 import Separator from "@/components/ui/separator";
-import { QUERY_TAGS } from "@/lib/constants";
-import AdService from "@/lib/services/ad";
-import { AdType } from "@/lib/types";
-import { generateDealList } from "@/lib/utils";
+import useDeals from "@/lib/hooks/deal.hook";
+import { DealType } from "@/lib/types/deal";
 import { colors, typography } from "@/tamagui.config";
 import { ChevronDown, ChevronUp } from "@tamagui/lucide-icons";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Fragment, useMemo, useState } from "react";
+import { useState } from "react";
 import { ScrollView, Text, XStack, YStack } from "tamagui";
 
 export default function DealsItemContent(
-  deal: AdType & { onClose: () => void; user_id?: string }
+  deal: DealType & { onClose: () => void; user_id?: string }
 ) {
-  const queryClient = useQueryClient();
   const [isOpen, setOpen] = useState(false);
-
-  const data = useMemo(() => generateDealList(deal), [deal]);
-
-  const { mutate: updateStatus, isPending } = useMutation({
-    mutationFn: () => AdService.updateStatus(deal.id),
-    onSuccess: (data: AdType | null) => {
-      if (data) {
-        queryClient.setQueryData(
-          [QUERY_TAGS.AD, undefined, deal.user_id],
-          (old: AdType[]) => {
-            const dt = old.filter((ad) => ad.id !== deal.id);
-
-            return [...dt, data];
-          }
-        );
-      }
-    },
+  const { updateStatus, isUpdateStatusPending } = useDeals({
+    enabled: false,
+    user_id: deal.user_id || "",
   });
+
   return (
     <>
       <YStack
@@ -43,14 +27,14 @@ export default function DealsItemContent(
         backgroundColor={colors["white"]}
       >
         <CommonHeader
-          title={`Deal № ${deal.deal_number}`}
+          title={`Deal № ${deal.deal_num}`}
           onBack={deal.onClose}
         />
         <Text
           {...typography["heading-24"]}
           textAlign="center"
         >
-          {deal.title}
+          {deal.ad.title}
         </Text>
         <ScrollView
           contentContainerStyle={{
@@ -60,34 +44,10 @@ export default function DealsItemContent(
           }}
           showsVerticalScrollIndicator={false}
         >
-          {Object.entries(data).map(([key, value], ind) => (
-            <Fragment key={key}>
-              {!!ind && <Separator />}
-              <XStack
-                width="100%"
-                justifyContent="space-between"
-              >
-                <Text
-                  {...typography[key === "Total" ? "heading-16" : "label-16"]}
-                  color="#232323"
-                >
-                  {key}
-                </Text>
-                <Text
-                  {...typography[key === "Total" ? "heading-16" : "label-16"]}
-                  color={
-                    value === "Active"
-                      ? colors["success"]
-                      : key === "Total"
-                      ? colors["black"]
-                      : "#5C6574"
-                  }
-                >
-                  {value}
-                </Text>
-              </XStack>
-            </Fragment>
-          ))}
+          <DealsItemInfo
+            {...deal.ad}
+            status={deal.status}
+          />
           <Separator />
           <XStack
             width="100%"
@@ -104,22 +64,22 @@ export default function DealsItemContent(
           </XStack>
           <Separator />
           {isOpen && (
-            <Text {...typography["label-16"]}>{deal.description}</Text>
+            <Text {...typography["label-16"]}>{deal.ad.description}</Text>
           )}
         </ScrollView>
       </YStack>
-      <ProfileBottomBar>
+      <BottomBar>
         <Button
           sizeB="lg"
           variant="dark"
           width="100%"
           disabled={deal.status === "closed"}
-          loading={isPending}
-          onPress={() => updateStatus()}
+          loading={isUpdateStatusPending}
+          onPress={() => updateStatus(deal.id)}
         >
           Close the deal
         </Button>
-      </ProfileBottomBar>
+      </BottomBar>
     </>
   );
 }

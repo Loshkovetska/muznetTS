@@ -1,6 +1,7 @@
+import SelectProvider from "@/components/providers/select-provider";
 import { Sheet } from "@tamagui/sheet";
-import React from "react";
-import { Stack } from "tamagui";
+import React, { useState } from "react";
+import { ScrollView, Stack } from "tamagui";
 
 type MobileSheetPropType = {
   open: boolean;
@@ -12,6 +13,8 @@ export const MobileSheet = ({
   open,
   onOpenChange,
 }: MobileSheetPropType) => {
+  const [scrollRef, setRef] = useState<ScrollView | null>(null);
+  const [coords, setCoords] = useState({ x: 0, y: 0 });
   return (
     <Sheet
       modal
@@ -21,6 +24,7 @@ export const MobileSheet = ({
       dismissOnSnapToBottom
       zIndex={100_000}
       animation="fast"
+      unmountChildrenWhenHidden
     >
       <Sheet.Overlay
         animation="lazy"
@@ -32,14 +36,29 @@ export const MobileSheet = ({
         justifyContent="center"
         gap="$5"
       >
-        <Stack
-          width={72}
-          height={5}
-          borderRadius={5}
-          backgroundColor="#E0E0E0"
-          alignSelf="center"
-        />
-        <Sheet.ScrollView paddingBottom={16}>{children}</Sheet.ScrollView>
+        <SelectProvider
+          coords={{ x: 0, y: 0 }}
+          scrollRef={scrollRef}
+        >
+          <Stack
+            width={72}
+            height={5}
+            borderRadius={5}
+            backgroundColor="#E0E0E0"
+            alignSelf="center"
+          />
+          <Sheet.ScrollView
+            paddingBottom={16}
+            ref={(ref) => {
+              ref && setRef(ref);
+            }}
+            onLayout={({ nativeEvent: { layout } }) => {
+              setCoords({ x: layout.x, y: layout.y });
+            }}
+          >
+            {children}
+          </Sheet.ScrollView>
+        </SelectProvider>
       </Sheet.Frame>
     </Sheet>
   );

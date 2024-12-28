@@ -17,6 +17,7 @@ type DialogPropType = {
   description?: string;
   icon?: React.ReactNode;
   buttonText?: string;
+  button?: React.ReactNode;
   onOpenChange: (fl: boolean) => void;
 };
 
@@ -26,6 +27,7 @@ export default function Dialog({
   description,
   icon,
   buttonText,
+  button,
   onOpenChange,
 }: DialogPropType) {
   return (
@@ -111,8 +113,10 @@ export default function Dialog({
               )}
             </YStack>
             <XStack
-              alignSelf="flex-end"
-              gap="$4"
+              width="100%"
+              alignSelf={button ? undefined : "flex-end"}
+              gap={8}
+              flexDirection={button ? "column" : "row"}
             >
               <Button
                 aria-label="Close"
@@ -122,6 +126,7 @@ export default function Dialog({
               >
                 {buttonText || "Save"}
               </Button>
+              {button}
             </XStack>
           </YStack>
         </TDialog.Content>

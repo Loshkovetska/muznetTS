@@ -46,7 +46,7 @@ class MessageServiceClass {
         .from("messages")
         .insert({ ...params, files: imagesUrls, chat_id: chatId })
         .select(
-          "*, from:from(id,name, surname, photo), to:to(id,name, surname, photo)"
+          "*, from:from(id,name, surname, photo), to:to(id,name, surname, photo), deal:deal_id(*, ad:ads_id(*))"
         )
         .single();
 
@@ -91,7 +91,7 @@ class MessageServiceClass {
     const messages = await supabase
       .from("messages")
       .select(
-        "*, from:from(id,name, surname, photo), to:to(id,name, surname, photo)"
+        "*, from:from(id,name, surname, photo), to:to(id,name, surname, photo), deal:deal_id(*, ad:ads_id(*))"
       )
       .order("created_at", { ascending: true })
       .eq("chat_id", chat_id);
@@ -101,6 +101,12 @@ class MessageServiceClass {
 
   async readMessages(ids: string[]): Promise<void> {
     await supabase.from("messages").update({ read_to: true }).in("id", ids);
+  }
+
+  async deleteMessage(id: string): Promise<boolean> {
+    const msg = await supabase.from("messages").delete().eq("id", id);
+
+    return !!msg?.data;
   }
 }
 

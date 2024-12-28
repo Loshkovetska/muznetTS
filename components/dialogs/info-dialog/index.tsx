@@ -1,10 +1,11 @@
 import Dialog from "@/components/ui/dialog";
 
 type InfoDialogPropType = {
-  icon: React.ReactNode;
+  icon?: React.ReactNode;
   open: boolean;
   title: string;
-  description: string;
+  description?: string;
+  button?: React.ReactNode;
   buttonText: string;
   onOpenChange: (v: boolean) => void;
 };
@@ -14,6 +15,7 @@ export default function InfoDialog({
   open,
   title,
   description,
+  button,
   buttonText,
   onOpenChange,
 }: InfoDialogPropType) {
@@ -24,6 +26,7 @@ export default function InfoDialog({
       icon={icon}
       title={title}
       description={description}
+      button={button}
       buttonText={buttonText}
     />
   );

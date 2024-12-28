@@ -9,7 +9,7 @@ import { GetProps, Text, XStack, YStack, styled } from "tamagui";
 type SelectPropType = {
   value: string;
   placeholder: string;
-  options: string[];
+  options: string[] | { id: string; title: string }[];
   name: string;
 };
 
@@ -133,6 +133,7 @@ export function SelectContent({
   onValueChange: (name: string, value: string) => void;
 }) {
   const { isOpen, options, name, position, setOpen } = useSelectContext();
+
   const onChange = useCallback(
     (name: string, v: string) => {
       onValueChange(name, v);
@@ -140,13 +141,14 @@ export function SelectContent({
     },
     [onValueChange, setOpen]
   );
+
   return (
     <>
       <StyledSelectContent
         open={isOpen}
         top={position.y - 1}
         left={position.x}
-        width={SCREEN_WIDTH - position.x * 2}
+        width={SCREEN_WIDTH - (position.x || 16) * 2}
       >
         <FlatList
           nestedScrollEnabled
@@ -156,12 +158,14 @@ export function SelectContent({
           renderItem={({ item }) => (
             <SelectItem
               zIndex={2}
-              onPress={() => onChange(name, item)}
+              onPress={() =>
+                onChange(name, typeof item === "string" ? item : item?.id)
+              }
             >
-              {item}
+              {typeof item === "string" ? item : item.title}
             </SelectItem>
           )}
-          keyExtractor={(item) => item}
+          keyExtractor={(item) => (typeof item === "string" ? item : item?.id)}
         />
       </StyledSelectContent>
       <YStack

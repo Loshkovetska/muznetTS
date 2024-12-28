@@ -20,6 +20,7 @@ const ButtonTextStyled = styled(Text, {
       "white/50": { color: colors["black"] },
       outlined: { color: colors["black"] },
       transparent: { color: colors["black"] },
+      secondary: { color: colors["black"] },
     },
   } as const,
   defaultVariants: {
@@ -97,6 +98,9 @@ const ButtonStyled = styled(TButton, {
         backgroundColor: colors["white"],
         borderWidth: 1,
         borderColor: colors["black"],
+      },
+      secondary: {
+        backgroundColor: "#F2F3F9",
       },
       "black/50": {
         backgroundColor: "rgba(0,0,0,0.5)",

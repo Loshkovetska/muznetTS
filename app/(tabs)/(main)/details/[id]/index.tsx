@@ -1,9 +1,11 @@
+import BottomBar from "@/components/bottom-bar";
 import ContactUserDialog from "@/components/dialogs/contact-user-dialog";
 import FullScreenCarousel from "@/components/dialogs/full-screen-carousel";
 import FullScreenReviews from "@/components/dialogs/full-screen-reviews";
+import PricePerHour from "@/components/price-per-hour";
 import { useUser } from "@/components/providers/user-provider";
-import BottomBar from "@/components/screens/details/bottom-bar";
 import MainInfo from "@/components/screens/details/main-info";
+import Button from "@/components/ui/button";
 import { QUERY_TAGS } from "@/lib/constants";
 import AdService from "@/lib/services/ad";
 import UsersServiceClass from "@/lib/services/user";
@@ -59,11 +61,20 @@ export default function Index() {
           openReviews={() => handleDialog("reviews", true)}
         />
       </ScrollView>
-      <BottomBar
-        price={data.price_per_hour}
-        buttonTitle={"Contact Performer"}
-        onPress={() => handleDialog("message", true)}
-      />
+      <BottomBar zIndex={0}>
+        <PricePerHour
+          price={data.price_per_hour}
+          sizeB="lg"
+        />
+        <Button
+          sizeB="lg"
+          variant="dark"
+          maxWidth={227}
+          onPress={() => handleDialog("message", true)}
+        >
+          Contact Performer
+        </Button>
+      </BottomBar>
       <FullScreenCarousel
         images={images}
         ind={isFullSliderOpen}

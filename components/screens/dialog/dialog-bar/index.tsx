@@ -103,7 +103,7 @@ export default function DialogBar({ chatUser }: { chatUser?: UserType }) {
             <Button
               variant="dark"
               sizeB="icon-32"
-              disabled={!(message.length > 3)}
+              disabled={!message.length}
               onPress={() => onSendMessage()}
             >
               <SendHorizontal

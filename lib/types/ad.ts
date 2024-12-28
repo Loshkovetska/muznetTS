@@ -3,7 +3,6 @@ import { UserType } from "@/lib/types/user";
 
 type AdType = {
   id: string;
-  deal_number: number;
   title: string;
   description: string;
   address: string;
@@ -18,7 +17,6 @@ type AdType = {
   play_by_ear: boolean;
   read_sheet_music: boolean;
   creator: UserType;
-  status: "active" | "closed";
   rate: {
     rate: number;
     totalReviews: number;

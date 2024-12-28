@@ -67,23 +67,6 @@ class AdServiceClass {
     return null;
   }
 
-  async updateStatus(id: string) {
-    try {
-      const user = await supabase
-        .from("ads")
-        .update({ status: "closed" })
-        .eq("id", id)
-        .select()
-        .single();
-
-      if (!user.data) throw new Error("No Ad");
-      return user.data;
-    } catch (e) {
-      console.log(e);
-    }
-    return null;
-  }
-
   async addAd(params: AddUpdateAdRequestType): Promise<AdType> {
     const imagesUrls = await uploadImage(params.photo);
     const copy = JSON.parse(JSON.stringify(params));

@@ -1,7 +1,7 @@
 import DealsItemContent from "@/components/screens/profile/deals-tab/deals-item-content";
 import DealsTabList from "@/components/screens/profile/deals-tab/deals-tab-list";
 import DealsTabs from "@/components/screens/profile/deals-tab/deals-tabs";
-import useAds from "@/lib/hooks/ads.hook";
+import useDeals from "@/lib/hooks/deal.hook";
 import { UserType } from "@/lib/types";
 import { colors } from "@/tamagui.config";
 import { useMemo, useState } from "react";
@@ -15,11 +15,11 @@ type DealsTabPropType = {
 export default function DealsTab({ user, header }: DealsTabPropType) {
   const [tab, setTab] = useState<"active" | "closed">("active");
   const [dealId, setDealId] = useState<string | null>(null);
-  const { ads } = useAds({ user_id: user?.id });
+  const { deals } = useDeals({ user_id: user?.id || "" });
 
   const selectedAd = useMemo(
-    () => ads?.find((ad) => ad.id === dealId),
-    [dealId, ads]
+    () => deals?.find((deal) => deal.id === dealId),
+    [dealId, deals]
   );
 
   return (
@@ -37,7 +37,7 @@ export default function DealsTab({ user, header }: DealsTabPropType) {
             setTab={setTab}
           />
           <DealsTabList
-            ads={ads || []}
+            deals={deals || []}
             tab={tab}
             onDealChange={setDealId}
           />

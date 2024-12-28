@@ -1,3 +1,4 @@
+import { DealType } from "@/lib/types/deal";
 import { UserType } from "@/lib/types/user";
 
 type SendMessageRequestType = {
@@ -5,6 +6,7 @@ type SendMessageRequestType = {
   to: string;
   text: string;
   files: any[];
+  deal_id?: string;
 };
 
 type MessageItemType = {
@@ -17,6 +19,7 @@ type MessageItemType = {
   read_from: boolean;
   read_to: boolean;
   empty?: boolean;
+  deal?: DealType;
 };
 
 type ChatItemType = {

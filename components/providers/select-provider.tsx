@@ -1,14 +1,16 @@
 import { createContext, useCallback, useContext, useState } from "react";
 import { ScrollView } from "react-native";
 
+type SelectOptionsType = string | { title: string; id: string };
+
 type SelectContextType = {
   isOpen: boolean;
-  options: string[];
+  options: SelectOptionsType[];
   name: string;
   ref: ScrollView | null;
   position: { x: number; y: number };
   setOpen: (fl: boolean) => void;
-  setOptions: (opts: string[]) => void;
+  setOptions: (opts: SelectOptionsType[]) => void;
   setName: (v: string) => void;
   setPosition: (args: { x: number; y: number }) => void;
 };
@@ -20,7 +22,7 @@ const SelectContext = createContext<SelectContextType>({
   ref: null,
   position: { x: 0, y: 0 },
   setOpen: (fl: boolean) => {},
-  setOptions: (opts: string[]) => {},
+  setOptions: (opts: SelectOptionsType[]) => {},
   setName: (v: string) => {},
   setPosition: (args: { x: number; y: number }) => {},
 });
@@ -34,7 +36,7 @@ export default function SelectProvider(
   }
 ) {
   const { children, coords, scrollRef } = props;
-  const [options, setOptions] = useState<string[]>([]);
+  const [options, setOptions] = useState<SelectOptionsType[]>([]);
   const [isOpen, setOpen] = useState(false);
   const [selectName, setName] = useState("");
   const [triggerPosition, setPosition] = useState({ x: 16, y: 0 });

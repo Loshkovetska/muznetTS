@@ -1,5 +1,3 @@
-// import Button from "@/components/ui/button";
-// import { Play } from "@tamagui/lucide-icons";
 import { useEvent } from "expo";
 import { VideoView, useVideoPlayer } from "expo-video";
 import { useCallback } from "react";

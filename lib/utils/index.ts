@@ -1,4 +1,5 @@
 import { AdType } from "@/lib/types";
+import { DealType } from "@/lib/types/deal";
 import dayjs, { Dayjs } from "dayjs";
 import { UseFormReturn } from "react-hook-form";
 
@@ -25,17 +26,26 @@ export const getTimePeriod = (start: Dayjs, end: Dayjs) => {
   };
 };
 
-export const getPeriod = (start: string, end: string, time = false) => {
+export const getPeriod = (
+  start: string,
+  end: string,
+  time = false,
+  withPeriod = true
+) => {
   const startDate = dayjs(start);
   const endDate = dayjs(end);
 
   const startTime = startDate.format("HH:mma");
   const endTime = endDate.format("HH:mma");
 
+  const datePeriod = `${startDate.format("HH:mm")}-${endDate.format("HH:mma")}`;
+
+  if (!withPeriod) {
+    return datePeriod;
+  }
+
   if (time) {
-    return `${startDate.format("HH:mm")}-${endDate.format("HH:mma")} ${
-      getTimePeriod(startDate, endDate).output
-    }`;
+    return `${datePeriod} ${getTimePeriod(startDate, endDate).output}`;
   }
 
   const oneDay = startDate.date() === endDate.date();
@@ -59,23 +69,41 @@ export const setValueToForm = (
   });
 };
 
-export const generateDealList = (deal: AdType) => {
-  const timeWithCost = getTimePeriod(
-    dayjs(deal.start_date),
-    dayjs(deal.end_date)
-  );
-  const cost = timeWithCost.num * deal.price_per_hour;
+export const getDealTotalPrice = (ad: AdType) => {
+  const timeWithCost = getTimePeriod(dayjs(ad.start_date), dayjs(ad.end_date));
+  const cost = timeWithCost.num * ad.price_per_hour;
+  return { cost, timeWithCost };
+};
+
+export const generateDealList = (ad: AdType, status?: DealType["status"]) => {
+  const { cost, timeWithCost } = getDealTotalPrice(ad);
   return {
-    Status: `${deal.status[0].toUpperCase()}${deal.status.slice(1)}`,
-    Date: `${dayjs(deal.start_date).toDate().toLocaleDateString("en-En", {
+    ...(status
+      ? { Status: `${status?.[0].toUpperCase()}${status?.slice(1)}` }
+      : {}),
+    Date: `${dayjs(ad.start_date).toDate().toLocaleDateString("en-En", {
       weekday: "long",
-    })}, ${dayjs(deal.start_date).format("DD MMM YYYY")}`,
-    Time: getPeriod(deal.start_date, deal.end_date, true),
-    Location: deal.address,
-    Price: `$${deal.price_per_hour} per hour`,
+    })}, ${dayjs(ad.start_date).format("DD MMM YYYY")}`,
+    Time: getPeriod(ad.start_date, ad.end_date, true, true),
+    Location: ad.address,
+    Price: `$${ad.price_per_hour} per hour`,
     "Performance Cost": `$${cost} ${timeWithCost.output}`,
     "Muznet Fee": "$9",
     Total: `$${cost + 9}`,
+  };
+};
+
+export const generateShortDealList = (deal: DealType) => {
+  const { ad } = deal;
+
+  return {
+    Date: `${dayjs(ad.start_date).toDate().toLocaleDateString("en-En", {
+      weekday: "long",
+    })}, ${dayjs(ad.start_date).format("DD MMM YYYY")}`,
+    Time: getPeriod(ad.start_date, ad.end_date, true, false),
+    Location: ad.address,
+    Price: `$${ad.price_per_hour} per hour`,
+    "Additional info": ad.description,
   };
 };
 
@@ -110,5 +138,6 @@ export const is2HoursBetweenDates = (startDate: Date, endDate: Date) => {
 export const detectFileType = (fileName: string) => {
   const isImage = /\.(gif|jpg|jpeg|tiff|png)$/i.test(fileName);
   const isVideo = /\.(MOV|mp4)$/i.test(fileName);
-  return { isImage, isVideo };
+  const isFile = !isImage && !isVideo;
+  return { isImage, isVideo, isFile };
 };

@@ -1,8 +1,8 @@
+import BottomBar from "@/components/bottom-bar";
 import AddInfoForm from "@/components/forms/add-info-form";
 import LocationsProvider from "@/components/providers/locations-provider";
 import { useUser } from "@/components/providers/user-provider";
 import MediaSelect from "@/components/screens/profile/personal-tab/media-select";
-import ProfileBottomBar from "@/components/screens/profile/profile-bottombar";
 import SearchWithSelect from "@/components/search-with-select";
 import Button from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
@@ -107,6 +107,7 @@ export default function PersonalTab({ user, header }: PersonalTabPropType) {
         <YStack
           paddingHorizontal={16}
           backgroundColor={colors["white"]}
+          flexGrow={1}
         >
           {header}
           <ScrollView
@@ -162,7 +163,7 @@ export default function PersonalTab({ user, header }: PersonalTabPropType) {
           </ScrollView>
         </YStack>
       </LocationsProvider>
-      <ProfileBottomBar>
+      <BottomBar>
         <Button
           variant="dark"
           sizeB="lg"
@@ -172,7 +173,7 @@ export default function PersonalTab({ user, header }: PersonalTabPropType) {
         >
           Update Info
         </Button>
-      </ProfileBottomBar>
+      </BottomBar>
     </Form>
   );
 }
