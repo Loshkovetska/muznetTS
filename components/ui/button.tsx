@@ -21,6 +21,7 @@ const ButtonTextStyled = styled(Text, {
       outlined: { color: colors["black"] },
       transparent: { color: colors["black"] },
       secondary: { color: colors["black"] },
+      "red-outlined": { color: colors["error"] },
     },
   } as const,
   defaultVariants: {
@@ -108,6 +109,11 @@ const ButtonStyled = styled(TButton, {
       "white/50": {
         backgroundColor: "rgba(256,256,256,0.5)",
       },
+      "red-outlined": {
+        backgroundColor: colors["white"],
+        borderWidth: 1,
+        borderColor: colors["error"],
+      },
     },
     disabled: {
       true: {
@@ -138,6 +144,7 @@ const Button = React.forwardRef<any, ButtonPropType>(
         ref={ref}
         variant={variant}
         pointerEvents={loading ? "none" : "auto"}
+        gap={iconLeft ? 0 : 8}
         {...rest}
       >
         {loading && <Spinner size="small" />}

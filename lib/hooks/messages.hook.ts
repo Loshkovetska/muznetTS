@@ -1,6 +1,6 @@
 import { useUser } from "@/components/providers/user-provider";
 import { QUERY_TAGS } from "@/lib/constants";
-import MessageService from "@/lib/services/message";
+import { MessageService } from "@/lib/services";
 import { MessageItemType, SendMessageRequestType } from "@/lib/types";
 import { generateMessagesList } from "@/lib/utils/message";
 import { supabase } from "@/lib/utils/supabase";
@@ -54,7 +54,7 @@ export default function useMessages({
               dt,
             ]
           );
-        navigate && router.navigate("/chat/index");
+        navigate && router.navigate("/(tabs)/(chat)/dialogs");
         onSuccess?.();
       }
     },

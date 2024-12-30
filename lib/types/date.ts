@@ -5,7 +5,7 @@ export type DateType = string | number | Dayjs | Date | null | undefined;
 
 export type LocalState = {
   date: DateType;
-  currentDate: DateType; // used for latest state of calendar based on Month and Year
+  currentDate: DateType;
   currentYear: number;
   horizontal: boolean;
 };

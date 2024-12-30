@@ -8,6 +8,10 @@ export default function RootLayout() {
       }}
     >
       <Stack.Screen name="home" />
+      <Stack.Screen name="search" />
+      <Stack.Screen name="add-post" />
+      <Stack.Screen name="post/[id]/comments" />
+      <Stack.Screen name="post/[id]/edit" />
     </Stack>
   );
 }

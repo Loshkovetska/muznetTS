@@ -1,6 +1,6 @@
 import { useUser } from "@/components/providers/user-provider";
 import { QUERY_TAGS } from "@/lib/constants";
-import DealService from "@/lib/services/deal";
+import { DealService } from "@/lib/services";
 import { getClearDate } from "@/lib/utils/date-picker";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";

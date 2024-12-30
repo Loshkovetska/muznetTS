@@ -1,5 +1,5 @@
 import { QUERY_TAGS } from "@/lib/constants";
-import UsersServiceClass from "@/lib/services/user";
+import { UsersService } from "@/lib/services";
 import { useQuery } from "@tanstack/react-query";
 
 type useMusiciansParams = {
@@ -10,7 +10,7 @@ type useMusiciansParams = {
 const useMusicians = ({ enabled = true, id }: useMusiciansParams) => {
   const { data: musicians } = useQuery({
     queryKey: [QUERY_TAGS.MUSICIAN, id ? "SIMILAR" : undefined],
-    queryFn: () => UsersServiceClass.getMusicians(id),
+    queryFn: () => UsersService.getMusicians(id),
     enabled,
   });
   return { musicians };

@@ -1,8 +1,8 @@
 import { QUERY_TAGS } from "@/lib/constants";
-import AdService from "@/lib/services/ad";
+import { AdService } from "@/lib/services";
 import { AdType, AddUpdateAdRequestType } from "@/lib/types";
+import { toggleToast } from "@/lib/utils/toast";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Alert } from "react-native";
 
 type useMusiciansParams = {
   enabled?: boolean;
@@ -18,6 +18,7 @@ const useAds = ({
   onSuccess,
 }: useMusiciansParams) => {
   const queryClient = useQueryClient();
+
   const { data: ads } = useQuery({
     queryKey: [QUERY_TAGS.AD, id ? "SIMILAR" : undefined, user_id],
     queryFn: () => AdService.getAds({ id, user_id }),
@@ -33,7 +34,7 @@ const useAds = ({
       );
       onSuccess?.();
     },
-    onError: () => Alert.alert("Can't create an ad"),
+    onError: () => toggleToast("Can't create an ad", "error"),
   });
 
   const { mutate: updateAd, isPending: isUpdatePending } = useMutation({
@@ -45,7 +46,7 @@ const useAds = ({
       );
       onSuccess?.();
     },
-    onError: () => Alert.alert("Can't update the ad"),
+    onError: () => toggleToast("Can't update the ad", "error"),
   });
 
   const { mutate: deleteAd, isPending: isDeletePending } = useMutation({
@@ -57,7 +58,7 @@ const useAds = ({
       );
       onSuccess?.();
     },
-    onError: () => Alert.alert("Can't delete the ad"),
+    onError: () => toggleToast("Can't delete the ad", "error"),
   });
 
   return {

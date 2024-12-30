@@ -7,8 +7,8 @@ export default function Layout() {
         headerShown: false,
       }}
     >
-      <Stack.Screen name="chat/index" />
-      <Stack.Screen name="chat/[id]/index" />
+      <Stack.Screen name="dialogs" />
+      <Stack.Screen name="chat/[id]/messages" />
     </Stack>
   );
 }

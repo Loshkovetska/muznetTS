@@ -56,6 +56,7 @@ export const colors = {
   "gray-20": "rgba(185,185,186,0.2)",
   "dark-gray": "#8E8E93",
   "search-gray": "#f3f3f3",
+  "light-success": "#DEF9E9",
 };
 
 export const typography = {

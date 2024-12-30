@@ -112,4 +112,4 @@ class MessageServiceClass {
 
 const MessageService = new MessageServiceClass();
 
-export default MessageService;
+export { MessageService };

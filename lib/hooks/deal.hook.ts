@@ -1,5 +1,5 @@
 import { QUERY_TAGS } from "@/lib/constants";
-import DealService from "@/lib/services/deal";
+import { DealService } from "@/lib/services";
 import { DealType } from "@/lib/types/deal";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 

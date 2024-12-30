@@ -7,8 +7,7 @@ import { useUser } from "@/components/providers/user-provider";
 import MainInfo from "@/components/screens/details/main-info";
 import Button from "@/components/ui/button";
 import { QUERY_TAGS } from "@/lib/constants";
-import AdService from "@/lib/services/ad";
-import UsersServiceClass from "@/lib/services/user";
+import { AdService, UsersService } from "@/lib/services";
 import { AdType } from "@/lib/types";
 import { useQuery } from "@tanstack/react-query";
 import { useLocalSearchParams } from "expo-router";
@@ -26,7 +25,7 @@ export default function Index() {
 
   const { data: musician } = useQuery({
     queryKey: [QUERY_TAGS.MUSICIAN, id],
-    queryFn: () => UsersServiceClass.getMusician(id as string),
+    queryFn: () => UsersService.getMusician(id as string),
     enabled: !isMusician,
   });
 

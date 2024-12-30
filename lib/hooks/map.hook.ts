@@ -1,4 +1,5 @@
 import { AdType, LocationType, UserType } from "@/lib/types";
+import { toggleToast } from "@/lib/utils/toast";
 import * as Location from "expo-location";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { FlatList } from "react-native";
@@ -46,8 +47,7 @@ export default function useMap(data: Array<AdType | UserType>) {
   const getUserLocation = useCallback(async () => {
     let { status } = await Location.requestForegroundPermissionsAsync();
     if (status !== "granted") {
-      alert("Permission to access location was denied");
-      return;
+      return toggleToast("Permission to access location was denied", "error");
     }
 
     let location = await Location.getCurrentPositionAsync({ accuracy: 6 });

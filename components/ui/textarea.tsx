@@ -4,7 +4,14 @@ import { colors } from "@/tamagui.config";
 import { AlertCircle, CircleCheck } from "@tamagui/lucide-icons";
 import React from "react";
 import { TextInput } from "react-native";
-import { GetProps, TextArea as InputT, XStack, YStack, styled } from "tamagui";
+import {
+  GetProps,
+  TextArea as InputT,
+  StackProps,
+  XStack,
+  YStack,
+  styled,
+} from "tamagui";
 
 const StyledInputContainer = styled(XStack, {
   width: "100%",
@@ -66,6 +73,8 @@ type InputPropType = GetProps<typeof StyledInputContainer> &
   GetProps<typeof StyledInput> & {
     iconLeft?: React.ReactNode;
     iconRight?: React.ReactNode;
+    animate?: boolean;
+    wrapper?: GetProps<typeof StyledInputContainer> & StackProps;
   };
 
 const TextArea = React.forwardRef<TextInput, InputPropType>(
@@ -77,6 +86,8 @@ const TextArea = React.forwardRef<TextInput, InputPropType>(
       sizeB = "default",
       placeholder,
       disabled,
+      wrapper,
+      animate = true,
       ...props
     },
     ref
@@ -91,13 +102,16 @@ const TextArea = React.forwardRef<TextInput, InputPropType>(
         sizeB={sizeB}
         focused={variant !== "default" ? false : isFocused}
         disabled={disabled}
+        {...wrapper}
       >
         {iconLeft}
         <YStack
           height="100%"
           flexGrow={1}
         >
-          {placeholder && isFocused && <Label sizeB="sm">{placeholder}</Label>}
+          {placeholder && isFocused && animate && (
+            <Label sizeB="sm">{placeholder}</Label>
+          )}
           <StyledInput
             ref={ref}
             {...props}

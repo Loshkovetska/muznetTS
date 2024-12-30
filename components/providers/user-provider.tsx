@@ -1,5 +1,5 @@
 import { QUERY_TAGS } from "@/lib/constants";
-import AuthService from "@/lib/services/auth";
+import { AuthService } from "@/lib/services";
 import { UserType } from "@/lib/types";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useQuery } from "@tanstack/react-query";

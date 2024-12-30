@@ -91,4 +91,4 @@ class ReviewServiceClass {
 
 const ReviewService = new ReviewServiceClass();
 
-export default ReviewService;
+export { ReviewService };

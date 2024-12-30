@@ -1,24 +1,40 @@
-import { useEvent } from "expo";
-import { VideoView, useVideoPlayer } from "expo-video";
-import { useCallback } from "react";
+import Button from "@/components/ui/button";
+import VideoTime from "@/components/video-time";
+import { colors } from "@/tamagui.config";
+import { Volume2, VolumeX } from "@tamagui/lucide-icons";
+import { useEvent, useEventListener } from "expo";
+import { BlurView } from "expo-blur";
+import { VideoContentFit, VideoView, useVideoPlayer } from "expo-video";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Stack, StackProps } from "tamagui";
+
+type CommonVideoPropType = {
+  source?: string | null;
+  local?: boolean;
+  postView?: boolean;
+  inView?: boolean;
+  contentFit?: VideoContentFit;
+} & StackProps;
 
 export default function CommonVideo({
   source,
   local,
+  postView,
+  inView,
+  contentFit = "contain",
   ...props
-}: {
-  source?: string | null;
-  local?: boolean;
-} & StackProps) {
+}: CommonVideoPropType) {
+  const [currentTime, setCurrentTime] = useState(0);
+  const uri = local
+    ? source || ""
+    : process.env.EXPO_PUBLIC_SUPABASE_STORAGE + "/" + source;
+
   const player = useVideoPlayer(
     {
-      uri: local
-        ? source || ""
-        : process.env.EXPO_PUBLIC_SUPABASE_STORAGE + "/" + source,
-    } || null,
+      uri,
+    },
     (player) => {
-      player.loop = !!local;
+      player.timeUpdateEventInterval = 1;
     }
   );
 
@@ -26,24 +42,91 @@ export default function CommonVideo({
     isPlaying: player.playing,
   });
 
+  const { muted } = useEvent(player, "mutedChange", {
+    muted: player.muted,
+  });
+
+  useEventListener(player, "timeUpdate", (player) => {
+    inView && setCurrentTime(player.currentTime);
+  });
+
   const onButtonPress = useCallback(() => {
     isPlaying ? player.pause() : player.play();
   }, [isPlaying, player]);
+
+  const onMute = useCallback(() => {
+    player.muted = !muted;
+  }, [player, muted]);
+
+  const VolumeIcon = useMemo(() => (muted ? VolumeX : Volume2), [muted]);
+
+  useEffect(() => {
+    if (local || postView) {
+      player.loop = true;
+    }
+  }, [local, postView]);
+
+  useEffect(() => {
+    if (postView) {
+      inView ? player.play() : player.pause();
+    }
+  }, [postView, inView]);
+
+  const time = useMemo(() => {
+    if (inView) {
+      const seconds = Math.floor(currentTime);
+      return `00:${String(seconds).padStart(2, "0")}:00`;
+    }
+    return "00:00:00";
+  }, [inView, currentTime]);
 
   return (
     <Stack
       width="100%"
       height={300}
       {...props}
-      onPress={onButtonPress}
+      onPress={postView ? undefined : onButtonPress}
+      backgroundColor={postView ? colors["black"] : undefined}
     >
+      {postView && (
+        <VideoTime
+          time={time}
+          variant="absolute-right"
+          bg="transparent"
+          sizeB="sm"
+        />
+      )}
       <VideoView
         style={{ width: "100%", height: "100%" }}
         player={player}
         allowsFullscreen={false}
         allowsPictureInPicture={false}
         nativeControls={false}
+        contentFit={contentFit}
       />
+      {postView && (
+        <BlurView
+          style={{
+            position: "absolute",
+            bottom: 16,
+            right: 16,
+            zIndex: 1,
+            borderRadius: 16,
+            overflow: "hidden",
+          }}
+        >
+          <Button
+            variant="black/50"
+            sizeB="icon-32"
+            onPress={onMute}
+          >
+            <VolumeIcon
+              color={colors["white"]}
+              size={20}
+            />
+          </Button>
+        </BlurView>
+      )}
     </Stack>
   );
 }

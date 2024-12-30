@@ -13,7 +13,7 @@ export default function ChatItem(
 
   return (
     <Link
-      href={`/chat/${chat.id}`}
+      href={`/chat/${chat.id}/messages`}
       asChild
     >
       <XStack

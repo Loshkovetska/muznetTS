@@ -129,9 +129,9 @@ const Input = React.forwardRef<TextInput, InputPropType>(
         focused={variant !== "default" ? false : isFocused}
         justifyContent={sizeB == "code" ? "center" : undefined}
         disabled={disabled}
-        {...wrapper}
         paddingRight={iconRight ? 8 : undefined}
         paddingLeft={iconLeft ? 8 : undefined}
+        {...wrapper}
         ref={(ref) => {
           ref && getWrapperRef?.(ref as any);
         }}

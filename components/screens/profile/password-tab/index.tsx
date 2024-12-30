@@ -3,7 +3,7 @@ import { useUser } from "@/components/providers/user-provider";
 import Button from "@/components/ui/button";
 import { Form, FormElement } from "@/components/ui/form";
 import { updatePasswordScheme } from "@/lib/scheme";
-import AuthService from "@/lib/services/auth";
+import { AuthService } from "@/lib/services";
 import { UpdatePasswordRequestType, UserType } from "@/lib/types";
 import { colors, typography } from "@/tamagui.config";
 import { zodResolver } from "@hookform/resolvers/zod";

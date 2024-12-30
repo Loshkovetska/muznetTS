@@ -1,4 +1,6 @@
 import { colors } from "@/tamagui.config";
+import { BlurView } from "expo-blur";
+import { Fragment } from "react";
 import { Stack, XStack, styled } from "tamagui";
 
 const StyledIndicatorBlock = styled(XStack, {
@@ -14,6 +16,16 @@ const StyledIndicatorBlock = styled(XStack, {
         left: "50%",
         transform: [{ translateX: "-50%" }],
         bottom: 14,
+      },
+    },
+    lightCirle: {
+      true: {
+        backgroundColor: "rgba(256,256,256,0.2)",
+        padding: 8,
+        borderRadius: 90,
+        bottom: 16,
+        margin: 0,
+        gap: 6,
       },
     },
   } as const,
@@ -33,11 +45,20 @@ const IndicatorItem = styled(Stack, {
   height: 6,
   width: 6,
   borderRadius: 3,
+  variants: {
+    lightCirle: {
+      true: {
+        width: 8,
+        height: 8,
+        borderRadius: 4,
+      },
+    },
+  } as const,
 });
 
 type IndicatorBlockPropType = {
   list: any[];
-  variant?: "light" | "dark";
+  variant?: "light" | "dark" | "light-circle";
   currentIndex: number;
   absolute?: boolean;
 };
@@ -48,20 +69,43 @@ export default function IndicatorBlock({
   currentIndex = 0,
   absolute,
 }: IndicatorBlockPropType) {
+  const isLightCircleVariant = variant === "light-circle";
+
+  const indicators = isLightCircleVariant ? list : [...list, null];
+
+  const Container = isLightCircleVariant ? BlurView : Fragment;
   return (
-    <StyledIndicatorBlock absolute={absolute}>
-      <IndicatorThumb
-        left={currentIndex * 14}
-        backgroundColor={colors[variant === "light" ? "white" : "black"]}
-      />
-      {[...list, null].map((key) => (
-        <IndicatorItem
-          key={key}
-          backgroundColor={
-            variant === "dark" ? colors["gray"] : "rgba(254,254,254,0.7)"
-          }
-        />
-      ))}
-    </StyledIndicatorBlock>
+    <Container
+      intensity={100}
+      blurReductionFactor={10}
+      tint="light"
+    >
+      <StyledIndicatorBlock
+        absolute={absolute}
+        lightCirle={isLightCircleVariant}
+      >
+        {!isLightCircleVariant && (
+          <IndicatorThumb
+            left={currentIndex * 14}
+            backgroundColor={colors[variant === "light" ? "white" : "black"]}
+          />
+        )}
+        {indicators.map((key, index) => (
+          <IndicatorItem
+            key={key}
+            lightCirle={isLightCircleVariant}
+            backgroundColor={
+              isLightCircleVariant && index !== currentIndex
+                ? colors["white"]
+                : isLightCircleVariant && index === currentIndex
+                ? colors["black"]
+                : variant === "dark"
+                ? colors["gray"]
+                : "rgba(254,254,254,0.7)"
+            }
+          />
+        ))}
+      </StyledIndicatorBlock>
+    </Container>
   );
 }

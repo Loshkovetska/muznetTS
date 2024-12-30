@@ -33,7 +33,9 @@ export default function DetailsNavbar() {
         variant="black/50"
         sizeB="icon"
         borderRadius={6}
-        onPress={() => console.log("c")}
+        onPress={() => {
+          // add logic share
+        }}
       >
         <Share2
           color="white"

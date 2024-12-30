@@ -4,7 +4,7 @@ import ReviewItem from "@/components/screens/details/reviews-list/review-item";
 import Button from "@/components/ui/button";
 import Separator from "@/components/ui/separator";
 import { QUERY_TAGS, SCREEN_WIDTH } from "@/lib/constants";
-import ReviewService from "@/lib/services/review";
+import { ReviewService } from "@/lib/services";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { FlatList } from "react-native";

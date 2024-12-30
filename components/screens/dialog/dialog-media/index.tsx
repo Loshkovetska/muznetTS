@@ -13,7 +13,7 @@ type DialogMediaPropType = {
 };
 
 export default function DialogMedia({ file, imageSize }: DialogMediaPropType) {
-  const { isImage, isVideo, isFile } = detectFileType(file);
+  const { isImage, isFile } = detectFileType(file);
   const { downloadFile } = useDocument();
 
   const onDownload = useCallback(

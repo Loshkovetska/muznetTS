@@ -125,4 +125,4 @@ class DealServiceClass {
 
 const DealService = new DealServiceClass();
 
-export default DealService;
+export { DealService };

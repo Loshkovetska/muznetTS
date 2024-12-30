@@ -95,4 +95,4 @@ class SearchServiceClass {
 
 const SearchService = new SearchServiceClass();
 
-export default SearchService;
+export { SearchService };

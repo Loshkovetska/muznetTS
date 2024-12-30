@@ -1,6 +1,6 @@
 import { useUser } from "@/components/providers/user-provider";
 import { QUERY_TAGS } from "@/lib/constants";
-import SearchService from "@/lib/services/search";
+import { SearchService } from "@/lib/services";
 import { FiltersType } from "@/lib/types";
 import { useQuery } from "@tanstack/react-query";
 import { router, useLocalSearchParams } from "expo-router";

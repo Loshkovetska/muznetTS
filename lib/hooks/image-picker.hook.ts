@@ -1,3 +1,4 @@
+import { toggleToast } from "@/lib/utils/toast";
 import * as ImagePickerNative from "expo-image-picker";
 import { useCallback } from "react";
 
@@ -19,7 +20,7 @@ export default function useImagePicker(
         onSuccess?.(file);
       }
     } else {
-      alert("You did not select any image.");
+      toggleToast("You did not select any image.", "error");
     }
   }, [onSuccess]);
   return { pickImage };

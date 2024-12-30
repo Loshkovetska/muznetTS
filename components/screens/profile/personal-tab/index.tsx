@@ -11,7 +11,7 @@ import {
   updateContractorInfoScheme,
   updateMusicianInfoScheme,
 } from "@/lib/scheme";
-import AuthService from "@/lib/services/auth";
+import { AuthService } from "@/lib/services";
 import { PredictionType, UpdateInfoType, UserType } from "@/lib/types";
 import { setValueToForm } from "@/lib/utils";
 import { colors } from "@/tamagui.config";

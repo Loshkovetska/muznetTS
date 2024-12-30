@@ -2,7 +2,13 @@ import TabbarIcon from "@/navigation/tabbar-icon";
 import { Tabs, useSegments } from "expo-router";
 import { useMemo, useState } from "react";
 
-const HIDE_TABBAR_SCREENS = ["search", "details", "map"];
+const HIDE_TABBAR_SCREENS = [
+  ["(tabs)", "(main)", "map"],
+  ["(tabs)", "(main)", "search"],
+  ["(tabs)", "(main)", "details", "[id]"],
+  ["(tabs)", "(chat)", "chat", "[id]", "messages"],
+  ["(tabs)", "(community)", "post", "[id]", "comments"],
+];
 
 export default function RootLayout() {
   const segments = useSegments();
@@ -11,9 +17,7 @@ export default function RootLayout() {
   const hideTabBar = useMemo(() => {
     const sgs = [...segments];
     return HIDE_TABBAR_SCREENS.some(
-      (s) =>
-        sgs.includes(s as "details") ||
-        (sgs.includes("chat") && sgs.includes("[id]"))
+      (route) => route.join(", ") === sgs.join(", ")
     );
   }, [segments]);
 
@@ -96,18 +100,6 @@ export default function RootLayout() {
               focused={focused}
             />
           ),
-        }}
-      />
-      <Tabs.Screen
-        name="chat/index"
-        options={{
-          tabBarItemStyle: { display: "none" },
-        }}
-      />
-      <Tabs.Screen
-        name="chat/[id]/index"
-        options={{
-          tabBarItemStyle: { display: "none" },
         }}
       />
     </Tabs>

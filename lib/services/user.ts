@@ -39,4 +39,4 @@ class UsersServiceClass {
 
 const UsersService = new UsersServiceClass();
 
-export default UsersService;
+export { UsersService };

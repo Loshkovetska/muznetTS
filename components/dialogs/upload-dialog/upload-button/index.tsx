@@ -6,12 +6,14 @@ import { Text, YStack } from "tamagui";
 type UploadButtonPropType = {
   icon: React.ReactNode;
   label: string;
+  labelColor?: string;
   onPress: () => void;
 };
 
 export default function UploadButton({
   icon,
   label,
+  labelColor,
   onPress,
 }: UploadButtonPropType) {
   return (
@@ -33,7 +35,12 @@ export default function UploadButton({
         paddingHorizontal={12}
       >
         {icon}
-        <Text {...typography["heading-16"]}>{label}</Text>
+        <Text
+          {...typography["heading-16"]}
+          color={labelColor}
+        >
+          {label}
+        </Text>
       </YStack>
     </TouchableOpacity>
   );

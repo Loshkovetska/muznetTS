@@ -110,4 +110,4 @@ class AdServiceClass {
 
 const AdService = new AdServiceClass();
 
-export default AdService;
+export { AdService };
