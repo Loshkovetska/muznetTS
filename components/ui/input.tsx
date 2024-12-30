@@ -51,6 +51,7 @@ const StyledInputContainer = styled(XStack, {
       default: { height: 48 },
       s40: { height: 40 },
       code: { height: 72, width: 64 },
+      sm: { height: 32 },
     },
     focused: {
       true: {

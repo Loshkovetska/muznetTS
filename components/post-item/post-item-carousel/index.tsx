@@ -61,7 +61,7 @@ export default function PostItemCarousel({
       )}
       <FlatList
         nestedScrollEnabled
-        data={media}
+        data={media.length > 0 ? media : [""]}
         horizontal
         pagingEnabled
         showsHorizontalScrollIndicator={false}
@@ -79,7 +79,7 @@ export default function PostItemCarousel({
             height: SCREEN_WIDTH,
             borderWidth: 0,
           };
-          if (isImage) {
+          if (isImage || !item.length) {
             return (
               <CommonImage
                 source={item}
@@ -87,6 +87,7 @@ export default function PostItemCarousel({
               />
             );
           }
+
           return (
             <CommonVideo
               postView

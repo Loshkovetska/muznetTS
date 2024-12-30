@@ -15,7 +15,7 @@ export default function PostShortItem(post: PostType) {
       position="relative"
       overflow="hidden"
     >
-      {post.media.length > 1 && (
+      {post.media?.length > 1 && (
         <Copy
           position="absolute"
           top={4}
@@ -25,7 +25,7 @@ export default function PostShortItem(post: PostType) {
           size={18}
         />
       )}
-      {post.media.length === 1 && isVideo && (
+      {post.media?.length === 1 && isVideo && (
         <Play
           position="absolute"
           top={4}

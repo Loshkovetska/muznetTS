@@ -37,6 +37,7 @@ export default function CommonHeader({
         size={30}
         position={buttonRight && title ? "relative" : "absolute"}
         left={0}
+        zIndex={1}
         transform={buttonRight && title ? undefined : [{ translateY: "-50%" }]}
         top={buttonRight && title ? undefined : "50%"}
         onPress={handleBack}

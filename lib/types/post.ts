@@ -18,4 +18,26 @@ type PostType = {
   hidden?: boolean;
 };
 
-export type { PostType };
+type HideParamType = {
+  user_id: string;
+  post_id: string;
+};
+
+type TogglePostSettingsType = {
+  post_id: string;
+  toggle_name: string;
+  value: boolean;
+};
+
+type SearchPostItemType = {
+  name: string;
+  count: number;
+  type: "tag" | "place";
+};
+
+export type {
+  HideParamType,
+  PostType,
+  SearchPostItemType,
+  TogglePostSettingsType,
+};

@@ -1,5 +1,11 @@
-import { PostType } from "@/lib/types/post";
+import {
+  HideParamType,
+  PostType,
+  SearchPostItemType,
+  TogglePostSettingsType,
+} from "@/lib/types/post";
 import { supabase } from "@/lib/utils/supabase";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 class PostServiceClass {
   constructor() {}
@@ -60,16 +66,13 @@ class PostServiceClass {
     return !reported?.error;
   }
 
-  async hidePost(args: { user_id: string; post_id: string }): Promise<boolean> {
+  async hidePost(args: HideParamType): Promise<boolean> {
     const hidden = await supabase.from("hidden_posts").insert(args);
     if (hidden.error) throw new Error("Error");
     return !hidden?.error;
   }
 
-  async unhidePost(args: {
-    user_id: string;
-    post_id: string;
-  }): Promise<boolean> {
+  async unhidePost(args: HideParamType): Promise<boolean> {
     const unhidden = await supabase
       .from("hidden_posts")
       .delete()
@@ -87,11 +90,7 @@ class PostServiceClass {
     return !deleted?.error;
   }
 
-  async toggleSettings(args: {
-    post_id: string;
-    toggle_name: string;
-    value: boolean;
-  }): Promise<boolean> {
+  async toggleSettings(args: TogglePostSettingsType): Promise<boolean> {
     const post = await supabase
       .from("posts")
       .update({
@@ -101,6 +100,79 @@ class PostServiceClass {
 
     if (post.error) throw new Error("Error");
     return !post?.error;
+  }
+
+  async getPostTags(): Promise<SearchPostItemType[]> {
+    const posts = await supabase.from("posts").select("tags, id");
+    const response: SearchPostItemType[] = [];
+
+    const tags = new Set(
+      posts.data?.flatMap((m) =>
+        m.tags.map((t: string) => t.toLowerCase().trim())
+      ) || []
+    );
+
+    Array.from(tags)?.forEach((value: string) => {
+      const postsWithTags = posts.data?.filter((d) =>
+        d.tags.some((t: string) => t.toLowerCase().trim() === value)
+      );
+
+      response.push({
+        name: value,
+        type: "tag",
+        count: postsWithTags?.length || 0,
+      });
+    });
+    return response;
+  }
+
+  async getPostLocations(): Promise<SearchPostItemType[]> {
+    const posts = await supabase.from("posts").select("location, id");
+
+    const response: SearchPostItemType[] = [];
+
+    const locations = new Set(
+      posts.data?.flatMap((m) => m.location.trim()) || []
+    );
+
+    Array.from(locations)?.forEach((value: string) => {
+      const postsWithLocation = posts.data?.filter(
+        (d) => d.location.trim() === value
+      );
+
+      response.push({
+        name: value,
+        type: "place",
+        count: postsWithLocation?.length || 0,
+      });
+    });
+    return response;
+  }
+
+  async savedSearch(): Promise<SearchPostItemType[]> {
+    const list = await AsyncStorage.getItem("search");
+
+    return JSON.parse(list || "[]");
+  }
+
+  async getPostsByFilter(args: {
+    tag?: string;
+    place?: string;
+  }): Promise<PostType[]> {
+    let request = supabase.from("posts").select("*, user:user_id(*)");
+
+    if (args.tag) {
+      request = request.contains("tags", [
+        `${args.tag[0].toUpperCase()}${args.tag.slice(1)}`,
+      ]);
+    }
+
+    if (args.place) {
+      request = request.like("location", `%${args.place}%`);
+    }
+
+    const response = await request;
+    return response?.data || [];
   }
 }
 
