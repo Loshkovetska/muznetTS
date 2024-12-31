@@ -23,50 +23,40 @@ export default function ProfileContent({
     [tab]
   );
 
+  const header = useMemo(
+    () => (
+      <CommonHeader
+        title={TITLE}
+        onBack={goToMenu}
+      />
+    ),
+    [TITLE, goToMenu]
+  );
+
   return (
     <>
       {tab === "personal" && (
         <PersonalTab
           user={user}
-          header={
-            <CommonHeader
-              title={TITLE}
-              onBack={goToMenu}
-            />
-          }
+          header={header}
         />
       )}
       {tab === "password" && (
         <PasswordTab
           user={user}
-          header={
-            <CommonHeader
-              title={TITLE}
-              onBack={goToMenu}
-            />
-          }
+          header={header}
         />
       )}
       {tab === "ads" && (
         <AdsTab
           user={user}
-          header={
-            <CommonHeader
-              title={TITLE}
-              onBack={goToMenu}
-            />
-          }
+          header={header}
         />
       )}
       {tab === "deals" && (
         <DealsTab
           user={user}
-          header={
-            <CommonHeader
-              title={TITLE}
-              onBack={goToMenu}
-            />
-          }
+          header={header}
         />
       )}
     </>

@@ -8,6 +8,7 @@ const HIDE_TABBAR_SCREENS = [
   ["(tabs)", "(main)", "details", "[id]"],
   ["(tabs)", "(chat)", "chat", "[id]", "messages"],
   ["(tabs)", "(community)", "post", "[id]", "comments"],
+  ["(tabs)", "(community)", "add-post"],
 ];
 
 export default function RootLayout() {

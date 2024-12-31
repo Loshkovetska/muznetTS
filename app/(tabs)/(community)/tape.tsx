@@ -16,7 +16,7 @@ type ParamsType = {
 };
 
 export default function Tape() {
-  const local = useLocalSearchParams<ParamsType>();
+  const local = useLocalSearchParams<any>() as ParamsType;
 
   const { topData, recentData } = usePostsByFilter(local);
   const { likedPosts, myPosts, communityUser } = usePosts({
@@ -66,9 +66,7 @@ export default function Tape() {
     <YStack backgroundColor={colors["white"]}>
       <CommonHeader
         title={TITLE}
-        paddingBottom={10}
-        borderBottomWidth={1}
-        borderColor="rgba(92, 101, 116, 0.2)"
+        withBorder
       />
       <PostsTape
         data={data}

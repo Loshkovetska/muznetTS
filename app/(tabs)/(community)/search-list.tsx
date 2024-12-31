@@ -35,9 +35,7 @@ export default function Page() {
             </Text>
           </Text>
         }
-        paddingBottom={10}
-        borderBottomWidth={1}
-        borderColor="rgba(92, 101, 116, 0.2)"
+        withBorder
       />
       <SearchContent
         tabsFull

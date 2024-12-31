@@ -50,9 +50,7 @@ export default function Page() {
             </Link>
           }
           paddingHorizontal={16}
-          paddingBottom={10}
-          borderBottomWidth={1}
-          borderColor="rgba(92, 101, 116, 0.2)"
+          withBorder
         />
         {post && (
           <CommentsList

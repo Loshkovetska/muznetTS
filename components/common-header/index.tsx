@@ -7,13 +7,18 @@ import { Text, XStack, XStackProps } from "tamagui";
 type CommonHeaderPropType = {
   title: string | React.ReactNode;
   marginTop?: number;
+  buttonLeft?: React.ReactNode;
   buttonRight?: React.ReactNode;
+  withBorder?: boolean;
   onBack?: () => void;
 } & XStackProps;
+
 export default function CommonHeader({
   title,
   marginTop = 60,
   buttonRight,
+  buttonLeft,
+  withBorder,
   onBack,
   ...props
 }: CommonHeaderPropType) {
@@ -31,17 +36,25 @@ export default function CommonHeader({
       width="100%"
       marginTop={marginTop}
       position="relative"
+      borderBottomWidth={withBorder ? 1 : 0}
+      borderColor="rgba(92, 101, 116, 0.2)"
+      paddingBottom={withBorder ? 10 : 0}
       {...props}
     >
-      <ChevronLeft
-        size={30}
-        position={buttonRight && title ? "relative" : "absolute"}
-        left={0}
-        zIndex={1}
-        transform={buttonRight && title ? undefined : [{ translateY: "-50%" }]}
-        top={buttonRight && title ? undefined : "50%"}
-        onPress={handleBack}
-      />
+      {buttonLeft || (
+        <ChevronLeft
+          size={30}
+          position={buttonRight && title ? "relative" : "absolute"}
+          left={0}
+          zIndex={1}
+          transform={
+            buttonRight && title ? undefined : [{ translateY: "-50%" }]
+          }
+          top={buttonRight && title ? undefined : "50%"}
+          onPress={handleBack}
+        />
+      )}
+
       {typeof title === "string" ? (
         <Text {...typography["heading-24"]}>{title}</Text>
       ) : (
