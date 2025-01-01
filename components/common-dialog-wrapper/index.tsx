@@ -14,7 +14,7 @@ export default function CommonDialogWrapper({
       height={SCREEN_HEIGHT}
       top={0}
       left={0}
-      backgroundColor={colors[light ? "white" : "black"]}
+      backgroundColor={colors[light ? "main" : "black"]}
       opacity={!open ? 0 : 1}
       animateOnly={["opacity"]}
       paddingTop={64}

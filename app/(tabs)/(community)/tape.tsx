@@ -35,10 +35,8 @@ export default function Tape() {
         alignItems="center"
       >
         <Text
-          fontSize={12}
-          fontFamily="MulishSemiBold"
-          lineHeight={16}
-          color="#333333"
+          {...typography["semi-12"]}
+          color={colors["third"]}
           textAlign="center"
         >
           {local?.sort_by?.[0].toUpperCase()}
@@ -46,7 +44,7 @@ export default function Tape() {
         </Text>
         <Text
           textAlign="center"
-          {...typography["heading-20"]}
+          {...typography["bold-20"]}
         >
           {title?.[0].toUpperCase()}
           {title?.slice(1)}
@@ -63,7 +61,7 @@ export default function Tape() {
   }, [local.request, likedPosts, myPosts]);
 
   return (
-    <YStack backgroundColor={colors["white"]}>
+    <YStack backgroundColor={colors["main"]}>
       <CommonHeader
         title={TITLE}
         withBorder

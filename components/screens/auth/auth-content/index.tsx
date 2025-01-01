@@ -4,7 +4,7 @@ import { GetProps, YStack, styled } from "tamagui";
 const Container = styled(YStack, {
   width: "100%",
   flexGrow: 1,
-  backgroundColor: colors["white"],
+  backgroundColor: colors["main"],
   paddingTop: 60,
   paddingBottom: 50,
   paddingHorizontal: 16,

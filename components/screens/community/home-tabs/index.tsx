@@ -11,7 +11,7 @@ export default function HomeTabs() {
       tabs={HOME_TABS}
       onValueChange={setTab}
       paddingTop={8}
-      backgroundColor={colors["white"]}
+      backgroundColor={colors["main"]}
     />
   );
 }

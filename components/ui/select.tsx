@@ -32,8 +32,8 @@ const StyledSelectTrigger = styled(XStack, {
 });
 
 const SelectValue = styled(Text, {
-  ...typography["paragraph-17"],
-  color: colors["s-black"],
+  ...typography["reg-17"],
+  color: colors["comet"],
   flexGrow: 1,
 });
 
@@ -42,7 +42,7 @@ const StyledSelectContent = styled(XStack, {
   position: "absolute",
   top: 48,
   left: 0,
-  backgroundColor: colors["white"],
+  backgroundColor: colors["main"],
   width: "100%",
   borderInlineWidth: 1,
   borderBlockWidth: 1,
@@ -64,7 +64,7 @@ const StyledSelectContent = styled(XStack, {
 });
 
 const SelectItem = styled(Text, {
-  ...typography["paragraph-17"],
+  ...typography["reg-17"],
   color: colors["black"],
 });
 

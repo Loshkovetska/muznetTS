@@ -13,15 +13,15 @@ export default function OwnerActions(
 ) {
   return (
     <YStack
-      backgroundColor="#F5F5F5"
+      backgroundColor={colors["white-smoke"]}
       borderRadius={8}
       borderWidth={1}
-      borderColor="#E0E0E0"
+      borderColor={colors["gainsboro"]}
       paddingVertical={16}
       gap={16}
     >
       <Text
-        {...typography["heading-16"]}
+        {...typography["bold-16"]}
         textAlign="center"
         onPress={post.onShare}
       >
@@ -29,7 +29,7 @@ export default function OwnerActions(
       </Text>
       <Separator />
       <Text
-        {...typography["heading-16"]}
+        {...typography["bold-16"]}
         textAlign="center"
         onPress={post.onEdit}
       >
@@ -37,7 +37,7 @@ export default function OwnerActions(
       </Text>
       <Separator />
       <Text
-        {...typography["heading-16"]}
+        {...typography["bold-16"]}
         textAlign="center"
         onPress={() => post.onToggle("comment_on", !post.comment_on)}
       >
@@ -45,7 +45,7 @@ export default function OwnerActions(
       </Text>
       <Separator />
       <Text
-        {...typography["heading-16"]}
+        {...typography["bold-16"]}
         textAlign="center"
         onPress={() => post.onToggle("share_on", !post.share_on)}
       >
@@ -53,7 +53,7 @@ export default function OwnerActions(
       </Text>
       <Separator />
       <Text
-        {...typography["heading-16"]}
+        {...typography["bold-16"]}
         textAlign="center"
         color={colors["error"]}
         onPress={post.onDelete}

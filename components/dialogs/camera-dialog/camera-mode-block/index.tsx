@@ -9,7 +9,7 @@ const CameraButton = styled(Stack, {
   height: 56,
   borderRadius: 28,
   borderWidth: 2,
-  borderColor: colors["white"],
+  borderColor: colors["main"],
   padding: 2,
   justifyContent: "center",
   alignItems: "center",
@@ -22,7 +22,7 @@ const CameraButtonContent = styled(Stack, {
         width: "100%",
         height: "100%",
         borderRadius: 100,
-        backgroundColor: colors["white"],
+        backgroundColor: colors["main"],
       },
       video: {
         width: "100%",
@@ -72,8 +72,8 @@ export default function CameraModeBlock({
         snapToAlignment="center"
         renderItem={({ item, index }) => (
           <Text
-            {...typography["heading-17"]}
-            color={mode === item ? colors["white"] : "#5C6574"}
+            {...typography["bold-17"]}
+            color={colors[mode === item ? "main" : "gray-100"]}
             paddingLeft={!index ? 32 : 5}
             paddingRight={index + 1 === 2 ? 40 : 5}
             onPress={() =>

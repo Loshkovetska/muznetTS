@@ -130,7 +130,7 @@ export default function DetailsMedia({
         gap={16}
         width="100%"
       >
-        <Text {...typography["heading-20"]}>Media</Text>
+        <Text {...typography["bold-20"]}>Media</Text>
         <XStack
           width="100%"
           gap={9}

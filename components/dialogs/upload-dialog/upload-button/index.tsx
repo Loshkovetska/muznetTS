@@ -1,5 +1,5 @@
 import { SCREEN_WIDTH } from "@/lib/constants";
-import { typography } from "@/tamagui.config";
+import { colors, typography } from "@/tamagui.config";
 import { TouchableOpacity } from "react-native";
 import { Text, YStack } from "tamagui";
 
@@ -28,15 +28,15 @@ export default function UploadButton({
         gap={4}
         width="100%"
         borderWidth={1}
-        borderColor="#E0E0E0"
-        backgroundColor="#F5F5F5"
+        borderColor={colors["gainsboro"]}
+        backgroundColor={colors["white-smoke"]}
         borderRadius={8}
         paddingVertical={8}
         paddingHorizontal={12}
       >
         {icon}
         <Text
-          {...typography["heading-16"]}
+          {...typography["bold-16"]}
           color={labelColor}
         >
           {label}

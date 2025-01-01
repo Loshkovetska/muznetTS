@@ -7,6 +7,7 @@ import Button from "@/components/ui/button";
 import { SCREEN_WIDTH } from "@/lib/constants";
 import useMediaLibrary from "@/lib/hooks/media-library.hook";
 import { setValueToForm } from "@/lib/utils";
+import { colors } from "@/tamagui.config";
 import { Asset } from "expo-media-library";
 import { useCallback, useMemo } from "react";
 import { UseFormReturn, useWatch } from "react-hook-form";
@@ -107,8 +108,8 @@ export default function PostGallery({
             {media.length === 3 && (
               <InfoMessage
                 text="You can’t select more than 3 media files"
-                backgroundColor="#F2F3F9"
-                textColor="rgba(92, 101, 116, 0.8)"
+                backgroundColor={colors["ghost-white"]}
+                textColor={colors["gray-80"]}
                 borderRadius={8}
                 padding={8}
               />

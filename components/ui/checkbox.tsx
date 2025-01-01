@@ -6,9 +6,9 @@ import { Checkbox, CheckboxProps, XStack, styled } from "tamagui";
 const StyledCheckBox = styled(Checkbox, {
   borderWidth: 1,
   borderColor: colors["gray-20"],
-  backgroundColor: colors["white"],
+  backgroundColor: colors["main"],
   focusStyle: {
-    backgroundColor: colors["white"],
+    backgroundColor: colors["main"],
   },
   variants: {
     checked: {
@@ -44,14 +44,14 @@ export default function CheckboxWithLabel({
         {checked && (
           <CheckIcon
             size={16}
-            color={colors["white"]}
+            color={colors["main"]}
           />
         )}
       </StyledCheckBox>
       <Label
         htmlFor={id}
-        {...typography["label-15"]}
-        color={colors["s-black"]}
+        {...typography["medium-15"]}
+        color={colors["comet"]}
         onPress={() => onCheckedChange?.(!checked)}
       >
         {label}

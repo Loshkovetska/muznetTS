@@ -4,9 +4,9 @@ import { Text, XStack, styled } from "tamagui";
 const ItemInfoCostValue = styled(Text, {
   variants: {
     sizeB: {
-      sm: typography["heading-18"],
-      lg: typography["heading-24"],
-      "sm-16": typography["heading-16"],
+      sm: typography["bold-18"],
+      lg: typography["bold-24"],
+      "sm-16": typography["bold-16"],
     },
   },
   defaultVariants: { sizeB: "sm" },
@@ -15,9 +15,9 @@ const ItemInfoCostValue = styled(Text, {
 const ItemInfoCostValuePostfix = styled(Text, {
   variants: {
     sizeB: {
-      sm: typography["paragraph-14"],
-      "sm-16": typography["paragraph-14"],
-      lg: typography["paragraph-17"],
+      sm: typography["reg-14"],
+      "sm-16": typography["reg-14"],
+      lg: typography["reg-17"],
     },
   },
   defaultVariants: { sizeB: "sm" },

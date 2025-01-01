@@ -18,7 +18,7 @@ export default function DealsTabListItem(
       width="100%"
       borderColor={colors["light-gray"]}
       borderRadius={12}
-      backgroundColor={colors["white"]}
+      backgroundColor={colors["main"]}
       gap={16}
       onPress={deal.onPress}
     >
@@ -26,10 +26,10 @@ export default function DealsTabListItem(
         alignItems="center"
         justifyContent="space-between"
       >
-        <Text {...typography["heading-17"]}>Deal № {deal.deal_num}</Text>
+        <Text {...typography["bold-17"]}>Deal № {deal.deal_num}</Text>
         <Text
-          {...typography["heading-17"]}
-          color={colors[deal.status === "active" ? "success" : "disabled"]}
+          {...typography["bold-17"]}
+          color={colors[deal.status === "active" ? "success" : "gray-100"]}
         >
           {deal.status[0].toUpperCase()}
           {deal.status.slice(1)}
@@ -42,9 +42,9 @@ export default function DealsTabListItem(
         >
           <Award
             size={16}
-            color={colors["s-black"]}
+            color={colors["comet"]}
           />
-          <Text {...typography["paragraph-17"]}>{deal.ad.title}</Text>
+          <Text {...typography["reg-17"]}>{deal.ad.title}</Text>
         </XStack>
         <ProfileLocation
           sizeB="lg"

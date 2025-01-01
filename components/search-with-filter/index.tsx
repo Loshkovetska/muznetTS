@@ -61,7 +61,7 @@ export default function SearchWithFilter({
             onPress={onFilter}
           >
             <Settings2
-              color={colors["white"]}
+              color={colors["main"]}
               size={18}
             />
           </Button>

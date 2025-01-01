@@ -59,18 +59,18 @@ export default function ReportDialog({
         <YStack gap={8}>
           {step === 1 && (
             <CircleCheck
-              color={colors["white"]}
+              color={colors["main"]}
               fill={colors["success"]}
               size={48}
               marginBottom={8}
             />
           )}
-          <Text {...typography["heading-20"]}>
+          <Text {...typography["bold-20"]}>
             {CONTENT_STRATEGY[step as 0].title}
           </Text>
           <Text
-            {...typography["paragraph-16"]}
-            color="#5C6574"
+            {...typography["reg-16"]}
+            color={colors["gray-100"]}
           >
             {CONTENT_STRATEGY[step as 0].text}
           </Text>

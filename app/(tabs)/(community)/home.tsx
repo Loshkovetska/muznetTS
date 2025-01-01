@@ -18,7 +18,7 @@ export default function Page() {
   return (
     <YStack
       width="100%"
-      backgroundColor={colors["white"]}
+      backgroundColor={colors["main"]}
       flexGrow={1}
     >
       <Homebar />

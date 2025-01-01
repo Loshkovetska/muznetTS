@@ -24,7 +24,7 @@ export default function MapMarkers({
         key={item.id}
       >
         <YStack
-          backgroundColor={colors[isSelected ? "black" : "white"]}
+          backgroundColor={colors[isSelected ? "black" : "main"]}
           borderRadius={16}
           paddingHorizontal={16}
           paddingVertical={6}
@@ -32,8 +32,8 @@ export default function MapMarkers({
           justifyContent="center"
         >
           <Text
-            {...typography["heading-15"]}
-            color={colors[isSelected ? "white" : "black"]}
+            {...typography["bold-15"]}
+            color={colors[isSelected ? "main" : "black"]}
           >
             ${item.price_per_hour}
           </Text>

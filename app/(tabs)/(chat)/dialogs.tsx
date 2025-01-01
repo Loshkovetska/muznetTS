@@ -15,12 +15,12 @@ export default function Page() {
     <YStack
       paddingTop={88}
       paddingHorizontal={16}
-      backgroundColor={colors["white"]}
+      backgroundColor={colors["main"]}
       flexGrow={1}
       gap={24}
     >
       <YStack gap={32}>
-        <Text {...typography["heading-28"]}>Messages</Text>
+        <Text {...typography["bold-28"]}>Messages</Text>
         <Input
           value={searchValue}
           placeholder="Search"

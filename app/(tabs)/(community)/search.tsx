@@ -25,7 +25,7 @@ export default function Page() {
 
   return (
     <YStack
-      backgroundColor={colors["white"]}
+      backgroundColor={colors["main"]}
       flexGrow={1}
     >
       <SearchHeader

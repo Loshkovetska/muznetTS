@@ -55,7 +55,7 @@ const StyledInputContainer = styled(XStack, {
     },
     focused: {
       true: {
-        borderColor: colors["s-black"],
+        borderColor: colors["comet"],
       },
     },
     disabled: {
@@ -76,7 +76,7 @@ const StyledInput = styled(InputT, {
   maxWidth: "80%",
   height: "auto",
   color: colors["black"],
-  placeholderTextColor: colors["s-black"],
+  placeholderTextColor: colors["comet"],
   outlineWidth: 0,
   backgroundColor: "transparent",
   borderWidth: 0,
@@ -166,7 +166,7 @@ const Input = React.forwardRef<TextInput, InputPropType>(
         )}
         {variant === "success" && (
           <CircleCheck
-            color={colors["white"]}
+            color={colors["main"]}
             fill={colors["success"]}
             size={20}
           />

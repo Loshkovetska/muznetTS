@@ -36,7 +36,7 @@ export default function UserTypeItem({
         />
         <Text
           textAlign="center"
-          {...typography["label-17"]}
+          {...typography["medium-17"]}
         >
           {type === "contractor" ? "Contractor" : "Musician"}
         </Text>

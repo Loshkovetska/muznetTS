@@ -33,7 +33,7 @@ const Header = () => {
       height={44}
       paddingHorizontal={12}
     >
-      <Text {...typography["heading-17"]}>{currentText}</Text>
+      <Text {...typography["bold-17"]}>{currentText}</Text>
       <XStack alignItems="center">
         {button("prev")}
         {button("next")}

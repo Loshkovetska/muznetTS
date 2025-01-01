@@ -6,7 +6,7 @@ import Button from "@/components/ui/button";
 import { Form, FormElement } from "@/components/ui/form";
 import { SCREEN_WIDTH } from "@/lib/constants";
 import useMessages from "@/lib/hooks/messages.hook";
-import { typography } from "@/tamagui.config";
+import { colors, typography } from "@/tamagui.config";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
@@ -62,8 +62,8 @@ export default function ContactUserDialog({
         title={`Contact ${isMusician ? "Vendor" : "Musician"}`}
       />
       <Text
-        {...typography["paragraph-16"]}
-        color="#5C6574"
+        {...typography["reg-16"]}
+        color={colors["gray-100"]}
       >
         Introduce yourself to Leo Ferguson and let him know a little about your
         event.

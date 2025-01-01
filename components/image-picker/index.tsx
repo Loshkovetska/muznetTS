@@ -10,7 +10,7 @@ import { Image, Stack, Text, XStack, YStack, styled } from "tamagui";
 const Wrapper = styled(Stack, {
   width: 120,
   height: 120,
-  backgroundColor: colors["back-gray"],
+  backgroundColor: colors["ghost-white"],
   borderRadius: 6,
   alignItems: "center",
   justifyContent: "center",
@@ -21,7 +21,7 @@ const Wrapper = styled(Stack, {
     error: {
       true: {
         borderColor: colors["error"],
-        backgroundColor: colors["white"],
+        backgroundColor: colors["main"],
       },
     },
   },
@@ -47,7 +47,7 @@ const StyledError = styled(XStack, {
 });
 
 const StyledErrorText = styled(Text, {
-  ...typography["label-14"],
+  ...typography["medium-14"],
   color: colors["error"],
 });
 
@@ -106,7 +106,7 @@ export default function ImagePicker({ error, form }: ImagePickerPropType) {
               size={39}
             />
             <Text
-              {...typography["label-13"]}
+              {...typography["medium-13"]}
               color={colors[error ? "error" : "black"]}
               opacity={error ? 1 : 0.5}
             >
@@ -131,14 +131,14 @@ export default function ImagePicker({ error, form }: ImagePickerPropType) {
               sizeB="icon"
               variant="dark"
               borderWidth={4}
-              borderColor={colors["white"]}
+              borderColor={colors["main"]}
               position="absolute"
               bottom={-24}
               right={-24}
               onPress={pickImage}
             >
               <Pencil
-                color={colors["white"]}
+                color={colors["main"]}
                 size={19}
               />
             </Button>

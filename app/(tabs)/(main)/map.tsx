@@ -63,7 +63,7 @@ export default function Page() {
         <LocationSearch
           iconLeft={<ChevronLeft onPress={() => router.back()} />}
           placeholder="NearBy"
-          backgroundColor={colors["white"]}
+          backgroundColor={colors["main"]}
           shadowOffset={{ width: 0, height: 0 }}
           shadowOpacity={0.2}
           shadowRadius={10}
@@ -100,7 +100,7 @@ export default function Page() {
             right={16}
             onPress={getUserLocation}
           >
-            <Navigation color={colors["white"]} />
+            <Navigation color={colors["main"]} />
           </Button>
           <MapList
             mapListRef={mapListRef}
@@ -124,7 +124,7 @@ export default function Page() {
         icon={
           <Search
             size={80}
-            color="#1E66FF"
+            color={colors["dodger-blue"]}
             strokeWidth={4}
           />
         }

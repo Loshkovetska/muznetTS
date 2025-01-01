@@ -115,7 +115,7 @@ const FormMessage = ({
     <Text
       id={formMessageId}
       color={colors["error"]}
-      {...typography["paragraph-12"]}
+      {...typography["reg-12"]}
       {...props}
     >
       {body}

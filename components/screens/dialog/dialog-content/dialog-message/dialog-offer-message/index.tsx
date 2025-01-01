@@ -11,7 +11,7 @@ import { useMemo } from "react";
 import { Text, XStack, YStack, styled } from "tamagui";
 
 const Wrapper = styled(YStack, {
-  backgroundColor: colors["white"],
+  backgroundColor: colors["main"],
   borderRadius: 12,
   width: "100%",
   padding: 8,
@@ -40,16 +40,16 @@ export default function DialogOfferMessage(
       width="100%"
     >
       <Wrapper>
-        <Text {...typography["label-15"]}>
+        <Text {...typography["medium-15"]}>
           {from.name} {from.surname} is sending you offer, please check it
         </Text>
         <YStack gap={4}>
           {Object.entries(data).map(([key, value]) => (
             <Text
-              {...typography["heading-15"]}
+              {...typography["bold-15"]}
               key={key}
             >
-              {key}: <Text {...typography["label-15"]}>{value}</Text>
+              {key}: <Text {...typography["medium-15"]}>{value}</Text>
             </Text>
           ))}
         </YStack>
@@ -101,10 +101,9 @@ export default function DialogOfferMessage(
       {from.id === user?.id && deal.offer_status !== "waiting" && (
         <Wrapper gap={16}>
           <Text
-            {...typography["heading-16"]}
-            color="#232323"
+            {...typography["semi-16"]}
+            color={colors["nero"]}
             opacity={0.9}
-            fontFamily="MulishSemiBold"
           >
             To make it easier for you to track and manage your transactions, you
             can go to your profile and see all deals

@@ -13,13 +13,13 @@ export default function DetailsDescription({
   const [showMore, setShow] = useState(false);
   return (
     <YStack gap={8}>
-      {title && <Text {...typography["heading-17"]}>{title}</Text>}
+      {title && <Text {...typography["bold-17"]}>{title}</Text>}
       <Text
         onLayout={({ nativeEvent: { layout } }) =>
           setVisible(layout.height > 44)
         }
-        {...typography["paragraph-17"]}
-        color={colors["disabled"]}
+        {...typography["reg-17"]}
+        color={colors["gray-100"]}
         numberOfLines={showMore ? undefined : 6}
       >
         {text}
@@ -28,7 +28,7 @@ export default function DetailsDescription({
         <Text
           textDecorationLine="underline"
           onPress={() => setShow((prev) => !prev)}
-          {...typography["heading-15"]}
+          {...typography["bold-15"]}
         >
           Show {showMore ? "less" : "more"}
         </Text>

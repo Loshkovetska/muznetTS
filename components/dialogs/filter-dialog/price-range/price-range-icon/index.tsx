@@ -20,7 +20,7 @@ export default function PriceRangeIcon({
       <Stack
         position="absolute"
         left={0}
-        backgroundColor={colors["white"]}
+        backgroundColor={colors["main"]}
         width={min}
         height={39}
         zIndex={2}
@@ -32,7 +32,7 @@ export default function PriceRangeIcon({
       <Stack
         position="absolute"
         right={0}
-        backgroundColor={colors["white"]}
+        backgroundColor={colors["main"]}
         width={max}
         height={39}
         zIndex={2}

@@ -125,7 +125,7 @@ export default function CommonVideo({
             onPress={onMute}
           >
             <VolumeIcon
-              color={colors["white"]}
+              color={colors["main"]}
               size={20}
             />
           </Button>

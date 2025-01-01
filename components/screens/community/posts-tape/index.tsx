@@ -52,7 +52,7 @@ export default function PostsTape({
       data={data || allPosts || []}
       showsVerticalScrollIndicator={false}
       contentContainerStyle={{
-        backgroundColor: colors["white"],
+        backgroundColor: colors["main"],
         paddingBottom: paddingBottom,
         gap: 32,
         paddingTop: paddingTop,

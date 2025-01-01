@@ -17,13 +17,13 @@ const DayContainer = styled(Stack, {
     },
     isToday: {
       true: {
-        borderColor: "#141517",
+        borderColor: colors["secondary"],
       },
     },
     isSelected: {
       true: {
-        borderColor: "#141517",
-        backgroundColor: "#141517",
+        borderColor: colors["secondary"],
+        backgroundColor: colors["secondary"],
       },
     },
   },
@@ -38,17 +38,17 @@ const RangeWrapper = styled(Stack, {
 });
 
 const DateText = styled(Text, {
-  color: "#141517",
-  ...typography["paragraph-17"],
+  color: colors["secondary"],
+  ...typography["reg-17"],
   variants: {
     isSelected: {
       true: {
-        color: colors["white"],
+        color: colors["main"],
       },
     },
     isToday: {
       true: {
-        color: colors["white"],
+        color: colors["main"],
       },
     },
   },
@@ -120,7 +120,7 @@ function Day({
             {text}
           </DateText>
           <Stack
-            backgroundColor={isSelected ? "white" : "black"}
+            backgroundColor={isSelected ? colors["main"] : "black"}
             width={6}
             height={6}
             borderRadius={3}

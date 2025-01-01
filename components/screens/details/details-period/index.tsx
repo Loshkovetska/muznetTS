@@ -26,12 +26,12 @@ export default function DetailsPeriod({
       alignItems="center"
     >
       <Clock
-        color={colors["s-black"]}
+        color={colors["comet"]}
         size={16}
       />
       <Text
-        {...typography["paragraph-17"]}
-        color={colors["s-black"]}
+        {...typography["reg-17"]}
+        color={colors["comet"]}
       >
         {period}
       </Text>

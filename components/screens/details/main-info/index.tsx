@@ -19,7 +19,7 @@ import { Text, XStack, YStack, styled } from "tamagui";
 const Container = styled(YStack, {
   borderTopLeftRadius: 16,
   borderTopRightRadius: 16,
-  backgroundColor: colors["white"],
+  backgroundColor: colors["main"],
   paddingVertical: 24,
   paddingHorizontal: 16,
   marginTop: -16,
@@ -48,12 +48,11 @@ export default function MainInfo(data: MainInfoPropType) {
   const title = useMemo(
     () => (
       <Text
-        {...typography[isMusician ? "heading-28" : "heading-20"]}
+        {...typography[isMusician ? "extrabold-28" : "extrabold-20"]}
         numberOfLines={2}
         ellipsizeMode="tail"
         marginTop={8}
         marginBottom={13}
-        fontFamily="MulishExtraBold"
       >
         {isMusician ? `${data.name} ${data.surname}` : data.title}
       </Text>

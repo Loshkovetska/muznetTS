@@ -37,7 +37,7 @@ const Track = styled(Stack, {
   height: 24,
   borderWidth: 2,
   borderColor: colors["black"],
-  backgroundColor: colors["white"],
+  backgroundColor: colors["main"],
   borderRadius: 12,
   position: "absolute",
   top: "50%",

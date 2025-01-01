@@ -79,7 +79,7 @@ export default function AddCommentBar({
           <Button
             sizeB="sm"
             variant="transparent"
-            textProps={typography["heading-14"]}
+            textProps={typography["bold-14"]}
             pointerEvents={comment.length >= 2 ? "auto" : "none"}
             opacity={comment.length >= 2 ? 1 : 0.3}
             onPress={onSendComment}

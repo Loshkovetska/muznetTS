@@ -21,7 +21,7 @@ export default function AuthSocialItem({
         {icon}
       </Button>
       <Text
-        {...typography["label-17"]}
+        {...typography["medium-17"]}
         textAlign="center"
         color={colors["black"]}
       >

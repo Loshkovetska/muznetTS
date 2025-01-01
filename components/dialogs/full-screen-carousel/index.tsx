@@ -48,7 +48,7 @@ export default function FullScreenCarousel({
           />
         </Button>
         {images.length > 1 && (
-          <Text color={colors["white"]}>
+          <Text color={colors["main"]}>
             {currentInd + 1}/{images.length}
           </Text>
         )}

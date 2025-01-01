@@ -13,7 +13,7 @@ const Container = styled(YStack, {
         borderWidth: 1,
         borderColor: colors["light-gray"],
         padding: 16,
-        backgroundColor: colors["white"],
+        backgroundColor: colors["main"],
         borderRadius: 12,
         flexGrow: 1,
       },
@@ -46,13 +46,12 @@ export default function ReviewItem({ type, ...review }: ReviewItemPropType) {
               borderRadius={5}
             />
             <YStack gap={2}>
-              <Text {...typography["heading-17"]}>
+              <Text {...typography["bold-17"]}>
                 {review.user.name} {review.user.surname}
               </Text>
               <Text
-                {...typography["paragraph-14"]}
-                fontSize={13}
-                color="#717171"
+                {...typography["reg-13"]}
+                color={colors["dim-gray"]}
               >
                 {getReviewDate(review.created_at)}
               </Text>
@@ -71,15 +70,15 @@ export default function ReviewItem({ type, ...review }: ReviewItemPropType) {
         </XStack>
         <Text
           numberOfLines={type === "small" ? 5 : undefined}
-          {...typography["paragraph-15"]}
+          {...typography["reg-15"]}
         >
           {review.text}
         </Text>
       </YStack>
       {type === "full" && !!review.response && (
         <YStack gap={8}>
-          <Text {...typography["label-17"]}>Response from {"Leo"}:</Text>
-          <Text {...typography["paragraph-15"]}>{review.response}</Text>
+          <Text {...typography["medium-17"]}>Response from {"Leo"}:</Text>
+          <Text {...typography["reg-15"]}>{review.response}</Text>
         </YStack>
       )}
     </Container>

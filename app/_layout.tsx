@@ -1,5 +1,6 @@
 import Providers from "@/components/providers";
 import Navigation from "@/navigation";
+import { colors } from "@/tamagui.config";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFonts } from "expo-font";
 import { SplashScreen, router } from "expo-router";
@@ -48,7 +49,7 @@ export default function RootLayout() {
       <StatusBar
         barStyle="dark-content"
         hidden={false}
-        backgroundColor="white"
+        backgroundColor={colors["main"]}
         translucent
       />
       <Navigation firstLoad={show} />

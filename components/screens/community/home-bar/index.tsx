@@ -9,13 +9,13 @@ export default function Homebar() {
     <XStack
       width="100%"
       paddingTop={64}
-      backgroundColor={colors["white"]}
+      backgroundColor={colors["main"]}
       paddingHorizontal={16}
       paddingBottom={9}
       alignItems="center"
       justifyContent="space-between"
     >
-      <Text {...typography["heading-24"]}>Community</Text>
+      <Text {...typography["bold-24"]}>Community</Text>
       <XStack
         alignItems="center"
         gap={16}

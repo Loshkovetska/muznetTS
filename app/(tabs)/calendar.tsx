@@ -15,7 +15,7 @@ export default function Calendar() {
     <YStack
       paddingTop={88}
       paddingHorizontal={16}
-      backgroundColor={colors["white"]}
+      backgroundColor={colors["main"]}
       flexGrow={1}
       gap={24}
     >
@@ -27,15 +27,9 @@ export default function Calendar() {
           alignItems="center"
           justifyContent="space-between"
         >
+          <Text {...typography["bold-34"]}>Calendar</Text>
           <Text
-            fontSize={34}
-            lineHeight={41}
-            fontFamily="MulishBold"
-          >
-            Calendar
-          </Text>
-          <Text
-            {...typography["label-17"]}
+            {...typography["medium-17"]}
             onPress={() => setSelectedDate(undefined)}
           >
             See all
@@ -74,7 +68,7 @@ export default function Calendar() {
         >
           <Text
             textAlign="center"
-            {...typography["heading-18"]}
+            {...typography["bold-18"]}
           >
             No ads were found on this date!
           </Text>

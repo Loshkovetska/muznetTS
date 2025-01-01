@@ -72,7 +72,7 @@ export default function Dialog({
         >
           <YStack
             alignItems="center"
-            backgroundColor={colors["white"]}
+            backgroundColor={colors["main"]}
             width="100%"
             padding="$4"
             borderRadius={16}
@@ -96,7 +96,7 @@ export default function Dialog({
                 <TDialog.Title unstyled>
                   <Text
                     textAlign="center"
-                    {...typography["heading-20"]}
+                    {...typography["bold-20"]}
                   >
                     {title}
                   </Text>
@@ -104,8 +104,8 @@ export default function Dialog({
               )}
               {description && (
                 <TDialog.Description
-                  {...typography["label-15"]}
-                  color={colors["disabled"]}
+                  {...typography["medium-15"]}
+                  color={colors["gray-100"]}
                   textAlign="center"
                 >
                   {description}

@@ -41,10 +41,7 @@ export default function GenresList({
           key={genre}
           type={type}
         >
-          <Text
-            {...typography["paragraph-12"]}
-            fontSize={type === "list" ? 10 : undefined}
-          >
+          <Text {...typography[type === "list" ? "reg-10" : "reg-12"]}>
             {genre.toLowerCase()}
           </Text>
         </ItemInfoGenre>

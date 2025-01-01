@@ -52,7 +52,7 @@ export default function DialogMediaDialog({
           borderRadius={6}
           source={chatUser?.photo?.[0]}
         />
-        <Text {...typography["heading-22"]}>
+        <Text {...typography["bold-22"]}>
           {chatUser?.name} {chatUser?.surname}
         </Text>
       </YStack>
@@ -66,7 +66,7 @@ export default function DialogMediaDialog({
             <Fragment key={title}>
               {data?.length ? (
                 <YStack gap={16}>
-                  <Text {...typography["heading-20"]}>{title}</Text>
+                  <Text {...typography["bold-20"]}>{title}</Text>
                   <XStack
                     flexDirection="row"
                     flexWrap="wrap"

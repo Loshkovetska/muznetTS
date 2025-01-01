@@ -15,15 +15,14 @@ import {
   getParsedDate,
   getWeekdaysMin,
 } from "@/lib/utils/date-picker";
-import { typography } from "@/tamagui.config";
+import { colors, typography } from "@/tamagui.config";
 import { Stack, Text, XStack, YStack, styled } from "tamagui";
 import { useCalendarContext } from "./calendar-context";
 
 const WeekDay = styled(Text, {
-  ...typography["paragraph-12"],
-  fontFamily: "MulishBold",
+  ...typography["bold-12"],
   textTransform: "uppercase",
-  color: "rgba(60,60,67,0.3)",
+  color: colors["light-p-gray"],
   textAlign: "center",
   minWidth: 35,
   maxWidth: 35,

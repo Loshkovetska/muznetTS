@@ -119,7 +119,7 @@ export default function AddEditAdDialog({
         onValueChange={onAddressSelect}
       >
         <YStack
-          backgroundColor={colors["white"]}
+          backgroundColor={colors["main"]}
           paddingHorizontal={16}
           gap={16}
           flexGrow={1}
@@ -147,8 +147,8 @@ export default function AddEditAdDialog({
                   gap={8}
                 >
                   <Text
-                    {...typography["paragraph-17"]}
-                    color="#636364"
+                    {...typography["reg-17"]}
+                    color={colors["comet"]}
                     textDecorationLine="underline"
                     onPress={() => deleteAd(selectedAd.id)}
                   >

@@ -15,14 +15,14 @@ export default function StepsTitle({ step_name }: StepsTitlePropType) {
     >
       <Text
         textAlign="center"
-        {...typography["heading-24"]}
+        {...typography["bold-24"]}
         color={colors["black"]}
       >
         Welcome to MuzNet!
       </Text>
       <Text
-        {...typography["paragraph-17"]}
-        color={colors["disabled"]}
+        {...typography["reg-17"]}
+        color={colors["gray-100"]}
         textAlign="center"
       >
         {TITLE}

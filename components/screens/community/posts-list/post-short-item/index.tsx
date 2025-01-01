@@ -21,7 +21,7 @@ export default function PostShortItem(post: PostType) {
           top={4}
           right={4}
           zIndex={1}
-          color={colors["white"]}
+          color={colors["main"]}
           size={18}
         />
       )}
@@ -31,8 +31,8 @@ export default function PostShortItem(post: PostType) {
           top={4}
           right={4}
           zIndex={1}
-          color={colors["white"]}
-          fill={colors["white"]}
+          color={colors["main"]}
+          fill={colors["main"]}
           size={18}
         />
       )}

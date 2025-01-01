@@ -3,6 +3,7 @@ import CommonVideo from "@/components/common-video";
 import PostMediaItemRadio from "@/components/forms/post-form/post-gallery/post-gallery-list/post-media-item/post-media-item-radio";
 import { SCREEN_WIDTH } from "@/lib/constants";
 import { detectFileType } from "@/lib/utils";
+import { colors } from "@/tamagui.config";
 import { AssetInfo } from "expo-media-library";
 import React, { useMemo } from "react";
 import { Stack } from "tamagui";
@@ -53,7 +54,7 @@ function PostMediaItem({
     >
       {isSelected && (
         <Stack
-          backgroundColor="rgba(256,256,256,0.3)"
+          backgroundColor={colors["white-30"]}
           position="absolute"
           top={0}
           left={0}

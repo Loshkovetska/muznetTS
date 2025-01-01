@@ -11,7 +11,7 @@ export default function DealsTabs({ tab, setTab }: DealsTabsPropType) {
     <XStack
       paddingBottom={8}
       borderBottomWidth={2}
-      borderColor="rgba(185,185,186,0.3)"
+      borderColor={colors["ghost-30"]}
     >
       <YStack
         flexGrow={1 / 2}
@@ -19,8 +19,7 @@ export default function DealsTabs({ tab, setTab }: DealsTabsPropType) {
       >
         <Text
           textAlign="center"
-          {...typography[tab === "active" ? "heading-17" : "paragraph-17"]}
-          lineHeight={22}
+          {...typography[tab === "active" ? "bold-17" : "reg-17"]}
         >
           Active
         </Text>
@@ -31,8 +30,7 @@ export default function DealsTabs({ tab, setTab }: DealsTabsPropType) {
       >
         <Text
           textAlign="center"
-          {...typography[tab === "closed" ? "heading-17" : "paragraph-17"]}
-          lineHeight={22}
+          {...typography[tab === "closed" ? "bold-17" : "reg-17"]}
         >
           Closed
         </Text>

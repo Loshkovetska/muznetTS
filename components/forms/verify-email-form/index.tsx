@@ -40,8 +40,8 @@ export default function VerifyEmailForm({
         flexGrow={1}
       >
         <Text
-          {...typography["label-17"]}
-          color={colors["disabled"]}
+          {...typography["medium-17"]}
+          color={colors["gray-100"]}
           marginBottom={32}
         >
           Please enter the verification code we sent to {email}
@@ -49,13 +49,13 @@ export default function VerifyEmailForm({
         <OTPInput onCodeChange={onSetCode} />
         <YStack alignItems="center">
           <Text
-            {...typography["paragraph-17"]}
-            color={colors["disabled"]}
+            {...typography["reg-17"]}
+            color={colors["gray-100"]}
           >
             Didn’n recieve the code?{" "}
           </Text>
           <Text
-            {...typography["heading-17"]}
+            {...typography["bold-17"]}
             color={colors["black"]}
             onPress={onResend}
           >

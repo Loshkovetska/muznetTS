@@ -16,7 +16,7 @@ const Container = styled(Stack, {
   justifyContent: "center",
   gap: 8,
   borderRadius: 6,
-  backgroundColor: "#F5F6FB",
+  backgroundColor: colors["ghost-white2"],
   overflow: "hidden",
 });
 
@@ -51,10 +51,10 @@ export default function MediaSelect({ form }: { form: UseFormReturn<any> }) {
   return (
     <YStack gap={16}>
       <YStack gap={8}>
-        <Text {...typography["label-20"]}>Media</Text>
+        <Text {...typography["medium-20"]}>Media</Text>
         <Text
-          {...typography["paragraph-17"]}
-          color="#697A8D"
+          {...typography["reg-17"]}
+          color={colors["slate-gray"]}
         >
           You can upload up to 4 photos
         </Text>
@@ -73,7 +73,7 @@ export default function MediaSelect({ form }: { form: UseFormReturn<any> }) {
               local={typeof photo !== "string"}
             />
             <Button
-              backgroundColor="rgba(92,101,116,0.6)"
+              backgroundColor={colors["gray-60"]}
               sizeB="icon-sm"
               position="absolute"
               top={4}
@@ -82,7 +82,7 @@ export default function MediaSelect({ form }: { form: UseFormReturn<any> }) {
             >
               <Trash
                 size={18}
-                color={colors["white"]}
+                color={colors["main"]}
               />
             </Button>
           </Container>
@@ -90,7 +90,7 @@ export default function MediaSelect({ form }: { form: UseFormReturn<any> }) {
         {photos.length <= 3 && (
           <Container onPress={pickImage}>
             <Plus />
-            <Text {...typography["label-15"]}>Add new</Text>
+            <Text {...typography["medium-15"]}>Add new</Text>
           </Container>
         )}
       </XStack>

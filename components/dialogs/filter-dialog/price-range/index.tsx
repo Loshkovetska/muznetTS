@@ -18,8 +18,8 @@ export default function PriceRange({
         alignItems="center"
         justifyContent="space-between"
       >
-        <Text {...typography["heading-17"]}>Price Range:</Text>
-        <Text {...typography["heading-15"]}>
+        <Text {...typography["bold-17"]}>Price Range:</Text>
+        <Text {...typography["bold-15"]}>
           ${priceRange.min} - ${priceRange.max}
         </Text>
       </XStack>

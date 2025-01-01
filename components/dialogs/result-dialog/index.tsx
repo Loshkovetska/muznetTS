@@ -31,7 +31,7 @@ export default function ResultDialog({
           />
         ) : (
           <CircleCheck
-            color={colors["white"]}
+            color={colors["main"]}
             fill={colors["success"]}
             size={80}
           />

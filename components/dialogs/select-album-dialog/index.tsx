@@ -1,6 +1,6 @@
 import { ALBUMS_ICONS } from "@/components/dialogs/select-album-dialog/constants";
 import { MobileSheet } from "@/components/ui/mobile-sheet";
-import { typography } from "@/tamagui.config";
+import { colors, typography } from "@/tamagui.config";
 import { X } from "@tamagui/lucide-icons";
 import { Album } from "expo-media-library";
 import { useCallback } from "react";
@@ -35,7 +35,7 @@ export default function SelectAlbumDialog({
           alignItems="center"
           justifyContent="space-between"
         >
-          <Text {...typography["heading-20"]}>Select album</Text>
+          <Text {...typography["bold-20"]}>Select album</Text>
           <X
             size={20}
             onPress={onOpenChange}
@@ -51,7 +51,7 @@ export default function SelectAlbumDialog({
               key={album.id}
               paddingVertical={8}
               borderBottomWidth={1}
-              borderColor="#E9ECF2"
+              borderColor={colors["solitude"]}
               gap={8}
               alignItems="center"
               onPress={() => onValueChange(album)}
@@ -61,7 +61,7 @@ export default function SelectAlbumDialog({
                 height={40}
                 borderRadius={20}
                 borderWidth={1}
-                borderColor="#E9ECF2"
+                borderColor={colors["solitude"]}
                 alignItems="center"
                 justifyContent="center"
               >
@@ -72,10 +72,10 @@ export default function SelectAlbumDialog({
                 pointerEvents={album.assetCount ? "auto" : "none"}
                 gap={4}
               >
-                <Text {...typography["heading-17"]}>{album.title}</Text>
+                <Text {...typography["bold-17"]}>{album.title}</Text>
                 <Text
-                  {...typography["label-14"]}
-                  color="rgba(92, 101, 116, 0.6)"
+                  {...typography["medium-14"]}
+                  color={colors["gray-60"]}
                 >
                   {album.assetCount} media
                 </Text>

@@ -34,7 +34,7 @@ export default function AdsTab({ user, header }: AdsTabPropType) {
           gap={24}
           flexGrow={1}
           paddingHorizontal={16}
-          backgroundColor={colors["white"]}
+          backgroundColor={colors["main"]}
         >
           {header}
           <FlatList

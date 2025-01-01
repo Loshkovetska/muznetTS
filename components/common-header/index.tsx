@@ -1,4 +1,4 @@
-import { typography } from "@/tamagui.config";
+import { colors, typography } from "@/tamagui.config";
 import { ChevronLeft } from "@tamagui/lucide-icons";
 import { useNavigation } from "expo-router";
 import { useCallback } from "react";
@@ -37,7 +37,7 @@ export default function CommonHeader({
       marginTop={marginTop}
       position="relative"
       borderBottomWidth={withBorder ? 1 : 0}
-      borderColor="rgba(92, 101, 116, 0.2)"
+      borderColor={colors["gray-20"]}
       paddingBottom={withBorder ? 10 : 0}
       {...props}
     >
@@ -56,7 +56,7 @@ export default function CommonHeader({
       )}
 
       {typeof title === "string" ? (
-        <Text {...typography["heading-24"]}>{title}</Text>
+        <Text {...typography["bold-24"]}>{title}</Text>
       ) : (
         title
       )}

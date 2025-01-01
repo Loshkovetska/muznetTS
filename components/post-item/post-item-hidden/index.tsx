@@ -27,17 +27,17 @@ export default function PostItemHidden({
         position="absolute"
         top={8}
         right={8}
-        color="#5C6574"
+        color={colors["gray-100"]}
         onPress={onRemove}
       />
       <CircleCheck
-        color={colors["white"]}
+        color={colors["main"]}
         fill={colors["success"]}
         size={32}
       />
       <Text
-        {...typography["paragraph-16"]}
-        color="#5C6574"
+        {...typography["reg-16"]}
+        color={colors["gray-100"]}
         textAlign="center"
         marginBottom={8}
       >
@@ -48,7 +48,7 @@ export default function PostItemHidden({
         alignItems="center"
       >
         <Text
-          {...typography["heading-14"]}
+          {...typography["bold-14"]}
           color={colors["error"]}
           onPress={onReport}
         >
@@ -56,7 +56,7 @@ export default function PostItemHidden({
         </Text>
 
         <Text
-          {...typography["heading-14"]}
+          {...typography["bold-14"]}
           color={colors["black"]}
           onPress={onUnHide}
         >

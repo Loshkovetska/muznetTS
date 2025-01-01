@@ -86,7 +86,7 @@ export default function SingleCarousel({
       style={{
         width: width,
         height: height,
-        backgroundColor: dark ? colors["back-gray"] : undefined,
+        backgroundColor: dark ? colors["ghost-white"] : undefined,
       }}
     />
   );

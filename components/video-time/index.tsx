@@ -31,7 +31,7 @@ const TimeWrapper = styled(XStack, {
         width: "auto",
       },
       dark: {
-        backgroundColor: "rgba(0,0,0,0.5)",
+        backgroundColor: colors["black-50"],
         borderRadius: 58,
         maxWidth: 100,
         minWidth: 88,
@@ -47,9 +47,9 @@ const TimeWrapper = styled(XStack, {
 const TimeText = styled(Text, {
   variants: {
     sizeB: {
-      lg: typography["heading-17"],
-      sm: typography["heading-14"],
-      "sm-12": typography["label-12"],
+      lg: typography["bold-17"],
+      sm: typography["bold-14"],
+      "sm-12": typography["medium-12"],
     },
   } as const,
 });
@@ -74,7 +74,7 @@ export default function VideoTime({
     >
       <TimeText
         sizeB={sizeB}
-        color={colors["white"]}
+        color={colors["main"]}
       >
         {time}
       </TimeText>

@@ -61,7 +61,7 @@ export function Radio({ value, id, dark, ...rest }: RadioPropType) {
       <StyledIndicator dark={dark}>
         {!dark && (
           <Check
-            color={colors["white"]}
+            color={colors["main"]}
             size={14}
           />
         )}
@@ -76,7 +76,7 @@ const StyledRadioGroupItem = styled(Label, {
   borderColor: colors["default-gray"],
   borderWidth: 1,
   flexGrow: 1 / 2,
-  backgroundColor: colors["white"],
+  backgroundColor: colors["main"],
   alignItems: "center",
   gap: 8,
   padding: 16,
@@ -123,7 +123,7 @@ export function RadioGroupItemWithLabel({
           value={value}
           id={id}
         />
-        <Text {...typography["label-17"]}>{label}</Text>
+        <Text {...typography["medium-17"]}>{label}</Text>
       </XStack>
     </RadioGroupItem>
   );

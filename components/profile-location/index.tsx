@@ -8,13 +8,13 @@ const ItemInfoLocation = styled(XStack, {
 });
 
 const ItemInfoLocationText = styled(Text, {
-  color: colors["s-black"],
-  ...typography["paragraph-14"],
+  color: colors["comet"],
+  ...typography["reg-14"],
 
   variants: {
     sizeB: {
-      sm: typography["paragraph-14"],
-      lg: typography["paragraph-17"],
+      sm: typography["reg-14"],
+      lg: typography["reg-17"],
     },
   },
 });
@@ -31,7 +31,7 @@ export default function ProfileLocation({
     <ItemInfoLocation {...props}>
       <MapPin
         size={sizeB === "sm" ? 14 : 16}
-        color={colors["s-black"]}
+        color={colors["comet"]}
         fill="white"
       />
 

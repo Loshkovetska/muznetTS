@@ -67,7 +67,7 @@ export default function AddEditPostContent({
       return (
         <Button
           variant="transparent"
-          textProps={typography["heading-14"]}
+          textProps={typography["bold-14"]}
           onPress={() => router.back()}
         >
           Cancel
@@ -104,7 +104,7 @@ export default function AddEditPostContent({
 
   return (
     <YStack
-      backgroundColor={colors["white"]}
+      backgroundColor={colors["main"]}
       flexGrow={1}
     >
       <CommonHeader
@@ -121,8 +121,8 @@ export default function AddEditPostContent({
             <Button
               variant="transparent"
               textProps={{
-                ...typography["heading-14"],
-                color: form.formState.isValid ? undefined : colors["disabled"],
+                ...typography["bold-14"],
+                color: form.formState.isValid ? undefined : colors["gray-100"],
                 pointerEvents: form.formState.isValid ? "auto" : "none",
               }}
               loading={isAddPending || isUpdatePending}

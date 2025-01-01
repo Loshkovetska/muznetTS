@@ -2,7 +2,7 @@ import Button from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import { MobileSheet } from "@/components/ui/mobile-sheet";
 import useLocations from "@/lib/hooks/location.hook";
-import { typography } from "@/tamagui.config";
+import { colors, typography } from "@/tamagui.config";
 import { Search, X } from "@tamagui/lucide-icons";
 import { useCallback } from "react";
 import { Text, XStack, YStack } from "tamagui";
@@ -29,8 +29,8 @@ export default function LocationSelectDialog({
       return (
         <>
           <Text
-            color="#17191D"
-            {...typography["heading-17"]}
+            color={colors["black-ru"]}
+            {...typography["bold-17"]}
           >
             {boldText}
           </Text>
@@ -49,7 +49,7 @@ export default function LocationSelectDialog({
           alignItems="center"
           justifyContent="space-between"
         >
-          <Text {...typography["heading-20"]}>Add Location</Text>
+          <Text {...typography["bold-20"]}>Add Location</Text>
           <X
             size={20}
             onPress={onOpenChange}
@@ -68,7 +68,7 @@ export default function LocationSelectDialog({
             value.length ? (
               <Button
                 variant="transparent"
-                textProps={typography["heading-14"]}
+                textProps={typography["bold-14"]}
                 onPress={() => setValue("")}
               >
                 Clear
@@ -81,8 +81,8 @@ export default function LocationSelectDialog({
         />
         <YStack gap={4}>
           <Text
-            {...typography["paragraph-17"]}
-            color="#B9B9BA"
+            {...typography["reg-17"]}
+            color={colors["ghost"]}
           >
             Searching results
           </Text>
@@ -92,18 +92,18 @@ export default function LocationSelectDialog({
               key={item.properties.place_id}
               paddingVertical={8}
               borderBottomWidth={1}
-              borderColor="#E9ECF2"
+              borderColor={colors["solitude"]}
               onPress={() => onValueChange(item.properties.address_line1)}
             >
               <Text
-                {...typography["heading-17"]}
-                color="rgba(92, 101, 116, 0.6)"
+                {...typography["bold-17"]}
+                color={colors["gray-60"]}
               >
                 {getText(item.properties.address_line1)}
               </Text>
               <Text
-                {...typography["label-14"]}
-                color="rgba(92, 101, 116, 0.6)"
+                {...typography["medium-14"]}
+                color={colors["gray-60"]}
               >
                 {item.properties.city}, {item.properties.country}
               </Text>

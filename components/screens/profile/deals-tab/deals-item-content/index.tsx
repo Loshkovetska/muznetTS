@@ -24,14 +24,14 @@ export default function DealsItemContent(
       <YStack
         gap={16}
         paddingHorizontal={16}
-        backgroundColor={colors["white"]}
+        backgroundColor={colors["main"]}
       >
         <CommonHeader
           title={`Deal № ${deal.deal_num}`}
           onBack={deal.onClose}
         />
         <Text
-          {...typography["heading-24"]}
+          {...typography["bold-24"]}
           textAlign="center"
         >
           {deal.ad.title}
@@ -55,8 +55,8 @@ export default function DealsItemContent(
             onPress={() => setOpen((prev) => !prev)}
           >
             <Text
-              {...typography["label-16"]}
-              color="#232323"
+              {...typography["medium-16"]}
+              color={colors["nero"]}
             >
               More details
             </Text>
@@ -64,7 +64,7 @@ export default function DealsItemContent(
           </XStack>
           <Separator />
           {isOpen && (
-            <Text {...typography["label-16"]}>{deal.ad.description}</Text>
+            <Text {...typography["medium-16"]}>{deal.ad.description}</Text>
           )}
         </ScrollView>
       </YStack>

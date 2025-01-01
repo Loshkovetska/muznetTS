@@ -11,7 +11,7 @@ type SwitchWithLabelPropType = {
 
 const StyledSwitch = styled(Switch, {
   unstyled: true,
-  backgroundColor: "rgba(92, 101, 116, 0.1)",
+  backgroundColor: colors["gray-10"],
   alignItems: "center",
   height: 24,
   width: 40,
@@ -34,13 +34,13 @@ const StyledSwitchThumb = styled(Switch.Thumb, {
   width: 20,
   height: 20,
   borderRadius: 10,
-  backgroundColor: colors["white"],
+  backgroundColor: colors["main"],
   shadowOffset: {
     width: 1,
     height: 2,
   },
   shadowRadius: 4,
-  shadowColor: "rgba(0, 0, 0, 0.06)",
+  shadowColor: colors["black-6"],
 });
 
 export default function SwitchWithLabel(props: SwitchWithLabelPropType) {

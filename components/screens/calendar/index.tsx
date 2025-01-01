@@ -16,7 +16,7 @@ const Content = styled(YStack, {
   paddingTop: 14,
   paddingHorizontal: 16,
   paddingBottom: 16,
-  backgroundColor: colors["white"],
+  backgroundColor: colors["main"],
   borderWidth: 1,
   borderColor: colors["light-gray"],
   gap: 20,
@@ -38,7 +38,7 @@ export default function CalendarItem(props: CalendarItemPropType) {
         resizeMode="cover"
       />
       <Content>
-        <Text {...typography["heading-20"]}>{ad.title}</Text>
+        <Text {...typography["bold-20"]}>{ad.title}</Text>
         <YStack gap={12}>
           <DetailsPeriod
             noMargin

@@ -12,7 +12,7 @@ export default function DetailsList({ title, list }: DetailsListPropType) {
     <YStack gap={24}>
       <Separator />
       <YStack gap={16}>
-        <Text {...typography["heading-20"]}>{title}</Text>
+        <Text {...typography["bold-20"]}>{title}</Text>
         <YStack gap={8}>
           {list.map((item) => (
             <XStack
@@ -25,8 +25,8 @@ export default function DetailsList({ title, list }: DetailsListPropType) {
                 fill={colors["black"]}
               />
               <Text
-                {...typography["paragraph-17"]}
-                color={colors["disabled"]}
+                {...typography["reg-17"]}
+                color={colors["gray-100"]}
               >
                 {item}
               </Text>

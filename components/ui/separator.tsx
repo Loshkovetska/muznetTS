@@ -4,7 +4,7 @@ import { Separator as SeparatorT } from "tamagui";
 export default function Separator() {
   return (
     <SeparatorT
-      borderColor={colors["disabled"]}
+      borderColor={colors["gray-100"]}
       opacity={0.2}
       borderWidth={0.5}
       borderRadius={3}

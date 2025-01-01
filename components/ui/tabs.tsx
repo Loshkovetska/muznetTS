@@ -19,7 +19,7 @@ const Container = styled(TTabs, {
 
 const TabList = styled(TTabs.List, {
   padding: 4,
-  backgroundColor: colors["white"],
+  backgroundColor: colors["main"],
   borderRadius: 8,
   borderWidth: 1,
   borderColor: colors["light-gray"],
@@ -29,7 +29,7 @@ const TabList = styled(TTabs.List, {
 
 const Tab = styled(TTabs.Tab, {
   borderRadius: 6,
-  backgroundColor: colors["white"],
+  backgroundColor: colors["main"],
   flexGrow: 1,
   height: 32,
   variants: {
@@ -61,8 +61,8 @@ export default function Tabs({
             selected={defaultValue === tab.value}
           >
             <Text
-              {...typography["heading-14"]}
-              color={colors[defaultValue === tab.value ? "white" : "black"]}
+              {...typography["bold-14"]}
+              color={colors[defaultValue === tab.value ? "main" : "black"]}
             >
               {tab.title}
             </Text>

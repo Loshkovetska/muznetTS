@@ -29,9 +29,9 @@ export default function SearchOption({
       gap={8}
     >
       <Text
-        {...typography["label-13"]}
+        {...typography["medium-13"]}
         flexGrow={1}
-        color={colors["white"]}
+        color={colors["main"]}
       >
         {text}
       </Text>
@@ -42,12 +42,12 @@ export default function SearchOption({
           height={16}
           alignItems="center"
           justifyContent="center"
-          backgroundColor="rgba(254,254,254,0.2)"
+          backgroundColor={colors["main-20"]}
           borderRadius={8}
         >
           <X
             size={12}
-            color="#B9B9BA"
+            color={colors["ghost"]}
           />
         </Stack>
       )}

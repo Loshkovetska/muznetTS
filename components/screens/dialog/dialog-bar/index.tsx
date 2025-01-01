@@ -83,7 +83,7 @@ export default function DialogBar({ chatUser }: { chatUser?: UserType }) {
       <XStack
         padding={16}
         paddingBottom={40}
-        backgroundColor={colors["white"]}
+        backgroundColor={colors["main"]}
         position="absolute"
         width="100%"
         left={0}
@@ -94,7 +94,7 @@ export default function DialogBar({ chatUser }: { chatUser?: UserType }) {
           animate={false}
           iconLeft={
             <Paperclip
-              color="#5C6574"
+              color={colors["gray-100"]}
               onPress={() => toggleState("upload", true)}
             />
           }
@@ -108,7 +108,7 @@ export default function DialogBar({ chatUser }: { chatUser?: UserType }) {
             >
               <SendHorizontal
                 size={16}
-                color={colors["white"]}
+                color={colors["main"]}
               />
             </Button>
           }

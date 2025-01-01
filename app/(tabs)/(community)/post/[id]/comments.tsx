@@ -37,7 +37,7 @@ export default function Page() {
         width="100%"
         gap={16}
         flexGrow={1}
-        backgroundColor={colors["white"]}
+        backgroundColor={colors["main"]}
       >
         <CommonHeader
           title="Comments"

@@ -16,7 +16,7 @@ export default function AuthSignIn() {
     <AuthContent>
       <Content>
         <Text
-          {...typography["heading-28"]}
+          {...typography["bold-28"]}
           marginBottom={32}
           width="100%"
           textAlign="center"

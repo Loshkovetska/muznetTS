@@ -47,19 +47,19 @@ export default function SearchItem(item: SearchPostItemType) {
           justifyContent="center"
         >
           {item.type === "place" ? (
-            <MapPin color="rgba(92, 101, 116, 0.4)" />
+            <MapPin color={colors["gray-40"]} />
           ) : (
-            <Layers color="rgba(92, 101, 116, 0.4)" />
+            <Layers color={colors["gray-40"]} />
           )}
         </Stack>
         <YStack
           flexGrow={1}
           gap={4}
         >
-          <Text {...typography["heading-14"]}>{item.name}</Text>
+          <Text {...typography["bold-14"]}>{item.name}</Text>
           <Text
-            color="rgba(92, 101, 116, 0.6)"
-            {...typography["label-14"]}
+            color={colors["gray-60"]}
+            {...typography["medium-14"]}
           >
             {item.count} {item.count === 1 ? "post" : "posts"}
           </Text>

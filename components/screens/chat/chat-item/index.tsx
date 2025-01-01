@@ -44,7 +44,7 @@ export default function ChatItem(
               gap={6}
             >
               <Text
-                {...typography["heading-15"]}
+                {...typography["bold-15"]}
                 numberOfLines={1}
               >
                 {currentUser.name} {currentUser.surname}
@@ -59,8 +59,8 @@ export default function ChatItem(
                   justifyContent="center"
                 >
                   <Text
-                    {...typography["heading-10"]}
-                    color={colors["white"]}
+                    {...typography["bold-10"]}
+                    color={colors["main"]}
                   >
                     {chat.count_to_read}
                   </Text>
@@ -69,17 +69,17 @@ export default function ChatItem(
             </XStack>
 
             <Text
-              {...typography["paragraph-15"]}
+              {...typography["reg-15"]}
               numberOfLines={1}
-              color="#5C6574"
+              color={colors["gray-100"]}
             >
               {chat.last_message}
             </Text>
           </YStack>
         </XStack>
         <Text
-          {...typography["paragraph-12"]}
-          color="#B9B9BA"
+          {...typography["reg-12"]}
+          color={colors["ghost"]}
           alignSelf="flex-start"
         >
           {dayjs(chat.created_at).format("HH:MM")}

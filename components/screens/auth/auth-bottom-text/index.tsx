@@ -5,9 +5,9 @@ import { Text } from "tamagui";
 export default function AuthBottomText({ isSignIn }: { isSignIn: boolean }) {
   return (
     <Text
-      color={colors["s-black"]}
+      color={colors["comet"]}
       textAlign="center"
-      {...typography["paragraph-17"]}
+      {...typography["reg-17"]}
     >
       {isSignIn ? "Don't have an account?" : "Already have an account?"}{" "}
       <Link

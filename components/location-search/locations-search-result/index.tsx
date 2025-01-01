@@ -10,7 +10,7 @@ const StyledLocationsContent = styled(XStack, {
   position: "absolute",
   top: 48,
   left: 0,
-  backgroundColor: colors["white"],
+  backgroundColor: colors["main"],
   width: "100%",
   borderInlineWidth: 1,
   borderBlockWidth: 1,
@@ -75,7 +75,7 @@ export default function LocationSearchResult({
           renderItem={({ item }) => (
             <Text
               zIndex={2}
-              {...typography["paragraph-17"]}
+              {...typography["reg-17"]}
               color={colors["black"]}
               onPress={() => onSelect(item)}
             >
@@ -93,7 +93,7 @@ export default function LocationSearchResult({
         width={SCREEN_WIDTH}
         height={SCREEN_HEIGHT}
         opacity={isOpen ? 1 : 0}
-        backgroundColor={mode === "light" ? "transparent" : "rgba(0,0,0,0.3)"}
+        backgroundColor={mode === "light" ? "transparent" : colors["black-30"]}
         onPress={isOpen ? () => setOpen(false) : undefined}
       />
     </>

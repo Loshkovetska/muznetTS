@@ -2,7 +2,7 @@ import SearchOption from "@/components/search-with-select/search-option";
 import Button from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import { setValueToForm } from "@/lib/utils";
-import { typography } from "@/tamagui.config";
+import { colors, typography } from "@/tamagui.config";
 import { Search } from "@tamagui/lucide-icons";
 import { useCallback, useState } from "react";
 import { UseFormReturn, useWatch } from "react-hook-form";
@@ -45,7 +45,7 @@ export default function TagsInput({ form }: TagsInputPropType) {
     <XStack
       alignItems="center"
       borderBottomWidth={1}
-      borderColor="rgba(185, 185, 186, 0.2)"
+      borderColor={colors["ghost-20"]}
       paddingHorizontal={16}
       gap={6}
     >
@@ -76,7 +76,7 @@ export default function TagsInput({ form }: TagsInputPropType) {
       )}
       <Button
         variant="transparent"
-        textProps={typography["heading-14"]}
+        textProps={typography["bold-14"]}
         marginLeft={6}
         onPress={onClear}
       >

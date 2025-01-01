@@ -33,13 +33,13 @@ export default function AdsList({ type, title, id }: AdsListPropType) {
         alignItems="center"
         justifyContent="space-between"
       >
-        <Text {...typography["heading-20"]}>{title}</Text>
+        <Text {...typography["bold-20"]}>{title}</Text>
         {type === "popular" && (
           <Link
             href="/"
             asChild
           >
-            <Text {...typography["paragraph-17"]}>View all</Text>
+            <Text {...typography["reg-17"]}>View all</Text>
           </Link>
         )}
       </XStack>

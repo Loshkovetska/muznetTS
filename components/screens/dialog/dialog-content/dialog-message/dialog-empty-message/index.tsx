@@ -1,4 +1,4 @@
-import { typography } from "@/tamagui.config";
+import { colors, typography } from "@/tamagui.config";
 import { Pencil } from "@tamagui/lucide-icons";
 import { Text, XStack } from "tamagui";
 
@@ -10,11 +10,11 @@ export default function DialogEmptyMessage() {
     >
       <Pencil
         size={14}
-        color={"#333333"}
+        color={colors["third"]}
       />
       <Text
-        {...typography["paragraph-12"]}
-        color="#5C6574"
+        {...typography["reg-12"]}
+        color={colors["gray-100"]}
       >
         writing...
       </Text>

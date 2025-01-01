@@ -1,4 +1,4 @@
-import { typography } from "@/tamagui.config";
+import { colors, typography } from "@/tamagui.config";
 import { useCallback, useState } from "react";
 import { LayoutChangeEvent, LayoutRectangle } from "react-native";
 import { Stack, Text, XStack, styled } from "tamagui";
@@ -8,7 +8,7 @@ const TabsContainer = styled(XStack, {
   paddingTop: 12,
   paddingHorizontal: 16,
   borderBottomWidth: 1,
-  borderColor: "rgba(92, 101, 116, 0.2)",
+  borderColor: colors["gray-20"],
   justifyContent: "space-between",
   gap: 16,
   position: "relative",
@@ -16,7 +16,7 @@ const TabsContainer = styled(XStack, {
 });
 
 const TabsThumb = styled(Stack, {
-  backgroundColor: "rgba(23, 25, 29, 1)",
+  backgroundColor: colors["black-ru"],
   height: 2,
   width: 26,
   borderTopLeftRadius: 4,
@@ -63,10 +63,8 @@ export default function SearchTabs({
           key={currentIndex === tab.id ? "current" : tab.title}
           onPress={() => setIndex(tab.id)}
           onLayout={currentIndex === tab.id ? onLayout : undefined}
-          {...typography["heading-14"]}
-          color={
-            currentIndex === tab.id ? undefined : "rgba(92, 101, 116, 0.6)"
-          }
+          {...typography["bold-14"]}
+          color={currentIndex === tab.id ? undefined : colors["gray-60"]}
         >
           {tab.title}
         </Text>

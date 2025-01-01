@@ -15,9 +15,9 @@ export default function ProfileUser({
     >
       <User
         size={16}
-        color={colors["s-black"]}
+        color={colors["comet"]}
       />
-      <Text {...typography["paragraph-17"]}>
+      <Text {...typography["reg-17"]}>
         {user?.name} {user?.surname}
       </Text>
     </XStack>

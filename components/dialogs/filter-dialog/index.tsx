@@ -95,7 +95,7 @@ export default function FilterDialog({
           justifyContent="center"
         >
           <Text
-            {...typography["label-20"]}
+            {...typography["medium-20"]}
             textAlign="center"
           >
             Sort and Filter
@@ -188,7 +188,7 @@ export default function FilterDialog({
           width={SCREEN_WIDTH}
         >
           <Text
-            {...typography["paragraph-17"]}
+            {...typography["reg-17"]}
             paddingLeft={16}
             onPress={resetFilters}
           >

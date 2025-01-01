@@ -56,7 +56,7 @@ export default function CreateDealContent({
         gap={24}
       >
         <Text
-          {...typography["heading-20"]}
+          {...typography["bold-20"]}
           textAlign="center"
         >
           Create Offer

@@ -45,7 +45,7 @@ export default function CommentItem(
     <XStack
       gap={8}
       borderBottomWidth={1}
-      borderColor="rgba(92, 101, 116, 0.2)"
+      borderColor={colors["gray-20"]}
       paddingBottom={16}
       onPress={comment.onPress}
     >
@@ -62,7 +62,7 @@ export default function CommentItem(
       >
         <Text>
           <Text
-            {...typography["heading-14"]}
+            {...typography["bold-14"]}
             onPress={commentToUser ? onPress : undefined}
           >
             {comment.user.name} {comment.user.surname}{" "}
@@ -80,18 +80,18 @@ export default function CommentItem(
             gap={13}
             flexGrow={1}
           >
-            <Text color="rgba(92, 101, 116, 0.8)">{commentDate}</Text>
+            <Text color={colors["gray-80"]}>{commentDate}</Text>
             <Text
-              {...typography["label-15"]}
-              color="rgba(92, 101, 116, 0.8)"
+              {...typography["medium-15"]}
+              color={colors["gray-80"]}
             >
-              <Text color="#141517">{comment.likes_count}</Text>
+              <Text color={colors["secondary"]}>{comment.likes_count}</Text>
               {comment.likes_count === 1 ? " like" : " likes"}
             </Text>
           </XStack>
           <Heart
             size={16}
-            fill={colors[isLiked ? "black" : "white"]}
+            fill={colors[isLiked ? "black" : "main"]}
             onPress={() => reactComment(isLiked)}
           />
         </XStack>

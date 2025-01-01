@@ -20,7 +20,7 @@ export default function TabbarIcon({
     >
       <Icon
         size={24}
-        color={focused ? colors["black"] : "#B9B9BA"}
+        color={colors[focused ? "black" : "ghost"]}
       />
       <Stack
         width={4}

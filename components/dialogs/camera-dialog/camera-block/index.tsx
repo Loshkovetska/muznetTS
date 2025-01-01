@@ -9,7 +9,7 @@ import { Stack, styled } from "tamagui";
 const Frame = styled(Stack, {
   width: 24,
   height: 24,
-  borderColor: "#F2F3F9",
+  borderColor: colors["ghost-white"],
   position: "absolute",
   zIndex: 200,
   variants: {

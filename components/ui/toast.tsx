@@ -10,30 +10,24 @@ const ToastWrapper = styled(XStack, {
   padding: 8,
   borderRadius: 8,
   zIndex: 200_00,
-  variants: {
-    variant: {
-      success: {
-        backgroundColor: colors["light-success"],
-      },
-      error: {
-        backgroundColor: "#FCF1EF",
-      },
-    },
-  } as const,
 });
 
 const Toast = (props: { type: "error" | "success"; text1: string }) => (
-  <ToastWrapper variant={props.type as "success"}>
+  <ToastWrapper
+    backgroundColor={
+      colors[props.type === "success" ? "light-success" : "light-error2"]
+    }
+  >
     {props.type === "success" && (
       <CircleCheck
-        color={colors["white"]}
+        color={colors["main"]}
         fill={colors["success"]}
       />
     )}
     {props.type === "error" && <CircleX color={colors["error"]} />}
 
     <Text
-      {...typography["label-14"]}
+      {...typography["medium-14"]}
       color={colors[props.type as "success"]}
     >
       {props.text1}

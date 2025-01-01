@@ -21,10 +21,10 @@ export default function PostItemFunc(
         gap={8}
       >
         <Heart
-          fill={colors[post.isLiked ? "black" : "white"]}
+          fill={colors[post.isLiked ? "black" : "main"]}
           onPress={post.onReact}
         />
-        <Text {...typography["heading-14"]}>{post.info.likes}</Text>
+        <Text {...typography["bold-14"]}>{post.info.likes}</Text>
       </XStack>
       <Link href={`/post/${post.id}/comments`}>
         <MessageCircle />

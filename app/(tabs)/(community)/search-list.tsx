@@ -15,21 +15,21 @@ export default function Page() {
 
   return (
     <YStack
-      backgroundColor={colors["white"]}
+      backgroundColor={colors["main"]}
       flexGrow={1}
     >
       <CommonHeader
         title={
           <Text
-            {...typography["heading-20"]}
+            {...typography["bold-20"]}
             textTransform="capitalize"
             textAlign="center"
             flexGrow={1}
           >
             {params.tag || params.place}
             <Text
-              {...typography["label-14"]}
-              color="rgba(92, 101, 116, 0.6)"
+              {...typography["medium-14"]}
+              color={colors["gray-60"]}
             >
               {"  "}({params.count} posts)
             </Text>

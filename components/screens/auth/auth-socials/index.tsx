@@ -17,8 +17,8 @@ export default function AuthSocial() {
       >
         <Separator />
         <Text
-          {...typography["label-20"]}
-          color="#141517"
+          {...typography["medium-20"]}
+          color={colors["secondary"]}
         >
           OR
         </Text>
@@ -32,7 +32,7 @@ export default function AuthSocial() {
         <AuthSocialItem
           icon={
             <Mail
-              color={colors["white"]}
+              color={colors["main"]}
               fill={colors["black"]}
             />
           }

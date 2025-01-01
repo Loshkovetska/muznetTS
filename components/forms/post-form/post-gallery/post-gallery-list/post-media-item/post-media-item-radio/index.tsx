@@ -17,7 +17,7 @@ export default function PostMediaItemRadio({
       width={16}
       height={16}
       borderWidth={2}
-      borderColor={colors[isSelected ? "black" : "white"]}
+      borderColor={colors[isSelected ? "black" : "main"]}
       borderRadius={10}
       alignItems="center"
       justifyContent="center"

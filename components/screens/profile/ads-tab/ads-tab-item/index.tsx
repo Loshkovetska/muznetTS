@@ -46,9 +46,9 @@ export default function AdsTabItem(ad: AdType & { onEdit: () => void }) {
               sizeB="sm-16"
             />
           </XStack>
-          <Text {...typography["heading-16"]}>{ad.title}</Text>
+          <Text {...typography["bold-16"]}>{ad.title}</Text>
           <Text
-            {...typography["label-15"]}
+            {...typography["medium-15"]}
             numberOfLines={2}
             height={38}
           >

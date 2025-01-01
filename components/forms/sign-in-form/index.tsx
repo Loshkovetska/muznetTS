@@ -30,7 +30,7 @@ export default function SignInForm() {
   return (
     <>
       <Text
-        {...typography["heading-ext28"]}
+        {...typography["extrabold-28"]}
         alignSelf="flex-start"
         marginBottom={28}
       >

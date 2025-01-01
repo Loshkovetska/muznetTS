@@ -52,7 +52,7 @@ export default function PostGalleryFunc({
           gap={0}
           iconRight={<ChevronDown size={18} />}
           variant="transparent"
-          textProps={typography["heading-14"]}
+          textProps={typography["bold-14"]}
           onPress={() => setOpen(true)}
         >
           {currentAlbum?.title}
@@ -60,7 +60,7 @@ export default function PostGalleryFunc({
         <Button
           iconLeft={<Camera size={18} />}
           variant="transparent"
-          textProps={typography["heading-14"]}
+          textProps={typography["bold-14"]}
           onPress={() => setCameraOpen(true)}
         >
           Take a Photo / Video

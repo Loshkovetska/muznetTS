@@ -30,7 +30,7 @@ export default function PostsTile({
       style={{ flexGrow: 1 }}
       showsVerticalScrollIndicator={false}
       contentContainerStyle={{
-        backgroundColor: colors["white"],
+        backgroundColor: colors["main"],
         gap: 1,
         flexGrow: 1,
         paddingBottom: SCREEN_WIDTH,

@@ -20,7 +20,7 @@ const StyledIndicatorBlock = styled(XStack, {
     },
     lightCirle: {
       true: {
-        backgroundColor: "rgba(256,256,256,0.2)",
+        backgroundColor: colors["white-20"],
         padding: 8,
         borderRadius: 90,
         bottom: 16,
@@ -87,24 +87,27 @@ export default function IndicatorBlock({
         {!isLightCircleVariant && (
           <IndicatorThumb
             left={currentIndex * 14}
-            backgroundColor={colors[variant === "light" ? "white" : "black"]}
+            backgroundColor={colors[variant === "light" ? "main" : "black"]}
           />
         )}
-        {indicators.map((key, index) => (
-          <IndicatorItem
-            key={key}
-            lightCirle={isLightCircleVariant}
-            backgroundColor={
-              isLightCircleVariant && index !== currentIndex
-                ? colors["white"]
-                : isLightCircleVariant && index === currentIndex
-                ? colors["black"]
-                : variant === "dark"
-                ? colors["gray"]
-                : "rgba(254,254,254,0.7)"
-            }
-          />
-        ))}
+        {indicators.map((key, index) => {
+          const bgColor =
+            isLightCircleVariant && index !== currentIndex
+              ? "main"
+              : isLightCircleVariant && index === currentIndex
+              ? "black"
+              : variant === "dark"
+              ? "ghost"
+              : "main-70";
+
+          return (
+            <IndicatorItem
+              key={key}
+              lightCirle={isLightCircleVariant}
+              backgroundColor={colors[bgColor as "ghost"]}
+            />
+          );
+        })}
       </StyledIndicatorBlock>
     </Container>
   );

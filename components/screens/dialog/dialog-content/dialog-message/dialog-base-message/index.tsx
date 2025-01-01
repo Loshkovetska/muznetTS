@@ -11,8 +11,8 @@ export default function DialogBaseMessage(
     <>
       {message.text?.length > 0 && (
         <Text
-          {...typography["label-14"]}
-          color={isSender ? colors["white"] : "#333333"}
+          {...typography["medium-14"]}
+          color={colors[isSender ? "main" : "third"]}
         >
           {message.text}
         </Text>

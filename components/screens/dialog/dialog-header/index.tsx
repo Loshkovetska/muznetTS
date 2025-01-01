@@ -20,7 +20,7 @@ export default function DialogHeader({
   return (
     <YStack position="relative">
       <XStack
-        backgroundColor={colors["white"]}
+        backgroundColor={colors["main"]}
         paddingHorizontal={16}
         paddingVertical={20}
         paddingTop={64}
@@ -42,7 +42,7 @@ export default function DialogHeader({
               borderRadius={4}
               source={chatUser?.photo?.[0]}
             />
-            <Text {...typography["heading-20"]}>
+            <Text {...typography["bold-20"]}>
               {chatUser?.name} {chatUser?.surname}
             </Text>
           </XStack>

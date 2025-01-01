@@ -3,20 +3,20 @@ import React from "react";
 import { GetProps, Spinner, Button as TButton, Text, styled } from "tamagui";
 
 const ButtonTextStyled = styled(Text, {
-  color: colors["white"],
+  color: colors["main"],
   variants: {
     sizeB: {
-      sm: typography["label-13"],
-      sm14: typography["label-14"],
-      sm15: typography["heading-15"],
-      lg: typography["label-16"],
-      sm17: typography["paragraph-17"],
+      sm: typography["medium-13"],
+      sm14: typography["medium-14"],
+      sm15: typography["bold-15"],
+      lg: typography["medium-16"],
+      sm17: typography["reg-17"],
     },
     variant: {
       default: { color: colors["black"] },
-      dark: { color: colors["white"] },
+      dark: { color: colors["main"] },
       white: { color: colors["black"] },
-      "black/50": { color: colors["white"] },
+      "black/50": { color: colors["main"] },
       "white/50": { color: colors["black"] },
       outlined: { color: colors["black"] },
       transparent: { color: colors["black"] },
@@ -90,36 +90,36 @@ const ButtonStyled = styled(TButton, {
         pressStyle: { backgroundColor: "transparent", borderWidth: 0 },
       },
       default: {
-        backgroundColor: colors["gray"],
+        backgroundColor: colors["ghost"],
       },
       dark: {
         backgroundColor: colors["black"],
       },
       white: {
-        backgroundColor: colors["white"],
+        backgroundColor: colors["main"],
         borderWidth: 1,
         borderColor: colors["black"],
       },
       secondary: {
-        backgroundColor: "#F2F3F9",
+        backgroundColor: colors["ghost-white"],
       },
       "black/50": {
-        backgroundColor: "rgba(0,0,0,0.5)",
+        backgroundColor: colors["black-50"],
       },
       "white/50": {
-        backgroundColor: "rgba(256,256,256,0.5)",
+        backgroundColor: colors["white-50"],
       },
       "red-outlined": {
-        backgroundColor: colors["white"],
+        backgroundColor: colors["main"],
         borderWidth: 1,
         borderColor: colors["error"],
       },
     },
     disabled: {
       true: {
-        backgroundColor: colors["gray"],
+        backgroundColor: colors["ghost"],
         pointerEvents: "none",
-        color: colors["disabled"],
+        color: colors["gray-100"],
       },
     },
   } as const,

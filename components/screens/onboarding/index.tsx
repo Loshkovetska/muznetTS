@@ -11,7 +11,7 @@ import { ONBOARDING_CONTENT } from "./constants";
 const StyledContainer = styled(YStack, {
   height: "100%",
   width: "100%",
-  backgroundColor: colors["white"],
+  backgroundColor: colors["main"],
 });
 
 const StyledImageBlock = styled(YStack, {
@@ -26,7 +26,7 @@ const StyledContent = styled(YStack, {
   alignItems: "center",
   paddingHorizontal: 30,
   paddingBottom: 50,
-  backgroundColor: colors["white"],
+  backgroundColor: colors["main"],
   flexGrow: 1,
 });
 
@@ -54,13 +54,13 @@ export default function OnboardingContent() {
       </StyledImageBlock>
       <StyledContent>
         <Text
-          {...typography["heading-20"]}
+          {...typography["bold-20"]}
           paddingBottom={10}
         >
           {CONTENT.title}
         </Text>
         <Text
-          {...typography["paragraph-17"]}
+          {...typography["reg-17"]}
           textAlign="center"
         >
           {CONTENT.text}
@@ -79,7 +79,7 @@ export default function OnboardingContent() {
                 <Button
                   sizeB="lg"
                   variant="transparent"
-                  textProps={typography["heading-20"]}
+                  textProps={typography["bold-20"]}
                   width="auto"
                 >
                   Skip
@@ -89,7 +89,7 @@ export default function OnboardingContent() {
                 sizeB="lg"
                 variant="transparent"
                 width="auto"
-                textProps={typography["heading-20"]}
+                textProps={typography["bold-20"]}
                 onPress={() => setScreenNumber((prev) => prev + 1)}
                 iconRight={<ArrowRight color={colors["black"]} />}
               >

@@ -21,7 +21,7 @@ export default function CameraActionButton({
     >
       <Icon
         size={18}
-        color={colors["white"]}
+        color={colors["main"]}
       />
     </Button>
   );

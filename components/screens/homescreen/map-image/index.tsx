@@ -8,7 +8,7 @@ const MapContainer = styled(Stack, {
   width: "100%",
   height: 223,
   borderWidth: 1,
-  borderColor: colors["gray"],
+  borderColor: colors["ghost"],
   borderRadius: 6,
   overflow: "hidden",
   position: "relative",
@@ -33,18 +33,8 @@ export default function MapImage() {
         height="100%"
       />
       <MapContainerBlock>
-        <Text
-          {...typography["heading-ext28"]}
-          fontFamily="MulishBlack"
-        >
-          Find
-        </Text>
-        <Text
-          {...typography["heading-ext28"]}
-          fontFamily="MulishBlack"
-        >
-          Nearby
-        </Text>
+        <Text {...typography["black-28"]}>Find</Text>
+        <Text {...typography["black-28"]}>Nearby</Text>
         <Link
           href="/map"
           asChild

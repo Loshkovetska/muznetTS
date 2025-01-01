@@ -29,7 +29,7 @@ export default function DealsTab({ user, header }: DealsTabPropType) {
           gap={24}
           flexGrow={1}
           paddingHorizontal={16}
-          backgroundColor={colors["white"]}
+          backgroundColor={colors["main"]}
         >
           {header}
           <DealsTabs

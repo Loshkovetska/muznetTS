@@ -52,7 +52,7 @@ export const MobileSheet = ({
         justifyContent="center"
         gap={24}
         disableHideBottomOverflow={!!snapPoints}
-        backgroundColor={colors["white"]}
+        backgroundColor={colors["main"]}
       >
         <SelectProvider
           coords={{ x: 0, y: 0 }}
@@ -63,7 +63,7 @@ export const MobileSheet = ({
               width={72}
               height={5}
               borderRadius={5}
-              backgroundColor="#E0E0E0"
+              backgroundColor={colors["gainsboro"]}
               alignSelf="center"
             />
           )}

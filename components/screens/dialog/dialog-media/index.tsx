@@ -26,7 +26,7 @@ export default function DialogMedia({ file, imageSize }: DialogMediaPropType) {
       <XStack
         borderWidth={1}
         borderColor={colors["light-gray"]}
-        backgroundColor={colors["white"]}
+        backgroundColor={colors["main"]}
         paddingVertical={4}
         paddingHorizontal={8}
         borderRadius={16}
@@ -39,7 +39,7 @@ export default function DialogMedia({ file, imageSize }: DialogMediaPropType) {
           color={colors["black"]}
         />
         <Text
-          {...typography["label-12"]}
+          {...typography["medium-12"]}
           numberOfLines={1}
           maxWidth="80%"
         >

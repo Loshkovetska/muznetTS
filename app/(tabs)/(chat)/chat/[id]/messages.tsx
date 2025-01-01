@@ -3,6 +3,7 @@ import DialogBar from "@/components/screens/dialog/dialog-bar";
 import DialogContent from "@/components/screens/dialog/dialog-content";
 import DialogHeader from "@/components/screens/dialog/dialog-header";
 import useMessages from "@/lib/hooks/messages.hook";
+import { colors } from "@/tamagui.config";
 import { useState } from "react";
 import { YStack } from "tamagui";
 
@@ -15,7 +16,7 @@ export default function Page() {
   return (
     <>
       <YStack
-        backgroundColor="#F2F3F9"
+        backgroundColor={colors["ghost-white"]}
         flexGrow={1}
       >
         <DialogHeader

@@ -31,14 +31,14 @@ export default function ProfileMenu({
       flexGrow={1}
       paddingBottom={120}
       paddingTop={68}
-      backgroundColor={colors["white"]}
+      backgroundColor={colors["main"]}
       paddingHorizontal={16}
     >
       <XStack
         alignItems="center"
         justifyContent="space-between"
       >
-        <Text {...typography["heading-ext28"]}>Hello, {user?.name}</Text>
+        <Text {...typography["extrabold-28"]}>Hello, {user?.name}</Text>
         <CommonImage
           borderRadius={6}
           source={user?.photo?.[0]}
@@ -66,8 +66,8 @@ export default function ProfileMenu({
         ))}
       </YStack>
       <Text
-        {...typography["paragraph-17"]}
-        color="#717171"
+        {...typography["reg-17"]}
+        color={colors["dim-gray"]}
         onPress={logOut}
       >
         Log out

@@ -8,7 +8,7 @@ const Container = styled(XStack, {
   paddingTop: 8,
   paddingHorizontal: 16,
   paddingBottom: 40,
-  backgroundColor: colors["white"],
+  backgroundColor: colors["main"],
   position: "absolute",
   bottom: 0,
   left: 0,

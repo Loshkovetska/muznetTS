@@ -4,6 +4,7 @@ import { useUser } from "@/components/providers/user-provider";
 import CommentItem from "@/components/screens/community/comments/comments-list/comment-item";
 import { CommentType } from "@/lib/types/comment";
 import { PostType } from "@/lib/types/post";
+import { colors } from "@/tamagui.config";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { FlatList } from "react-native";
 import { Stack, YStack } from "tamagui";
@@ -69,7 +70,7 @@ export default function CommentsList({
           paddingBottom={16}
           gap={12}
           borderBottomWidth={1}
-          borderColor="rgba(92, 101, 116, 0.2)"
+          borderColor={colors["gray-20"]}
         >
           <PostItemUser {...post.user} />
           <PostItemInfo

@@ -1,6 +1,6 @@
 import { MobileSheet } from "@/components/ui/mobile-sheet";
 import Separator from "@/components/ui/separator";
-import { typography } from "@/tamagui.config";
+import { colors, typography } from "@/tamagui.config";
 import { Text, YStack } from "tamagui";
 
 type PostMoreDialogPropType = {
@@ -24,17 +24,17 @@ export default function PostMoreDialog({
       onOpenChange={onOpenChange}
     >
       <YStack
-        backgroundColor="#F5F5F5"
+        backgroundColor={colors["white-smoke"]}
         borderRadius={8}
         borderWidth={1}
-        borderColor="#E0E0E0"
+        borderColor={colors["gainsboro"]}
         paddingVertical={16}
         gap={16}
       >
         {!ownerPost && (
           <>
             <Text
-              {...typography["heading-16"]}
+              {...typography["bold-16"]}
               textAlign="center"
             >
               Send Direct Message
@@ -45,7 +45,7 @@ export default function PostMoreDialog({
         {canShare && (
           <>
             <Text
-              {...typography["heading-16"]}
+              {...typography["bold-16"]}
               textAlign="center"
               onPress={onShare}
             >

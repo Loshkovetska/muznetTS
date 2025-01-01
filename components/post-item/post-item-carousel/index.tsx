@@ -55,8 +55,8 @@ export default function PostItemCarousel({
             tint="dark"
           >
             <Text
-              {...typography["label-12"]}
-              color={colors["white"]}
+              {...typography["medium-12"]}
+              color={colors["main"]}
             >
               {currentIndex + 1}/{media.length}
             </Text>

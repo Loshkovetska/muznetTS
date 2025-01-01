@@ -2,7 +2,7 @@ import { useUser } from "@/components/providers/user-provider";
 import AdsList from "@/components/screens/homescreen/ads-list";
 import MapImage from "@/components/screens/homescreen/map-image";
 import SearchWithFilter from "@/components/search-with-filter";
-import { typography } from "@/tamagui.config";
+import { colors, typography } from "@/tamagui.config";
 import { ScrollView, Text, XStack, YStack, styled } from "tamagui";
 
 const Content = styled(YStack, {
@@ -12,7 +12,7 @@ const Content = styled(YStack, {
   paddingTop: 86,
   paddingBottom: 20,
   paddingHorizontal: 16,
-  backgroundColor: "#FEFEFE",
+  backgroundColor: colors["main"],
   gap: 16,
 });
 
@@ -28,13 +28,7 @@ export default function HomeScreen() {
   return (
     <Content>
       <Header>
-        <Text
-          {...typography["heading-28"]}
-          fontSize={34}
-          lineHeight={41}
-        >
-          Welcome 👋🏻
-        </Text>
+        <Text {...typography["bold-34"]}>Welcome 👋🏻</Text>
       </Header>
       <SearchWithFilter />
       <ScrollView

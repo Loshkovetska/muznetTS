@@ -106,7 +106,7 @@ export default function PersonalTab({ user, header }: PersonalTabPropType) {
       >
         <YStack
           paddingHorizontal={16}
-          backgroundColor={colors["white"]}
+          backgroundColor={colors["main"]}
           flexGrow={1}
         >
           {header}

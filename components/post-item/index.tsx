@@ -81,7 +81,7 @@ export default function PostItem(post: PostType & { inView?: boolean }) {
       {!post.hidden && (
         <YStack
           gap={12}
-          backgroundColor={colors["white"]}
+          backgroundColor={colors["main"]}
         >
           <PostItemHeader
             {...post}

@@ -18,9 +18,7 @@ export default function SkillsList({
       gap={24}
       marginTop={16}
     >
-      <Text {...typography[onChange ? "heading-17" : "heading-15"]}>
-        Skills:
-      </Text>
+      <Text {...typography[onChange ? "bold-17" : "bold-15"]}>Skills:</Text>
       <YStack
         gap={16}
         marginBottom={8}

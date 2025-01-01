@@ -21,19 +21,19 @@ export default function PostItemInfo(
   return (
     <YStack gap={8}>
       <YStack gap={4}>
-        <Text {...typography["heading-16"]}>{post.title}</Text>
-        <Text {...typography["label-14"]}>
+        <Text {...typography["bold-16"]}>{post.title}</Text>
+        <Text {...typography["medium-14"]}>
           {description}
           {post.description.length > 100 && !post.showFullDescription && (
             <Text
-              {...typography["label-14"]}
-              backgroundColor={colors["white"]}
+              {...typography["medium-14"]}
+              backgroundColor={colors["main"]}
               onPress={() => setShowMore((prev) => !prev)}
             >
               {showMore ? " " : "... "}
               <Text
                 textDecorationLine="underline"
-                color="rgba(92, 101, 116, 0.8)"
+                color={colors["gray-80"]}
               >
                 {showMore ? "less" : "more"}
               </Text>
@@ -56,7 +56,7 @@ export default function PostItemInfo(
                 borderColor={colors["light-gray"]}
                 borderRadius={6}
               >
-                <Text {...typography["label-13"]}>{tag}</Text>
+                <Text {...typography["medium-13"]}>{tag}</Text>
               </XStack>
             ))}
           </XStack>
@@ -68,9 +68,9 @@ export default function PostItemInfo(
           href={`/post/${post.id}/comments`}
         >
           <Text
-            {...typography["heading-14"]}
+            {...typography["bold-14"]}
             marginVertical={4}
-            color="rgba(92, 101, 116, 0.8)"
+            color={colors["gray-80"]}
             onPress={() => {}}
           >
             View all comments
@@ -78,8 +78,8 @@ export default function PostItemInfo(
         </Link>
       )}
       <Text
-        {...typography["label-14"]}
-        color="rgba(92, 101, 116, 0.8)"
+        {...typography["medium-14"]}
+        color={colors["gray-80"]}
       >
         {dayjs(post.created_at).fromNow()}
       </Text>

@@ -15,7 +15,7 @@ const ItemContainer = styled(XStack, {
   borderColor: colors["light-gray"],
   borderWidth: 1,
   padding: 8,
-  backgroundColor: colors["white"],
+  backgroundColor: colors["main"],
 });
 
 const ItemInfo = styled(YStack, {
@@ -62,15 +62,14 @@ export default function AdsItem(data: UserType | AdType) {
           <Text
             numberOfLines={2}
             ellipsizeMode="tail"
-            {...typography["heading-16"]}
+            {...typography["bold-16"]}
           >
             {isMusician ? `${data.name} ${data.surname}` : data.title}
           </Text>
           {isMusician && genres.length > 0 && <GenresList genres={genres} />}
           {!isMusician && (
             <Text
-              {...typography["paragraph-12"]}
-              fontFamily="MulishSemiBold"
+              {...typography["semi-12"]}
               numberOfLines={1}
             >
               {data.description}

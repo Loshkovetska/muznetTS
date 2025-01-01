@@ -19,9 +19,9 @@ export default function AddPostInfo({
   }, []);
 
   const commonInfoBlockProps = {
-    backgroundColor: "#F2F3F9",
+    backgroundColor: colors["ghost-white"],
     alignItems: "flex-start" as "center",
-    textColor: "#000000",
+    textColor: colors["total-black"],
     paddingVertical: 8,
     paddingHorizontal: 10,
     borderRadius: 8,
@@ -42,7 +42,7 @@ export default function AddPostInfo({
         }}
       >
         <YStack gap={16}>
-          <Text {...typography["heading-20"]}>Community Post Guideliness</Text>
+          <Text {...typography["bold-20"]}>Community Post Guideliness</Text>
           <InfoMessage
             text="Content in community feed should not include anything that is offensive, insensitive, upsetting and/or intended to disgust in exceptionally demeaning poor taste or down right creepy."
             {...commonInfoBlockProps}
@@ -64,7 +64,7 @@ export default function AddPostInfo({
                   />
                   <Text
                     width="90%"
-                    {...typography["paragraph-17"]}
+                    {...typography["reg-17"]}
                   >
                     {subItem.text}
                   </Text>

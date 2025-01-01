@@ -21,11 +21,11 @@ export default function PostItemUser(
         borderColor={colors["black"]}
       />
       <YStack>
-        <Text {...typography["heading-14"]}>
+        <Text {...typography["bold-14"]}>
           {user?.name} {user?.surname}
         </Text>
         {user?.postLocation && (
-          <Text {...typography["label-12"]}>{user.postLocation}</Text>
+          <Text {...typography["medium-12"]}>{user.postLocation}</Text>
         )}
       </YStack>
     </XStack>

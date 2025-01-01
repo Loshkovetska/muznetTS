@@ -7,7 +7,7 @@ const StyledSlider = styled(XStack, {
   width: "100%",
   height: 5,
   borderRadius: 5,
-  backgroundColor: "rgba(0,0,0,0.1)",
+  backgroundColor: colors["black-10"],
 });
 
 type StepsHeaderPropType = {
@@ -26,10 +26,10 @@ export default function StepsHeader({
       <CommonHeader
         title={
           <Text
-            {...typography["paragraph-17"]}
+            {...typography["reg-17"]}
             color={colors["black"]}
           >
-            {step + 1} <Text color={colors["input-cursor"]}>of {lastStep}</Text>
+            {step + 1} <Text color={colors["ghost"]}>of {lastStep}</Text>
           </Text>
         }
         onBack={!step ? undefined : setStep}

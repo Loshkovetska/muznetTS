@@ -58,7 +58,7 @@ export default function PasswordTab({ user, header }: PasswordTabPropType) {
         gap={32}
         flexGrow={1}
         paddingHorizontal={16}
-        backgroundColor={colors["white"]}
+        backgroundColor={colors["main"]}
       >
         {header}
         <YStack>
@@ -73,7 +73,7 @@ export default function PasswordTab({ user, header }: PasswordTabPropType) {
           flexGrow={1}
         >
           <Text
-            {...typography["heading-17"]}
+            {...typography["bold-17"]}
             marginBottom={8}
           >
             New password

@@ -14,11 +14,11 @@ const MessageContainer = styled(YStack, {
   variants: {
     type: {
       reciever: {
-        backgroundColor: colors["white"],
+        backgroundColor: colors["main"],
         borderBottomLeftRadius: 0,
       },
       sender: {
-        backgroundColor: "#333333",
+        backgroundColor: colors["third"],
         borderBottomRightRadius: 0,
       },
     },
@@ -105,8 +105,8 @@ export default function DialogMessage(
             </MessageContainer>
             {!message.sameTime && (
               <Text
-                {...typography["label-12"]}
-                color="#5C6574"
+                {...typography["medium-12"]}
+                color={colors["gray-100"]}
               >
                 {dayjs(message.created_at).format("HH:MM")}
               </Text>

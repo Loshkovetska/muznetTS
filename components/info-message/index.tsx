@@ -1,10 +1,10 @@
-import { typography } from "@/tamagui.config";
+import { colors, typography } from "@/tamagui.config";
 import { AlertCircle } from "@tamagui/lucide-icons";
 import { Text, XStack, XStackProps } from "tamagui";
 
 export default function InfoMessage({
   text,
-  textColor = "#717171",
+  textColor = colors["dim-gray"],
   ...props
 }: { text: string; textColor?: string } & XStackProps) {
   return (
@@ -15,10 +15,10 @@ export default function InfoMessage({
     >
       <AlertCircle
         size={20}
-        color="rgba(92, 101, 116, 0.8)"
+        color={colors["gray-80"]}
       />
       <Text
-        {...typography["paragraph-14"]}
+        {...typography["reg-14"]}
         color={textColor}
         width="91%"
       >

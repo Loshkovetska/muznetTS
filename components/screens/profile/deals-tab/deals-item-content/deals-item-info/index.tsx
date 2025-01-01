@@ -21,17 +21,21 @@ export default function DealsItemInfo(
         justifyContent="space-between"
       >
         <Text
-          {...typography[key === "Total" ? "heading-16" : "label-16"]}
-          color="#232323"
+          {...typography[key === "Total" ? "bold-16" : "medium-16"]}
+          color={colors["nero"]}
         >
           {key}
         </Text>
         <Text
-          {...typography[key === "Total" ? "heading-16" : "label-16"]}
+          {...typography[key === "Total" ? "bold-16" : "medium-16"]}
           color={
-            value === "Active" || key === "Total"
-              ? colors[value === "Active" ? "success" : "black"]
-              : "#5C6574"
+            colors[
+              value === "Active"
+                ? "success"
+                : key === "Total"
+                ? "black"
+                : "gray-100"
+            ]
           }
         >
           {value}

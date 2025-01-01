@@ -35,12 +35,12 @@ export default function PostUploading({
       alignItems="center"
       justifyContent="space-between"
     >
-      <Text {...typography["paragraph-17"]}>Post is loading</Text>
+      <Text {...typography["reg-17"]}>Post is loading</Text>
       <XStack
         alignItems="center"
         gap={10}
       >
-        <Text {...typography["heading-14"]}>{percentages}%</Text>
+        <Text {...typography["bold-14"]}>{percentages}%</Text>
         <Spinner color={colors["black"]} />
       </XStack>
     </XStack>
