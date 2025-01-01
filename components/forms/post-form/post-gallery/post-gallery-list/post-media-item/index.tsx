@@ -2,14 +2,13 @@ import CommonImage from "@/components/common-image";
 import CommonVideo from "@/components/common-video";
 import PostMediaItemRadio from "@/components/forms/post-form/post-gallery/post-gallery-list/post-media-item/post-media-item-radio";
 import { SCREEN_WIDTH } from "@/lib/constants";
-import * as MediaLibrary from "expo-media-library";
-import { Asset } from "expo-media-library";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { AssetInfo } from "expo-media-library";
+import React, { useMemo } from "react";
 import { Stack } from "tamagui";
 
 type PostMediaItemPropType = {
   isSelected?: boolean;
-  item: Asset;
+  item: AssetInfo;
   onValueChange: (v: string) => void;
 };
 
@@ -18,13 +17,11 @@ function PostMediaItem({
   isSelected,
   onValueChange,
 }: PostMediaItemPropType) {
-  const [uri, setUri] = useState<string | null>(null);
-
   const imageComponent = useMemo(() => {
     const commonProps = {
       width: "100%",
       height: "100%",
-      source: uri,
+      source: item.localUri || item.uri,
       local: true,
       borderWidth: 0,
     };
@@ -41,18 +38,7 @@ function PostMediaItem({
         postView
       />
     ) : null;
-  }, [item, uri]);
-
-  const getUri = useCallback(async () => {
-    const asset = await MediaLibrary.getAssetInfoAsync(item);
-
-    setUri(asset.localUri || asset.uri);
   }, [item]);
-
-  useEffect(() => {
-    getUri();
-  }, [getUri]);
-
   return (
     <Stack
       key={item.id}

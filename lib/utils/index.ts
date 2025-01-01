@@ -136,7 +136,7 @@ export const is2HoursBetweenDates = (startDate: Date, endDate: Date) => {
 };
 
 export const detectFileType = (fileName: string) => {
-  const isImage = /\.(gif|jpg|jpeg|tiff|png)$/i.test(fileName);
+  const isImage = /\.(gif|jpg|jpeg|tiff|png|HEIC)$/i.test(fileName);
   const isVideo = /\.(MOV|mp4)$/i.test(fileName);
   const isFile = !isImage && !isVideo;
   return { isImage, isVideo, isFile };

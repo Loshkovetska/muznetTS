@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 
 export default function useMediaLibrary() {
   const [albums, setAlbums] = useState<MediaLibrary.Album[]>([]);
-  const [albumMedia, setAlbumMedia] = useState<MediaLibrary.Asset[]>([]);
+  const [albumMedia, setAlbumMedia] = useState<MediaLibrary.AssetInfo[]>([]);
   const [currentAlbum, setCurrentAlbum] = useState<MediaLibrary.Album | null>(
     null
   );
@@ -25,8 +25,14 @@ export default function useMediaLibrary() {
   const getAlbumMedia = useCallback(async () => {
     if (currentAlbum) {
       const medias = await MediaLibrary.getAssetsAsync({ album: currentAlbum });
+      const res: MediaLibrary.AssetInfo[] = [];
+      for (let i = 0; i < medias.assets.length; i++) {
+        const media = await MediaLibrary.getAssetInfoAsync(medias.assets[i]);
 
-      setAlbumMedia(medias.assets);
+        res.push(media);
+      }
+
+      setAlbumMedia(res);
     }
   }, [currentAlbum]);
 

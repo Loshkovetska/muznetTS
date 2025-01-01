@@ -1,5 +1,5 @@
 import PostMediaItem from "@/components/forms/post-form/post-gallery/post-gallery-list/post-media-item";
-import { SCREEN_HEIGHT } from "@/lib/constants";
+import { SCREEN_WIDTH } from "@/lib/constants";
 import { Asset } from "expo-media-library";
 import { FlatList } from "react-native";
 
@@ -16,13 +16,16 @@ export default function PostGalleryList({
 }: PostGalleryListPropType) {
   return (
     <FlatList
-      data={albumMedia || []}
+      data={[...albumMedia, ...albumMedia, ...albumMedia, ...albumMedia]}
       numColumns={4}
       keyExtractor={(item) => item.id}
       showsVerticalScrollIndicator={false}
+      style={{
+        height: SCREEN_WIDTH + 80,
+      }}
       contentContainerStyle={{
-        paddingBottom: SCREEN_HEIGHT / 2,
         gap: 1,
+        paddingBottom: SCREEN_WIDTH / 2 + 80,
       }}
       renderItem={({ item }) => (
         <PostMediaItem

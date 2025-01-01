@@ -14,8 +14,8 @@ export default function PostMediaItemRadio({
       top={4}
       right={4}
       zIndex={2}
-      width={20}
-      height={20}
+      width={16}
+      height={16}
       borderWidth={2}
       borderColor={colors[isSelected ? "black" : "white"]}
       borderRadius={10}
@@ -24,9 +24,9 @@ export default function PostMediaItemRadio({
     >
       {isSelected && (
         <Stack
-          width={10}
-          height={10}
-          borderRadius={5}
+          width={8}
+          height={8}
+          borderRadius={4}
           backgroundColor={colors["black"]}
         />
       )}

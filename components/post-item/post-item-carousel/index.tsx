@@ -9,13 +9,17 @@ import { useMemo, useState } from "react";
 import { FlatList } from "react-native";
 import { Stack, Text } from "tamagui";
 
+type PostItemCarouselPropType = {
+  media: string[];
+  inView: boolean;
+  local?: boolean;
+};
+
 export default function PostItemCarousel({
   media,
   inView,
-}: {
-  media: string[];
-  inView: boolean;
-}) {
+  local = false,
+}: PostItemCarouselPropType) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const currentMediaType = useMemo(
@@ -83,6 +87,7 @@ export default function PostItemCarousel({
             return (
               <CommonImage
                 source={item}
+                local={local}
                 {...styles}
               />
             );
@@ -93,6 +98,7 @@ export default function PostItemCarousel({
               postView
               source={item}
               inView={currentIndex === index && inView}
+              local={local}
               {...styles}
             />
           );

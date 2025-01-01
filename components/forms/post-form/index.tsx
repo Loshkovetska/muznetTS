@@ -10,9 +10,10 @@ import { Text, YStack } from "tamagui";
 type PostFormPropType = {
   form: UseFormReturn<any>;
   step: number;
+  edit?: boolean;
 };
 
-export default function PostForm({ form, step }: PostFormPropType) {
+export default function PostForm({ form, step, edit }: PostFormPropType) {
   return (
     <Form {...form}>
       {step && (
@@ -75,7 +76,12 @@ export default function PostForm({ form, step }: PostFormPropType) {
           </PostFormStep>
         </YStack>
       )}
-      {!step && <PostGallery form={form} />}
+      {!step && (
+        <PostGallery
+          edit={edit}
+          form={form}
+        />
+      )}
     </Form>
   );
 }
