@@ -84,6 +84,7 @@ export default function Page() {
         <PostForm
           step={step}
           form={form}
+          changeStep={() => setStep((prev) => prev - 1)}
         />
       )}
     </YStack>

@@ -1,6 +1,5 @@
 import BottomBar from "@/components/bottom-bar";
-import CameraDialog from "@/components/dialogs/camera-dialog";
-import SelectAlbumDialog from "@/components/dialogs/select-album-dialog";
+import PostGalleryFunc from "@/components/forms/post-form/post-gallery/post-gallery-func";
 import PostGalleryList from "@/components/forms/post-form/post-gallery/post-gallery-list";
 import InfoMessage from "@/components/info-message";
 import PostItemCarousel from "@/components/post-item/post-item-carousel";
@@ -8,33 +7,24 @@ import Button from "@/components/ui/button";
 import { SCREEN_WIDTH } from "@/lib/constants";
 import useMediaLibrary from "@/lib/hooks/media-library.hook";
 import { setValueToForm } from "@/lib/utils";
-import { typography } from "@/tamagui.config";
-import { Camera, ChevronDown } from "@tamagui/lucide-icons";
-import { Album, Asset } from "expo-media-library";
-import { useCallback, useMemo, useState } from "react";
+import { Asset } from "expo-media-library";
+import { useCallback, useMemo } from "react";
 import { UseFormReturn, useWatch } from "react-hook-form";
-import { XStack } from "tamagui";
+
+type PostGalleryPropType = {
+  form: UseFormReturn<any>;
+  edit?: boolean;
+  onNext: () => void;
+};
 
 export default function PostGallery({
   form,
   edit,
-}: {
-  form: UseFormReturn<any>;
-  edit?: boolean;
-}) {
+  onNext,
+}: PostGalleryPropType) {
   const media = useWatch({ control: form.control, name: "media" });
   const { albums, albumMedia, currentAlbum, setCurrentAlbum } =
     useMediaLibrary();
-  const [isOpen, setOpen] = useState(false);
-  const [isCameraOpen, setCameraOpen] = useState(false);
-
-  const onAlbumSelect = useCallback(
-    (album: Album) => {
-      setCurrentAlbum(album);
-      setOpen(false);
-    },
-    [setCurrentAlbum]
-  );
 
   const selectedMedia = useMemo(
     () => media?.map((m: any) => m.id) || [],
@@ -77,72 +67,46 @@ export default function PostGallery({
         }
         inView
       />
-      <XStack
-        alignItems="center"
-        justifyContent="space-between"
-        paddingHorizontal={16}
-        paddingVertical={12}
-      >
-        <Button
-          width="auto"
-          gap={0}
-          iconRight={<ChevronDown size={18} />}
-          variant="transparent"
-          textProps={typography["heading-14"]}
-          onPress={() => setOpen(true)}
-        >
-          {currentAlbum?.title}
-        </Button>
-        <Button
-          iconLeft={<Camera size={18} />}
-          variant="transparent"
-          textProps={typography["heading-14"]}
-          onPress={() => setCameraOpen(true)}
-        >
-          Take a Photo / Video
-        </Button>
-      </XStack>
-      <PostGalleryList
-        selectedAssets={selectedMedia}
-        albumMedia={albumMedia}
-        onValueChange={onValueChange}
-      />
-      <SelectAlbumDialog
-        open={isOpen}
-        albums={albums}
-        onValueChange={onAlbumSelect}
-        onOpenChange={() => setOpen(false)}
-      />
-      <CameraDialog
-        open={isCameraOpen}
-        onOpenChange={() => setCameraOpen(false)}
-        onSendMessage={() => {}}
-      />
-      <BottomBar
-        gap={12}
-        flexDirection="column"
-        backgroundColor="transparent"
-        borderWidth={0}
-        bottom={(SCREEN_WIDTH - 80) / 2}
-      >
-        {media.length === 3 && (
-          <InfoMessage
-            text="You can’t select more than 3 media files"
-            backgroundColor="#F2F3F9"
-            textColor="rgba(92, 101, 116, 0.8)"
-            borderRadius={8}
-            padding={8}
+      {!edit && (
+        <>
+          <PostGalleryFunc
+            albums={albums}
+            currentAlbum={currentAlbum}
+            setCurrentAlbum={setCurrentAlbum}
           />
-        )}
-        <Button
-          variant="dark"
-          sizeB="lg"
-          height={40}
-          disabled={!media.length}
-        >
-          Next Step ({media.length})
-        </Button>
-      </BottomBar>
+          <PostGalleryList
+            selectedAssets={selectedMedia}
+            albumMedia={albumMedia}
+            onValueChange={onValueChange}
+          />
+          <BottomBar
+            gap={12}
+            flexDirection="column"
+            backgroundColor="transparent"
+            borderWidth={0}
+            bottom={(SCREEN_WIDTH - 80) / 2}
+          >
+            {media.length === 3 && (
+              <InfoMessage
+                text="You can’t select more than 3 media files"
+                backgroundColor="#F2F3F9"
+                textColor="rgba(92, 101, 116, 0.8)"
+                borderRadius={8}
+                padding={8}
+              />
+            )}
+            <Button
+              variant="dark"
+              sizeB="lg"
+              height={40}
+              disabled={!media.length}
+              onPress={onNext}
+            >
+              Next Step ({media.length})
+            </Button>
+          </BottomBar>
+        </>
+      )}
     </>
   );
 }

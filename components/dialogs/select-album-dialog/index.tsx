@@ -48,6 +48,7 @@ export default function SelectAlbumDialog({
         <YStack>
           {albums?.map((album) => (
             <XStack
+              key={album.id}
               paddingVertical={8}
               borderBottomWidth={1}
               borderColor="#E9ECF2"

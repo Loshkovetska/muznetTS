@@ -11,11 +11,22 @@ type PostFormPropType = {
   form: UseFormReturn<any>;
   step: number;
   edit?: boolean;
+  changeStep: () => void;
 };
 
-export default function PostForm({ form, step, edit }: PostFormPropType) {
+export default function PostForm({
+  form,
+  step,
+  edit,
+  changeStep,
+}: PostFormPropType) {
   return (
     <Form {...form}>
+      <PostGallery
+        edit={edit}
+        form={form}
+        onNext={changeStep}
+      />
       {step && (
         <YStack
           gap={24}
@@ -75,12 +86,6 @@ export default function PostForm({ form, step, edit }: PostFormPropType) {
             </YStack>
           </PostFormStep>
         </YStack>
-      )}
-      {!step && (
-        <PostGallery
-          edit={edit}
-          form={form}
-        />
       )}
     </Form>
   );
