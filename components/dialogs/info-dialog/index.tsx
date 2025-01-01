@@ -1,14 +1,13 @@
 import Dialog from "@/components/ui/dialog";
+import { BaseDialogPropType } from "@/lib/types";
 
 type InfoDialogPropType = {
   icon?: React.ReactNode;
-  open: boolean;
   title: string;
   description?: string;
   button?: React.ReactNode;
   buttonText: string;
-  onOpenChange: (v: boolean) => void;
-};
+} & BaseDialogPropType;
 
 export default function InfoDialog({
   icon,

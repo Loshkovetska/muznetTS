@@ -1,20 +1,19 @@
 import CommonActions from "@/components/dialogs/post-func-dialog/common-actions";
 import OwnerActions from "@/components/dialogs/post-func-dialog/owner-actions";
 import { MobileSheet } from "@/components/ui/mobile-sheet";
+import { BaseDialogPropType } from "@/lib/types";
 import { PostType } from "@/lib/types/post";
 
 type PostFuncDialogPropType = {
-  open: boolean;
   postOwner: boolean;
   post: PostType;
-  onOpenChange: () => void;
   onReport: () => void;
   onHide: () => void;
   onDelete: () => void;
   onShare: () => void;
   onEdit: () => void;
   onToggle: (name: string, value: boolean) => void;
-};
+} & BaseDialogPropType;
 
 export default function PostFuncDialog({
   open,

@@ -1,10 +1,8 @@
 import { MobileSheet } from "@/components/ui/mobile-sheet";
+import { BaseDialogPropType } from "@/lib/types";
 import React from "react";
 
-type PostFormDialogPropType = {
-  open: boolean;
-  onOpenChange: () => void;
-} & React.PropsWithChildren;
+type PostFormDialogPropType = BaseDialogPropType & React.PropsWithChildren;
 
 export default function PostFormDialog({
   open,

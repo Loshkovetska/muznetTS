@@ -1,5 +1,6 @@
 import { ALBUMS_ICONS } from "@/components/dialogs/select-album-dialog/constants";
 import { MobileSheet } from "@/components/ui/mobile-sheet";
+import { BaseDialogPropType } from "@/lib/types";
 import { colors, typography } from "@/tamagui.config";
 import { X } from "@tamagui/lucide-icons";
 import { Album } from "expo-media-library";
@@ -7,11 +8,9 @@ import { useCallback } from "react";
 import { Stack, Text, XStack, YStack } from "tamagui";
 
 type SelectAlbumDialogPropType = {
-  open: boolean;
   albums: Album[];
-  onOpenChange: () => void;
   onValueChange: (album: Album) => void;
-};
+} & BaseDialogPropType;
 
 export default function SelectAlbumDialog({
   open,

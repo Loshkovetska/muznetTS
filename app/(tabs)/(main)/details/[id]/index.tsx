@@ -48,6 +48,7 @@ export default function Index() {
   return (
     <>
       <ScrollView
+        key={data.id}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 120 }}
       >

@@ -1,12 +1,11 @@
 import CommonDialogWrapper from "@/components/common-dialog-wrapper";
 import ReviewsList from "@/components/screens/details/reviews-list";
+import { BaseDialogPropType } from "@/lib/types";
 import { ChevronLeft } from "@tamagui/lucide-icons";
 
 type FullScreenReviewsPropType = {
-  open: boolean;
   rate: { rate: number; totalReviews: number };
-  onOpenChange: () => void;
-};
+} & BaseDialogPropType;
 
 export default function FullScreenReviews({
   open,

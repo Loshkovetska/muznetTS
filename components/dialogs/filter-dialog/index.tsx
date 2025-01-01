@@ -15,7 +15,7 @@ import Input from "@/components/ui/input";
 import Select, { SelectContent } from "@/components/ui/select";
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/lib/constants";
 import { GENRES, INSTRUMENTS } from "@/lib/constants/lists";
-import { FiltersType } from "@/lib/types";
+import { BaseDialogPropType, FiltersType } from "@/lib/types";
 import { typography } from "@/tamagui.config";
 import { X } from "@tamagui/lucide-icons";
 import dayjs from "dayjs";
@@ -23,14 +23,12 @@ import { useCallback, useMemo, useState } from "react";
 import { ScrollView, Text, XStack } from "tamagui";
 
 type FilterDialogPropType = {
-  open: boolean;
   selectedFilters: FiltersType;
   totalCount: number;
   hideAddress?: boolean;
   onFilterChange: (name: string, value: any) => void;
-  onOpenChange: () => void;
   resetFilters: () => void;
-};
+} & BaseDialogPropType;
 
 export default function FilterDialog({
   open,

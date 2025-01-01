@@ -5,14 +5,13 @@ import CameraDialogButtons from "@/components/dialogs/camera-dialog/camera-dialo
 import CameraFunc from "@/components/dialogs/camera-dialog/camera-func";
 import CameraModeBlock from "@/components/dialogs/camera-dialog/camera-mode-block";
 import useCamera from "@/lib/hooks/camera.hook";
+import { BaseDialogPropType } from "@/lib/types";
 import { RefreshCcw, RefreshCw, Zap, ZapOff } from "@tamagui/lucide-icons";
 import { useCallback, useEffect, useMemo } from "react";
 
 type CameraDialogPropType = {
-  open: boolean;
-  onOpenChange: () => void;
   onAccept: (file: any[]) => void;
-};
+} & BaseDialogPropType;
 
 export default function CameraDialog({
   open,

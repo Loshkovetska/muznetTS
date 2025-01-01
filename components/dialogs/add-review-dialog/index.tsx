@@ -6,7 +6,12 @@ import { MobileSheet } from "@/components/ui/mobile-sheet";
 import { QUERY_TAGS } from "@/lib/constants";
 import { addReviewScheme } from "@/lib/scheme";
 import { ReviewService } from "@/lib/services";
-import { AddReviewRequestType, ReviewType, UserType } from "@/lib/types";
+import {
+  AddReviewRequestType,
+  BaseDialogPropType,
+  ReviewType,
+  UserType,
+} from "@/lib/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useCallback } from "react";
@@ -15,12 +20,11 @@ import { YStack } from "tamagui";
 import { z } from "zod";
 
 type AddReviewDialogPropType = {
-  open: boolean;
   profile_id?: string;
   ad_id?: string;
   rate: { rate: number; totalReviews: number };
-  onOpenChange: () => void;
-};
+} & BaseDialogPropType;
+
 export default function AddReviewDialog({
   open,
   profile_id,

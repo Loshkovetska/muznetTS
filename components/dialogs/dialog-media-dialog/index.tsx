@@ -2,7 +2,7 @@ import CommonDialogWrapper from "@/components/common-dialog-wrapper";
 import CommonImage from "@/components/common-image";
 import DialogMedia from "@/components/screens/dialog/dialog-media";
 import { SCREEN_WIDTH } from "@/lib/constants";
-import { UserType } from "@/lib/types";
+import { BaseDialogPropType, UserType } from "@/lib/types";
 import { detectFileType } from "@/lib/utils";
 import { typography } from "@/tamagui.config";
 import { ChevronLeft } from "@tamagui/lucide-icons";
@@ -10,11 +10,9 @@ import { Fragment, useMemo } from "react";
 import { ScrollView, Stack, Text, XStack, YStack } from "tamagui";
 
 type DialogMediaDialogPropType = {
-  open: boolean;
   chatUser?: UserType;
   media: string[];
-  onOpenChange: () => void;
-};
+} & BaseDialogPropType;
 
 export default function DialogMediaDialog({
   open,

@@ -1,15 +1,14 @@
 import InfoDialog from "@/components/dialogs/info-dialog";
+import { BaseDialogPropType } from "@/lib/types";
 import { colors } from "@/tamagui.config";
 import { AlertCircle, CircleCheck } from "@tamagui/lucide-icons";
 
 type ResultDialogPropType = {
   type: "success" | "error";
-  open: boolean;
   title: string;
   description: string;
   buttonText: string;
-  onOpenChange: (v: boolean) => void;
-};
+} & BaseDialogPropType;
 
 export default function ResultDialog({
   type,

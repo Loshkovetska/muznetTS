@@ -1,12 +1,11 @@
 import InfoDialog from "@/components/dialogs/info-dialog";
 import Button from "@/components/ui/button";
+import { BaseDialogPropType } from "@/lib/types";
 
 type DeletePostDialogPropType = {
-  open: boolean;
   loading: boolean;
   onDelete: () => void;
-  onOpenChange: () => void;
-};
+} & BaseDialogPropType;
 
 export default function DeletePostDialog({
   open,

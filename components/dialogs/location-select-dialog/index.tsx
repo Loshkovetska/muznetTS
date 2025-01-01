@@ -2,17 +2,17 @@ import Button from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import { MobileSheet } from "@/components/ui/mobile-sheet";
 import useLocations from "@/lib/hooks/location.hook";
+import { BaseDialogPropType } from "@/lib/types";
 import { colors, typography } from "@/tamagui.config";
 import { Search, X } from "@tamagui/lucide-icons";
 import { useCallback } from "react";
 import { Text, XStack, YStack } from "tamagui";
 
 type LocationSelectDialogPropType = {
-  open: boolean;
   defaultValue: string;
-  onOpenChange: () => void;
   onValueChange: (v: string) => void;
-};
+} & BaseDialogPropType;
+
 export default function LocationSelectDialog({
   open,
   defaultValue,

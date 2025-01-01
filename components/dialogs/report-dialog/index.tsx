@@ -2,6 +2,7 @@ import Button from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import { MobileSheet } from "@/components/ui/mobile-sheet";
 import usePosts from "@/lib/hooks/posts.hook";
+import { BaseDialogPropType } from "@/lib/types";
 import { colors, typography } from "@/tamagui.config";
 import { CircleCheck } from "@tamagui/lucide-icons";
 import { useCallback, useState } from "react";
@@ -19,10 +20,8 @@ const CONTENT_STRATEGY = {
 };
 
 type ReportDialogPropType = {
-  open: boolean;
   post_id: string;
-  onOpenChange: () => void;
-};
+} & BaseDialogPropType;
 
 export default function ReportDialog({
   open,

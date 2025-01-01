@@ -6,6 +6,7 @@ import Button from "@/components/ui/button";
 import { Form, FormElement } from "@/components/ui/form";
 import { SCREEN_WIDTH } from "@/lib/constants";
 import useMessages from "@/lib/hooks/messages.hook";
+import { BaseDialogPropType } from "@/lib/types";
 import { colors, typography } from "@/tamagui.config";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback } from "react";
@@ -14,12 +15,10 @@ import { Text, YStack } from "tamagui";
 import { z } from "zod";
 
 type ContactUserDialogPropType = {
-  open: boolean;
   from: string;
   to: string;
   isMusician: boolean;
-  onOpenChange: () => void;
-};
+} & BaseDialogPropType;
 
 export default function ContactUserDialog({
   open,

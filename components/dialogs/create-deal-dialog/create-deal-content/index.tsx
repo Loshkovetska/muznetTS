@@ -4,20 +4,19 @@ import Button from "@/components/ui/button";
 import { MobileSheet } from "@/components/ui/mobile-sheet";
 import Select, { SelectContent } from "@/components/ui/select";
 import useAds from "@/lib/hooks/ads.hook";
+import { BaseDialogPropType } from "@/lib/types";
 import { typography } from "@/tamagui.config";
 import dayjs from "dayjs";
 import { useMemo } from "react";
 import { Text, YStack } from "tamagui";
 
 type CreateDealContentPropType = {
-  open: boolean;
   user_id: string;
   loading: boolean;
   adsId?: string;
-  onOpenChange: () => void;
   onValueChange: (name: string, value: string) => void;
   onSubmit: () => void;
-};
+} & BaseDialogPropType;
 
 export default function CreateDealContent({
   open,

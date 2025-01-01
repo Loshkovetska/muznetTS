@@ -1,6 +1,6 @@
 import { setValueToForm } from "@/lib/utils";
 import { colors } from "@/tamagui.config";
-import { StarFull } from "@tamagui/lucide-icons";
+import { Star } from "@tamagui/lucide-icons";
 import { useCallback } from "react";
 import { UseFormReturn, useWatch } from "react-hook-form";
 import { XStack } from "tamagui";
@@ -22,8 +22,8 @@ export default function RateBlock({ form }: RateBlockPropType) {
 
   return (
     <XStack gap={16}>
-      {stars.map((star, id) => (
-        <StarFull
+      {stars.map((_, id) => (
+        <Star
           key={id}
           size={48}
           color={colors[id + 1 <= rate ? "black" : "light-gray"]}

@@ -2,15 +2,14 @@ import UploadButton from "@/components/dialogs/upload-dialog/upload-button";
 import { MobileSheet } from "@/components/ui/mobile-sheet";
 import useDocument from "@/lib/hooks/document.hook";
 import useImagePicker from "@/lib/hooks/image-picker.hook";
+import { BaseDialogPropType } from "@/lib/types";
 import { Camera, Cloud, Image } from "@tamagui/lucide-icons";
 import { XStack } from "tamagui";
 
 type UploadDialogPropType = {
-  open: boolean;
-  onOpenChange: () => void;
   onCameraOpen: () => void;
   sendMessage: (files: any[]) => void;
-};
+} & BaseDialogPropType;
 
 export default function UploadDialog({
   open,

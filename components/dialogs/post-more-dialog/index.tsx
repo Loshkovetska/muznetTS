@@ -1,15 +1,14 @@
 import { MobileSheet } from "@/components/ui/mobile-sheet";
 import Separator from "@/components/ui/separator";
+import { BaseDialogPropType } from "@/lib/types";
 import { colors, typography } from "@/tamagui.config";
 import { Text, YStack } from "tamagui";
 
 type PostMoreDialogPropType = {
-  open: boolean;
   canShare: boolean;
   ownerPost: boolean;
-  onOpenChange: () => void;
   onShare: () => void;
-};
+} & BaseDialogPropType;
 
 export default function PostMoreDialog({
   open,
