@@ -1,4 +1,5 @@
 import Button from "@/components/ui/button";
+import useShare from "@/lib/hooks/share.hook";
 import { ChevronLeft, Share2 } from "@tamagui/lucide-icons";
 import { useNavigation } from "expo-router";
 import { XStack, styled } from "tamagui";
@@ -14,8 +15,15 @@ const NavBar = styled(XStack, {
   alignItems: "center",
 });
 
-export default function DetailsNavbar() {
+export default function DetailsNavbar({
+  id,
+  title,
+}: {
+  id: string;
+  title: string;
+}) {
   const navigation = useNavigation();
+  const { onShare } = useShare(true, "/card/" + id, "MuzNet: " + title);
   return (
     <NavBar>
       <Button
@@ -33,9 +41,7 @@ export default function DetailsNavbar() {
         variant="black/50"
         sizeB="icon"
         borderRadius={6}
-        onPress={() => {
-          // add logic share
-        }}
+        onPress={onShare}
       >
         <Share2
           color="white"

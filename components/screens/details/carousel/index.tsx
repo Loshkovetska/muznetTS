@@ -1,17 +1,20 @@
 import IndicatorBlock from "@/components/indicator-block";
-import DetailsNavbar from "@/components/screens/details/details-navbar";
 import SingleCarousel from "@/components/single-carousel";
 import { SCREEN_WIDTH } from "@/lib/constants";
 import { useState } from "react";
 import { Stack } from "tamagui";
 
-export default function DetailsCarousel({
-  images,
-  onOpen,
-}: {
+type DetailsCarouselPropType = {
+  navbar: React.ReactNode;
   images: string[] | null;
   onOpen: (ind: number) => void;
-}) {
+};
+
+export default function DetailsCarousel({
+  images,
+  navbar,
+  onOpen,
+}: DetailsCarouselPropType) {
   const [currentIndex, setCurrentIndex] = useState(0);
   return (
     <Stack
@@ -19,7 +22,7 @@ export default function DetailsCarousel({
       height={SCREEN_WIDTH + 64}
       position="relative"
     >
-      <DetailsNavbar />
+      {navbar}
       <SingleCarousel
         width={SCREEN_WIDTH}
         height={SCREEN_WIDTH + 64}

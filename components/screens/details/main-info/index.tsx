@@ -6,6 +6,7 @@ import DetailsCarousel from "@/components/screens/details/carousel";
 import DetailsDescription from "@/components/screens/details/description";
 import DetailsList from "@/components/screens/details/details-list";
 import DetailsMedia from "@/components/screens/details/details-media";
+import DetailsNavbar from "@/components/screens/details/details-navbar";
 import DetailsPeriod from "@/components/screens/details/details-period";
 import ReviewsList from "@/components/screens/details/reviews-list";
 import AdsList from "@/components/screens/homescreen/ads-list";
@@ -63,6 +64,14 @@ export default function MainInfo(data: MainInfoPropType) {
   return (
     <>
       <DetailsCarousel
+        navbar={
+          <DetailsNavbar
+            id={data.id}
+            title={`${isMusician ? "Musican " : "Ad "}${
+              isMusician ? `${data.name} ${data.surname}` : data.title
+            }`}
+          />
+        }
         images={data.photo?.length ? data.photo : null}
         onOpen={data.openFullDialog}
       />

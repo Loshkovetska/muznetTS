@@ -86,7 +86,6 @@ class PostServiceClass {
   }
 
   async addPost(args: AddPostType): Promise<PostType> {
-    console.log(args.media);
     const imagesUrls = await uploadImage(args.media);
 
     const post = await supabase

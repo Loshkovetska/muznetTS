@@ -39,7 +39,7 @@ export const MobileSheet = ({
       animation="fast"
       unmountChildrenWhenHidden
       moveOnKeyboardChange
-      dismissOnOverlayPress={!dismissOnSnapToBottom}
+      dismissOnOverlayPress={snapPoints ? false : undefined}
     >
       <Sheet.Overlay
         unstyled={!dismissOnSnapToBottom && open}

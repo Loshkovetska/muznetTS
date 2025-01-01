@@ -9,8 +9,8 @@ import PostItemHidden from "@/components/post-item/post-item-hidden";
 import PostItemInfo from "@/components/post-item/post-item-info";
 import useLikes from "@/lib/hooks/like.hook";
 import usePosts from "@/lib/hooks/posts.hook";
+import useShare from "@/lib/hooks/share.hook";
 import { PostType } from "@/lib/types/post";
-import { toggleToast } from "@/lib/utils/toast";
 import { colors } from "@/tamagui.config";
 import { router } from "expo-router";
 import { useCallback, useState } from "react";
@@ -51,6 +51,12 @@ export default function PostItem(post: PostType & { inView?: boolean }) {
     onSuccess: (b) => updatePostInfoOnReact(post.id, b),
   });
 
+  const { onShare } = useShare(
+    post.share_on,
+    "/community/post/" + post.id,
+    "MuzNet: Post " + post.title
+  );
+
   const onReport = useCallback(() => {
     toggleState("actions");
     toggleState("report");
@@ -60,13 +66,6 @@ export default function PostItem(post: PostType & { inView?: boolean }) {
     toggleState("actions");
     toggleState("delete");
   }, []);
-
-  const onShare = useCallback(() => {
-    if (!post.share_on)
-      return toggleToast("Can't share the post due to post settings", "error");
-
-    // add share logic
-  }, [post]);
 
   return (
     <>
@@ -108,52 +107,48 @@ export default function PostItem(post: PostType & { inView?: boolean }) {
         </YStack>
       )}
 
-      {post.inView && (
-        <>
-          <PostFuncDialog
-            post={post}
-            postOwner={communityUser?.id === post.user.id}
-            open={dialogs.actions}
-            onOpenChange={() => toggleState("actions")}
-            onReport={onReport}
-            onEdit={() => {
-              toggleState("actions");
-              router.push(`/(tabs)/(community)/post/${post.id}/edit`);
-            }}
-            onDelete={onDelete}
-            onShare={onShare}
-            onToggle={(name, value) =>
-              toggleSettings({ post_id: post.id, toggle_name: name, value })
-            }
-            onHide={() =>
-              hidePost({
-                post_id: post.id,
-                user_id: communityUser?.id || "",
-              })
-            }
-          />
-          <ReportDialog
-            open={dialogs.report}
-            post_id={post.id}
-            onOpenChange={() => toggleState("report")}
-          />
-          {communityUser?.id === post.user.id && (
-            <DeletePostDialog
-              open={dialogs.delete}
-              loading={isDeletePending}
-              onOpenChange={() => toggleState("delete")}
-              onDelete={() => deletePost(post.id)}
-            />
-          )}
-          <PostMoreDialog
-            open={dialogs["more"]}
-            canShare={post.share_on}
-            ownerPost={communityUser?.id === post.user.id}
-            onShare={onShare}
-            onOpenChange={() => toggleState("more")}
-          />
-        </>
+      <PostFuncDialog
+        post={post}
+        postOwner={communityUser?.id === post.user.id}
+        open={dialogs.actions}
+        onOpenChange={() => toggleState("actions")}
+        onReport={onReport}
+        onEdit={() => {
+          toggleState("actions");
+          router.push(`/(tabs)/(community)/post/${post.id}/edit`);
+        }}
+        onDelete={onDelete}
+        onShare={onShare}
+        onToggle={(name, value) =>
+          toggleSettings({ post_id: post.id, toggle_name: name, value })
+        }
+        onHide={() =>
+          hidePost({
+            post_id: post.id,
+            user_id: communityUser?.id || "",
+          })
+        }
+      />
+      <ReportDialog
+        open={dialogs.report}
+        post_id={post.id}
+        onOpenChange={() => toggleState("report")}
+      />
+      {communityUser?.id === post.user.id && (
+        <DeletePostDialog
+          open={dialogs.delete}
+          loading={isDeletePending}
+          onOpenChange={() => toggleState("delete")}
+          onDelete={() => deletePost(post.id)}
+        />
       )}
+      <PostMoreDialog
+        open={dialogs["more"]}
+        canShare={post.share_on}
+        ownerPost={communityUser?.id === post.user.id}
+        onShare={onShare}
+        onOpenChange={() => toggleState("more")}
+      />
     </>
   );
 }
