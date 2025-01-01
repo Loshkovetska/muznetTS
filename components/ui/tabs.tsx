@@ -1,5 +1,6 @@
-import { colors, typography } from "@/tamagui.config";
-import { Tabs as TTabs, Text, YStackProps, styled } from "tamagui";
+import Text from "@/components/ui/text";
+import { colors } from "@/tamagui.config";
+import { Tabs as TTabs, YStackProps, styled } from "tamagui";
 
 type TabsPropType = {
   defaultValue: string;
@@ -61,8 +62,8 @@ export default function Tabs({
             selected={defaultValue === tab.value}
           >
             <Text
-              {...typography["bold-14"]}
-              color={colors[defaultValue === tab.value ? "main" : "black"]}
+              typo="bold-14"
+              color={defaultValue === tab.value ? "main" : "black"}
             >
               {tab.title}
             </Text>

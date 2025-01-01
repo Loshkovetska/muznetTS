@@ -1,6 +1,7 @@
-import { colors, typography } from "@/tamagui.config";
+import Text from "@/components/ui/text";
+import { colors } from "@/tamagui.config";
 import { X } from "@tamagui/lucide-icons";
-import { Stack, Text, XStack } from "tamagui";
+import { Stack, XStack } from "tamagui";
 
 type SearchOptionPropType = {
   text: string;
@@ -29,9 +30,9 @@ export default function SearchOption({
       gap={8}
     >
       <Text
-        {...typography["medium-13"]}
+        typo="medium-13"
         flexGrow={1}
-        color={colors["main"]}
+        color="main"
       >
         {text}
       </Text>

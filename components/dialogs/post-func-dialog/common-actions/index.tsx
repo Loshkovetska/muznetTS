@@ -23,7 +23,7 @@ export default function CommonActions({
     >
       <UploadButton
         icon={<AlertTriangle color={colors["error"]} />}
-        labelColor={colors["error"]}
+        labelColor="error"
         label="Report"
         onPress={onReport}
       />

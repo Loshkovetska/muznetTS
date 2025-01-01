@@ -1,10 +1,11 @@
+import Text from "@/components/ui/text";
 import { SearchPostItemType } from "@/lib/types/post";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ChevronRight, Layers, MapPin } from "@tamagui/lucide-icons";
 import { Link } from "expo-router";
 import { useCallback } from "react";
-import { Stack, Text, XStack, YStack } from "tamagui";
+import { Stack, XStack, YStack } from "tamagui";
 
 export default function SearchItem(item: SearchPostItemType) {
   const onSave = useCallback(async () => {
@@ -56,10 +57,10 @@ export default function SearchItem(item: SearchPostItemType) {
           flexGrow={1}
           gap={4}
         >
-          <Text {...typography["bold-14"]}>{item.name}</Text>
+          <Text typo="bold-14">{item.name}</Text>
           <Text
-            color={colors["gray-60"]}
-            {...typography["medium-14"]}
+            typo="medium-14"
+            color="gray-60"
           >
             {item.count} {item.count === 1 ? "post" : "posts"}
           </Text>

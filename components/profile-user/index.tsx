@@ -1,7 +1,8 @@
+import Text from "@/components/ui/text";
 import { UserType } from "@/lib/types";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import { User } from "@tamagui/lucide-icons";
-import { Text, XStack } from "tamagui";
+import { XStack } from "tamagui";
 
 export default function ProfileUser({
   user,
@@ -17,7 +18,7 @@ export default function ProfileUser({
         size={16}
         color={colors["comet"]}
       />
-      <Text {...typography["reg-17"]}>
+      <Text typo="reg-17">
         {user?.name} {user?.surname}
       </Text>
     </XStack>

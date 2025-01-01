@@ -1,12 +1,14 @@
 import Button from "@/components/ui/button";
+import Text from "@/components/ui/text";
 import useImagePicker from "@/lib/hooks/image-picker.hook";
 import { setValueToForm } from "@/lib/utils";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import { AlertCircle, Pencil, UploadCloud } from "@tamagui/lucide-icons";
 import * as ImagePickerNative from "expo-image-picker";
 import { useCallback, useEffect, useState } from "react";
 import { UseFormReturn, useWatch } from "react-hook-form";
-import { Image, Stack, Text, XStack, YStack, styled } from "tamagui";
+import { Image, Stack, XStack, YStack, styled } from "tamagui";
+
 const Wrapper = styled(Stack, {
   width: 120,
   height: 120,
@@ -44,11 +46,6 @@ const StyledError = styled(XStack, {
   borderRadius: 8,
   alignItems: "center",
   gap: 8,
-});
-
-const StyledErrorText = styled(Text, {
-  ...typography["medium-14"],
-  color: colors["error"],
 });
 
 type ImagePickerPropType = {
@@ -106,8 +103,8 @@ export default function ImagePicker({ error, form }: ImagePickerPropType) {
               size={39}
             />
             <Text
-              {...typography["medium-13"]}
-              color={colors[error ? "error" : "black"]}
+              typo="medium-13"
+              color={error ? "error" : "black"}
               opacity={error ? 1 : 0.5}
             >
               Upload photo
@@ -151,7 +148,12 @@ export default function ImagePicker({ error, form }: ImagePickerPropType) {
             color={colors["error"]}
             size={20}
           />
-          <StyledErrorText> Upload your photo</StyledErrorText>
+          <Text
+            typo="medium-14"
+            color="error"
+          >
+            Upload your photo
+          </Text>
         </StyledError>
       )}
     </YStack>

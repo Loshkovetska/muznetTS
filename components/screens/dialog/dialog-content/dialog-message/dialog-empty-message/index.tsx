@@ -1,6 +1,7 @@
-import { colors, typography } from "@/tamagui.config";
+import Text from "@/components/ui/text";
+import { colors } from "@/tamagui.config";
 import { Pencil } from "@tamagui/lucide-icons";
-import { Text, XStack } from "tamagui";
+import { XStack } from "tamagui";
 
 export default function DialogEmptyMessage() {
   return (
@@ -13,8 +14,8 @@ export default function DialogEmptyMessage() {
         color={colors["third"]}
       />
       <Text
-        {...typography["reg-12"]}
-        color={colors["gray-100"]}
+        typo="reg-12"
+        color="gray-100"
       >
         writing...
       </Text>

@@ -2,10 +2,11 @@ import CommonImage from "@/components/common-image";
 import DialogBaseMessage from "@/components/screens/dialog/dialog-content/dialog-message/dialog-base-message";
 import DialogEmptyMessage from "@/components/screens/dialog/dialog-content/dialog-message/dialog-empty-message";
 import DialogOfferMessage from "@/components/screens/dialog/dialog-content/dialog-message/dialog-offer-message";
+import Text from "@/components/ui/text";
 import { MessageItemType } from "@/lib/types";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import dayjs from "dayjs";
-import { Stack, Text, XStack, YStack, styled } from "tamagui";
+import { Stack, XStack, YStack, styled } from "tamagui";
 
 const MessageContainer = styled(YStack, {
   padding: 8,
@@ -105,8 +106,8 @@ export default function DialogMessage(
             </MessageContainer>
             {!message.sameTime && (
               <Text
-                {...typography["medium-12"]}
-                color={colors["gray-100"]}
+                typo="medium-12"
+                color="gray-100"
               >
                 {dayjs(message.created_at).format("HH:MM")}
               </Text>

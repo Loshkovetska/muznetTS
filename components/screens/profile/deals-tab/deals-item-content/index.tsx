@@ -3,12 +3,13 @@ import CommonHeader from "@/components/common-header";
 import DealsItemInfo from "@/components/screens/profile/deals-tab/deals-item-content/deals-item-info";
 import Button from "@/components/ui/button";
 import Separator from "@/components/ui/separator";
+import Text from "@/components/ui/text";
 import useDeals from "@/lib/hooks/deal.hook";
 import { DealType } from "@/lib/types/deal";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import { ChevronDown, ChevronUp } from "@tamagui/lucide-icons";
 import { useState } from "react";
-import { ScrollView, Text, XStack, YStack } from "tamagui";
+import { ScrollView, XStack, YStack } from "tamagui";
 
 export default function DealsItemContent(
   deal: DealType & { onClose: () => void; user_id?: string }
@@ -31,7 +32,7 @@ export default function DealsItemContent(
           onBack={deal.onClose}
         />
         <Text
-          {...typography["bold-24"]}
+          typo="bold-24"
           textAlign="center"
         >
           {deal.ad.title}
@@ -55,17 +56,15 @@ export default function DealsItemContent(
             onPress={() => setOpen((prev) => !prev)}
           >
             <Text
-              {...typography["medium-16"]}
-              color={colors["nero"]}
+              typo="medium-16"
+              color="nero"
             >
               More details
             </Text>
             {isOpen ? <ChevronUp /> : <ChevronDown />}
           </XStack>
           <Separator />
-          {isOpen && (
-            <Text {...typography["medium-16"]}>{deal.ad.description}</Text>
-          )}
+          {isOpen && <Text typo="medium-16">{deal.ad.description}</Text>}
         </ScrollView>
       </YStack>
       <BottomBar>

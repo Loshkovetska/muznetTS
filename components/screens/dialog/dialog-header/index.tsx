@@ -1,10 +1,11 @@
 import CommonImage from "@/components/common-image";
 import CreateDealDialog from "@/components/dialogs/create-deal-dialog";
+import Text from "@/components/ui/text";
 import { UserType } from "@/lib/types";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import { ChevronLeft, EllipsisVertical } from "@tamagui/lucide-icons";
 import { router } from "expo-router";
-import { Text, XStack, YStack } from "tamagui";
+import { XStack, YStack } from "tamagui";
 
 type DialogHeaderPropType = {
   chatUser?: UserType;
@@ -42,7 +43,7 @@ export default function DialogHeader({
               borderRadius={4}
               source={chatUser?.photo?.[0]}
             />
-            <Text {...typography["bold-20"]}>
+            <Text typo="bold-20">
               {chatUser?.name} {chatUser?.surname}
             </Text>
           </XStack>

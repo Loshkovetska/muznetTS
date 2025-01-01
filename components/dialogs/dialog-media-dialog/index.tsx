@@ -1,13 +1,13 @@
 import CommonDialogWrapper from "@/components/common-dialog-wrapper";
 import CommonImage from "@/components/common-image";
 import DialogMedia from "@/components/screens/dialog/dialog-media";
+import Text from "@/components/ui/text";
 import { SCREEN_WIDTH } from "@/lib/constants";
 import { BaseDialogPropType, UserType } from "@/lib/types";
 import { detectFileType } from "@/lib/utils";
-import { typography } from "@/tamagui.config";
 import { ChevronLeft } from "@tamagui/lucide-icons";
 import { Fragment, useMemo } from "react";
-import { ScrollView, Stack, Text, XStack, YStack } from "tamagui";
+import { ScrollView, Stack, XStack, YStack } from "tamagui";
 
 type DialogMediaDialogPropType = {
   chatUser?: UserType;
@@ -50,7 +50,7 @@ export default function DialogMediaDialog({
           borderRadius={6}
           source={chatUser?.photo?.[0]}
         />
-        <Text {...typography["bold-22"]}>
+        <Text typo="bold-22">
           {chatUser?.name} {chatUser?.surname}
         </Text>
       </YStack>
@@ -64,7 +64,7 @@ export default function DialogMediaDialog({
             <Fragment key={title}>
               {data?.length ? (
                 <YStack gap={16}>
-                  <Text {...typography["bold-20"]}>{title}</Text>
+                  <Text typo="bold-20">{title}</Text>
                   <XStack
                     flexDirection="row"
                     flexWrap="wrap"

@@ -1,13 +1,14 @@
 import CommonImage from "@/components/common-image";
 import Button from "@/components/ui/button";
+import Text from "@/components/ui/text";
 import useImagePicker from "@/lib/hooks/image-picker.hook";
 import { setValueToForm } from "@/lib/utils";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import { Plus, Trash } from "@tamagui/lucide-icons";
 import * as ImagePickerNative from "expo-image-picker";
 import { useCallback } from "react";
 import { UseFormReturn, useWatch } from "react-hook-form";
-import { Stack, Text, XStack, YStack, styled } from "tamagui";
+import { Stack, XStack, YStack, styled } from "tamagui";
 
 const Container = styled(Stack, {
   width: 106,
@@ -51,10 +52,10 @@ export default function MediaSelect({ form }: { form: UseFormReturn<any> }) {
   return (
     <YStack gap={16}>
       <YStack gap={8}>
-        <Text {...typography["medium-20"]}>Media</Text>
+        <Text typo="medium-20">Media</Text>
         <Text
-          {...typography["reg-17"]}
-          color={colors["slate-gray"]}
+          typo="reg-17"
+          color="slate-gray"
         >
           You can upload up to 4 photos
         </Text>
@@ -90,7 +91,7 @@ export default function MediaSelect({ form }: { form: UseFormReturn<any> }) {
         {photos.length <= 3 && (
           <Container onPress={pickImage}>
             <Plus />
-            <Text {...typography["medium-15"]}>Add new</Text>
+            <Text typo="medium-15">Add new</Text>
           </Container>
         )}
       </XStack>

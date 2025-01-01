@@ -1,6 +1,6 @@
 import Button from "@/components/ui/button";
-import { colors, typography } from "@/tamagui.config";
-import { Text, YStack } from "tamagui";
+import Text from "@/components/ui/text";
+import { YStack } from "tamagui";
 
 export default function AuthSocialItem({
   icon,
@@ -21,9 +21,9 @@ export default function AuthSocialItem({
         {icon}
       </Button>
       <Text
-        {...typography["medium-17"]}
+        typo="medium-17"
         textAlign="center"
-        color={colors["black"]}
+        color="black"
       >
         {title}
       </Text>

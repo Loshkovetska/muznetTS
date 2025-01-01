@@ -76,9 +76,9 @@ export default function IndicatorBlock({
   const Container = isLightCircleVariant ? BlurView : Fragment;
   return (
     <Container
-      intensity={100}
-      blurReductionFactor={10}
-      tint="light"
+      {...(isLightCircleVariant
+        ? { intensity: 100, blurReductionFactor: 10, tint: "light" }
+        : {})}
     >
       <StyledIndicatorBlock
         absolute={absolute}

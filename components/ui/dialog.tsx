@@ -1,12 +1,12 @@
 import Button from "@/components/ui/button";
+import Text from "@/components/ui/text";
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/lib/constants";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import {
   Adapt,
   Sheet,
   Stack,
   Dialog as TDialog,
-  Text,
   XStack,
   YStack,
 } from "tamagui";
@@ -95,20 +95,22 @@ export default function Dialog({
               {title && (
                 <TDialog.Title unstyled>
                   <Text
+                    typo="bold-20"
                     textAlign="center"
-                    {...typography["bold-20"]}
                   >
                     {title}
                   </Text>
                 </TDialog.Title>
               )}
               {description && (
-                <TDialog.Description
-                  {...typography["medium-15"]}
-                  color={colors["gray-100"]}
-                  textAlign="center"
-                >
-                  {description}
+                <TDialog.Description asChild>
+                  <Text
+                    typo="medium-15"
+                    textAlign="center"
+                    color="gray-100"
+                  >
+                    {description}
+                  </Text>
                 </TDialog.Description>
               )}
             </YStack>

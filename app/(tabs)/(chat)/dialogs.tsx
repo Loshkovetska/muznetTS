@@ -1,10 +1,11 @@
 import ChatItem from "@/components/screens/chat/chat-item";
 import Input from "@/components/ui/input";
+import Text from "@/components/ui/text";
 import useMessages from "@/lib/hooks/messages.hook";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import { Search } from "@tamagui/lucide-icons";
 import { FlatList } from "react-native";
-import { Text, YStack } from "tamagui";
+import { YStack } from "tamagui";
 
 export default function Page() {
   const { chats, currentUser, searchValue, setSearchValue } = useMessages({
@@ -20,7 +21,7 @@ export default function Page() {
       gap={24}
     >
       <YStack gap={32}>
-        <Text {...typography["bold-28"]}>Messages</Text>
+        <Text typo="bold-28">Messages</Text>
         <Input
           value={searchValue}
           placeholder="Search"

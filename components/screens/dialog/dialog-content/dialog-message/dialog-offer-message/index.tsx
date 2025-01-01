@@ -1,14 +1,15 @@
 import { OFFER_BUTTON_STRATEGY } from "@/components/screens/dialog/dialog-content/dialog-message/dialog-offer-message/constants";
 import Button from "@/components/ui/button";
+import Text from "@/components/ui/text";
 import useDeals from "@/lib/hooks/deal.hook";
 import useMessages from "@/lib/hooks/messages.hook";
 import { UserType } from "@/lib/types";
 import { DealType } from "@/lib/types/deal";
 import { generateShortDealList } from "@/lib/utils";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import { Link } from "expo-router";
 import { useMemo } from "react";
-import { Text, XStack, YStack, styled } from "tamagui";
+import { XStack, YStack, styled } from "tamagui";
 
 const Wrapper = styled(YStack, {
   backgroundColor: colors["main"],
@@ -40,16 +41,16 @@ export default function DialogOfferMessage(
       width="100%"
     >
       <Wrapper>
-        <Text {...typography["medium-15"]}>
+        <Text typo="medium-15">
           {from.name} {from.surname} is sending you offer, please check it
         </Text>
         <YStack gap={4}>
           {Object.entries(data).map(([key, value]) => (
             <Text
-              {...typography["bold-15"]}
+              typo="bold-15"
               key={key}
             >
-              {key}: <Text {...typography["medium-15"]}>{value}</Text>
+              {key}: <Text typo="medium-15">{value}</Text>
             </Text>
           ))}
         </YStack>
@@ -101,8 +102,8 @@ export default function DialogOfferMessage(
       {from.id === user?.id && deal.offer_status !== "waiting" && (
         <Wrapper gap={16}>
           <Text
-            {...typography["semi-16"]}
-            color={colors["nero"]}
+            typo="semi-16"
+            color="nero"
             opacity={0.9}
           >
             To make it easier for you to track and manage your transactions, you

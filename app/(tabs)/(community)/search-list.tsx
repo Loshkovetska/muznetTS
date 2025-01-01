@@ -1,10 +1,11 @@
 import CommonHeader from "@/components/common-header";
 import PostsTile from "@/components/screens/community/posts-tile";
 import SearchContent from "@/components/screens/community/search/search-content";
+import Text from "@/components/ui/text";
 import usePostsByFilter from "@/lib/hooks/posts-by-filter.hook";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import { useLocalSearchParams } from "expo-router";
-import { Text, YStack } from "tamagui";
+import { YStack } from "tamagui";
 
 export default function Page() {
   const params = useLocalSearchParams() as {
@@ -21,15 +22,15 @@ export default function Page() {
       <CommonHeader
         title={
           <Text
-            {...typography["bold-20"]}
+            typo="bold-20"
             textTransform="capitalize"
             textAlign="center"
             flexGrow={1}
           >
             {params.tag || params.place}
             <Text
-              {...typography["medium-14"]}
-              color={colors["gray-60"]}
+              typo="medium-14"
+              color={"gray-60"}
             >
               {"  "}({params.count} posts)
             </Text>

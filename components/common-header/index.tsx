@@ -1,8 +1,9 @@
-import { colors, typography } from "@/tamagui.config";
+import Text from "@/components/ui/text";
+import { colors } from "@/tamagui.config";
 import { ChevronLeft } from "@tamagui/lucide-icons";
 import { useNavigation } from "expo-router";
 import { useCallback } from "react";
-import { Text, XStack, XStackProps } from "tamagui";
+import { XStack, XStackProps } from "tamagui";
 
 type CommonHeaderPropType = {
   title: string | React.ReactNode;
@@ -55,11 +56,7 @@ export default function CommonHeader({
         />
       )}
 
-      {typeof title === "string" ? (
-        <Text {...typography["bold-24"]}>{title}</Text>
-      ) : (
-        title
-      )}
+      {typeof title === "string" ? <Text typo="bold-24">{title}</Text> : title}
       {buttonRight}
     </XStack>
   );

@@ -1,9 +1,10 @@
+import Text from "@/components/ui/text";
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/lib/constants";
 import { PredictionType } from "@/lib/types";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import { useCallback } from "react";
 import { FlatList } from "react-native";
-import { Text, XStack, YStack, styled } from "tamagui";
+import { XStack, YStack, styled } from "tamagui";
 
 const StyledLocationsContent = styled(XStack, {
   padding: 16,
@@ -74,9 +75,9 @@ export default function LocationSearchResult({
           contentContainerStyle={{ gap: 16 }}
           renderItem={({ item }) => (
             <Text
+              typo="reg-17"
               zIndex={2}
-              {...typography["reg-17"]}
-              color={colors["black"]}
+              color="black"
               onPress={() => onSelect(item)}
             >
               {item.properties.formatted}

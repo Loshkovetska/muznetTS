@@ -110,7 +110,7 @@ const TextArea = React.forwardRef<TextInput, InputPropType>(
           flexGrow={1}
         >
           {placeholder && isFocused && animate && (
-            <Label sizeB="sm">{placeholder}</Label>
+            <Label typo="medium-10">{placeholder}</Label>
           )}
           <StyledInput
             ref={ref}

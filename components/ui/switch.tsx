@@ -50,7 +50,7 @@ export default function SwitchWithLabel(props: SwitchWithLabelPropType) {
       justifyContent="space-between"
     >
       <Label
-        sizeB="s-17"
+        typo="medium-17"
         minWidth={90}
         htmlFor={props.name}
       >

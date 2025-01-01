@@ -15,10 +15,10 @@ import LocationSearch from "@/components/location-search";
 import CheckboxWithLabel from "@/components/ui/checkbox";
 import Input, { InputPropType } from "@/components/ui/input";
 import SwitchWithLabel from "@/components/ui/switch";
+import Text from "@/components/ui/text";
 import TextArea from "@/components/ui/textarea";
 import { formateDate, formateTime } from "@/lib/utils";
-import { colors, typography } from "@/tamagui.config";
-import { GetProps, Text, YStack } from "tamagui";
+import { GetProps, Text as TText, YStack } from "tamagui";
 
 const Form = FormProvider;
 
@@ -103,7 +103,7 @@ const FormMessage = ({
   className,
   children,
   ...props
-}: GetProps<typeof Text>) => {
+}: Omit<GetProps<typeof TText>, "color">) => {
   const { error, formMessageId } = useFormField();
   const body = error ? String(error?.message) : children;
 
@@ -113,9 +113,9 @@ const FormMessage = ({
 
   return (
     <Text
+      typo="reg-12"
       id={formMessageId}
-      color={colors["error"]}
-      {...typography["reg-12"]}
+      color="error"
       {...props}
     >
       {body}

@@ -1,8 +1,9 @@
+import Text from "@/components/ui/text";
 import { getPeriod } from "@/lib/utils";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import { Clock } from "@tamagui/lucide-icons";
 import { useMemo } from "react";
-import { Text, XStack } from "tamagui";
+import { XStack } from "tamagui";
 
 type DetailsPeriodPropType = {
   start_date: string;
@@ -30,8 +31,8 @@ export default function DetailsPeriod({
         size={16}
       />
       <Text
-        {...typography["reg-17"]}
-        color={colors["comet"]}
+        typo="reg-17"
+        color="comet"
       >
         {period}
       </Text>

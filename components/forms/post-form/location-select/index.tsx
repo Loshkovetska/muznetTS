@@ -1,10 +1,11 @@
 import LocationSelectDialog from "@/components/dialogs/location-select-dialog";
+import Text from "@/components/ui/text";
 import { setValueToForm } from "@/lib/utils";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import { ChevronRight, MapPin } from "@tamagui/lucide-icons";
 import { useCallback, useState } from "react";
 import { UseFormReturn, useWatch } from "react-hook-form";
-import { Text, XStack } from "tamagui";
+import { XStack } from "tamagui";
 
 type LocationSelectPropType = {
   form: UseFormReturn<any>;
@@ -39,9 +40,9 @@ export default function LocationSelect({ form }: LocationSelectPropType) {
           color={colors["secondary"]}
         />
         <Text
+          typo="reg-17"
           flexGrow={1}
-          {...typography["reg-17"]}
-          color={colors[selectedLocation ? "secondary" : "comet"]}
+          color={selectedLocation ? "secondary" : "comet"}
           maxWidth="90%"
         >
           {selectedLocation || "Add Location"}

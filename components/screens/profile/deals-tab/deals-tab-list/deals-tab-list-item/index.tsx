@@ -1,16 +1,15 @@
 import ProfileLocation from "@/components/profile-location";
 import ProfileUser from "@/components/profile-user";
-import { useUser } from "@/components/providers/user-provider";
 import DetailsPeriod from "@/components/screens/details/details-period";
+import Text from "@/components/ui/text";
 import { DealType } from "@/lib/types/deal";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import { Award } from "@tamagui/lucide-icons";
-import { Text, XStack, YStack } from "tamagui";
+import { XStack, YStack } from "tamagui";
 
 export default function DealsTabListItem(
   deal: DealType & { onPress: () => void }
 ) {
-  const { user } = useUser();
   return (
     <YStack
       padding={12}
@@ -26,10 +25,10 @@ export default function DealsTabListItem(
         alignItems="center"
         justifyContent="space-between"
       >
-        <Text {...typography["bold-17"]}>Deal № {deal.deal_num}</Text>
+        <Text typo="bold-17">Deal № {deal.deal_num}</Text>
         <Text
-          {...typography["bold-17"]}
-          color={colors[deal.status === "active" ? "success" : "gray-100"]}
+          typo="bold-17"
+          color={deal.status === "active" ? "success" : "gray-100"}
         >
           {deal.status[0].toUpperCase()}
           {deal.status.slice(1)}
@@ -44,7 +43,7 @@ export default function DealsTabListItem(
             size={16}
             color={colors["comet"]}
           />
-          <Text {...typography["reg-17"]}>{deal.ad.title}</Text>
+          <Text typo="reg-17">{deal.ad.title}</Text>
         </XStack>
         <ProfileLocation
           sizeB="lg"

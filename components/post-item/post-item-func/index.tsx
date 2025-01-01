@@ -1,8 +1,9 @@
+import Text from "@/components/ui/text";
 import { PostType } from "@/lib/types/post";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import { Heart, MessageCircle, Send } from "@tamagui/lucide-icons";
 import { Link } from "expo-router";
-import { Text, XStack } from "tamagui";
+import { XStack } from "tamagui";
 
 export default function PostItemFunc(
   post: PostType & {
@@ -24,7 +25,7 @@ export default function PostItemFunc(
           fill={colors[post.isLiked ? "black" : "main"]}
           onPress={post.onReact}
         />
-        <Text {...typography["bold-14"]}>{post.info.likes}</Text>
+        <Text typo="bold-14">{post.info.likes}</Text>
       </XStack>
       <Link href={`/post/${post.id}/comments`}>
         <MessageCircle />

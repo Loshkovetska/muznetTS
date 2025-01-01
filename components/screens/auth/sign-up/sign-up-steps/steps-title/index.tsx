@@ -1,6 +1,6 @@
 import { STEPS_TITLE } from "@/components/screens/auth/sign-up/sign-up-steps/steps-title/constants";
-import { colors, typography } from "@/tamagui.config";
-import { Text, YStack } from "tamagui";
+import Text from "@/components/ui/text";
+import { YStack } from "tamagui";
 
 type StepsTitlePropType = {
   step_name: string;
@@ -15,14 +15,14 @@ export default function StepsTitle({ step_name }: StepsTitlePropType) {
     >
       <Text
         textAlign="center"
-        {...typography["bold-24"]}
-        color={colors["black"]}
+        typo="bold-24"
+        color="black"
       >
         Welcome to MuzNet!
       </Text>
       <Text
-        {...typography["reg-17"]}
-        color={colors["gray-100"]}
+        typo="reg-17"
+        color="gray-100"
         textAlign="center"
       >
         {TITLE}

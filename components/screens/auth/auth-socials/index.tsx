@@ -1,8 +1,9 @@
 import AuthSocialItem from "@/components/screens/auth/auth-socials/auth-social-item";
 import Separator from "@/components/ui/separator";
-import { colors, typography } from "@/tamagui.config";
+import Text from "@/components/ui/text";
+import { colors } from "@/tamagui.config";
 import { Apple, Facebook, Mail } from "@tamagui/lucide-icons";
-import { Text, XStack, YStack } from "tamagui";
+import { XStack, YStack } from "tamagui";
 
 export default function AuthSocial() {
   return (
@@ -17,8 +18,8 @@ export default function AuthSocial() {
       >
         <Separator />
         <Text
-          {...typography["medium-20"]}
-          color={colors["secondary"]}
+          typo="medium-20"
+          color="secondary"
         >
           OR
         </Text>
@@ -41,8 +42,8 @@ export default function AuthSocial() {
         <AuthSocialItem
           icon={
             <Facebook
-              fill={colors["blue"]}
-              color={colors["blue"]}
+              fill={colors["info"]}
+              color={colors["info"]}
             />
           }
           title="Facebook"

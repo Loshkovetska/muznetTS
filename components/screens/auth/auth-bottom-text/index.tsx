@@ -1,13 +1,12 @@
-import { colors, typography } from "@/tamagui.config";
+import Text from "@/components/ui/text";
 import { Link } from "expo-router";
-import { Text } from "tamagui";
 
 export default function AuthBottomText({ isSignIn }: { isSignIn: boolean }) {
   return (
     <Text
-      color={colors["comet"]}
+      color="comet"
       textAlign="center"
-      {...typography["reg-17"]}
+      typo="reg-17"
     >
       {isSignIn ? "Don't have an account?" : "Already have an account?"}{" "}
       <Link
@@ -15,8 +14,8 @@ export default function AuthBottomText({ isSignIn }: { isSignIn: boolean }) {
         href={isSignIn ? "/sign-up" : "/sign-in"}
       >
         <Text
-          color={colors["black"]}
-          fontFamily="MulishBold"
+          color="black"
+          typo="bold-17"
         >
           {!isSignIn ? "Sign In" : "Sign Up"}
         </Text>

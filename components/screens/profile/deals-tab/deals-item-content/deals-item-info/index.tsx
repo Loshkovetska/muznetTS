@@ -1,10 +1,10 @@
 import Separator from "@/components/ui/separator";
+import Text from "@/components/ui/text";
 import { AdType } from "@/lib/types";
 import { DealType } from "@/lib/types/deal";
 import { generateDealList } from "@/lib/utils";
-import { colors, typography } from "@/tamagui.config";
 import { Fragment, useMemo } from "react";
-import { Text, XStack } from "tamagui";
+import { XStack } from "tamagui";
 
 export default function DealsItemInfo(
   props: AdType & { status?: DealType["status"] }
@@ -21,21 +21,19 @@ export default function DealsItemInfo(
         justifyContent="space-between"
       >
         <Text
-          {...typography[key === "Total" ? "bold-16" : "medium-16"]}
-          color={colors["nero"]}
+          typo={key === "Total" ? "bold-16" : "medium-16"}
+          color="nero"
         >
           {key}
         </Text>
         <Text
-          {...typography[key === "Total" ? "bold-16" : "medium-16"]}
+          typo={key === "Total" ? "bold-16" : "medium-16"}
           color={
-            colors[
-              value === "Active"
-                ? "success"
-                : key === "Total"
-                ? "black"
-                : "gray-100"
-            ]
+            value === "Active"
+              ? "success"
+              : key === "Total"
+              ? "black"
+              : "gray-100"
           }
         >
           {value}

@@ -1,9 +1,10 @@
 import CommonImage from "@/components/common-image";
+import Text from "@/components/ui/text";
 import { ChatItemType } from "@/lib/types";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import dayjs from "dayjs";
 import { Link } from "expo-router";
-import { Stack, Text, XStack, YStack } from "tamagui";
+import { Stack, XStack, YStack } from "tamagui";
 
 export default function ChatItem(
   chat: ChatItemType & { currentUserId: string }
@@ -44,7 +45,7 @@ export default function ChatItem(
               gap={6}
             >
               <Text
-                {...typography["bold-15"]}
+                typo="bold-15"
                 numberOfLines={1}
               >
                 {currentUser.name} {currentUser.surname}
@@ -59,8 +60,8 @@ export default function ChatItem(
                   justifyContent="center"
                 >
                   <Text
-                    {...typography["bold-10"]}
-                    color={colors["main"]}
+                    typo="bold-10"
+                    color="main"
                   >
                     {chat.count_to_read}
                   </Text>
@@ -69,17 +70,17 @@ export default function ChatItem(
             </XStack>
 
             <Text
-              {...typography["reg-15"]}
+              typo="reg-15"
               numberOfLines={1}
-              color={colors["gray-100"]}
+              color="gray-100"
             >
               {chat.last_message}
             </Text>
           </YStack>
         </XStack>
         <Text
-          {...typography["reg-12"]}
-          color={colors["ghost"]}
+          typo="reg-12"
+          color="ghost"
           alignSelf="flex-start"
         >
           {dayjs(chat.created_at).format("HH:MM")}

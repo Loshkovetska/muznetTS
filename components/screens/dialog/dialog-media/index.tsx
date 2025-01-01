@@ -1,11 +1,12 @@
 import CommonImage from "@/components/common-image";
 import CommonVideo from "@/components/common-video";
+import Text from "@/components/ui/text";
 import useDocument from "@/lib/hooks/document.hook";
 import { detectFileType } from "@/lib/utils";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import { Paperclip } from "@tamagui/lucide-icons";
 import { useCallback } from "react";
-import { Stack, Text, XStack } from "tamagui";
+import { Stack, XStack } from "tamagui";
 
 type DialogMediaPropType = {
   file: string;
@@ -39,7 +40,7 @@ export default function DialogMedia({ file, imageSize }: DialogMediaPropType) {
           color={colors["black"]}
         />
         <Text
-          {...typography["medium-12"]}
+          typo="medium-12"
           numberOfLines={1}
           maxWidth="80%"
         >

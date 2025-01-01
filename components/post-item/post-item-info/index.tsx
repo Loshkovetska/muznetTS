@@ -1,9 +1,10 @@
+import Text from "@/components/ui/text";
 import { PostType } from "@/lib/types/post";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import dayjs from "dayjs";
 import { Link } from "expo-router";
 import { useMemo, useState } from "react";
-import { Text, XStack, YStack } from "tamagui";
+import { XStack, YStack } from "tamagui";
 
 export default function PostItemInfo(
   post: PostType & { showFullDescription?: boolean }
@@ -21,19 +22,19 @@ export default function PostItemInfo(
   return (
     <YStack gap={8}>
       <YStack gap={4}>
-        <Text {...typography["bold-16"]}>{post.title}</Text>
-        <Text {...typography["medium-14"]}>
+        <Text typo="bold-16">{post.title}</Text>
+        <Text typo="medium-14">
           {description}
           {post.description.length > 100 && !post.showFullDescription && (
             <Text
-              {...typography["medium-14"]}
+              typo="medium-14"
               backgroundColor={colors["main"]}
               onPress={() => setShowMore((prev) => !prev)}
             >
               {showMore ? " " : "... "}
               <Text
                 textDecorationLine="underline"
-                color={colors["gray-80"]}
+                color="gray-80"
               >
                 {showMore ? "less" : "more"}
               </Text>
@@ -56,7 +57,7 @@ export default function PostItemInfo(
                 borderColor={colors["light-gray"]}
                 borderRadius={6}
               >
-                <Text {...typography["medium-13"]}>{tag}</Text>
+                <Text typo="medium-13">{tag}</Text>
               </XStack>
             ))}
           </XStack>
@@ -68,18 +69,17 @@ export default function PostItemInfo(
           href={`/post/${post.id}/comments`}
         >
           <Text
-            {...typography["bold-14"]}
+            typo="bold-14"
             marginVertical={4}
-            color={colors["gray-80"]}
-            onPress={() => {}}
+            color="gray-80"
           >
             View all comments
           </Text>
         </Link>
       )}
       <Text
-        {...typography["medium-14"]}
-        color={colors["gray-80"]}
+        typo="medium-14"
+        color="gray-80"
       >
         {dayjs(post.created_at).fromNow()}
       </Text>

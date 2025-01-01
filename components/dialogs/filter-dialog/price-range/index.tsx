@@ -1,7 +1,7 @@
 import PriceRangeIcon from "@/components/dialogs/filter-dialog/price-range/price-range-icon";
 import Slider from "@/components/ui/slider";
-import { typography } from "@/tamagui.config";
-import { Text, XStack, YStack } from "tamagui";
+import Text from "@/components/ui/text";
+import { XStack, YStack } from "tamagui";
 
 type PriceRangePropType = {
   priceRange: { min: number; max: number };
@@ -18,8 +18,8 @@ export default function PriceRange({
         alignItems="center"
         justifyContent="space-between"
       >
-        <Text {...typography["bold-17"]}>Price Range:</Text>
-        <Text {...typography["bold-15"]}>
+        <Text typo="bold-17">Price Range:</Text>
+        <Text typo="bold-15">
           ${priceRange.min} - ${priceRange.max}
         </Text>
       </XStack>

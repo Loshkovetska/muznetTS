@@ -4,14 +4,14 @@ import CommonHeader from "@/components/common-header";
 import InfoMessage from "@/components/info-message";
 import Button from "@/components/ui/button";
 import { Form, FormElement } from "@/components/ui/form";
+import Text from "@/components/ui/text";
 import { SCREEN_WIDTH } from "@/lib/constants";
 import useMessages from "@/lib/hooks/messages.hook";
 import { BaseDialogPropType } from "@/lib/types";
-import { colors, typography } from "@/tamagui.config";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
-import { Text, YStack } from "tamagui";
+import { YStack } from "tamagui";
 import { z } from "zod";
 
 type ContactUserDialogPropType = {
@@ -61,8 +61,8 @@ export default function ContactUserDialog({
         title={`Contact ${isMusician ? "Vendor" : "Musician"}`}
       />
       <Text
-        {...typography["reg-16"]}
-        color={colors["gray-100"]}
+        typo="reg-16"
+        color="gray-100"
       >
         Introduce yourself to Leo Ferguson and let him know a little about your
         event.

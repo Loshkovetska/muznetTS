@@ -109,7 +109,7 @@ export default function PostGallery({
               <InfoMessage
                 text="You can’t select more than 3 media files"
                 backgroundColor={colors["ghost-white"]}
-                textColor={colors["gray-80"]}
+                textColor="gray-80"
                 borderRadius={8}
                 padding={8}
               />

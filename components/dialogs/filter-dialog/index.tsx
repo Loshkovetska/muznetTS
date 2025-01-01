@@ -13,14 +13,14 @@ import Button from "@/components/ui/button";
 import CheckboxWithLabel from "@/components/ui/checkbox";
 import Input from "@/components/ui/input";
 import Select, { SelectContent } from "@/components/ui/select";
+import Text from "@/components/ui/text";
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/lib/constants";
 import { GENRES, INSTRUMENTS } from "@/lib/constants/lists";
 import { BaseDialogPropType, FiltersType } from "@/lib/types";
-import { typography } from "@/tamagui.config";
 import { X } from "@tamagui/lucide-icons";
 import dayjs from "dayjs";
 import { useCallback, useMemo, useState } from "react";
-import { ScrollView, Text, XStack } from "tamagui";
+import { ScrollView, XStack } from "tamagui";
 
 type FilterDialogPropType = {
   selectedFilters: FiltersType;
@@ -93,7 +93,7 @@ export default function FilterDialog({
           justifyContent="center"
         >
           <Text
-            {...typography["medium-20"]}
+            typo="medium-20"
             textAlign="center"
           >
             Sort and Filter
@@ -186,7 +186,7 @@ export default function FilterDialog({
           width={SCREEN_WIDTH}
         >
           <Text
-            {...typography["reg-17"]}
+            typo="reg-17"
             paddingLeft={16}
             onPress={resetFilters}
           >

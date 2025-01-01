@@ -1,8 +1,8 @@
 import CheckboxWithLabel from "@/components/ui/checkbox";
 import { FormElement } from "@/components/ui/form";
+import Text from "@/components/ui/text";
 import { FiltersType } from "@/lib/types";
-import { typography } from "@/tamagui.config";
-import { Text, YStack } from "tamagui";
+import { YStack } from "tamagui";
 
 type SkillsListPropType = {
   selectedValues?: FiltersType;
@@ -18,7 +18,7 @@ export default function SkillsList({
       gap={24}
       marginTop={16}
     >
-      <Text {...typography[onChange ? "bold-17" : "bold-15"]}>Skills:</Text>
+      <Text typo={onChange ? "bold-17" : "bold-15"}>Skills:</Text>
       <YStack
         gap={16}
         marginBottom={8}

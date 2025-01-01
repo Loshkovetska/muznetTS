@@ -1,20 +1,21 @@
 import Input, { InputPropType } from "@/components/ui/input";
 import { Eye, EyeOff } from "@tamagui/lucide-icons";
-import { useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
+import { TextInput } from "react-native";
 
-export default function PasswordInput({
-  withIcons = true,
-  ...props
-}: InputPropType & { withIcons?: boolean }) {
+const PasswordInput = React.forwardRef<
+  TextInput,
+  InputPropType & { withIcons?: boolean }
+>(({ withIcons, ...props }, ref) => {
   const [showPass, setShow] = useState(false);
 
   const Icon = useMemo(
     () => (withIcons ? (showPass ? Eye : EyeOff) : undefined),
     [withIcons, showPass]
   );
-
   return (
     <Input
+      ref={ref}
       secureTextEntry={!showPass}
       iconRight={
         Icon ? (
@@ -27,4 +28,6 @@ export default function PasswordInput({
       {...props}
     />
   );
-}
+});
+
+export default PasswordInput;

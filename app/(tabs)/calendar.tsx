@@ -1,11 +1,12 @@
 import CalendarItem from "@/components/screens/calendar";
 import DatePicker from "@/components/ui/date-picker";
+import Text from "@/components/ui/text";
 import useCalendar from "@/lib/hooks/calendar.hook";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import dayjs from "dayjs";
 import { useState } from "react";
 import { FlatList } from "react-native";
-import { Text, XStack, YStack } from "tamagui";
+import { XStack, YStack } from "tamagui";
 
 export default function Calendar() {
   const { ads, markedDates, selectedDate, setSelectedDate } = useCalendar();
@@ -27,9 +28,9 @@ export default function Calendar() {
           alignItems="center"
           justifyContent="space-between"
         >
-          <Text {...typography["bold-34"]}>Calendar</Text>
+          <Text typo="bold-34">Calendar</Text>
           <Text
-            {...typography["medium-17"]}
+            typo="medium-17"
             onPress={() => setSelectedDate(undefined)}
           >
             See all
@@ -67,8 +68,8 @@ export default function Calendar() {
           paddingBottom={150}
         >
           <Text
+            typo="bold-18"
             textAlign="center"
-            {...typography["bold-18"]}
           >
             No ads were found on this date!
           </Text>

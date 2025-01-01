@@ -1,9 +1,10 @@
 import CommonImage from "@/components/common-image";
 import RateBlock from "@/components/rate-block";
+import Text from "@/components/ui/text";
 import { ReviewType } from "@/lib/types";
 import { getReviewDate } from "@/lib/utils";
-import { colors, typography } from "@/tamagui.config";
-import { Text, XStack, YStack, styled } from "tamagui";
+import { colors } from "@/tamagui.config";
+import { XStack, YStack, styled } from "tamagui";
 
 const Container = styled(YStack, {
   gap: 16,
@@ -46,12 +47,12 @@ export default function ReviewItem({ type, ...review }: ReviewItemPropType) {
               borderRadius={5}
             />
             <YStack gap={2}>
-              <Text {...typography["bold-17"]}>
+              <Text typo="bold-17">
                 {review.user.name} {review.user.surname}
               </Text>
               <Text
-                {...typography["reg-13"]}
-                color={colors["dim-gray"]}
+                typo="reg-13"
+                color="dim-gray"
               >
                 {getReviewDate(review.created_at)}
               </Text>
@@ -69,18 +70,12 @@ export default function ReviewItem({ type, ...review }: ReviewItemPropType) {
           )}
         </XStack>
         <Text
+          typo="reg-15"
           numberOfLines={type === "small" ? 5 : undefined}
-          {...typography["reg-15"]}
         >
           {review.text}
         </Text>
       </YStack>
-      {type === "full" && !!review.response && (
-        <YStack gap={8}>
-          <Text {...typography["medium-17"]}>Response from {"Leo"}:</Text>
-          <Text {...typography["reg-15"]}>{review.response}</Text>
-        </YStack>
-      )}
     </Container>
   );
 }

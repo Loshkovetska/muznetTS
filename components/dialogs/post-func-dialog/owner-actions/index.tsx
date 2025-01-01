@@ -1,7 +1,8 @@
 import Separator from "@/components/ui/separator";
+import Text from "@/components/ui/text";
 import { PostType } from "@/lib/types/post";
-import { colors, typography } from "@/tamagui.config";
-import { Text, YStack } from "tamagui";
+import { colors } from "@/tamagui.config";
+import { YStack } from "tamagui";
 
 export default function OwnerActions(
   post: PostType & {
@@ -21,7 +22,7 @@ export default function OwnerActions(
       gap={16}
     >
       <Text
-        {...typography["bold-16"]}
+        typo="bold-16"
         textAlign="center"
         onPress={post.onShare}
       >
@@ -29,7 +30,7 @@ export default function OwnerActions(
       </Text>
       <Separator />
       <Text
-        {...typography["bold-16"]}
+        typo="bold-16"
         textAlign="center"
         onPress={post.onEdit}
       >
@@ -37,7 +38,7 @@ export default function OwnerActions(
       </Text>
       <Separator />
       <Text
-        {...typography["bold-16"]}
+        typo="bold-16"
         textAlign="center"
         onPress={() => post.onToggle("comment_on", !post.comment_on)}
       >
@@ -45,7 +46,7 @@ export default function OwnerActions(
       </Text>
       <Separator />
       <Text
-        {...typography["bold-16"]}
+        typo="bold-16"
         textAlign="center"
         onPress={() => post.onToggle("share_on", !post.share_on)}
       >
@@ -53,9 +54,9 @@ export default function OwnerActions(
       </Text>
       <Separator />
       <Text
-        {...typography["bold-16"]}
+        typo="bold-16"
         textAlign="center"
-        color={colors["error"]}
+        color="error"
         onPress={post.onDelete}
       >
         Delete

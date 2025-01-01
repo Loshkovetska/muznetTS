@@ -10,7 +10,7 @@ import { StatusBar } from "react-native";
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState<boolean | null>(null);
 
   const [loaded] = useFonts({
     MulishLight: require("../assets/fonts/Mulish-Light.otf"),
@@ -31,10 +31,18 @@ export default function RootLayout() {
   const checkUserStatus = useCallback(async () => {
     const exist = await AsyncStorage.getItem("enter");
     const user = await AsyncStorage.getItem("user");
+
+    console.log("VAL, ", exist, user);
+
     if (exist && user) return setShow(false);
-    if (exist && !user) return router.navigate("/sign-in");
+    if (exist && !user) {
+      setShow(true);
+      return router.push("/sign-in");
+    }
 
     await AsyncStorage.setItem("enter", "true");
+    setShow(true);
+    router.replace("/onboarding");
   }, []);
 
   useEffect(() => {

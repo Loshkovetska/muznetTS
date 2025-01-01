@@ -1,8 +1,9 @@
 import Button from "@/components/ui/button";
-import { colors, typography } from "@/tamagui.config";
+import Text from "@/components/ui/text";
+import { colors } from "@/tamagui.config";
 import { Plus, Search } from "@tamagui/lucide-icons";
 import { Link } from "expo-router";
-import { Text, XStack } from "tamagui";
+import { XStack } from "tamagui";
 
 export default function Homebar() {
   return (
@@ -15,7 +16,7 @@ export default function Homebar() {
       alignItems="center"
       justifyContent="space-between"
     >
-      <Text {...typography["bold-24"]}>Community</Text>
+      <Text typo="bold-24">Community</Text>
       <XStack
         alignItems="center"
         gap={16}

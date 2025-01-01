@@ -141,7 +141,7 @@ const Input = React.forwardRef<TextInput, InputPropType>(
         <StyledInputWrapper>
           {props.placeholder && animate && isFocused && (
             <Label
-              sizeB="sm"
+              typo="medium-10"
               marginTop={-3}
             >
               {props.placeholder}

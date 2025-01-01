@@ -3,11 +3,12 @@ import GenresList from "@/components/genres-list";
 import PricePerHour from "@/components/price-per-hour";
 import ProfileLocation from "@/components/profile-location";
 import RateBlock from "@/components/rate-block";
+import Text from "@/components/ui/text";
 import { AdType, UserType } from "@/lib/types";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import { Link } from "expo-router";
 import { useMemo } from "react";
-import { Text, XStack, YStack, styled } from "tamagui";
+import { XStack, YStack, styled } from "tamagui";
 
 const ItemContainer = styled(XStack, {
   width: "100%",
@@ -60,16 +61,16 @@ export default function AdsItem(data: UserType | AdType) {
             maxWidth="70%"
           />
           <Text
+            typo="bold-16"
             numberOfLines={2}
             ellipsizeMode="tail"
-            {...typography["bold-16"]}
           >
             {isMusician ? `${data.name} ${data.surname}` : data.title}
           </Text>
           {isMusician && genres.length > 0 && <GenresList genres={genres} />}
           {!isMusician && (
             <Text
-              {...typography["semi-12"]}
+              typo="semi-12"
               numberOfLines={1}
             >
               {data.description}

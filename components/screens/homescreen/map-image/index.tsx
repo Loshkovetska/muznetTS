@@ -1,8 +1,9 @@
 import MapImg from "@/assets/images/screens/main/map-new.png";
 import Button from "@/components/ui/button";
-import { colors, typography } from "@/tamagui.config";
+import Text from "@/components/ui/text";
+import { colors } from "@/tamagui.config";
 import { Link } from "expo-router";
-import { Image, Stack, Text, YStack, styled } from "tamagui";
+import { Image, Stack, YStack, styled } from "tamagui";
 
 const MapContainer = styled(Stack, {
   width: "100%",
@@ -33,8 +34,8 @@ export default function MapImage() {
         height="100%"
       />
       <MapContainerBlock>
-        <Text {...typography["black-28"]}>Find</Text>
-        <Text {...typography["black-28"]}>Nearby</Text>
+        <Text typo="black-28">Find</Text>
+        <Text typo="black-28">Nearby</Text>
         <Link
           href="/map"
           asChild

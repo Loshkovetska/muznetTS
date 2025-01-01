@@ -1,7 +1,8 @@
+import Text from "@/components/ui/text";
 import { SCREEN_WIDTH } from "@/lib/constants";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import { TouchableOpacity } from "react-native";
-import { Text, YStack } from "tamagui";
+import { YStack } from "tamagui";
 
 type UploadButtonPropType = {
   icon: React.ReactNode;
@@ -36,8 +37,8 @@ export default function UploadButton({
       >
         {icon}
         <Text
-          {...typography["bold-16"]}
-          color={labelColor}
+          typo="bold-16"
+          color={labelColor as "error"}
         >
           {label}
         </Text>

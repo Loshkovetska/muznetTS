@@ -1,12 +1,13 @@
 import CommonImage from "@/components/common-image";
+import Text from "@/components/ui/text";
 import useLikes from "@/lib/hooks/like.hook";
 import { CommentType } from "@/lib/types/comment";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import { Heart } from "@tamagui/lucide-icons";
 import dayjs from "dayjs";
 import { useCallback, useMemo } from "react";
 import { GestureResponderEvent } from "react-native";
-import { Text, XStack, YStack } from "tamagui";
+import { XStack, YStack } from "tamagui";
 
 export default function CommentItem(
   comment: CommentType & {
@@ -62,7 +63,7 @@ export default function CommentItem(
       >
         <Text>
           <Text
-            {...typography["bold-14"]}
+            typo="bold-14"
             onPress={commentToUser ? onPress : undefined}
           >
             {comment.user.name} {comment.user.surname}{" "}
@@ -80,12 +81,12 @@ export default function CommentItem(
             gap={13}
             flexGrow={1}
           >
-            <Text color={colors["gray-80"]}>{commentDate}</Text>
+            <Text color="gray-80">{commentDate}</Text>
             <Text
-              {...typography["medium-15"]}
-              color={colors["gray-80"]}
+              typo="medium-15"
+              color="gray-80"
             >
-              <Text color={colors["secondary"]}>{comment.likes_count}</Text>
+              <Text color="secondary">{comment.likes_count}</Text>
               {comment.likes_count === 1 ? " like" : " likes"}
             </Text>
           </XStack>

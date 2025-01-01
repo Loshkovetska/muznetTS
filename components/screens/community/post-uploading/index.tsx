@@ -1,7 +1,8 @@
+import Text from "@/components/ui/text";
 import { toggleToast } from "@/lib/utils/toast";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import { useEffect, useRef, useState } from "react";
-import { Spinner, Text, XStack } from "tamagui";
+import { Spinner, XStack } from "tamagui";
 
 export default function PostUploading({
   isLoading,
@@ -35,12 +36,12 @@ export default function PostUploading({
       alignItems="center"
       justifyContent="space-between"
     >
-      <Text {...typography["reg-17"]}>Post is loading</Text>
+      <Text typo="reg-17">Post is loading</Text>
       <XStack
         alignItems="center"
         gap={10}
       >
-        <Text {...typography["bold-14"]}>{percentages}%</Text>
+        <Text typo="bold-14">{percentages}%</Text>
         <Spinner color={colors["black"]} />
       </XStack>
     </XStack>

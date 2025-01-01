@@ -3,9 +3,10 @@ import Image2 from "@/assets/images/screens/calendar/calendar_bg_2.png";
 import ProfileLocation from "@/components/profile-location";
 import ProfileUser from "@/components/profile-user";
 import DetailsPeriod from "@/components/screens/details/details-period";
+import Text from "@/components/ui/text";
 import { DealType } from "@/lib/types/deal";
-import { colors, typography } from "@/tamagui.config";
-import { Image, Text, YStack, styled } from "tamagui";
+import { colors } from "@/tamagui.config";
+import { Image, YStack, styled } from "tamagui";
 
 const Container = styled(YStack, {
   borderRadius: 8,
@@ -38,7 +39,7 @@ export default function CalendarItem(props: CalendarItemPropType) {
         resizeMode="cover"
       />
       <Content>
-        <Text {...typography["bold-20"]}>{ad.title}</Text>
+        <Text typo="bold-20">{ad.title}</Text>
         <YStack gap={12}>
           <DetailsPeriod
             noMargin

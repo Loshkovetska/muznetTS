@@ -1,12 +1,13 @@
 import Button from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import { MobileSheet } from "@/components/ui/mobile-sheet";
+import Text from "@/components/ui/text";
 import usePosts from "@/lib/hooks/posts.hook";
 import { BaseDialogPropType } from "@/lib/types";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import { CircleCheck } from "@tamagui/lucide-icons";
 import { useCallback, useState } from "react";
-import { Text, YStack } from "tamagui";
+import { YStack } from "tamagui";
 
 const CONTENT_STRATEGY = {
   0: {
@@ -64,12 +65,10 @@ export default function ReportDialog({
               marginBottom={8}
             />
           )}
-          <Text {...typography["bold-20"]}>
-            {CONTENT_STRATEGY[step as 0].title}
-          </Text>
+          <Text typo="bold-20">{CONTENT_STRATEGY[step as 0].title}</Text>
           <Text
-            {...typography["reg-16"]}
-            color={colors["gray-100"]}
+            typo="reg-16"
+            color="gray-100"
           >
             {CONTENT_STRATEGY[step as 0].text}
           </Text>

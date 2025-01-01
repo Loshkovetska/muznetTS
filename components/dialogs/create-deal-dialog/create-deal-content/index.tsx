@@ -3,12 +3,12 @@ import DealsItemInfo from "@/components/screens/profile/deals-tab/deals-item-con
 import Button from "@/components/ui/button";
 import { MobileSheet } from "@/components/ui/mobile-sheet";
 import Select, { SelectContent } from "@/components/ui/select";
+import Text from "@/components/ui/text";
 import useAds from "@/lib/hooks/ads.hook";
 import { BaseDialogPropType } from "@/lib/types";
-import { typography } from "@/tamagui.config";
 import dayjs from "dayjs";
 import { useMemo } from "react";
-import { Text, YStack } from "tamagui";
+import { YStack } from "tamagui";
 
 type CreateDealContentPropType = {
   user_id: string;
@@ -55,7 +55,7 @@ export default function CreateDealContent({
         gap={24}
       >
         <Text
-          {...typography["bold-20"]}
+          typo="bold-20"
           textAlign="center"
         >
           Create Offer

@@ -1,11 +1,12 @@
 import CommonHeader from "@/components/common-header";
 import PostsTape from "@/components/screens/community/posts-tape";
+import Text from "@/components/ui/text";
 import usePostsByFilter from "@/lib/hooks/posts-by-filter.hook";
 import usePosts from "@/lib/hooks/posts.hook";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import { useLocalSearchParams } from "expo-router";
 import { useMemo } from "react";
-import { Text, YStack } from "tamagui";
+import { YStack } from "tamagui";
 
 type ParamsType = {
   index: number;
@@ -35,16 +36,16 @@ export default function Tape() {
         alignItems="center"
       >
         <Text
-          {...typography["semi-12"]}
-          color={colors["third"]}
+          typo="semi-12"
+          color="third"
           textAlign="center"
         >
           {local?.sort_by?.[0].toUpperCase()}
           {local?.sort_by?.slice(1)} Posts
         </Text>
         <Text
+          typo="bold-20"
           textAlign="center"
-          {...typography["bold-20"]}
         >
           {title?.[0].toUpperCase()}
           {title?.slice(1)}

@@ -2,15 +2,16 @@ import BottomBar from "@/components/bottom-bar";
 import { useUser } from "@/components/providers/user-provider";
 import Button from "@/components/ui/button";
 import { Form, FormElement } from "@/components/ui/form";
+import Text from "@/components/ui/text";
 import { updatePasswordScheme } from "@/lib/scheme";
 import { AuthService } from "@/lib/services";
 import { UpdatePasswordRequestType, UserType } from "@/lib/types";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
-import { Text, YStack } from "tamagui";
+import { YStack } from "tamagui";
 import { z } from "zod";
 
 type PasswordTabPropType = {
@@ -73,7 +74,7 @@ export default function PasswordTab({ user, header }: PasswordTabPropType) {
           flexGrow={1}
         >
           <Text
-            {...typography["bold-17"]}
+            typo="bold-17"
             marginBottom={8}
           >
             New password

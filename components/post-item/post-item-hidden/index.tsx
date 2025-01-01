@@ -1,6 +1,7 @@
-import { colors, typography } from "@/tamagui.config";
+import Text from "@/components/ui/text";
+import { colors } from "@/tamagui.config";
 import { CircleCheck, X } from "@tamagui/lucide-icons";
-import { Text, YStack } from "tamagui";
+import { YStack } from "tamagui";
 
 type PostItemHiddenPropType = {
   onUnHide: () => void;
@@ -36,8 +37,8 @@ export default function PostItemHidden({
         size={32}
       />
       <Text
-        {...typography["reg-16"]}
-        color={colors["gray-100"]}
+        typo="reg-16"
+        color="gray-100"
         textAlign="center"
         marginBottom={8}
       >
@@ -48,16 +49,16 @@ export default function PostItemHidden({
         alignItems="center"
       >
         <Text
-          {...typography["bold-14"]}
-          color={colors["error"]}
+          typo="bold-14"
+          color="error"
           onPress={onReport}
         >
           Report this post
         </Text>
 
         <Text
-          {...typography["bold-14"]}
-          color={colors["black"]}
+          typo="bold-14"
+          color="black"
           onPress={onUnHide}
         >
           Undo

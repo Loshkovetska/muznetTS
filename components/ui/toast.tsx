@@ -1,7 +1,8 @@
+import Text from "@/components/ui/text";
 import { SCREEN_WIDTH } from "@/lib/constants";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import { CircleCheck, CircleX } from "@tamagui/lucide-icons";
-import { Text, XStack, styled } from "tamagui";
+import { XStack, styled } from "tamagui";
 
 const ToastWrapper = styled(XStack, {
   width: SCREEN_WIDTH - 32,
@@ -27,8 +28,8 @@ const Toast = (props: { type: "error" | "success"; text1: string }) => (
     {props.type === "error" && <CircleX color={colors["error"]} />}
 
     <Text
-      {...typography["medium-14"]}
-      color={colors[props.type as "success"]}
+      typo="medium-14"
+      color={props.type as "success"}
     >
       {props.text1}
     </Text>

@@ -1,7 +1,8 @@
 import Separator from "@/components/ui/separator";
-import { colors, typography } from "@/tamagui.config";
+import Text from "@/components/ui/text";
+import { colors } from "@/tamagui.config";
 import { Circle } from "@tamagui/lucide-icons";
-import { Text, XStack, YStack } from "tamagui";
+import { XStack, YStack } from "tamagui";
 
 type DetailsListPropType = {
   title: string;
@@ -12,7 +13,7 @@ export default function DetailsList({ title, list }: DetailsListPropType) {
     <YStack gap={24}>
       <Separator />
       <YStack gap={16}>
-        <Text {...typography["bold-20"]}>{title}</Text>
+        <Text typo="bold-20">{title}</Text>
         <YStack gap={8}>
           {list.map((item) => (
             <XStack
@@ -25,8 +26,8 @@ export default function DetailsList({ title, list }: DetailsListPropType) {
                 fill={colors["black"]}
               />
               <Text
-                {...typography["reg-17"]}
-                color={colors["gray-100"]}
+                typo="reg-17"
+                color="gray-100"
               >
                 {item}
               </Text>

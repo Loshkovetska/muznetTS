@@ -1,5 +1,5 @@
 import Label from "@/components/ui/label";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import { Check as CheckIcon } from "@tamagui/lucide-icons";
 import { Checkbox, CheckboxProps, XStack, styled } from "tamagui";
 
@@ -50,7 +50,7 @@ export default function CheckboxWithLabel({
       </StyledCheckBox>
       <Label
         htmlFor={id}
-        {...typography["medium-15"]}
+        typo="medium-15"
         color={colors["comet"]}
         onPress={() => onCheckedChange?.(!checked)}
       >

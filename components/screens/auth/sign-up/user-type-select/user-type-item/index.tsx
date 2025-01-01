@@ -1,9 +1,9 @@
 import ContractorImage from "@/assets/images/screens/add-profile-info/select_contractor.png";
 import MusicianImage from "@/assets/images/screens/add-profile-info/select_musician.png";
 import { Radio, RadioGroupItem } from "@/components/ui/radio";
+import Text from "@/components/ui/text";
 import { SCREEN_WIDTH } from "@/lib/constants";
-import { typography } from "@/tamagui.config";
-import { Image, Stack, Text, YStack, styled } from "tamagui";
+import { Image, Stack, YStack, styled } from "tamagui";
 
 const StyledRadioWrapper = styled(Stack, {
   position: "absolute",
@@ -35,8 +35,8 @@ export default function UserTypeItem({
           height={219}
         />
         <Text
+          typo="medium-17"
           textAlign="center"
-          {...typography["medium-17"]}
         >
           {type === "contractor" ? "Contractor" : "Musician"}
         </Text>

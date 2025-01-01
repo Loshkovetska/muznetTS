@@ -1,11 +1,11 @@
 import PostItemUser from "@/components/post-item/post-item-user";
 import PostsTile from "@/components/screens/community/posts-tile";
 import Button from "@/components/ui/button";
+import Text from "@/components/ui/text";
 import usePosts from "@/lib/hooks/posts.hook";
-import { colors, typography } from "@/tamagui.config";
 import { Plus } from "@tamagui/lucide-icons";
 import { Link } from "expo-router";
-import { Text, XStack, YStack } from "tamagui";
+import { XStack, YStack } from "tamagui";
 
 type PostsListPropType = {
   type: "my-likes" | "my-posts";
@@ -29,7 +29,7 @@ export default function PostsList({ type }: PostsListPropType) {
           paddingTop={0}
         >
           {communityUser && <PostItemUser {...communityUser} />}
-          <Text {...typography["bold-16"]}>
+          <Text typo="bold-16">
             {data?.length} {data?.length === 1 ? "Post" : "Posts"}
           </Text>
         </XStack>
@@ -43,9 +43,9 @@ export default function PostsList({ type }: PostsListPropType) {
             gap={16}
           >
             <Text
-              {...typography["medium-14"]}
+              typo="medium-14"
               textAlign="center"
-              color={colors["gray-60"]}
+              color="gray-60"
             >
               {data?.length} {data?.length === 1 ? "Post" : "Posts"}
             </Text>

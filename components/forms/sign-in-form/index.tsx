@@ -1,12 +1,12 @@
 import Button from "@/components/ui/button";
 import { Form, FormElement } from "@/components/ui/form";
+import Text from "@/components/ui/text";
 import useAuth from "@/lib/hooks/auth.hook";
 import { loginScheme } from "@/lib/scheme";
-import { typography } from "@/tamagui.config";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
-import { Text, YStack } from "tamagui";
+import { YStack } from "tamagui";
 import { z } from "zod";
 
 export default function SignInForm() {
@@ -30,7 +30,7 @@ export default function SignInForm() {
   return (
     <>
       <Text
-        {...typography["extrabold-28"]}
+        typo="extrabold-28"
         alignSelf="flex-start"
         marginBottom={28}
       >

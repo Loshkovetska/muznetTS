@@ -4,16 +4,17 @@ import AdForm from "@/components/forms/ad-form";
 import LocationsProvider from "@/components/providers/locations-provider";
 import Button from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
+import Text from "@/components/ui/text";
 import useAds from "@/lib/hooks/ads.hook";
 import { adScheme } from "@/lib/scheme";
 import { AdType, PredictionType } from "@/lib/types";
 import { setValueToForm } from "@/lib/utils";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import { zodResolver } from "@hookform/resolvers/zod";
 import dayjs from "dayjs";
 import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
-import { ScrollView, Spinner, Text, XStack, YStack } from "tamagui";
+import { ScrollView, Spinner, XStack, YStack } from "tamagui";
 import { z } from "zod";
 
 type AddEditAdDialogPropType = {
@@ -147,8 +148,8 @@ export default function AddEditAdDialog({
                   gap={8}
                 >
                   <Text
-                    {...typography["reg-17"]}
-                    color={colors["comet"]}
+                    typo="reg-17"
+                    color="comet"
                     textDecorationLine="underline"
                     onPress={() => deleteAd(selectedAd.id)}
                   >

@@ -1,8 +1,9 @@
-import { colors, typography } from "@/tamagui.config";
+import Text from "@/components/ui/text";
+import { colors } from "@/tamagui.config";
 import { CameraMode } from "expo-camera";
 import { useRef } from "react";
 import { FlatList } from "react-native";
-import { Stack, Text, YStack, styled } from "tamagui";
+import { Stack, YStack, styled } from "tamagui";
 
 const CameraButton = styled(Stack, {
   width: 56,
@@ -72,8 +73,8 @@ export default function CameraModeBlock({
         snapToAlignment="center"
         renderItem={({ item, index }) => (
           <Text
-            {...typography["bold-17"]}
-            color={colors[mode === item ? "main" : "gray-100"]}
+            typo="bold-17"
+            color={mode === item ? "main" : "gray-100"}
             paddingLeft={!index ? 32 : 5}
             paddingRight={index + 1 === 2 ? 40 : 5}
             onPress={() =>

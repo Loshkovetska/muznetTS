@@ -1,9 +1,9 @@
 import Button from "@/components/ui/button";
 import Separator from "@/components/ui/separator";
+import Text from "@/components/ui/text";
 import { SCREEN_WIDTH } from "@/lib/constants";
-import { typography } from "@/tamagui.config";
 import { useCallback, useMemo } from "react";
-import { Image, Stack, Text, XStack, YStack, styled } from "tamagui";
+import { Image, Stack, XStack, YStack, styled } from "tamagui";
 
 const BLOCK_HEIGHT = SCREEN_WIDTH - 100;
 
@@ -130,7 +130,7 @@ export default function DetailsMedia({
         gap={16}
         width="100%"
       >
-        <Text {...typography["bold-20"]}>Media</Text>
+        <Text typo="bold-20">Media</Text>
         <XStack
           width="100%"
           gap={9}

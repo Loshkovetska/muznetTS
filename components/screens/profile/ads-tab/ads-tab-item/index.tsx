@@ -2,10 +2,11 @@ import CommonImage from "@/components/common-image";
 import PricePerHour from "@/components/price-per-hour";
 import ProfileLocation from "@/components/profile-location";
 import Button from "@/components/ui/button";
+import Text from "@/components/ui/text";
 import { AdType } from "@/lib/types";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import { Pencil } from "@tamagui/lucide-icons";
-import { Text, XStack, YStack } from "tamagui";
+import { XStack, YStack } from "tamagui";
 
 export default function AdsTabItem(ad: AdType & { onEdit: () => void }) {
   return (
@@ -46,9 +47,9 @@ export default function AdsTabItem(ad: AdType & { onEdit: () => void }) {
               sizeB="sm-16"
             />
           </XStack>
-          <Text {...typography["bold-16"]}>{ad.title}</Text>
+          <Text typo="bold-16">{ad.title}</Text>
           <Text
-            {...typography["medium-15"]}
+            typo="medium-15"
             numberOfLines={2}
             height={38}
           >

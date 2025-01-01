@@ -1,6 +1,7 @@
-import { colors, typography } from "@/tamagui.config";
+import Text from "@/components/ui/text";
+import { colors } from "@/tamagui.config";
 import { Check } from "@tamagui/lucide-icons";
-import { GetProps, Label, RadioGroup, Text, XStack, styled } from "tamagui";
+import { GetProps, Label, RadioGroup, XStack, styled } from "tamagui";
 
 const StyleItemRadio = styled(RadioGroup.Item, {
   unstyled: true,
@@ -123,7 +124,7 @@ export function RadioGroupItemWithLabel({
           value={value}
           id={id}
         />
-        <Text {...typography["medium-17"]}>{label}</Text>
+        <Text typo="medium-17">{label}</Text>
       </XStack>
     </RadioGroupItem>
   );

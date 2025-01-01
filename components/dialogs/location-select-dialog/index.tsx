@@ -1,12 +1,13 @@
 import Button from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import { MobileSheet } from "@/components/ui/mobile-sheet";
+import Text from "@/components/ui/text";
 import useLocations from "@/lib/hooks/location.hook";
 import { BaseDialogPropType } from "@/lib/types";
 import { colors, typography } from "@/tamagui.config";
 import { Search, X } from "@tamagui/lucide-icons";
 import { useCallback } from "react";
-import { Text, XStack, YStack } from "tamagui";
+import { XStack, YStack } from "tamagui";
 
 type LocationSelectDialogPropType = {
   defaultValue: string;
@@ -29,8 +30,8 @@ export default function LocationSelectDialog({
       return (
         <>
           <Text
-            color={colors["black-ru"]}
-            {...typography["bold-17"]}
+            color="black-ru"
+            typo="bold-17"
           >
             {boldText}
           </Text>
@@ -49,7 +50,7 @@ export default function LocationSelectDialog({
           alignItems="center"
           justifyContent="space-between"
         >
-          <Text {...typography["bold-20"]}>Add Location</Text>
+          <Text typo="bold-20">Add Location</Text>
           <X
             size={20}
             onPress={onOpenChange}
@@ -81,8 +82,8 @@ export default function LocationSelectDialog({
         />
         <YStack gap={4}>
           <Text
-            {...typography["reg-17"]}
-            color={colors["ghost"]}
+            typo="reg-17"
+            color="ghost"
           >
             Searching results
           </Text>
@@ -96,14 +97,14 @@ export default function LocationSelectDialog({
               onPress={() => onValueChange(item.properties.address_line1)}
             >
               <Text
-                {...typography["bold-17"]}
-                color={colors["gray-60"]}
+                typo="bold-17"
+                color="gray-60"
               >
                 {getText(item.properties.address_line1)}
               </Text>
               <Text
-                {...typography["medium-14"]}
-                color={colors["gray-60"]}
+                typo="medium-14"
+                color="gray-60"
               >
                 {item.properties.city}, {item.properties.country}
               </Text>

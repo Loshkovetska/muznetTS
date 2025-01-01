@@ -1,11 +1,12 @@
 import { ALBUMS_ICONS } from "@/components/dialogs/select-album-dialog/constants";
 import { MobileSheet } from "@/components/ui/mobile-sheet";
+import Text from "@/components/ui/text";
 import { BaseDialogPropType } from "@/lib/types";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import { X } from "@tamagui/lucide-icons";
 import { Album } from "expo-media-library";
 import { useCallback } from "react";
-import { Stack, Text, XStack, YStack } from "tamagui";
+import { Stack, XStack, YStack } from "tamagui";
 
 type SelectAlbumDialogPropType = {
   albums: Album[];
@@ -34,7 +35,7 @@ export default function SelectAlbumDialog({
           alignItems="center"
           justifyContent="space-between"
         >
-          <Text {...typography["bold-20"]}>Select album</Text>
+          <Text typo="bold-20">Select album</Text>
           <X
             size={20}
             onPress={onOpenChange}
@@ -71,10 +72,10 @@ export default function SelectAlbumDialog({
                 pointerEvents={album.assetCount ? "auto" : "none"}
                 gap={4}
               >
-                <Text {...typography["bold-17"]}>{album.title}</Text>
+                <Text typo="bold-17">{album.title}</Text>
                 <Text
-                  {...typography["medium-14"]}
-                  color={colors["gray-60"]}
+                  typo="medium-14"
+                  color="gray-60"
                 >
                   {album.assetCount} media
                 </Text>

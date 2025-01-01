@@ -1,11 +1,12 @@
 import IndicatorBlock from "@/components/indicator-block";
 import Button from "@/components/ui/button";
+import Text from "@/components/ui/text";
 import { SCREEN_WIDTH } from "@/lib/constants";
 import { colors, typography } from "@/tamagui.config";
 import { ArrowRight } from "@tamagui/lucide-icons";
 import { Link } from "expo-router";
 import { useState } from "react";
-import { Image, Text, XStack, YStack, styled } from "tamagui";
+import { Image, XStack, YStack, styled } from "tamagui";
 import { ONBOARDING_CONTENT } from "./constants";
 
 const StyledContainer = styled(YStack, {
@@ -54,13 +55,13 @@ export default function OnboardingContent() {
       </StyledImageBlock>
       <StyledContent>
         <Text
-          {...typography["bold-20"]}
+          typo="bold-20"
           paddingBottom={10}
         >
           {CONTENT.title}
         </Text>
         <Text
-          {...typography["reg-17"]}
+          typo="reg-17"
           textAlign="center"
         >
           {CONTENT.text}

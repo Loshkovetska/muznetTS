@@ -1,7 +1,7 @@
 import DialogMedia from "@/components/screens/dialog/dialog-media";
+import Text from "@/components/ui/text";
 import { MessageItemType } from "@/lib/types";
-import { colors, typography } from "@/tamagui.config";
-import { Text, XStack } from "tamagui";
+import { XStack } from "tamagui";
 
 export default function DialogBaseMessage(
   props: MessageItemType & { isSender: boolean }
@@ -11,8 +11,8 @@ export default function DialogBaseMessage(
     <>
       {message.text?.length > 0 && (
         <Text
-          {...typography["medium-14"]}
-          color={colors[isSender ? "main" : "third"]}
+          typo="medium-14"
+          color={isSender ? "main" : "third"}
         >
           {message.text}
         </Text>

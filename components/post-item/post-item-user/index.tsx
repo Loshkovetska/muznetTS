@@ -1,7 +1,8 @@
 import CommonImage from "@/components/common-image";
+import Text from "@/components/ui/text";
 import { UserType } from "@/lib/types";
-import { colors, typography } from "@/tamagui.config";
-import { Text, XStack, YStack } from "tamagui";
+import { colors } from "@/tamagui.config";
+import { XStack, YStack } from "tamagui";
 
 export default function PostItemUser(
   user: UserType & { postLocation?: string }
@@ -21,11 +22,11 @@ export default function PostItemUser(
         borderColor={colors["black"]}
       />
       <YStack>
-        <Text {...typography["bold-14"]}>
+        <Text typo="bold-14">
           {user?.name} {user?.surname}
         </Text>
         {user?.postLocation && (
-          <Text {...typography["medium-12"]}>{user.postLocation}</Text>
+          <Text typo="medium-12">{user.postLocation}</Text>
         )}
       </YStack>
     </XStack>

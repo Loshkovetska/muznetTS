@@ -1,7 +1,8 @@
 import CommonHeader from "@/components/common-header";
+import Text from "@/components/ui/text";
 import { SCREEN_WIDTH } from "@/lib/constants";
-import { colors, typography } from "@/tamagui.config";
-import { Text, XStack, YStack, styled } from "tamagui";
+import { colors } from "@/tamagui.config";
+import { XStack, YStack, styled } from "tamagui";
 
 const StyledSlider = styled(XStack, {
   width: "100%",
@@ -26,10 +27,10 @@ export default function StepsHeader({
       <CommonHeader
         title={
           <Text
-            {...typography["reg-17"]}
-            color={colors["black"]}
+            typo="reg-17"
+            color="black"
           >
-            {step + 1} <Text color={colors["ghost"]}>of {lastStep}</Text>
+            {step + 1} <Text color="ghost">of {lastStep}</Text>
           </Text>
         }
         onBack={!step ? undefined : setStep}

@@ -4,9 +4,10 @@ import PostFormStep from "@/components/forms/post-form/post-form-step";
 import PostGallery from "@/components/forms/post-form/post-gallery";
 import TagsInput from "@/components/inputs/tags-input";
 import { Form, FormElement } from "@/components/ui/form";
-import { colors, typography } from "@/tamagui.config";
+import Text from "@/components/ui/text";
+import { colors } from "@/tamagui.config";
 import { UseFormReturn } from "react-hook-form";
-import { Text, YStack } from "tamagui";
+import { YStack } from "tamagui";
 
 type PostFormPropType = {
   form: UseFormReturn<any>;
@@ -58,11 +59,11 @@ export default function PostForm({
             <PostFormStep stepNum={2}>
               <YStack gap={16}>
                 <Text
-                  {...typography["reg-17"]}
+                  typo="reg-17"
+                  color="secondary"
                   paddingVertical={10}
                   paddingHorizontal={16}
                   backgroundColor={colors["ghost-white"]}
-                  color={colors["secondary"]}
                 >
                   Add tags here. It will help users to find your posts easier.
                   For example: Hip-hop, Rap, Muzic, Guitar, Jazz, etc.

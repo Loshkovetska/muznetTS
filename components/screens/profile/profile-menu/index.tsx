@@ -2,11 +2,12 @@ import CommonImage from "@/components/common-image";
 import { MENU } from "@/components/screens/profile/profile-menu/constants";
 import Button from "@/components/ui/button";
 import Separator from "@/components/ui/separator";
+import Text from "@/components/ui/text";
 import { UserType } from "@/lib/types";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import { ChevronRight } from "@tamagui/lucide-icons";
 import { Fragment, useMemo } from "react";
-import { Text, XStack, YStack } from "tamagui";
+import { XStack, YStack } from "tamagui";
 
 type ProfileMenuPropType = {
   user: UserType | null;
@@ -38,7 +39,7 @@ export default function ProfileMenu({
         alignItems="center"
         justifyContent="space-between"
       >
-        <Text {...typography["extrabold-28"]}>Hello, {user?.name}</Text>
+        <Text typo="extrabold-28">Hello, {user?.name}</Text>
         <CommonImage
           borderRadius={6}
           source={user?.photo?.[0]}
@@ -66,8 +67,8 @@ export default function ProfileMenu({
         ))}
       </YStack>
       <Text
-        {...typography["reg-17"]}
-        color={colors["dim-gray"]}
+        typo="reg-17"
+        color="dim-gray"
         onPress={logOut}
       >
         Log out

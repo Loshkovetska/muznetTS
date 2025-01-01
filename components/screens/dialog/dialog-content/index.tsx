@@ -1,11 +1,10 @@
 import DialogMessage from "@/components/screens/dialog/dialog-content/dialog-message";
+import Text from "@/components/ui/text";
 import useMessages from "@/lib/hooks/messages.hook";
 import { MessageItemType, UserType } from "@/lib/types";
-import { colors, typography } from "@/tamagui.config";
 import dayjs from "dayjs";
 import { useCallback, useEffect, useRef } from "react";
 import { SectionList } from "react-native";
-import { Text } from "tamagui";
 
 type DialogContentPropType = {
   messages?: { title: string; data: MessageItemType[] }[];
@@ -83,9 +82,9 @@ export default function DialogContent({
       }}
       renderSectionHeader={({ section: { title } }) => (
         <Text
-          {...typography["bold-14"]}
+          typo="bold-14"
           textAlign="center"
-          color={colors["gray-100"]}
+          color="gray-100"
         >
           {today === title ? "Today" : title}
         </Text>

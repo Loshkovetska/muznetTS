@@ -1,7 +1,8 @@
-import { colors, typography } from "@/tamagui.config";
+import Text from "@/components/ui/text";
+import { colors } from "@/tamagui.config";
 import { useCallback, useState } from "react";
 import { LayoutChangeEvent, LayoutRectangle } from "react-native";
-import { Stack, Text, XStack, styled } from "tamagui";
+import { Stack, XStack, styled } from "tamagui";
 
 const TabsContainer = styled(XStack, {
   width: "100%",
@@ -58,13 +59,13 @@ export default function SearchTabs({
       />
       {tabs.map((tab) => (
         <Text
+          typo="bold-14"
           textAlign="center"
           flexGrow={tabsFull ? 1 / tabs.length : undefined}
           key={currentIndex === tab.id ? "current" : tab.title}
           onPress={() => setIndex(tab.id)}
           onLayout={currentIndex === tab.id ? onLayout : undefined}
-          {...typography["bold-14"]}
-          color={currentIndex === tab.id ? undefined : colors["gray-60"]}
+          color={currentIndex === tab.id ? undefined : "gray-60"}
         >
           {tab.title}
         </Text>

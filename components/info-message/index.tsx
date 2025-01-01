@@ -1,10 +1,11 @@
-import { colors, typography } from "@/tamagui.config";
+import Text from "@/components/ui/text";
+import { colors } from "@/tamagui.config";
 import { AlertCircle } from "@tamagui/lucide-icons";
-import { Text, XStack, XStackProps } from "tamagui";
+import { XStack, XStackProps } from "tamagui";
 
 export default function InfoMessage({
   text,
-  textColor = colors["dim-gray"],
+  textColor = "dim-gray",
   ...props
 }: { text: string; textColor?: string } & XStackProps) {
   return (
@@ -18,8 +19,8 @@ export default function InfoMessage({
         color={colors["gray-80"]}
       />
       <Text
-        {...typography["reg-14"]}
-        color={textColor}
+        typo="reg-14"
+        color={textColor as "error"}
         width="91%"
       >
         {text}

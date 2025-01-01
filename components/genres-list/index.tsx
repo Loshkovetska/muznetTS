@@ -1,5 +1,6 @@
-import { colors, typography } from "@/tamagui.config";
-import { Text, XStack, styled } from "tamagui";
+import Text from "@/components/ui/text";
+import { colors } from "@/tamagui.config";
+import { XStack, styled } from "tamagui";
 
 const ItemInfoGenres = styled(XStack, {
   width: "100%",
@@ -41,7 +42,7 @@ export default function GenresList({
           key={genre}
           type={type}
         >
-          <Text {...typography[type === "list" ? "reg-10" : "reg-12"]}>
+          <Text typo={type === "list" ? "reg-10" : "reg-12"}>
             {genre.toLowerCase()}
           </Text>
         </ItemInfoGenre>

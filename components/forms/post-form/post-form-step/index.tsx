@@ -1,7 +1,8 @@
 import Separator from "@/components/ui/separator";
-import { colors, typography } from "@/tamagui.config";
+import Text from "@/components/ui/text";
+import { colors } from "@/tamagui.config";
 import { PropsWithChildren } from "react";
-import { Stack, Text, XStack, YStack, styled } from "tamagui";
+import { Stack, XStack, YStack, styled } from "tamagui";
 
 const StepWrapper = styled(Stack, {
   alignItems: "center",
@@ -38,7 +39,7 @@ export default function PostFormStep(
         <Separator />
         <StepWrapper variant="main">
           <StepWrapper variant="secondary">
-            <Text {...typography["bold-14"]}>Step {props.stepNum}</Text>
+            <Text typo="bold-14">Step {props.stepNum}</Text>
           </StepWrapper>
         </StepWrapper>
         <Separator />

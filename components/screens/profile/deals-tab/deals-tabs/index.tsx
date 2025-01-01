@@ -1,5 +1,6 @@
-import { colors, typography } from "@/tamagui.config";
-import { Stack, Text, XStack, YStack } from "tamagui";
+import Text from "@/components/ui/text";
+import { colors } from "@/tamagui.config";
+import { Stack, XStack, YStack } from "tamagui";
 
 type DealsTabsPropType = {
   tab: "active" | "closed";
@@ -18,8 +19,8 @@ export default function DealsTabs({ tab, setTab }: DealsTabsPropType) {
         onPress={() => setTab("active")}
       >
         <Text
+          typo={tab === "active" ? "bold-17" : "reg-17"}
           textAlign="center"
-          {...typography[tab === "active" ? "bold-17" : "reg-17"]}
         >
           Active
         </Text>
@@ -30,7 +31,7 @@ export default function DealsTabs({ tab, setTab }: DealsTabsPropType) {
       >
         <Text
           textAlign="center"
-          {...typography[tab === "closed" ? "bold-17" : "reg-17"]}
+          typo={tab === "closed" ? "bold-17" : "reg-17"}
         >
           Closed
         </Text>

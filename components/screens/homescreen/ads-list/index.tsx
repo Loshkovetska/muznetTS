@@ -1,10 +1,10 @@
 import { useUser } from "@/components/providers/user-provider";
 import AdsItem from "@/components/screens/homescreen/ads-list/ads-item";
+import Text from "@/components/ui/text";
 import useAds from "@/lib/hooks/ads.hook";
 import useMusicians from "@/lib/hooks/musicians.hook";
-import { typography } from "@/tamagui.config";
 import { Link } from "expo-router";
-import { Text, XStack, YStack } from "tamagui";
+import { XStack, YStack } from "tamagui";
 
 type AdsListPropType = {
   type: "popular" | "similar";
@@ -33,13 +33,13 @@ export default function AdsList({ type, title, id }: AdsListPropType) {
         alignItems="center"
         justifyContent="space-between"
       >
-        <Text {...typography["bold-20"]}>{title}</Text>
+        <Text typo="bold-20">{title}</Text>
         {type === "popular" && (
           <Link
             href="/"
             asChild
           >
-            <Text {...typography["reg-17"]}>View all</Text>
+            <Text typo="reg-17">View all</Text>
           </Link>
         )}
       </XStack>

@@ -1,8 +1,8 @@
 import ResultDialog from "@/components/dialogs/result-dialog";
 import OTPInput from "@/components/ui/otp-input";
-import { colors, typography } from "@/tamagui.config";
+import Text from "@/components/ui/text";
 import { useCallback, useState } from "react";
-import { Text, YStack } from "tamagui";
+import { YStack } from "tamagui";
 
 const VALID_CODE = 1234;
 export default function VerifyEmailForm({
@@ -40,8 +40,8 @@ export default function VerifyEmailForm({
         flexGrow={1}
       >
         <Text
-          {...typography["medium-17"]}
-          color={colors["gray-100"]}
+          typo="medium-17"
+          color="gray-100"
           marginBottom={32}
         >
           Please enter the verification code we sent to {email}
@@ -49,14 +49,14 @@ export default function VerifyEmailForm({
         <OTPInput onCodeChange={onSetCode} />
         <YStack alignItems="center">
           <Text
-            {...typography["reg-17"]}
-            color={colors["gray-100"]}
+            typo="reg-17"
+            color="gray-100"
           >
             Didn’n recieve the code?{" "}
           </Text>
           <Text
-            {...typography["bold-17"]}
-            color={colors["black"]}
+            typo="bold-17"
+            color="black"
             onPress={onResend}
           >
             Request again
@@ -65,7 +65,7 @@ export default function VerifyEmailForm({
       </YStack>
       <ResultDialog
         open={isOpen}
-        onOpenChange={setOpen}
+        onOpenChange={() => setOpen(false)}
         type="error"
         title="Oops!"
         description="It looks like you put in the wrong code, try again"

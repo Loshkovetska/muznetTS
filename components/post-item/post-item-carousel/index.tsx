@@ -1,13 +1,13 @@
 import CommonImage from "@/components/common-image";
 import CommonVideo from "@/components/common-video";
 import IndicatorBlock from "@/components/indicator-block";
+import Text from "@/components/ui/text";
 import { SCREEN_WIDTH } from "@/lib/constants";
 import { detectFileType } from "@/lib/utils";
-import { colors, typography } from "@/tamagui.config";
 import { BlurView } from "expo-blur";
 import { useMemo, useState } from "react";
 import { FlatList } from "react-native";
-import { Stack, Text } from "tamagui";
+import { Stack } from "tamagui";
 
 type PostItemCarouselPropType = {
   media: string[];
@@ -55,8 +55,8 @@ export default function PostItemCarousel({
             tint="dark"
           >
             <Text
-              {...typography["medium-12"]}
-              color={colors["main"]}
+              typo="medium-12"
+              color="main"
             >
               {currentIndex + 1}/{media.length}
             </Text>

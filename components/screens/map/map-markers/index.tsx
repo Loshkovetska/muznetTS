@@ -1,7 +1,8 @@
+import Text from "@/components/ui/text";
 import { AdType, LocationType, UserType } from "@/lib/types";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import { Marker } from "react-native-maps";
-import { Text, YStack } from "tamagui";
+import { YStack } from "tamagui";
 
 type MapMarkersPropType = {
   data: Array<UserType | AdType>;
@@ -32,8 +33,8 @@ export default function MapMarkers({
           justifyContent="center"
         >
           <Text
-            {...typography["bold-15"]}
-            color={colors[isSelected ? "main" : "black"]}
+            typo="bold-15"
+            color={isSelected ? "main" : "black"}
           >
             ${item.price_per_hour}
           </Text>

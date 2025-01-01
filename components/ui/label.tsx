@@ -1,24 +1,19 @@
 import { typography } from "@/tamagui.config";
-import { GetProps, Label as LabelT, styled } from "tamagui";
+import { GetProps, Label as LabelT } from "tamagui";
 
-const StyledLabel = styled(LabelT, {
-  variants: {
-    sizeB: {
-      default: typography["medium-16"],
-      "s-17": typography["medium-17"],
-      sm: typography["medium-10"],
-    },
-  } as const,
+type LabelPropType = GetProps<typeof LabelT> & {
+  typo?: keyof typeof typography;
+};
 
-  defaultVariants: {
-    sizeB: "default",
-  },
-});
-
-type LabelPropType = GetProps<typeof StyledLabel> & {};
-
-const Label = ({ children, ...props }: LabelPropType) => {
-  return <StyledLabel {...props}>{children}</StyledLabel>;
+const Label = ({ children, typo = "medium-16", ...props }: LabelPropType) => {
+  return (
+    <LabelT
+      {...typography[typo]}
+      {...props}
+    >
+      {children}
+    </LabelT>
+  );
 };
 
 export default Label;

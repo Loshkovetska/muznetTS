@@ -1,9 +1,9 @@
-import { typography } from "@/tamagui.config";
+import Text from "@/components/ui/text";
 import { ChevronLeft, ChevronRight } from "@tamagui/lucide-icons";
 import dayjs from "dayjs";
 import React, { useCallback, useMemo } from "react";
 import { Pressable } from "react-native";
-import { Text, XStack } from "tamagui";
+import { XStack } from "tamagui";
 import { useCalendarContext } from "./calendar-context";
 
 const Header = () => {
@@ -33,7 +33,7 @@ const Header = () => {
       height={44}
       paddingHorizontal={12}
     >
-      <Text {...typography["bold-17"]}>{currentText}</Text>
+      <Text typo="bold-17">{currentText}</Text>
       <XStack alignItems="center">
         {button("prev")}
         {button("next")}

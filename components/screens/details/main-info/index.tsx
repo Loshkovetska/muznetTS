@@ -11,10 +11,11 @@ import DetailsPeriod from "@/components/screens/details/details-period";
 import ReviewsList from "@/components/screens/details/reviews-list";
 import AdsList from "@/components/screens/homescreen/ads-list";
 import Separator from "@/components/ui/separator";
+import Text from "@/components/ui/text";
 import { AdType, UserType } from "@/lib/types";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import { useMemo } from "react";
-import { Text, XStack, YStack, styled } from "tamagui";
+import { XStack, YStack, styled } from "tamagui";
 
 const Container = styled(YStack, {
   borderTopLeftRadius: 16,
@@ -48,7 +49,7 @@ export default function MainInfo(data: MainInfoPropType) {
   const title = useMemo(
     () => (
       <Text
-        {...typography[isMusician ? "extrabold-28" : "extrabold-20"]}
+        typo={isMusician ? "extrabold-28" : "extrabold-20"}
         numberOfLines={2}
         ellipsizeMode="tail"
         marginTop={8}
