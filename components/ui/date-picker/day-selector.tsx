@@ -4,6 +4,7 @@ import DatePickerResize from "@/components/ui/date-picker/date-picker-resize";
 import Day from "@/components/ui/date-picker/day";
 import DaysHZList from "@/components/ui/date-picker/days-hz-list";
 import DaysVerticalList from "@/components/ui/date-picker/days-vertical-list";
+import Text from "@/components/ui/text";
 import { SCREEN_WIDTH } from "@/lib/constants";
 import {
   areDatesOnSameDay,
@@ -15,14 +16,13 @@ import {
   getParsedDate,
   getWeekdaysMin,
 } from "@/lib/utils/date-picker";
-import { colors, typography } from "@/tamagui.config";
-import { Stack, Text, XStack, YStack, styled } from "tamagui";
+import { Stack, XStack, YStack, styled } from "tamagui";
 import { useCalendarContext } from "./calendar-context";
 
 const WeekDay = styled(Text, {
-  ...typography["bold-12"],
+  typo: "bold-12",
   textTransform: "uppercase",
-  color: colors["light-p-gray"],
+  color: "light-p-gray",
   textAlign: "center",
   minWidth: 35,
   maxWidth: 35,

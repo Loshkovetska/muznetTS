@@ -1,4 +1,4 @@
-import Label from "@/components/ui/label";
+import Text from "@/components/ui/text";
 import { useInput } from "@/lib/hooks/input.hook";
 import { colors } from "@/tamagui.config";
 import { AlertCircle, CircleCheck } from "@tamagui/lucide-icons";
@@ -140,12 +140,12 @@ const Input = React.forwardRef<TextInput, InputPropType>(
         {iconLeft}
         <StyledInputWrapper>
           {props.placeholder && animate && isFocused && (
-            <Label
+            <Text
               typo="medium-10"
               marginTop={-3}
             >
               {props.placeholder}
-            </Label>
+            </Text>
           )}
           <StyledInput
             ref={ref}

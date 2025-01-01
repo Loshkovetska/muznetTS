@@ -42,8 +42,8 @@ export default function AuthSocial() {
         <AuthSocialItem
           icon={
             <Facebook
-              fill={colors["info"]}
-              color={colors["info"]}
+              fill={colors["fb"]}
+              color={colors["fb"]}
             />
           }
           title="Facebook"

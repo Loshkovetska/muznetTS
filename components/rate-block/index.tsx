@@ -1,6 +1,6 @@
-import { colors, typography } from "@/tamagui.config";
+import Text from "@/components/ui/text";
 import { StarFull } from "@tamagui/lucide-icons";
-import { Text, XStack, styled } from "tamagui";
+import { XStack, styled } from "tamagui";
 
 const Container = styled(XStack, {
   variants: {
@@ -19,24 +19,24 @@ const RateText = styled(Text, {
     variant: {
       list: {
         marginLeft: 4,
-        ...typography["reg-14"],
+        typo: "reg-14",
       },
       card: {
         marginLeft: 4,
-        ...typography["reg-17"],
+        typo: "reg-17",
       },
       "card-list": {
         marginLeft: 6,
-        ...typography["medium-20"],
+        typo: "medium-20",
       },
       fullscreen: {
         marginLeft: 6,
-        ...typography["bold-24"],
+        typo: "bold-24",
       },
     },
     textColor: {
-      default: { color: colors["black"] },
-      gray: { color: colors["slate-gray"] },
+      default: { color: "black" },
+      gray: { color: "slate-gray" },
     },
   } as const,
   defaultVariants: {

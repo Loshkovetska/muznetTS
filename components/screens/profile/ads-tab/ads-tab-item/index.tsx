@@ -43,8 +43,9 @@ export default function AdsTabItem(ad: AdType & { onEdit: () => void }) {
               maxWidth="60%"
             />
             <PricePerHour
+              typoPrefix="reg-14"
+              typoValue="bold-16"
               price={ad.price_per_hour}
-              sizeB="sm-16"
             />
           </XStack>
           <Text typo="bold-16">{ad.title}</Text>

@@ -63,8 +63,9 @@ export default function Index() {
       </ScrollView>
       <BottomBar zIndex={0}>
         <PricePerHour
+          typoPrefix="reg-17"
+          typoValue="bold-24"
           price={data.price_per_hour}
-          sizeB="lg"
         />
         <Button
           sizeB="lg"

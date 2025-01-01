@@ -1,7 +1,8 @@
+import Text from "@/components/ui/text";
 import { IDayObject } from "@/lib/types/date";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import React from "react";
-import { Stack, Text, YStack, styled } from "tamagui";
+import { Stack, YStack, styled } from "tamagui";
 
 const DayContainer = styled(Stack, {
   justifyContent: "center",
@@ -38,17 +39,17 @@ const RangeWrapper = styled(Stack, {
 });
 
 const DateText = styled(Text, {
-  color: colors["secondary"],
-  ...typography["reg-17"],
+  color: "secondary",
+  typo: "reg-17",
   variants: {
     isSelected: {
       true: {
-        color: colors["main"],
+        color: "main",
       },
     },
     isToday: {
       true: {
-        color: colors["main"],
+        color: "main",
       },
     },
   },

@@ -1,46 +1,27 @@
+import Text from "@/components/ui/text";
 import { typography } from "@/tamagui.config";
-import { Text, XStack, styled } from "tamagui";
+import { XStack } from "tamagui";
 
-const ItemInfoCostValue = styled(Text, {
-  variants: {
-    sizeB: {
-      sm: typography["bold-18"],
-      lg: typography["bold-24"],
-      "sm-16": typography["bold-16"],
-    },
-  },
-  defaultVariants: { sizeB: "sm" },
-});
-
-const ItemInfoCostValuePostfix = styled(Text, {
-  variants: {
-    sizeB: {
-      sm: typography["reg-14"],
-      "sm-16": typography["reg-14"],
-      lg: typography["reg-17"],
-    },
-  },
-  defaultVariants: { sizeB: "sm" },
-});
+type PricePerHourPropType = {
+  price: number;
+  typoValue?: keyof typeof typography;
+  typoPrefix?: keyof typeof typography;
+  hours?: string;
+};
 
 export default function PricePerHour({
   price,
-  sizeB = "sm",
+  typoValue = "bold-18",
+  typoPrefix = "reg-14",
   hours,
-}: {
-  price: number;
-  sizeB?: "sm" | "lg" | "sm-16";
-  hours?: string;
-}) {
+}: PricePerHourPropType) {
   return (
     <XStack
       alignItems="center"
       gap={5}
     >
-      <ItemInfoCostValue sizeB={sizeB}>${price}</ItemInfoCostValue>
-      <ItemInfoCostValuePostfix sizeB={sizeB}>
-        {hours ? hours : "/ hour"}
-      </ItemInfoCostValuePostfix>
+      <Text typo={typoValue}>${price}</Text>
+      <Text typo={typoPrefix}>{hours ? hours : "/ hour"}</Text>
     </XStack>
   );
 }

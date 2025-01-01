@@ -85,6 +85,7 @@ export const colors = {
   "black-50": "rgba(0,0,0,0.5)",
   "main-20": "rgba(254,254,254,0.2)",
   "main-70": "rgba(254,254,254,0.7)",
+  fb: "#1877F2",
 };
 
 export const typography = {

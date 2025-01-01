@@ -1,10 +1,11 @@
 import { useSelectContext } from "@/components/providers/select-provider";
+import Text from "@/components/ui/text";
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/lib/constants";
-import { colors, typography } from "@/tamagui.config";
+import { colors } from "@/tamagui.config";
 import { ChevronDown, ChevronUp } from "@tamagui/lucide-icons";
 import React, { useCallback, useRef } from "react";
 import { FlatList, GestureResponderEvent, View } from "react-native";
-import { GetProps, Text, XStack, YStack, styled } from "tamagui";
+import { GetProps, XStack, YStack, styled } from "tamagui";
 
 type SelectPropType = {
   value: string;
@@ -29,12 +30,6 @@ const StyledSelectTrigger = styled(XStack, {
       },
     },
   },
-});
-
-const SelectValue = styled(Text, {
-  ...typography["reg-17"],
-  color: colors["comet"],
-  flexGrow: 1,
 });
 
 const StyledSelectContent = styled(XStack, {
@@ -63,11 +58,6 @@ const StyledSelectContent = styled(XStack, {
   },
 });
 
-const SelectItem = styled(Text, {
-  ...typography["reg-17"],
-  color: colors["black"],
-});
-
 type SelectTriggerPropType = {
   value: string;
   placeholder: string;
@@ -85,7 +75,13 @@ export const SelectTrigger = React.forwardRef<View, SelectTriggerPropType>(
         onPress={onPress}
         {...props}
       >
-        <SelectValue>{value || placeholder}</SelectValue>
+        <Text
+          typo="reg-17"
+          flexGrow={1}
+          color="comet"
+        >
+          {value || placeholder}
+        </Text>
         {triggerIcon || (isOpen ? <ChevronUp /> : <ChevronDown />)}
       </StyledSelectTrigger>
     );
@@ -156,14 +152,15 @@ export function SelectContent({
           style={{ width: "100%", zIndex: 1 }}
           contentContainerStyle={{ gap: 16 }}
           renderItem={({ item }) => (
-            <SelectItem
+            <Text
+              typo="reg-17"
               zIndex={2}
               onPress={() =>
                 onChange(name, typeof item === "string" ? item : item?.id)
               }
             >
               {typeof item === "string" ? item : item.title}
-            </SelectItem>
+            </Text>
           )}
           keyExtractor={(item) => (typeof item === "string" ? item : item?.id)}
         />
