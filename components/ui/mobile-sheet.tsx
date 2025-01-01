@@ -5,12 +5,20 @@ import { ScrollView, Stack } from "tamagui";
 
 type MobileSheetPropType = {
   open: boolean;
+  header?: React.ReactNode;
+  showThumb?: boolean;
+  scrollViewMaxHeight?: number;
+  scrollPaddingBotton?: number;
   onOpenChange: (f: boolean) => void;
 } & React.PropsWithChildren;
 
 export const MobileSheet = ({
   children,
   open,
+  header,
+  showThumb = true,
+  scrollViewMaxHeight,
+  scrollPaddingBotton,
   onOpenChange,
 }: MobileSheetPropType) => {
   const [scrollRef, setRef] = useState<ScrollView | null>(null);
@@ -40,17 +48,25 @@ export const MobileSheet = ({
           coords={{ x: 0, y: 0 }}
           scrollRef={scrollRef}
         >
-          <Stack
-            width={72}
-            height={5}
-            borderRadius={5}
-            backgroundColor="#E0E0E0"
-            alignSelf="center"
-          />
+          {showThumb && (
+            <Stack
+              width={72}
+              height={5}
+              borderRadius={5}
+              backgroundColor="#E0E0E0"
+              alignSelf="center"
+            />
+          )}
+          {header}
           <Sheet.ScrollView
+            maxHeight={scrollViewMaxHeight}
+            showsVerticalScrollIndicator={false}
             paddingBottom={16}
             ref={(ref) => {
               ref && setRef(ref);
+            }}
+            contentContainerStyle={{
+              paddingBottom: scrollPaddingBotton,
             }}
             onLayout={({ nativeEvent: { layout } }) => {
               setCoords({ x: layout.x, y: layout.y });

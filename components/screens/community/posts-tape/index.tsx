@@ -16,7 +16,7 @@ export default function PostsTape({
   paddingBottom = 500,
   paddingTop,
   data,
-  initialIndex = 0,
+  initialIndex,
 }: PostsTapePropType) {
   const { allPosts } = usePosts({ requestType: data ? undefined : "all" });
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -59,7 +59,6 @@ export default function PostsTape({
           inView={currentIndex === index}
         />
       )}
-      onScrollToIndexFailed={(info) => console.log(info)}
     />
   );
 }

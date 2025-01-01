@@ -5,6 +5,7 @@ const StyledLabel = styled(LabelT, {
   variants: {
     sizeB: {
       default: typography["label-16"],
+      "s-17": typography["label-17"],
       sm: {
         fontSize: 10,
         lineHeight: 12,

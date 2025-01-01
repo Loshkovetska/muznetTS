@@ -26,10 +26,7 @@ export default function PostItemFunc(
         />
         <Text {...typography["heading-14"]}>{post.info.likes}</Text>
       </XStack>
-      <Link
-        asChild
-        href={`/post/${post.id}/comments`}
-      >
+      <Link href={`/post/${post.id}/comments`}>
         <MessageCircle />
       </Link>
       <Send onPress={post.onToggle} />

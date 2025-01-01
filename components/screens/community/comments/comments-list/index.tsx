@@ -49,7 +49,7 @@ export default function CommentsList({
   );
 
   useEffect(() => {
-    if (ref.current) {
+    if (ref.current && comments.length > 0) {
       setTimeout(() => {
         ref.current?.scrollToIndex({
           animated: true,

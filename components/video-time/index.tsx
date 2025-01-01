@@ -19,6 +19,12 @@ const TimeWrapper = styled(XStack, {
         right: 16,
         zIndex: 1,
       },
+      "absolute-right-bottom": {
+        top: "auto",
+        right: 4,
+        bottom: 4,
+        zIndex: 1,
+      },
     },
     bgColor: {
       transparent: {
@@ -43,13 +49,14 @@ const TimeText = styled(Text, {
     sizeB: {
       lg: typography["heading-17"],
       sm: typography["heading-14"],
+      "sm-12": typography["label-12"],
     },
   } as const,
 });
 
 type VideoTimePropType = {
-  sizeB: "lg" | "sm";
-  variant: "absolute-center" | "absolute-right";
+  sizeB: "lg" | "sm" | "sm-12";
+  variant: "absolute-center" | "absolute-right" | "absolute-right-bottom";
   bg: "transparent" | "dark";
   time: string;
 };

@@ -20,15 +20,12 @@ export default function Homebar() {
         alignItems="center"
         gap={16}
       >
-        <Link
-          asChild
-          href="/(tabs)/(community)/search"
-        >
+        <Link href="/(tabs)/(community)/search">
           <Search />
         </Link>
         <Link
-          asChild
           href="/(tabs)/(community)/add-post"
+          asChild
         >
           <Button
             variant="white"

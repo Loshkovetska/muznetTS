@@ -43,7 +43,7 @@ export default function CommonHeader({
     >
       {buttonLeft || (
         <ChevronLeft
-          size={30}
+          size={26}
           position={buttonRight && title ? "relative" : "absolute"}
           left={0}
           zIndex={1}

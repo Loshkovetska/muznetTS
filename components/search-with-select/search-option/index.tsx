@@ -43,7 +43,7 @@ export default function SearchOption({
           alignItems="center"
           justifyContent="center"
           backgroundColor="rgba(254,254,254,0.2)"
-          borderRadius={dark ? 8 : undefined}
+          borderRadius={8}
         >
           <X
             size={12}

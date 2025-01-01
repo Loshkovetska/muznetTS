@@ -133,12 +133,21 @@ type ButtonPropType = {
   loading?: boolean;
   iconRight?: React.ReactNode;
   iconLeft?: React.ReactNode;
+  textProps?: GetProps<typeof ButtonTextStyled>;
 } & GetProps<typeof ButtonStyled> &
   React.PropsWithChildren;
 
 const Button = React.forwardRef<any, ButtonPropType>(
   (props: ButtonPropType, ref) => {
-    const { children, loading, iconLeft, iconRight, variant, ...rest } = props;
+    const {
+      children,
+      loading,
+      iconLeft,
+      iconRight,
+      variant,
+      textProps,
+      ...rest
+    } = props;
     return (
       <ButtonStyled
         ref={ref}
@@ -153,6 +162,7 @@ const Button = React.forwardRef<any, ButtonPropType>(
           sizeB={props.sizeB as "sm"}
           variant={variant}
           unstyled
+          {...textProps}
         >
           {children}
         </ButtonTextStyled>

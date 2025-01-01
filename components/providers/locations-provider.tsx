@@ -1,15 +1,8 @@
 import LocationSearchResult from "@/components/location-search/locations-search-result";
+import useLocations from "@/lib/hooks/location.hook";
 import { PredictionType } from "@/lib/types";
-import axios from "axios";
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, useCallback, useContext, useState } from "react";
 import { ScrollView } from "react-native";
-import { debounce } from "tamagui";
 type LocationContextType = {
   ref?: ScrollView | null;
   value: string;
@@ -41,10 +34,9 @@ export const useLocationContext = () => useContext(LocationContext);
 export default function LocationsProvider(props: LocationsProviderPropType) {
   const { children, coords, scrollRef, mode, defaultValue, onValueChange } =
     props;
-  const [value, setValue] = useState("");
   const [isOpen, setOpen] = useState(false);
   const [triggerPosition, setPosition] = useState({ x: 0, y: 0 });
-  const [list, setList] = useState<PredictionType[]>([]);
+  const { value, list, onInputChange, setValue } = useLocations(defaultValue);
 
   const onPositionChange = useCallback(
     (pos: { x: number; y: number }) => {
@@ -52,34 +44,6 @@ export default function LocationsProvider(props: LocationsProviderPropType) {
     },
     [coords]
   );
-
-  const findAvailableLocations = useCallback(
-    debounce(async (value: string) => {
-      const API_KEY = process.env.EXPO_PUBLIC_MAP_APIKEY;
-      const GOOGLE_PACES_API_URL = `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(
-        value
-      )}&apiKey=${API_KEY}`;
-      const response = await axios.get(GOOGLE_PACES_API_URL);
-      if (response.data) {
-        setList(response.data.features);
-      }
-    }, 300),
-    []
-  );
-
-  const onInputChange = useCallback(
-    (value: string) => {
-      setValue(value);
-      findAvailableLocations(value);
-    },
-    [findAvailableLocations]
-  );
-
-  useEffect(() => {
-    if (defaultValue) {
-      setValue(defaultValue);
-    }
-  }, [defaultValue]);
 
   return (
     <LocationContext.Provider

@@ -14,6 +14,7 @@ import PasswordInput from "@/components/inputs/password-input";
 import LocationSearch from "@/components/location-search";
 import CheckboxWithLabel from "@/components/ui/checkbox";
 import Input, { InputPropType } from "@/components/ui/input";
+import SwitchWithLabel from "@/components/ui/switch";
 import TextArea from "@/components/ui/textarea";
 import { formateDate, formateTime } from "@/lib/utils";
 import { colors, typography } from "@/tamagui.config";
@@ -124,7 +125,7 @@ const FormMessage = ({
 FormMessage.displayName = "FormMessage";
 
 type FormElementPropType = {
-  type?: "password" | "textarea" | "checkbox" | "location";
+  type?: "password" | "textarea" | "checkbox" | "location" | "switch";
   inputType?: "date" | "time";
   name: string;
   withIcons?: boolean;
@@ -133,7 +134,9 @@ type FormElementPropType = {
 const FormElement = ({ type, ...props }: FormElementPropType) => {
   const InputComp = React.useMemo(
     () =>
-      type === "password"
+      type === "switch"
+        ? SwitchWithLabel
+        : type === "password"
         ? PasswordInput
         : type === "textarea"
         ? TextArea
@@ -176,7 +179,15 @@ const FormElement = ({ type, ...props }: FormElementPropType) => {
               onCheckedChange={field.onChange}
             />
           )}
-          {type !== "checkbox" && type !== "location" && (
+          {type === "switch" && (
+            <SwitchWithLabel
+              name={props.name}
+              label={props.placeholder || ""}
+              checked={field.value}
+              onCheckedChange={field.onChange}
+            />
+          )}
+          {type !== "checkbox" && type !== "location" && type !== "switch" && (
             <InputComp
               variant={
                 fieldState.error

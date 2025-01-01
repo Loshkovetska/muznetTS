@@ -42,10 +42,7 @@ export default function Page() {
         <CommonHeader
           title="Comments"
           buttonRight={
-            <Link
-              asChild
-              href="/(tabs)/(chat)/dialogs"
-            >
+            <Link href="/(tabs)/(chat)/dialogs">
               <Send />
             </Link>
           }

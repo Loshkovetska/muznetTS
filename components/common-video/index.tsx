@@ -14,6 +14,7 @@ type CommonVideoPropType = {
   postView?: boolean;
   inView?: boolean;
   contentFit?: VideoContentFit;
+  timeVariant?: "absolute-right" | "absolute-right-bottom";
 } & StackProps;
 
 export default function CommonVideo({
@@ -22,6 +23,7 @@ export default function CommonVideo({
   postView,
   inView,
   contentFit = "contain",
+  timeVariant = "absolute-right",
   ...props
 }: CommonVideoPropType) {
   const [currentTime, setCurrentTime] = useState(0);
@@ -77,8 +79,8 @@ export default function CommonVideo({
       const seconds = Math.floor(currentTime);
       return `00:${String(seconds).padStart(2, "0")}:00`;
     }
-    return "00:00:00";
-  }, [inView, currentTime]);
+    return `00:${String(player.duration).padStart(2, "0")}:00`;
+  }, [inView, currentTime, player.duration]);
 
   return (
     <Stack
@@ -91,9 +93,9 @@ export default function CommonVideo({
       {postView && (
         <VideoTime
           time={time}
-          variant="absolute-right"
+          variant={timeVariant}
           bg="transparent"
-          sizeB="sm"
+          sizeB={timeVariant === "absolute-right" ? "sm" : "sm-12"}
         />
       )}
       <VideoView

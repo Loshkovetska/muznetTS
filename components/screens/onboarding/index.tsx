@@ -79,6 +79,7 @@ export default function OnboardingContent() {
                 <Button
                   sizeB="lg"
                   variant="transparent"
+                  textProps={typography["heading-20"]}
                   width="auto"
                 >
                   Skip
@@ -88,6 +89,7 @@ export default function OnboardingContent() {
                 sizeB="lg"
                 variant="transparent"
                 width="auto"
+                textProps={typography["heading-20"]}
                 onPress={() => setScreenNumber((prev) => prev + 1)}
                 iconRight={<ArrowRight color={colors["black"]} />}
               >

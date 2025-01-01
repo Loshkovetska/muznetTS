@@ -5,6 +5,7 @@ import Button from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import { SCREEN_WIDTH } from "@/lib/constants";
 import { AddCommentType, CommentType } from "@/lib/types/comment";
+import { typography } from "@/tamagui.config";
 import { useCallback, useEffect, useState } from "react";
 
 type AddCommentBarPropType = {
@@ -78,6 +79,7 @@ export default function AddCommentBar({
           <Button
             sizeB="sm"
             variant="transparent"
+            textProps={typography["heading-14"]}
             pointerEvents={comment.length >= 2 ? "auto" : "none"}
             opacity={comment.length >= 2 ? 1 : 0.3}
             onPress={onSendComment}
