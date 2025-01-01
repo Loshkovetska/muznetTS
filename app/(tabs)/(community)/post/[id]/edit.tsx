@@ -18,19 +18,15 @@ export default function Page() {
     <AddEditPostContent
       step={1}
       id={data?.id}
-      defaultValues={
-        data
-          ? {
-              media: data.media,
-              title: data.title || "",
-              description: data.description,
-              tags: data.tags,
-              comment_on: data.comment_on,
-              share_on: data.share_on,
-              location: data.location,
-            }
-          : undefined
-      }
+      defaultValues={{
+        media: data.media,
+        title: data.title || "",
+        description: data.description,
+        tags: data.tags,
+        comment_on: data.comment_on,
+        share_on: data.share_on,
+        location: data.location,
+      }}
     />
   );
 }
