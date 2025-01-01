@@ -2,6 +2,7 @@ import CommonImage from "@/components/common-image";
 import CommonVideo from "@/components/common-video";
 import PostMediaItemRadio from "@/components/forms/post-form/post-gallery/post-gallery-list/post-media-item/post-media-item-radio";
 import { SCREEN_WIDTH } from "@/lib/constants";
+import { detectFileType } from "@/lib/utils";
 import { AssetInfo } from "expo-media-library";
 import React, { useMemo } from "react";
 import { Stack } from "tamagui";
@@ -21,21 +22,23 @@ function PostMediaItem({
     const commonProps = {
       width: "100%",
       height: "100%",
-      source: item.localUri || item.uri,
+      source: item.localUri,
       local: true,
       borderWidth: 0,
     };
-    return item.mediaType === "photo" ? (
+    const { isImage, isVideo } = detectFileType(item.localUri || item.uri);
+    return isImage ? (
       <CommonImage
         {...commonProps}
         resizeMode="cover"
       />
-    ) : item.mediaType === "video" ? (
+    ) : isVideo ? (
       <CommonVideo
         {...commonProps}
         contentFit="cover"
         timeVariant="absolute-right-bottom"
         postView
+        inView
       />
     ) : null;
   }, [item]);

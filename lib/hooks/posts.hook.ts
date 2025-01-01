@@ -2,7 +2,7 @@ import { useUser } from "@/components/providers/user-provider";
 import { QUERY_TAGS } from "@/lib/constants";
 import { PostService } from "@/lib/services";
 import { UserType } from "@/lib/types";
-import { PostType } from "@/lib/types/post";
+import { AddPostType, PostType } from "@/lib/types/post";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useCallback } from "react";
 
@@ -12,6 +12,7 @@ type UsePostsParamsType = {
   onHideSuccess?: () => void;
   onUnHideSuccess?: () => void;
   onDeleteSuccess?: () => void;
+  onAddUpdateSuccess?: () => void;
 };
 
 export default function usePosts({
@@ -20,6 +21,7 @@ export default function usePosts({
   onHideSuccess,
   onDeleteSuccess,
   onUnHideSuccess,
+  onAddUpdateSuccess,
 }: UsePostsParamsType) {
   const { user } = useUser();
   const queryClient = useQueryClient();
@@ -101,6 +103,39 @@ export default function usePosts({
     },
   });
 
+  const { mutate: addPost, isPending: isAddPending } = useMutation({
+    mutationFn: (args: Omit<AddPostType, "id" | "user_id">) =>
+      PostService.addPost({
+        ...args,
+        user_id: user?.id || "",
+      }),
+    onSuccess: (data) => {
+      onAddUpdateSuccess?.();
+      onAddPost([QUERY_TAGS.POST, "all"], data);
+      onAddPost([QUERY_TAGS.POST, "my-posts"], data);
+      onAddPost([QUERY_TAGS.POST, "my-likes"], data);
+    },
+    onError(e) {
+      console.log(e);
+    },
+  });
+  const { mutate: updatePost, isPending: isUpdatePending } = useMutation({
+    mutationFn: (args: Omit<AddPostType, "user_id">) =>
+      PostService.updatePost({
+        ...args,
+        user_id: user?.id || "",
+      }),
+    onSuccess: (data) => {
+      onUpdatePost([QUERY_TAGS.POST, "all"], data);
+      onUpdatePost([QUERY_TAGS.POST, "my-posts"], data);
+      onUpdatePost([QUERY_TAGS.POST, "my-likes"], data);
+      onAddUpdateSuccess?.();
+    },
+    onError(e) {
+      console.log(e);
+    },
+  });
+
   const removeHiddenPost = useCallback((post_id: string) => {
     onDeletePost([QUERY_TAGS.POST, "all"], post_id);
     onDeletePost([QUERY_TAGS.POST, "my-posts"], post_id);
@@ -146,6 +181,16 @@ export default function usePosts({
     );
   }
 
+  function onAddPost(queryTags: string[], post: PostType) {
+    queryClient.setQueryData(queryTags, (old: PostType[]) => [...old, post]);
+  }
+
+  function onUpdatePost(queryTags: string[], post: PostType) {
+    queryClient.setQueryData(queryTags, (old: PostType[]) =>
+      (old || []).map((d) => (d.id === post.id ? post : d))
+    );
+  }
+
   return {
     allPosts,
     myPosts,
@@ -153,6 +198,10 @@ export default function usePosts({
     communityUser: user as UserType,
     isReportPending,
     isDeletePending,
+    isAddPending,
+    isUpdatePending,
+    addPost,
+    updatePost,
     reportPost,
     hidePost,
     unhidePost,

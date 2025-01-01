@@ -124,7 +124,7 @@ export default function DialogBar({ chatUser }: { chatUser?: UserType }) {
       <CameraDialog
         open={dialogs.camera}
         onOpenChange={() => onCameraOpen(false)}
-        onSendMessage={onSendMessage}
+        onAccept={onSendMessage}
       />
     </>
   );

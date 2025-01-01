@@ -55,7 +55,7 @@ export default function AdsTab({ user, header }: AdsTabPropType) {
                 sizeB="lg"
                 onPress={() => setOpen(true)}
               >
-                Add New Add
+                Add New Ad
               </Button>
             }
           />

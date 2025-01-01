@@ -4,7 +4,7 @@ import { Asset } from "expo-media-library";
 import { FlatList } from "react-native";
 
 type PostGalleryListPropType = {
-  albumMedia: Asset[];
+  albumMedia: Array<Asset>;
   selectedAssets: string[];
   onValueChange: (v: string) => void;
 };
@@ -16,17 +16,22 @@ export default function PostGalleryList({
 }: PostGalleryListPropType) {
   return (
     <FlatList
-      data={[...albumMedia, ...albumMedia, ...albumMedia, ...albumMedia]}
+      data={albumMedia || []}
       numColumns={4}
       keyExtractor={(item) => item.id}
       showsVerticalScrollIndicator={false}
       style={{
         height: SCREEN_WIDTH + 80,
+        width: "100%",
       }}
       contentContainerStyle={{
         gap: 1,
         paddingBottom: SCREEN_WIDTH / 2 + 80,
       }}
+      viewabilityConfig={{
+        itemVisiblePercentThreshold: 50,
+      }}
+      onViewableItemsChanged={({ viewableItems }) => {}}
       renderItem={({ item }) => (
         <PostMediaItem
           key={item.id}

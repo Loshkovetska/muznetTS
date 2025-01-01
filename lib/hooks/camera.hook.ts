@@ -77,6 +77,7 @@ export default function useCamera() {
 
     requestPermission();
   }, [
+    permission,
     cameraState.isRecording,
     cameraState.mode,
     takePicture,

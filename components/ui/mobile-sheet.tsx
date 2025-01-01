@@ -1,4 +1,5 @@
 import SelectProvider from "@/components/providers/select-provider";
+import { colors } from "@/tamagui.config";
 import { Sheet } from "@tamagui/sheet";
 import React, { useState } from "react";
 import { ScrollView, Stack } from "tamagui";
@@ -9,6 +10,8 @@ type MobileSheetPropType = {
   showThumb?: boolean;
   scrollViewMaxHeight?: number;
   scrollPaddingBotton?: number;
+  dismissOnSnapToBottom?: boolean;
+  snapPoints?: number[];
   onOpenChange: (f: boolean) => void;
 } & React.PropsWithChildren;
 
@@ -19,22 +22,27 @@ export const MobileSheet = ({
   showThumb = true,
   scrollViewMaxHeight,
   scrollPaddingBotton,
+  dismissOnSnapToBottom = true,
+  snapPoints,
   onOpenChange,
 }: MobileSheetPropType) => {
   const [scrollRef, setRef] = useState<ScrollView | null>(null);
-  const [coords, setCoords] = useState({ x: 0, y: 0 });
   return (
     <Sheet
       modal
       open={open}
       onOpenChange={onOpenChange}
-      snapPointsMode="fit"
-      dismissOnSnapToBottom
+      snapPointsMode={snapPoints ? "percent" : "fit"}
+      snapPoints={snapPoints}
+      dismissOnSnapToBottom={dismissOnSnapToBottom}
       zIndex={100_000}
       animation="fast"
       unmountChildrenWhenHidden
+      moveOnKeyboardChange
+      dismissOnOverlayPress={!dismissOnSnapToBottom}
     >
       <Sheet.Overlay
+        unstyled={!dismissOnSnapToBottom && open}
         animation="lazy"
         enterStyle={{ opacity: 0 }}
         exitStyle={{ opacity: 0 }}
@@ -42,7 +50,9 @@ export const MobileSheet = ({
       <Sheet.Frame
         padding={16}
         justifyContent="center"
-        gap="$5"
+        gap={24}
+        disableHideBottomOverflow={!!snapPoints}
+        backgroundColor={colors["white"]}
       >
         <SelectProvider
           coords={{ x: 0, y: 0 }}
@@ -67,9 +77,6 @@ export const MobileSheet = ({
             }}
             contentContainerStyle={{
               paddingBottom: scrollPaddingBotton,
-            }}
-            onLayout={({ nativeEvent: { layout } }) => {
-              setCoords({ x: layout.x, y: layout.y });
             }}
           >
             {children}

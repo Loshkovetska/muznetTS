@@ -11,12 +11,14 @@ type PostGalleryFuncPropType = {
   currentAlbum?: Album | null;
   albums: Album[];
   setCurrentAlbum: (album: Album) => void;
+  onValueChange: (file: any[]) => void;
 };
 
 export default function PostGalleryFunc({
   currentAlbum,
   albums,
   setCurrentAlbum,
+  onValueChange,
 }: PostGalleryFuncPropType) {
   const [isOpen, setOpen] = useState(false);
   const [isCameraOpen, setCameraOpen] = useState(false);
@@ -28,6 +30,15 @@ export default function PostGalleryFunc({
     },
     [setCurrentAlbum]
   );
+
+  const onCameraValueChange = useCallback(
+    (f: any[]) => {
+      onValueChange(f);
+      setCameraOpen(false);
+    },
+    [onValueChange]
+  );
+
   return (
     <>
       <XStack
@@ -65,7 +76,7 @@ export default function PostGalleryFunc({
       <CameraDialog
         open={isCameraOpen}
         onOpenChange={() => setCameraOpen(false)}
-        onSendMessage={() => {}}
+        onAccept={onCameraValueChange}
       />
     </>
   );

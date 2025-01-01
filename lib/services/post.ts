@@ -1,4 +1,6 @@
+import { uploadImage } from "@/lib/actions/upload-image";
 import {
+  AddPostType,
   HideParamType,
   PostType,
   SearchPostItemType,
@@ -81,6 +83,38 @@ class PostServiceClass {
 
     if (unhidden.error) throw new Error("Error");
     return !unhidden?.error;
+  }
+
+  async addPost(args: AddPostType): Promise<PostType> {
+    console.log(args.media);
+    const imagesUrls = await uploadImage(args.media);
+
+    const post = await supabase
+      .from("posts")
+      .insert({ ...args, media: imagesUrls })
+      .select("*, user:user_id(*)")
+      .single();
+
+    if (post.error) throw new Error("Error");
+
+    return post.data;
+  }
+
+  async updatePost(args: AddPostType): Promise<PostType> {
+    const copy = JSON.parse(JSON.stringify(args));
+    delete copy.id;
+    delete copy.user_id;
+    const imagesUrls = await uploadImage(args.media);
+
+    const post = await supabase
+      .from("posts")
+      .update({ ...args, media: imagesUrls })
+      .eq("id", args.id)
+      .select("*, user:user_id(*)")
+      .single();
+
+    if (post.error) throw new Error("Error");
+    return post.data;
   }
 
   async deletePost(post_id: string): Promise<boolean> {

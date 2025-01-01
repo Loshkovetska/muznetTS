@@ -161,6 +161,16 @@ const adScheme = z
     }
   });
 
+const postScheme = z.object({
+  media: z.array(z.any()).refine((m) => m.length, "Select media"),
+  title: z.string().min(3, "Too small title"),
+  description: z.string().optional(),
+  location: z.string().min(2, "Select location"),
+  tags: z.array(z.string()),
+  comment_on: z.boolean(),
+  share_on: z.boolean(),
+});
+
 export {
   adScheme,
   addReviewScheme,
@@ -168,6 +178,7 @@ export {
   emailScheme,
   loginScheme,
   musiciansignUpScheme,
+  postScheme,
   signUpStep0,
   signUpStep1,
   signUpStep2,

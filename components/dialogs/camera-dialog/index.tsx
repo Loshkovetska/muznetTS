@@ -6,18 +6,18 @@ import CameraFunc from "@/components/dialogs/camera-dialog/camera-func";
 import CameraModeBlock from "@/components/dialogs/camera-dialog/camera-mode-block";
 import useCamera from "@/lib/hooks/camera.hook";
 import { RefreshCcw, RefreshCw, Zap, ZapOff } from "@tamagui/lucide-icons";
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 
 type CameraDialogPropType = {
   open: boolean;
   onOpenChange: () => void;
-  onSendMessage: (file: any[]) => void;
+  onAccept: (file: any[]) => void;
 };
 
 export default function CameraDialog({
   open,
   onOpenChange,
-  onSendMessage,
+  onAccept,
 }: CameraDialogPropType) {
   const {
     cameraState,
@@ -43,13 +43,17 @@ export default function CameraDialog({
     onOpenChange();
   }, [resetParams, onOpenChange]);
 
+  useEffect(() => {
+    !open && onClose();
+  }, [open]);
+
   return (
     <CommonDialogWrapper
       open={open}
       light={false}
       paddingTop={48}
       gap={32}
-      zIndex={200_000}
+      zIndex={2000_000}
     >
       <CameraActionButton
         Icon={FlashIcon}
@@ -65,7 +69,7 @@ export default function CameraDialog({
       {cameraState.preview && (
         <CameraDialogButtons
           retake={retake}
-          onAccept={() => onSendMessage([cameraState.preview])}
+          onAccept={() => onAccept([cameraState.preview])}
           text={cameraState.mode === "picture" ? "Photo" : "Video"}
         />
       )}

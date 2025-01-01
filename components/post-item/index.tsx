@@ -12,6 +12,7 @@ import usePosts from "@/lib/hooks/posts.hook";
 import { PostType } from "@/lib/types/post";
 import { toggleToast } from "@/lib/utils/toast";
 import { colors } from "@/tamagui.config";
+import { router } from "expo-router";
 import { useCallback, useState } from "react";
 import { YStack } from "tamagui";
 
@@ -115,7 +116,10 @@ export default function PostItem(post: PostType & { inView?: boolean }) {
             open={dialogs.actions}
             onOpenChange={() => toggleState("actions")}
             onReport={onReport}
-            onEdit={() => {}}
+            onEdit={() => {
+              toggleState("actions");
+              router.push(`/(tabs)/(community)/post/${post.id}/edit`);
+            }}
             onDelete={onDelete}
             onShare={onShare}
             onToggle={(name, value) =>

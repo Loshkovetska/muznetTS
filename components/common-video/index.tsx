@@ -87,7 +87,9 @@ export default function CommonVideo({
       width="100%"
       height={300}
       {...props}
-      onPress={postView ? undefined : onButtonPress}
+      onPress={
+        postView && timeVariant === "absolute-right" ? undefined : onButtonPress
+      }
       backgroundColor={postView ? colors["black"] : undefined}
     >
       {postView && (
@@ -106,7 +108,7 @@ export default function CommonVideo({
         nativeControls={false}
         contentFit={contentFit}
       />
-      {postView && (
+      {postView && timeVariant === "absolute-right" && (
         <BlurView
           style={{
             position: "absolute",

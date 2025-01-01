@@ -19,14 +19,15 @@ export const uploadImage = async (
 
   for (let i = 0; i < new_photos.length; i++) {
     const file = new_photos[i] as any;
+    const uri = file.localUri || file.uri;
 
-    const base64Str = await FileSystem.readAsStringAsync(file.uri, {
+    const base64Str = await FileSystem.readAsStringAsync(uri, {
       encoding: "base64",
     });
 
     const buffer = decode(base64Str);
 
-    const uriParts = file.uri.split("/");
+    const uriParts = uri.split("/");
     const fileName = uriParts[uriParts.length - 1];
     const { isImage, isVideo } = detectFileType(fileName);
 

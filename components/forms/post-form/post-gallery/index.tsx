@@ -14,20 +14,26 @@ import { UseFormReturn, useWatch } from "react-hook-form";
 type PostGalleryPropType = {
   form: UseFormReturn<any>;
   edit?: boolean;
+  hideBlocks?: boolean;
   onNext: () => void;
 };
 
 export default function PostGallery({
   form,
   edit,
+  hideBlocks,
   onNext,
 }: PostGalleryPropType) {
   const media = useWatch({ control: form.control, name: "media" });
-  const { albums, albumMedia, currentAlbum, setCurrentAlbum } =
-    useMediaLibrary();
+  const { albums, albumMedia, currentAlbum, setCurrentAlbum } = useMediaLibrary(
+    !edit
+  );
 
   const selectedMedia = useMemo(
-    () => media?.map((m: any) => m.id) || [],
+    () =>
+      media?.map((m: any) => {
+        return m?.id || m.uri;
+      }) || [],
     [media]
   );
 
@@ -49,30 +55,42 @@ export default function PostGallery({
     [albumMedia, form, selectedMedia, media]
   );
 
+  const onCameraValueChange = useCallback(
+    (f: any[]) => {
+      setValueToForm(form, "media", [...media, ...f]);
+    },
+    [form, media]
+  );
+
   const imagesUri = useMemo(
-    () => media?.map((c: any) => c?.localUri || c),
+    () => media?.map((c: any) => c?.localUri || c?.uri || c),
     [media]
+  );
+
+  const carouselMedia = useMemo(
+    () =>
+      imagesUri?.length
+        ? imagesUri
+        : albumMedia?.[0]
+        ? [albumMedia?.[0]?.localUri]
+        : [],
+    [imagesUri, albumMedia]
   );
 
   return (
     <>
       <PostItemCarousel
         local={!edit}
-        media={
-          imagesUri?.length
-            ? imagesUri
-            : albumMedia?.[0]
-            ? [albumMedia?.[0]?.localUri || albumMedia?.[0]?.uri]
-            : []
-        }
+        media={carouselMedia}
         inView
       />
-      {!edit && (
+      {!hideBlocks && (
         <>
           <PostGalleryFunc
             albums={albums}
             currentAlbum={currentAlbum}
             setCurrentAlbum={setCurrentAlbum}
+            onValueChange={onCameraValueChange}
           />
           <PostGalleryList
             selectedAssets={selectedMedia}

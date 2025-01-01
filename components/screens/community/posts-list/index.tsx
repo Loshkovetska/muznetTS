@@ -4,6 +4,7 @@ import Button from "@/components/ui/button";
 import usePosts from "@/lib/hooks/posts.hook";
 import { typography } from "@/tamagui.config";
 import { Plus } from "@tamagui/lucide-icons";
+import { Link } from "expo-router";
 import { Text, XStack, YStack } from "tamagui";
 
 type PostsListPropType = {
@@ -48,17 +49,19 @@ export default function PostsList({ type }: PostsListPropType) {
             >
               {data?.length} {data?.length === 1 ? "Post" : "Posts"}
             </Text>
-            <Button
-              iconLeft={<Plus />}
-              sizeB="lg"
-              variant="white"
-              justifyContent="center"
-              onPress={() => {
-                //add post
-              }}
+            <Link
+              asChild
+              href="/(tabs)/(community)/add-post"
             >
-              Add new Post
-            </Button>
+              <Button
+                iconLeft={<Plus />}
+                sizeB="lg"
+                variant="white"
+                justifyContent="center"
+              >
+                Add new Post
+              </Button>
+            </Link>
           </YStack>
         )
       }

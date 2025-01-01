@@ -35,7 +35,20 @@ type SearchPostItemType = {
   type: "tag" | "place";
 };
 
+type AddPostType = {
+  id?: string;
+  user_id: string;
+  media: any[];
+  title: string;
+  description?: string;
+  tags: string[];
+  comment_on: boolean;
+  share_on: boolean;
+  location: string;
+};
+
 export type {
+  AddPostType,
   HideParamType,
   PostType,
   SearchPostItemType,

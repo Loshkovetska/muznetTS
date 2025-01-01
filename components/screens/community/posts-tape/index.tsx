@@ -1,7 +1,9 @@
 import PostItem from "@/components/post-item";
+import PostUploading from "@/components/screens/community/post-uploading";
 import usePosts from "@/lib/hooks/posts.hook";
 import { PostType } from "@/lib/types/post";
 import { colors } from "@/tamagui.config";
+import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useRef, useState } from "react";
 import { FlatList } from "react-native";
 
@@ -21,6 +23,16 @@ export default function PostsTape({
   const { allPosts } = usePosts({ requestType: data ? undefined : "all" });
   const [currentIndex, setCurrentIndex] = useState(0);
   const ref = useRef<FlatList>(null);
+  const [isLoading, setLoading] = useState(false);
+
+  const { loading } = useLocalSearchParams();
+
+  useEffect(() => {
+    if (loading === "true") {
+      setLoading(true);
+      router.setParams({ loading: "false" });
+    }
+  }, [loading]);
 
   useEffect(() => {
     if (ref.current && typeof initialIndex === "number") {
@@ -45,6 +57,14 @@ export default function PostsTape({
         gap: 32,
         paddingTop: paddingTop,
       }}
+      ListHeaderComponent={
+        isLoading ? (
+          <PostUploading
+            isLoading={isLoading}
+            onFinish={() => setLoading(false)}
+          />
+        ) : undefined
+      }
       viewabilityConfig={{
         itemVisiblePercentThreshold: 100,
       }}

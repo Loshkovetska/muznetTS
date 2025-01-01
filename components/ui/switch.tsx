@@ -19,6 +19,14 @@ const StyledSwitch = styled(Switch, {
   minHeight: 24,
   padding: 2,
   borderWidth: 0,
+
+  variants: {
+    checked: {
+      true: {
+        backgroundColor: colors["black"],
+      },
+    },
+  },
 });
 
 const StyledSwitchThumb = styled(Switch.Thumb, {
