@@ -2,7 +2,7 @@ import DateTimePicker from "@/components/date-time-picker";
 import SkillsList from "@/components/forms/skills-list";
 import MediaSelect from "@/components/screens/profile/personal-tab/media-select";
 import SearchWithSelect from "@/components/search-with-select";
-import { FormElement } from "@/components/ui";
+import { FormElement } from "@/components/ui/form";
 import { GENRES, INSTRUMENTS } from "@/lib/constants/lists";
 import { UseFormReturn } from "react-hook-form";
 

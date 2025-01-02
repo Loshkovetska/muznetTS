@@ -12,8 +12,6 @@ export function useCheckUser() {
 
     if (exist) return setFirstLoad(false);
 
-    router.setParams({ onboarding: "true" });
-
     await AsyncStorage.setItem("enter", "true");
     setFirstLoad(true);
   }, []);

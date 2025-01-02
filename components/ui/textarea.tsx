@@ -1,4 +1,4 @@
-import { Label } from "@/components/ui/label";
+import { Text } from "@/components/ui/text";
 import { useInput } from "@/lib/hooks";
 import { colors } from "@/tamagui.config";
 import { AlertCircle, CircleCheck } from "@tamagui/lucide-icons";
@@ -110,7 +110,7 @@ export const TextArea = React.forwardRef<TextInput, InputPropType>(
           flexGrow={1}
         >
           {placeholder && isFocused && animate && (
-            <Label typo="medium-10">{placeholder}</Label>
+            <Text typo="medium-10">{placeholder}</Text>
           )}
           <StyledInput
             ref={ref}

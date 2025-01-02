@@ -43,8 +43,8 @@ export default function CameraDialog({
   }, [resetParams, onOpenChange]);
 
   useEffect(() => {
-    !open && onClose();
-  }, [open]);
+    !open && resetParams();
+  }, [open, resetParams]);
 
   return (
     <CommonDialogWrapper

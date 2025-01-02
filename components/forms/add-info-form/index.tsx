@@ -1,6 +1,6 @@
 import SkillsList from "@/components/forms/skills-list";
 import ImagePicker from "@/components/image-picker";
-import { FormElement } from "@/components/ui";
+import { FormElement } from "@/components/ui/form";
 import { UseFormReturn } from "react-hook-form";
 import { YStack } from "tamagui";
 

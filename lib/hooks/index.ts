@@ -14,6 +14,7 @@ export * from "./map.hook";
 export * from "./media-library.hook";
 export * from "./messages.hook";
 export * from "./musicians.hook";
+export * from "./notifications.hook";
 export * from "./posts-by-filter.hook";
 export * from "./posts.hook";
 export * from "./search-posts.hook";

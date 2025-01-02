@@ -57,7 +57,11 @@ class AdServiceClass {
 
   async getAd(id: string): Promise<AdType | null> {
     try {
-      const user = await supabase.from("ads").select().eq("id", id).single();
+      const user = await supabase
+        .from("ads")
+        .select("*, creator:user_id(name, surname, id)")
+        .eq("id", id)
+        .single();
 
       if (!user.data) throw new Error("No Ad");
       return user.data;

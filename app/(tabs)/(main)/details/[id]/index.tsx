@@ -46,6 +46,7 @@ export default function Index() {
   if (!data) return null;
 
   const images = data.photo?.length ? data.photo : [];
+
   return (
     <>
       <ScrollView
@@ -77,7 +78,7 @@ export default function Index() {
           maxWidth={227}
           onPress={() => handleDialog("message", true)}
         >
-          Contact Performer
+          Contact {isMusician ? "Vendor" : "Performer"}
         </Button>
       </BottomBar>
       <FullScreenCarousel
@@ -92,7 +93,7 @@ export default function Index() {
       />
       <ContactUserDialog
         from={user?.id || ""}
-        to={!isMusician ? data.id : (data as AdType).creator.id}
+        to={!isMusician ? data?.id : (data as AdType)?.creator?.id}
         open={dialogs["message"]}
         isMusician={isMusician}
         onOpenChange={() => handleDialog("message", false)}
