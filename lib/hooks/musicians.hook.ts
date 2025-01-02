@@ -7,7 +7,7 @@ type useMusiciansParams = {
   id?: string;
 };
 
-const useMusicians = ({ enabled = true, id }: useMusiciansParams) => {
+export const useMusicians = ({ enabled = true, id }: useMusiciansParams) => {
   const { data: musicians } = useQuery({
     queryKey: [QUERY_TAGS.MUSICIAN, id ? "SIMILAR" : undefined],
     queryFn: () => UsersService.getMusicians(id),
@@ -15,5 +15,3 @@ const useMusicians = ({ enabled = true, id }: useMusiciansParams) => {
   });
   return { musicians };
 };
-
-export default useMusicians;

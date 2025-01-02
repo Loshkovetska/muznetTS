@@ -1,7 +1,7 @@
 import DealsItemContent from "@/components/screens/profile/deals-tab/deals-item-content";
 import DealsTabList from "@/components/screens/profile/deals-tab/deals-tab-list";
 import DealsTabs from "@/components/screens/profile/deals-tab/deals-tabs";
-import useDeals from "@/lib/hooks/deal.hook";
+import { useDeals } from "@/lib/hooks";
 import { UserType } from "@/lib/types";
 import { colors } from "@/tamagui.config";
 import { useMemo, useState } from "react";

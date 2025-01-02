@@ -1,6 +1,6 @@
 import CommonImage from "@/components/common-image";
 import { Button, Text } from "@/components/ui";
-import useImagePicker from "@/lib/hooks/image-picker.hook";
+import { useImagePicker } from "@/lib/hooks";
 import { setValueToForm } from "@/lib/utils";
 import { colors } from "@/tamagui.config";
 import { Plus, Trash } from "@tamagui/lucide-icons";

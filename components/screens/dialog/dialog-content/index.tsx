@@ -1,6 +1,6 @@
 import DialogMessage from "@/components/screens/dialog/dialog-content/dialog-message";
 import { Text } from "@/components/ui";
-import useMessages from "@/lib/hooks/messages.hook";
+import { useMessages } from "@/lib/hooks";
 import { MessageItemType, UserType } from "@/lib/types";
 import dayjs from "dayjs";
 import { useCallback, useEffect, useRef } from "react";

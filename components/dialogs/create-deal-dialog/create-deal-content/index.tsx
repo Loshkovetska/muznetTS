@@ -7,7 +7,7 @@ import {
   SelectContent,
   Text,
 } from "@/components/ui";
-import useAds from "@/lib/hooks/ads.hook";
+import { useAds } from "@/lib/hooks";
 import { BaseDialogPropType } from "@/lib/types";
 import dayjs from "dayjs";
 import { useMemo } from "react";

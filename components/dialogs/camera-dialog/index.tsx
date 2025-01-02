@@ -4,7 +4,7 @@ import CameraBlock from "@/components/dialogs/camera-dialog/camera-block";
 import CameraDialogButtons from "@/components/dialogs/camera-dialog/camera-dialog-buttons";
 import CameraFunc from "@/components/dialogs/camera-dialog/camera-func";
 import CameraModeBlock from "@/components/dialogs/camera-dialog/camera-mode-block";
-import useCamera from "@/lib/hooks/camera.hook";
+import { useCamera } from "@/lib/hooks";
 import { BaseDialogPropType } from "@/lib/types";
 import { RefreshCcw, RefreshCw, Zap, ZapOff } from "@tamagui/lucide-icons";
 import { useCallback, useEffect, useMemo } from "react";

@@ -2,7 +2,7 @@ import SEARCH_TABS from "@/components/screens/community/search/constants";
 import SearchContent from "@/components/screens/community/search/search-content";
 import SearchHeader from "@/components/screens/community/search/search-header";
 import SearchList from "@/components/screens/community/search/search-list";
-import useSearchPosts from "@/lib/hooks/search-posts.hook";
+import { useSearchPosts } from "@/lib/hooks";
 import { colors } from "@/tamagui.config";
 import { useCallback, useState } from "react";
 import { YStack } from "tamagui";

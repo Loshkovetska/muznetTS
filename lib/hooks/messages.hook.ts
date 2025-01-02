@@ -16,7 +16,7 @@ type UseMessagesPropType = {
   onSuccessDelete?: () => void;
 };
 
-export default function useMessages({
+export function useMessages({
   enabled = false,
   enabledMessages = false,
   navigate = false,

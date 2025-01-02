@@ -2,7 +2,7 @@ import CommonHeader from "@/components/common-header";
 import AddCommentBar from "@/components/screens/community/comments/add-comment-bar";
 import CommentsList from "@/components/screens/community/comments/comments-list";
 import { QUERY_TAGS } from "@/lib/constants";
-import useComments from "@/lib/hooks/comment.hook";
+import { useComments } from "@/lib/hooks";
 import { PostService } from "@/lib/services";
 import { AddCommentType, CommentType } from "@/lib/types/comment";
 import { colors } from "@/tamagui.config";

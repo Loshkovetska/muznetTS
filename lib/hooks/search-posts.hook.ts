@@ -3,7 +3,7 @@ import { PostService } from "@/lib/services";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
 
-export default function useSearchPosts(enabled: boolean = false) {
+export function useSearchPosts(enabled: boolean = false) {
   const { data: postsTags = [] } = useQuery({
     queryKey: [QUERY_TAGS.POST, "search-tags"],
     queryFn: () => PostService.getPostTags(),

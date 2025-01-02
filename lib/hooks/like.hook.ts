@@ -11,7 +11,7 @@ type UseLikesPropType = {
   onSuccess: (b: boolean) => void;
 };
 
-export default function useLikes({
+export function useLikes({
   post_id,
   user_id,
   totalCount,

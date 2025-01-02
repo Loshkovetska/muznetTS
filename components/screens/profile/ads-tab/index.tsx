@@ -1,7 +1,7 @@
 import AddEditAdDialog from "@/components/dialogs/add-edit-ad-dialog";
 import AdsTabItem from "@/components/screens/profile/ads-tab/ads-tab-item";
 import { Button } from "@/components/ui";
-import useAds from "@/lib/hooks/ads.hook";
+import { useAds } from "@/lib/hooks";
 import { UserType } from "@/lib/types";
 import { colors } from "@/tamagui.config";
 import { useCallback, useMemo, useState } from "react";

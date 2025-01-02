@@ -4,7 +4,7 @@ import { AddCommentType, CommentType } from "@/lib/types/comment";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useCallback } from "react";
 
-export default function useComments(post_id: string) {
+export function useComments(post_id: string) {
   const queryClient = useQueryClient();
 
   const { data: comments } = useQuery({

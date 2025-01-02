@@ -5,7 +5,7 @@ import InfoMessage from "@/components/info-message";
 import PostItemCarousel from "@/components/post-item/post-item-carousel";
 import { Button } from "@/components/ui";
 import { SCREEN_WIDTH } from "@/lib/constants";
-import useMediaLibrary from "@/lib/hooks/media-library.hook";
+import { useMediaLibrary } from "@/lib/hooks";
 import { setValueToForm } from "@/lib/utils";
 import { colors } from "@/tamagui.config";
 import { Asset } from "expo-media-library";

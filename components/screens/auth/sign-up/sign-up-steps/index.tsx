@@ -10,7 +10,7 @@ import SearchWithSelect from "@/components/search-with-select";
 import { Button, Form, FormElement, SelectContent } from "@/components/ui";
 import { SCREEN_HEIGHT } from "@/lib/constants";
 import { GENRES, GROUP_MEMBERS, INSTRUMENTS } from "@/lib/constants/lists";
-import useAuth from "@/lib/hooks/auth.hook";
+import { useAuth } from "@/lib/hooks";
 import { signUpStep0 } from "@/lib/scheme";
 import { setValueToForm } from "@/lib/utils";
 import {

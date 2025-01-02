@@ -3,7 +3,7 @@ import CommonHeader from "@/components/common-header";
 import AdForm from "@/components/forms/ad-form";
 import LocationsProvider from "@/components/providers/locations-provider";
 import { Button, Form, Text } from "@/components/ui";
-import useAds from "@/lib/hooks/ads.hook";
+import { useAds } from "@/lib/hooks";
 import { adScheme } from "@/lib/scheme";
 import { AdType, PredictionType } from "@/lib/types";
 import { setValueToForm } from "@/lib/utils";

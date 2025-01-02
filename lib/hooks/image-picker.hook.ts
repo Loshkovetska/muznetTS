@@ -2,7 +2,7 @@ import { toggleToast } from "@/lib/utils/toast";
 import * as ImagePickerNative from "expo-image-picker";
 import { useCallback } from "react";
 
-export default function useImagePicker(
+export function useImagePicker(
   onSuccess?: (file: ImagePickerNative.ImagePickerAsset) => void
 ) {
   const pickImage = useCallback(async () => {

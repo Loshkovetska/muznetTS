@@ -1,5 +1,5 @@
 import { Text } from "@/components/ui";
-import { useInput } from "@/lib/hooks/input.hook";
+import { useInput } from "@/lib/hooks";
 import { colors } from "@/tamagui.config";
 import { AlertCircle, CircleCheck } from "@tamagui/lucide-icons";
 import React from "react";

@@ -1,5 +1,5 @@
 import { Button, Input, MobileSheet, Text } from "@/components/ui";
-import usePosts from "@/lib/hooks/posts.hook";
+import { usePosts } from "@/lib/hooks";
 import { BaseDialogPropType } from "@/lib/types";
 import { colors } from "@/tamagui.config";
 import { CircleCheck } from "@tamagui/lucide-icons";

@@ -1,5 +1,5 @@
 import { Button, Form, FormElement, Text } from "@/components/ui";
-import useAuth from "@/lib/hooks/auth.hook";
+import { useAuth } from "@/lib/hooks";
 import { loginScheme } from "@/lib/scheme";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback } from "react";

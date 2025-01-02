@@ -4,7 +4,7 @@ import CommonHeader from "@/components/common-header";
 import InfoMessage from "@/components/info-message";
 import { Button, Form, FormElement, Text } from "@/components/ui";
 import { SCREEN_WIDTH } from "@/lib/constants";
-import useMessages from "@/lib/hooks/messages.hook";
+import { useMessages } from "@/lib/hooks";
 import { BaseDialogPropType } from "@/lib/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback } from "react";

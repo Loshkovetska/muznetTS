@@ -3,7 +3,7 @@ import * as DocumentPicker from "expo-document-picker";
 import * as FileSystem from "expo-file-system";
 import { useCallback, useState } from "react";
 
-export default function useDocument(
+export function useDocument(
   onSuccess?: (files: DocumentPicker.DocumentPickerAsset[]) => void
 ) {
   const [assets, setAssets] = useState<DocumentPicker.DocumentPickerAsset[]>(

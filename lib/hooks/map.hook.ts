@@ -5,7 +5,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { FlatList } from "react-native";
 import MapView from "react-native-maps";
 
-export default function useMap(data: Array<AdType | UserType>) {
+export function useMap(data: Array<AdType | UserType>) {
   const [currentLocation, setCurrentLocation] = useState<
     LocationType | undefined
   >();

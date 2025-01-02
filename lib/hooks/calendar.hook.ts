@@ -5,7 +5,7 @@ import { getClearDate } from "@/lib/utils/date-picker";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
 
-export default function useCalendar() {
+export function useCalendar() {
   const { user, isMusician } = useUser();
   const [selectedDate, setSelectedDate] = useState<Date | undefined>();
 

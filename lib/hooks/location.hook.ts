@@ -3,7 +3,7 @@ import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { debounce } from "tamagui";
 
-export default function useLocations(defaultValue?: string) {
+export function useLocations(defaultValue?: string) {
   const [value, setValue] = useState("");
   const [list, setList] = useState<PredictionType[]>([]);
 

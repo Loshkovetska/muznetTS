@@ -1,7 +1,7 @@
 import CameraDialog from "@/components/dialogs/camera-dialog";
 import UploadDialog from "@/components/dialogs/upload-dialog";
 import { Button, Input } from "@/components/ui";
-import useMessages from "@/lib/hooks/messages.hook";
+import { useMessages } from "@/lib/hooks";
 import { UserType } from "@/lib/types";
 import { colors } from "@/tamagui.config";
 import { Paperclip, SendHorizontal } from "@tamagui/lucide-icons";

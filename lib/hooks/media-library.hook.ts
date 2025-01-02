@@ -1,7 +1,7 @@
 import * as MediaLibrary from "expo-media-library";
 import { useCallback, useEffect, useState } from "react";
 
-export default function useMediaLibrary(enabled: boolean = true) {
+export function useMediaLibrary(enabled: boolean = true) {
   const [albums, setAlbums] = useState<MediaLibrary.Album[]>([]);
   const [albumMedia, setAlbumMedia] = useState<MediaLibrary.AssetInfo[]>([]);
   const [currentAlbum, setCurrentAlbum] = useState<MediaLibrary.Album | null>(

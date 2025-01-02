@@ -3,10 +3,7 @@ import { PostService } from "@/lib/services";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
 
-export default function usePostsByFilter(params: {
-  tag?: string;
-  place?: string;
-}) {
+export function usePostsByFilter(params: { tag?: string; place?: string }) {
   const { data = [] } = useQuery({
     queryKey: [QUERY_TAGS.POST, params.tag, params.place],
     queryFn: () =>

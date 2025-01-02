@@ -8,7 +8,8 @@ type useSliderProps = {
   sliderWidth: number;
   onValueChange: (v: number[]) => void;
 };
-export default function useSlider({
+
+export function useSlider({
   min,
   max,
   defaultValues,

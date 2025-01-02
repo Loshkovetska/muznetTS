@@ -1,7 +1,7 @@
 import CalendarItem from "@/components/screens/calendar";
 import { Text } from "@/components/ui";
 import DatePicker from "@/components/ui/date-picker";
-import useCalendar from "@/lib/hooks/calendar.hook";
+import { useCalendar } from "@/lib/hooks";
 import { colors } from "@/tamagui.config";
 import dayjs from "dayjs";
 import { useState } from "react";

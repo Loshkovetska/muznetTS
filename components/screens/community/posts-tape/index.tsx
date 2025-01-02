@@ -1,6 +1,6 @@
 import PostItem from "@/components/post-item";
 import PostUploading from "@/components/screens/community/post-uploading";
-import usePosts from "@/lib/hooks/posts.hook";
+import { usePosts } from "@/lib/hooks";
 import { PostType } from "@/lib/types/post";
 import { colors } from "@/tamagui.config";
 import { router, useLocalSearchParams } from "expo-router";

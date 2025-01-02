@@ -11,7 +11,7 @@ type useDealsParams = {
   onDeleteSuccess?: (id: string) => void;
 };
 
-const useDeals = ({
+export const useDeals = ({
   user_id,
   enabled = true,
   performer_id,
@@ -82,5 +82,3 @@ const useDeals = ({
     deleteDeal,
   };
 };
-
-export default useDeals;

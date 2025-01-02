@@ -1,5 +1,5 @@
 import { Button, Input, MobileSheet, Text } from "@/components/ui";
-import useLocations from "@/lib/hooks/location.hook";
+import { useLocations } from "@/lib/hooks";
 import { BaseDialogPropType } from "@/lib/types";
 import { colors, typography } from "@/tamagui.config";
 import { Search, X } from "@tamagui/lucide-icons";

@@ -30,7 +30,7 @@ const DEFAULT_STATE = {
   isRecording: false,
 };
 
-export default function useCamera() {
+export function useCamera() {
   const cameraRef = useRef<CameraView>(null);
 
   const [cameraState, setState] = useState<CameraStateType>(

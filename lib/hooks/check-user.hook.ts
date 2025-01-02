@@ -2,7 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
 
-export default function useCheckUser() {
+export function useCheckUser() {
   const [firstLoad, setFirstLoad] = useState<boolean | null>(null);
 
   const checkUserStatus = useCallback(async () => {

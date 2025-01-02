@@ -1,6 +1,6 @@
 import ChatItem from "@/components/screens/chat/chat-item";
 import { Input, Text } from "@/components/ui";
-import useMessages from "@/lib/hooks/messages.hook";
+import { useMessages } from "@/lib/hooks";
 import { colors } from "@/tamagui.config";
 import { Search } from "@tamagui/lucide-icons";
 import { FlatList } from "react-native";

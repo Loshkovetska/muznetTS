@@ -1,8 +1,7 @@
 import CreateDealContent from "@/components/dialogs/create-deal-dialog/create-deal-content";
 import InfoDialog from "@/components/dialogs/info-dialog";
 import { Button } from "@/components/ui";
-import useDeals from "@/lib/hooks/deal.hook";
-import useMessages from "@/lib/hooks/messages.hook";
+import { useDeals, useMessages } from "@/lib/hooks";
 import { useCallback, useState } from "react";
 
 export default function CreateDealDialog({

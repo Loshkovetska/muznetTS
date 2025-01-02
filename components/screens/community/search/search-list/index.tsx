@@ -1,6 +1,6 @@
 import SearchItem from "@/components/screens/community/search/search-list/search-item";
 import { SCREEN_WIDTH } from "@/lib/constants";
-import useSearchPosts from "@/lib/hooks/search-posts.hook";
+import { useSearchPosts } from "@/lib/hooks";
 import { useMemo } from "react";
 import { FlatList } from "react-native";
 

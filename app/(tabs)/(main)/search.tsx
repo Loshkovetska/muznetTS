@@ -2,7 +2,7 @@ import CommonHeader from "@/components/common-header";
 import FilterDialog from "@/components/dialogs/filter-dialog";
 import AdsItem from "@/components/screens/homescreen/ads-list/ads-item";
 import SearchWithFilter from "@/components/search-with-filter";
-import useSearch from "@/lib/hooks/search.hook";
+import { useSearch } from "@/lib/hooks";
 import { colors } from "@/tamagui.config";
 import { FlatList } from "react-native";
 import { YStack } from "tamagui";

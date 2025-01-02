@@ -11,7 +11,7 @@ type useMusiciansParams = {
   onSuccess?: () => void;
 };
 
-const useAds = ({
+export const useAds = ({
   enabled = true,
   id,
   user_id,
@@ -71,5 +71,3 @@ const useAds = ({
     isDeletePending,
   };
 };
-
-export default useAds;

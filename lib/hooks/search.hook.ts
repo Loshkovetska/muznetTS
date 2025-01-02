@@ -21,7 +21,7 @@ const DEFAULT_VALUES = {
   read_sheet_music: false,
 };
 
-export default function useSearch() {
+export function useSearch() {
   const { isMusician } = useUser();
   const local = useLocalSearchParams();
 

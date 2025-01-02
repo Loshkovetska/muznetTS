@@ -1,5 +1,5 @@
 import OnboardingContent from "@/components/screens/onboarding";
-import useCheckUser from "@/lib/hooks/check-user.hook";
+import { useCheckUser } from "@/lib/hooks";
 import TabbarIcon from "@/navigation/tabbar-icon";
 import { Tabs, useSegments } from "expo-router";
 import { useMemo, useState } from "react";

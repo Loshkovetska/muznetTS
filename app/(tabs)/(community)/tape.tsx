@@ -1,8 +1,7 @@
 import CommonHeader from "@/components/common-header";
 import PostsTape from "@/components/screens/community/posts-tape";
 import { Text } from "@/components/ui";
-import usePostsByFilter from "@/lib/hooks/posts-by-filter.hook";
-import usePosts from "@/lib/hooks/posts.hook";
+import { usePosts, usePostsByFilter } from "@/lib/hooks";
 import { colors } from "@/tamagui.config";
 import { useLocalSearchParams } from "expo-router";
 import { useMemo } from "react";

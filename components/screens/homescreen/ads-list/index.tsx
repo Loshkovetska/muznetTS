@@ -1,8 +1,7 @@
 import { useUser } from "@/components/providers/user-provider";
 import AdsItem from "@/components/screens/homescreen/ads-list/ads-item";
 import { Text } from "@/components/ui";
-import useAds from "@/lib/hooks/ads.hook";
-import useMusicians from "@/lib/hooks/musicians.hook";
+import { useAds, useMusicians } from "@/lib/hooks";
 import { Link } from "expo-router";
 import { XStack, YStack } from "tamagui";
 

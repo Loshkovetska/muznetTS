@@ -2,7 +2,7 @@ import DialogMediaDialog from "@/components/dialogs/dialog-media-dialog";
 import DialogBar from "@/components/screens/dialog/dialog-bar";
 import DialogContent from "@/components/screens/dialog/dialog-content";
 import DialogHeader from "@/components/screens/dialog/dialog-header";
-import useMessages from "@/lib/hooks/messages.hook";
+import { useMessages } from "@/lib/hooks";
 import { colors } from "@/tamagui.config";
 import { useState } from "react";
 import { YStack } from "tamagui";

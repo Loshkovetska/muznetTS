@@ -1,7 +1,6 @@
 import UploadButton from "@/components/dialogs/upload-dialog/upload-button";
 import { MobileSheet } from "@/components/ui";
-import useDocument from "@/lib/hooks/document.hook";
-import useImagePicker from "@/lib/hooks/image-picker.hook";
+import { useDocument, useImagePicker } from "@/lib/hooks";
 import { BaseDialogPropType } from "@/lib/types";
 import { Camera, Cloud, Image } from "@tamagui/lucide-icons";
 import { XStack } from "tamagui";

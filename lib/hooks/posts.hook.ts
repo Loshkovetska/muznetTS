@@ -15,7 +15,7 @@ type UsePostsParamsType = {
   onAddUpdateSuccess?: () => void;
 };
 
-export default function usePosts({
+export function usePosts({
   requestType,
   onReportSuccess,
   onHideSuccess,

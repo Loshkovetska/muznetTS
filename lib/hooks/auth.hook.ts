@@ -7,7 +7,7 @@ import { useMutation } from "@tanstack/react-query";
 import { router } from "expo-router";
 import { useCallback, useState } from "react";
 
-const useAuth = () => {
+export const useAuth = () => {
   const [isOpenDialog, setOpenDialog] = useState<SignInRequestType | null>(
     null
   );
@@ -43,5 +43,3 @@ const useAuth = () => {
     onSignIn,
   };
 };
-
-export default useAuth;

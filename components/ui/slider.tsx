@@ -1,5 +1,5 @@
 import { SCREEN_WIDTH } from "@/lib/constants";
-import useSlider from "@/lib/hooks/slider.hook";
+import { useSlider } from "@/lib/hooks";
 import { colors } from "@/tamagui.config";
 import React, { useCallback } from "react";
 import { Stack, XStack, styled } from "tamagui";

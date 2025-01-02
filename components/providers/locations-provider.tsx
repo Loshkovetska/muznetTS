@@ -1,5 +1,5 @@
 import LocationSearchResult from "@/components/location-search/locations-search-result";
-import useLocations from "@/lib/hooks/location.hook";
+import { useLocations } from "@/lib/hooks";
 import { PredictionType } from "@/lib/types";
 import { createContext, useCallback, useContext, useState } from "react";
 import { ScrollView } from "react-native";

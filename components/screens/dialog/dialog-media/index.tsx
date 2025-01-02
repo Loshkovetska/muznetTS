@@ -1,7 +1,7 @@
 import CommonImage from "@/components/common-image";
 import CommonVideo from "@/components/common-video";
 import { Text } from "@/components/ui";
-import useDocument from "@/lib/hooks/document.hook";
+import { useDocument } from "@/lib/hooks";
 import { detectFileType } from "@/lib/utils";
 import { colors } from "@/tamagui.config";
 import { Paperclip } from "@tamagui/lucide-icons";

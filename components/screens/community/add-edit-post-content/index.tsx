@@ -2,7 +2,7 @@ import CommonHeader from "@/components/common-header";
 import PostForm from "@/components/forms/post-form";
 import AddPostInfo from "@/components/screens/community/add-post-info";
 import { Button } from "@/components/ui";
-import usePosts from "@/lib/hooks/posts.hook";
+import { usePosts } from "@/lib/hooks";
 import { postScheme } from "@/lib/scheme";
 import { colors, typography } from "@/tamagui.config";
 import { zodResolver } from "@hookform/resolvers/zod";

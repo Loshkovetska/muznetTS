@@ -1,5 +1,5 @@
 import { Button, Text } from "@/components/ui";
-import useImagePicker from "@/lib/hooks/image-picker.hook";
+import { useImagePicker } from "@/lib/hooks";
 import { setValueToForm } from "@/lib/utils";
 import { colors } from "@/tamagui.config";
 import { AlertCircle, Pencil, UploadCloud } from "@tamagui/lucide-icons";
