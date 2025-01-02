@@ -1,13 +1,12 @@
 import Providers from "@/components/providers";
 import { useNotifications } from "@/lib/hooks";
-import { supabase } from "@/lib/utils/supabase";
 import Navigation from "@/navigation";
 import { colors } from "@/tamagui.config";
 import { useFonts } from "expo-font";
 import * as Notifications from "expo-notifications";
 import { SplashScreen } from "expo-router";
 import { useEffect } from "react";
-import { Platform, StatusBar } from "react-native";
+import { StatusBar } from "react-native";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -31,28 +30,6 @@ export default function RootLayout() {
   });
 
   useNotifications();
-
-  useEffect(() => {
-    supabase
-      .channel("supabase_realtime")
-      .on(
-        "postgres_changes",
-        { event: "*", schema: "public", table: "messages" },
-        async () => {
-          await Notifications.scheduleNotificationAsync({
-            content: {
-              title: "You've got mail! 📬",
-            },
-            trigger: {
-              type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
-              seconds: 2,
-              channelId: Platform.OS === "android" ? "default" : undefined,
-            },
-          });
-        }
-      )
-      .subscribe();
-  }, []);
 
   useEffect(() => {
     if (loaded) {

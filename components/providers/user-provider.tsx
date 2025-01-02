@@ -1,4 +1,5 @@
 import { QUERY_TAGS } from "@/lib/constants";
+import { useDBSubscribe } from "@/lib/hooks/db-subscribe.hook";
 import { AuthService } from "@/lib/services";
 import { UserType } from "@/lib/types";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -28,6 +29,8 @@ export const useUser = () => useContext(UserContext);
 
 export default function UserProvider(props: React.PropsWithChildren) {
   const [userId, setUserId] = useState<string | null>(null);
+
+  useDBSubscribe(userId || undefined);
 
   const { data: user = null, refetch } = useQuery({
     queryKey: [QUERY_TAGS.USER],

@@ -3,12 +3,9 @@ import { QUERY_TAGS } from "@/lib/constants";
 import { MessageService } from "@/lib/services";
 import { MessageItemType, SendMessageRequestType } from "@/lib/types";
 import { generateMessagesList } from "@/lib/utils/message";
-import { supabase } from "@/lib/utils/supabase";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import * as Notifications from "expo-notifications";
 import { router, useLocalSearchParams } from "expo-router";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { Platform } from "react-native";
+import { useCallback, useMemo, useState } from "react";
 
 type UseMessagesPropType = {
   enabled?: boolean;
@@ -31,7 +28,7 @@ export function useMessages({
 
   const [searchValue, setSearchValue] = useState("");
 
-  const { data: chats, refetch: chatRefetch } = useQuery({
+  const { data: chats } = useQuery({
     queryKey: [QUERY_TAGS.CHATS, user?.id],
     queryFn: () => MessageService.getChats(user?.id || ""),
     enabled: !!user?.id && enabled,
@@ -145,32 +142,6 @@ export function useMessages({
       (old: MessageItemType[]) => old?.filter((i) => !i.empty)
     );
   }, [chatUser, user, selectedChat]);
-
-  useEffect(() => {
-    supabase
-      .channel("supabase_realtime")
-      .on(
-        "postgres_changes",
-        { event: "*", schema: "public", table: "messages" },
-        async () => {
-          await Notifications.scheduleNotificationAsync({
-            content: {
-              title: "You've got mail! 📬",
-              body: "Here is the notification body",
-              data: { data: "goes here", test: { test1: "more data" } },
-            },
-            trigger: {
-              type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
-              seconds: 2,
-              channelId: Platform.OS === "android" ? "default" : undefined,
-            },
-          });
-          refetch();
-          chatRefetch();
-        }
-      )
-      .subscribe();
-  }, []);
 
   return {
     isSendPending,

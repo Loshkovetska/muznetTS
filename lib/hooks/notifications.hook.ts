@@ -9,9 +9,6 @@ export function useNotifications() {
   const [channels, setChannels] = useState<Notifications.NotificationChannel[]>(
     []
   );
-  const [notification, setNotification] = useState<
-    Notifications.Notification | undefined
-  >(undefined);
   const notificationListener = useRef<Notifications.EventSubscription>();
   const responseListener = useRef<Notifications.EventSubscription>();
 
@@ -40,8 +37,8 @@ export function useNotifications() {
         return;
       }
       try {
-        const projectId = null;
-        Constants?.expoConfig?.extra?.eas?.projectId ??
+        const projectId =
+          Constants?.expoConfig?.extra?.eas?.projectId ??
           Constants?.easConfig?.projectId;
         if (!projectId) {
           throw new Error("Project ID not found");
@@ -67,10 +64,6 @@ export function useNotifications() {
         setChannels(value ?? [])
       );
     }
-    notificationListener.current =
-      Notifications.addNotificationReceivedListener((notification) => {
-        setNotification(notification);
-      });
 
     responseListener.current =
       Notifications.addNotificationResponseReceivedListener((response) => {});
