@@ -1,4 +1,4 @@
-import { Text } from "@/components/ui";
+import { Text } from "@/components/ui/text";
 import { SCREEN_WIDTH } from "@/lib/constants";
 import { colors } from "@/tamagui.config";
 import { CircleCheck, CircleX } from "@tamagui/lucide-icons";

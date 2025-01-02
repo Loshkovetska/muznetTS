@@ -1,4 +1,4 @@
-import { Text } from "@/components/ui";
+import { Text } from "@/components/ui/text";
 import { IDayObject } from "@/lib/types/date";
 import { colors } from "@/tamagui.config";
 import React from "react";

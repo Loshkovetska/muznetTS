@@ -1,5 +1,5 @@
 import { useSelectContext } from "@/components/providers/select-provider";
-import { Text } from "@/components/ui";
+import { Text } from "@/components/ui/text";
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/lib/constants";
 import { colors } from "@/tamagui.config";
 import { ChevronDown, ChevronUp } from "@tamagui/lucide-icons";

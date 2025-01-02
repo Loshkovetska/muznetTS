@@ -1,4 +1,4 @@
-import { Label } from "@/components/ui";
+import { Label } from "@/components/ui/label";
 import { colors } from "@/tamagui.config";
 import { Switch, XStack, styled } from "tamagui";
 

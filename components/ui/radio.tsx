@@ -1,4 +1,4 @@
-import { Text } from "@/components/ui";
+import { Text } from "@/components/ui/text";
 import { colors } from "@/tamagui.config";
 import { Check } from "@tamagui/lucide-icons";
 import { GetProps, Label, RadioGroup, XStack, styled } from "tamagui";

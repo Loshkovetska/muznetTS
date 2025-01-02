@@ -1,4 +1,4 @@
-import { Label } from "@/components/ui";
+import { Label } from "@/components/ui/label";
 import { useInput } from "@/lib/hooks";
 import { colors } from "@/tamagui.config";
 import { AlertCircle, CircleCheck } from "@tamagui/lucide-icons";

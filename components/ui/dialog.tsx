@@ -1,4 +1,5 @@
-import { Button, Text } from "@/components/ui";
+import { Button } from "@/components/ui/button";
+import { Text } from "@/components/ui/text";
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/lib/constants";
 import { colors } from "@/tamagui.config";
 import {

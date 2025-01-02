@@ -1,4 +1,4 @@
-import { Text } from "@/components/ui";
+import { Text } from "@/components/ui/text";
 import { colors } from "@/tamagui.config";
 import { Tabs as TTabs, YStackProps, styled } from "tamagui";
 
