@@ -9,6 +9,7 @@ import { Button } from "@/components/ui";
 import { QUERY_TAGS } from "@/lib/constants";
 import { AdService, UsersService } from "@/lib/services";
 import { AdType } from "@/lib/types";
+import { colors } from "@/tamagui.config";
 import { useQuery } from "@tanstack/react-query";
 import { useLocalSearchParams } from "expo-router";
 import { useCallback, useState } from "react";
@@ -50,7 +51,10 @@ export default function Index() {
       <ScrollView
         key={data.id}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 120 }}
+        contentContainerStyle={{
+          paddingBottom: 120,
+          backgroundColor: colors["main"],
+        }}
       >
         <MainInfo
           {...data}
