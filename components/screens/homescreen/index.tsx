@@ -2,7 +2,7 @@ import { useUser } from "@/components/providers/user-provider";
 import AdsList from "@/components/screens/homescreen/ads-list";
 import MapImage from "@/components/screens/homescreen/map-image";
 import SearchWithFilter from "@/components/search-with-filter";
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import { colors } from "@/tamagui.config";
 import { ScrollView, XStack, YStack, styled } from "tamagui";
 

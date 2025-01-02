@@ -1,6 +1,5 @@
 import AuthSocialItem from "@/components/screens/auth/auth-socials/auth-social-item";
-import Separator from "@/components/ui/separator";
-import Text from "@/components/ui/text";
+import { Separator, Text } from "@/components/ui";
 import { colors } from "@/tamagui.config";
 import { Apple, Facebook, Mail } from "@tamagui/lucide-icons";
 import { XStack, YStack } from "tamagui";

@@ -1,4 +1,4 @@
-import Label from "@/components/ui/label";
+import { Label } from "@/components/ui";
 import { useInput } from "@/lib/hooks/input.hook";
 import { colors } from "@/tamagui.config";
 import { AlertCircle, CircleCheck } from "@tamagui/lucide-icons";
@@ -77,7 +77,7 @@ type InputPropType = GetProps<typeof StyledInputContainer> &
     wrapper?: GetProps<typeof StyledInputContainer> & StackProps;
   };
 
-const TextArea = React.forwardRef<TextInput, InputPropType>(
+export const TextArea = React.forwardRef<TextInput, InputPropType>(
   (
     {
       iconLeft,
@@ -138,5 +138,3 @@ const TextArea = React.forwardRef<TextInput, InputPropType>(
     );
   }
 );
-
-export default TextArea;

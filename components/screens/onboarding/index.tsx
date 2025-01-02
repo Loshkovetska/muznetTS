@@ -1,6 +1,5 @@
 import IndicatorBlock from "@/components/indicator-block";
-import Button from "@/components/ui/button";
-import Text from "@/components/ui/text";
+import { Button, Text } from "@/components/ui";
 import { SCREEN_WIDTH } from "@/lib/constants";
 import { colors, typography } from "@/tamagui.config";
 import { ArrowRight } from "@tamagui/lucide-icons";

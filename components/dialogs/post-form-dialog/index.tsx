@@ -1,4 +1,4 @@
-import { MobileSheet } from "@/components/ui/mobile-sheet";
+import { MobileSheet } from "@/components/ui";
 import { BaseDialogPropType } from "@/lib/types";
 import React from "react";
 

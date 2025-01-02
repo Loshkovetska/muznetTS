@@ -1,4 +1,4 @@
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import { colors } from "@/tamagui.config";
 import { Pencil } from "@tamagui/lucide-icons";
 import { XStack } from "tamagui";

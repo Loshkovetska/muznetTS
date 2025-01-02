@@ -1,5 +1,5 @@
+import { SelectTrigger } from "@/components/ui";
 import DatePicker from "@/components/ui/date-picker";
-import { SelectTrigger } from "@/components/ui/select";
 import { Calendar } from "@tamagui/lucide-icons";
 import dayjs from "dayjs";
 import { useState } from "react";

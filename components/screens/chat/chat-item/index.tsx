@@ -1,5 +1,5 @@
 import CommonImage from "@/components/common-image";
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import { ChatItemType } from "@/lib/types";
 import { colors } from "@/tamagui.config";
 import dayjs from "dayjs";

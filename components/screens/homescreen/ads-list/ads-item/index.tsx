@@ -3,7 +3,7 @@ import GenresList from "@/components/genres-list";
 import PricePerHour from "@/components/price-per-hour";
 import ProfileLocation from "@/components/profile-location";
 import RateBlock from "@/components/rate-block";
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import { AdType, UserType } from "@/lib/types";
 import { colors } from "@/tamagui.config";
 import { Link } from "expo-router";

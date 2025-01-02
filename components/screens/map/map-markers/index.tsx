@@ -1,4 +1,4 @@
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import { AdType, LocationType, UserType } from "@/lib/types";
 import { colors } from "@/tamagui.config";
 import { Marker } from "react-native-maps";

@@ -1,6 +1,5 @@
 import MapImg from "@/assets/images/screens/main/map-new.png";
-import Button from "@/components/ui/button";
-import Text from "@/components/ui/text";
+import { Button, Text } from "@/components/ui";
 import { colors } from "@/tamagui.config";
 import { Link } from "expo-router";
 import { Image, Stack, YStack, styled } from "tamagui";

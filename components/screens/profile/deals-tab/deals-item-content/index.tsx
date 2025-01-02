@@ -1,9 +1,7 @@
 import BottomBar from "@/components/bottom-bar";
 import CommonHeader from "@/components/common-header";
 import DealsItemInfo from "@/components/screens/profile/deals-tab/deals-item-content/deals-item-info";
-import Button from "@/components/ui/button";
-import Separator from "@/components/ui/separator";
-import Text from "@/components/ui/text";
+import { Button, Separator, Text } from "@/components/ui";
 import useDeals from "@/lib/hooks/deal.hook";
 import { DealType } from "@/lib/types/deal";
 import { colors } from "@/tamagui.config";

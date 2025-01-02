@@ -1,6 +1,6 @@
 import CommonImage from "@/components/common-image";
 import CommonVideo from "@/components/common-video";
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import useDocument from "@/lib/hooks/document.hook";
 import { detectFileType } from "@/lib/utils";
 import { colors } from "@/tamagui.config";

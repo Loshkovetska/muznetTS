@@ -1,6 +1,6 @@
 import CommonImage from "@/components/common-image";
 import RateBlock from "@/components/rate-block";
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import { ReviewType } from "@/lib/types";
 import { getReviewDate } from "@/lib/utils";
 import { colors } from "@/tamagui.config";

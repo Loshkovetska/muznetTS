@@ -1,4 +1,4 @@
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import { useState } from "react";
 import { YStack } from "tamagui";
 

@@ -1,5 +1,5 @@
 import CommonImage from "@/components/common-image";
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import useLikes from "@/lib/hooks/like.hook";
 import { CommentType } from "@/lib/types/comment";
 import { colors } from "@/tamagui.config";

@@ -1,5 +1,4 @@
-import Button from "@/components/ui/button";
-import Text from "@/components/ui/text";
+import { Button, Text } from "@/components/ui";
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/lib/constants";
 import { colors } from "@/tamagui.config";
 import {
@@ -21,7 +20,7 @@ type DialogPropType = {
   onOpenChange: (fl: boolean) => void;
 };
 
-export default function Dialog({
+export function Dialog({
   open,
   title,
   description,

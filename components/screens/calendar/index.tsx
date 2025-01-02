@@ -3,7 +3,7 @@ import Image2 from "@/assets/images/screens/calendar/calendar_bg_2.png";
 import ProfileLocation from "@/components/profile-location";
 import ProfileUser from "@/components/profile-user";
 import DetailsPeriod from "@/components/screens/details/details-period";
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import { DealType } from "@/lib/types/deal";
 import { colors } from "@/tamagui.config";
 import { Image, YStack, styled } from "tamagui";

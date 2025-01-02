@@ -1,8 +1,7 @@
 import BottomBar from "@/components/bottom-bar";
 import InfoMessage from "@/components/info-message";
 import { ADD_POST_GUIDELINES } from "@/components/screens/community/add-post-info/constants";
-import Button from "@/components/ui/button";
-import Text from "@/components/ui/text";
+import { Button, Text } from "@/components/ui";
 import { colors } from "@/tamagui.config";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { CircleCheck, CircleX } from "@tamagui/lucide-icons";

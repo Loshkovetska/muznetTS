@@ -1,5 +1,5 @@
 import CommonHeader from "@/components/common-header";
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import { SCREEN_WIDTH } from "@/lib/constants";
 import { colors } from "@/tamagui.config";
 import { XStack, YStack, styled } from "tamagui";

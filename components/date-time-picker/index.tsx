@@ -1,4 +1,4 @@
-import { FormElement } from "@/components/ui/form";
+import { FormElement } from "@/components/ui";
 import dayjs from "dayjs";
 import { UseFormReturn, useWatch } from "react-hook-form";
 import { Stack, XStack } from "tamagui";

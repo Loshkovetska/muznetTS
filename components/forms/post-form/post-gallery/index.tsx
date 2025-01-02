@@ -3,7 +3,7 @@ import PostGalleryFunc from "@/components/forms/post-form/post-gallery/post-gall
 import PostGalleryList from "@/components/forms/post-form/post-gallery/post-gallery-list";
 import InfoMessage from "@/components/info-message";
 import PostItemCarousel from "@/components/post-item/post-item-carousel";
-import Button from "@/components/ui/button";
+import { Button } from "@/components/ui";
 import { SCREEN_WIDTH } from "@/lib/constants";
 import useMediaLibrary from "@/lib/hooks/media-library.hook";
 import { setValueToForm } from "@/lib/utils";

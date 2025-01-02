@@ -1,5 +1,5 @@
 import InfoDialog from "@/components/dialogs/info-dialog";
-import Button from "@/components/ui/button";
+import { Button } from "@/components/ui";
 import { BaseDialogPropType } from "@/lib/types";
 
 type DeletePostDialogPropType = {

@@ -2,7 +2,7 @@ import CommonImage from "@/components/common-image";
 import DialogBaseMessage from "@/components/screens/dialog/dialog-content/dialog-message/dialog-base-message";
 import DialogEmptyMessage from "@/components/screens/dialog/dialog-content/dialog-message/dialog-empty-message";
 import DialogOfferMessage from "@/components/screens/dialog/dialog-content/dialog-message/dialog-offer-message";
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import { MessageItemType } from "@/lib/types";
 import { colors } from "@/tamagui.config";
 import dayjs from "dayjs";

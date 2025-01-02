@@ -1,5 +1,5 @@
-import Button from "@/components/ui/button";
-import Text from "@/components/ui/text";
+import { Button, Text } from "@/components/ui";
+
 import { YStack } from "tamagui";
 
 export default function AuthSocialItem({

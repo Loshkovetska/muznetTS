@@ -1,6 +1,4 @@
-import CheckboxWithLabel from "@/components/ui/checkbox";
-import { FormElement } from "@/components/ui/form";
-import Text from "@/components/ui/text";
+import { CheckboxWithLabel, FormElement, Text } from "@/components/ui";
 import { FiltersType } from "@/lib/types";
 import { YStack } from "tamagui";
 

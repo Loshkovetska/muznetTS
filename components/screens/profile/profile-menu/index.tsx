@@ -1,8 +1,6 @@
 import CommonImage from "@/components/common-image";
 import { MENU } from "@/components/screens/profile/profile-menu/constants";
-import Button from "@/components/ui/button";
-import Separator from "@/components/ui/separator";
-import Text from "@/components/ui/text";
+import { Button, Separator, Text } from "@/components/ui";
 import { UserType } from "@/lib/types";
 import { colors } from "@/tamagui.config";
 import { ChevronRight } from "@tamagui/lucide-icons";

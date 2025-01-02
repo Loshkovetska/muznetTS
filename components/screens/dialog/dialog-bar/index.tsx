@@ -1,7 +1,6 @@
 import CameraDialog from "@/components/dialogs/camera-dialog";
 import UploadDialog from "@/components/dialogs/upload-dialog";
-import Button from "@/components/ui/button";
-import Input from "@/components/ui/input";
+import { Button, Input } from "@/components/ui";
 import useMessages from "@/lib/hooks/messages.hook";
 import { UserType } from "@/lib/types";
 import { colors } from "@/tamagui.config";

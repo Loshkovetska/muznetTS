@@ -1,5 +1,4 @@
-import Button from "@/components/ui/button";
-import { Form, FormElement } from "@/components/ui/form";
+import { Button, Form, FormElement } from "@/components/ui";
 import { emailScheme } from "@/lib/scheme";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback } from "react";

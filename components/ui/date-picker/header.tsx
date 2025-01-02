@@ -1,4 +1,4 @@
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import { ChevronLeft, ChevronRight } from "@tamagui/lucide-icons";
 import dayjs from "dayjs";
 import React, { useCallback, useMemo } from "react";

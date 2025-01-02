@@ -5,7 +5,7 @@ import FullScreenReviews from "@/components/dialogs/full-screen-reviews";
 import PricePerHour from "@/components/price-per-hour";
 import { useUser } from "@/components/providers/user-provider";
 import MainInfo from "@/components/screens/details/main-info";
-import Button from "@/components/ui/button";
+import { Button } from "@/components/ui";
 import { QUERY_TAGS } from "@/lib/constants";
 import { AdService, UsersService } from "@/lib/services";
 import { AdType } from "@/lib/types";

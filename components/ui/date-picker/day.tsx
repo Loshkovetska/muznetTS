@@ -1,4 +1,4 @@
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import { IDayObject } from "@/lib/types/date";
 import { colors } from "@/tamagui.config";
 import React from "react";
@@ -36,23 +36,6 @@ const RangeWrapper = styled(Stack, {
   right: 0,
   top: 2,
   bottom: 2,
-});
-
-const DateText = styled(Text, {
-  color: "secondary",
-  typo: "reg-17",
-  variants: {
-    isSelected: {
-      true: {
-        color: "main",
-      },
-    },
-    isToday: {
-      true: {
-        color: "main",
-      },
-    },
-  },
 });
 
 interface Props extends Omit<IDayObject, "day"> {
@@ -114,12 +97,12 @@ function Day({
           justifyContent="center"
           gap={6}
         >
-          <DateText
-            isSelected={isSelected}
-            isToday={isToday && isSelected}
+          <Text
+            color={(isToday && isSelected) || isSelected ? "main" : "secondary"}
+            typo="reg-17"
           >
             {text}
-          </DateText>
+          </Text>
           <Stack
             backgroundColor={isSelected ? colors["main"] : "black"}
             width={6}

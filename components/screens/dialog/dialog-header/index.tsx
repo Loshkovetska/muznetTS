@@ -1,6 +1,6 @@
 import CommonImage from "@/components/common-image";
 import CreateDealDialog from "@/components/dialogs/create-deal-dialog";
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import { UserType } from "@/lib/types";
 import { colors } from "@/tamagui.config";
 import { ChevronLeft, EllipsisVertical } from "@tamagui/lucide-icons";

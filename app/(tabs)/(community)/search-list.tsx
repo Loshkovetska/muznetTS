@@ -1,7 +1,7 @@
 import CommonHeader from "@/components/common-header";
 import PostsTile from "@/components/screens/community/posts-tile";
 import SearchContent from "@/components/screens/community/search/search-content";
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import usePostsByFilter from "@/lib/hooks/posts-by-filter.hook";
 import { colors } from "@/tamagui.config";
 import { useLocalSearchParams } from "expo-router";

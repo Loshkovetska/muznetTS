@@ -1,4 +1,4 @@
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import { PostType } from "@/lib/types/post";
 import { colors } from "@/tamagui.config";
 import dayjs from "dayjs";

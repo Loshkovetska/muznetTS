@@ -1,5 +1,5 @@
 import CommonImage from "@/components/common-image";
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import { UserType } from "@/lib/types";
 import { colors } from "@/tamagui.config";
 import { XStack, YStack } from "tamagui";

@@ -1,8 +1,7 @@
 import AddReviewDialog from "@/components/dialogs/add-review-dialog";
 import RateBlock from "@/components/rate-block";
 import ReviewItem from "@/components/screens/details/reviews-list/review-item";
-import Button from "@/components/ui/button";
-import Separator from "@/components/ui/separator";
+import { Button, Separator } from "@/components/ui";
 import { QUERY_TAGS, SCREEN_WIDTH } from "@/lib/constants";
 import { ReviewService } from "@/lib/services";
 import { useQuery } from "@tanstack/react-query";

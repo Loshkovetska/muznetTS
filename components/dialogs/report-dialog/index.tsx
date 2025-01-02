@@ -1,7 +1,4 @@
-import Button from "@/components/ui/button";
-import Input from "@/components/ui/input";
-import { MobileSheet } from "@/components/ui/mobile-sheet";
-import Text from "@/components/ui/text";
+import { Button, Input, MobileSheet, Text } from "@/components/ui";
 import usePosts from "@/lib/hooks/posts.hook";
 import { BaseDialogPropType } from "@/lib/types";
 import { colors } from "@/tamagui.config";

@@ -1,5 +1,4 @@
-import Separator from "@/components/ui/separator";
-import Text from "@/components/ui/text";
+import { Separator, Text } from "@/components/ui";
 import { AdType } from "@/lib/types";
 import { DealType } from "@/lib/types/deal";
 import { generateDealList } from "@/lib/utils";

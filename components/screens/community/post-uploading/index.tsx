@@ -1,4 +1,4 @@
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import { toggleToast } from "@/lib/utils/toast";
 import { colors } from "@/tamagui.config";
 import { useEffect, useRef, useState } from "react";

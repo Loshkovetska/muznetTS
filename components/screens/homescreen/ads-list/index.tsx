@@ -1,6 +1,6 @@
 import { useUser } from "@/components/providers/user-provider";
 import AdsItem from "@/components/screens/homescreen/ads-list/ads-item";
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import useAds from "@/lib/hooks/ads.hook";
 import useMusicians from "@/lib/hooks/musicians.hook";
 import { Link } from "expo-router";

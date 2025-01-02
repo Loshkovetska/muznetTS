@@ -1,5 +1,5 @@
 import UploadButton from "@/components/dialogs/upload-dialog/upload-button";
-import { MobileSheet } from "@/components/ui/mobile-sheet";
+import { MobileSheet } from "@/components/ui";
 import useDocument from "@/lib/hooks/document.hook";
 import useImagePicker from "@/lib/hooks/image-picker.hook";
 import { BaseDialogPropType } from "@/lib/types";

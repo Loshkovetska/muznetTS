@@ -1,6 +1,5 @@
 import ChatItem from "@/components/screens/chat/chat-item";
-import Input from "@/components/ui/input";
-import Text from "@/components/ui/text";
+import { Input, Text } from "@/components/ui";
 import useMessages from "@/lib/hooks/messages.hook";
 import { colors } from "@/tamagui.config";
 import { Search } from "@tamagui/lucide-icons";

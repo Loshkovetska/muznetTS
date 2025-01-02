@@ -1,5 +1,4 @@
-import Separator from "@/components/ui/separator";
-import Text from "@/components/ui/text";
+import { Separator, Text } from "@/components/ui";
 import { colors } from "@/tamagui.config";
 import { PropsWithChildren } from "react";
 import { Stack, XStack, YStack, styled } from "tamagui";

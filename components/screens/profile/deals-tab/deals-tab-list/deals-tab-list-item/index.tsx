@@ -1,7 +1,7 @@
 import ProfileLocation from "@/components/profile-location";
 import ProfileUser from "@/components/profile-user";
 import DetailsPeriod from "@/components/screens/details/details-period";
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import { DealType } from "@/lib/types/deal";
 import { colors } from "@/tamagui.config";
 import { Award } from "@tamagui/lucide-icons";

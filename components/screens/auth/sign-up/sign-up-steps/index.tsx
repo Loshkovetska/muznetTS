@@ -7,9 +7,7 @@ import StepsHeader from "@/components/screens/auth/sign-up/sign-up-steps/steps-h
 import StepsTitle from "@/components/screens/auth/sign-up/sign-up-steps/steps-title";
 import UserTypeSelect from "@/components/screens/auth/sign-up/user-type-select";
 import SearchWithSelect from "@/components/search-with-select";
-import Button from "@/components/ui/button";
-import { Form, FormElement } from "@/components/ui/form";
-import { SelectContent } from "@/components/ui/select";
+import { Button, Form, FormElement, SelectContent } from "@/components/ui";
 import { SCREEN_HEIGHT } from "@/lib/constants";
 import { GENRES, GROUP_MEMBERS, INSTRUMENTS } from "@/lib/constants/lists";
 import useAuth from "@/lib/hooks/auth.hook";

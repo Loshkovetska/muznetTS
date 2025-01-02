@@ -1,3 +1,5 @@
+import OnboardingContent from "@/components/screens/onboarding";
+import useCheckUser from "@/lib/hooks/check-user.hook";
 import TabbarIcon from "@/navigation/tabbar-icon";
 import { Tabs, useSegments } from "expo-router";
 import { useMemo, useState } from "react";
@@ -13,6 +15,7 @@ const HIDE_TABBAR_SCREENS = [
 
 export default function RootLayout() {
   const segments = useSegments();
+  const { firstLoad } = useCheckUser();
   const [tabbarVisible, setVisible] = useState(true);
 
   const hideTabBar = useMemo(() => {
@@ -22,6 +25,8 @@ export default function RootLayout() {
     );
   }, [segments]);
 
+  if (firstLoad === null) return;
+  if (firstLoad) return <OnboardingContent />;
   return (
     <Tabs
       initialRouteName="(main)"

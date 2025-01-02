@@ -137,7 +137,7 @@ type ButtonPropType = {
 } & GetProps<typeof ButtonStyled> &
   React.PropsWithChildren;
 
-const Button = React.forwardRef<any, ButtonPropType>(
+export const Button = React.forwardRef<any, ButtonPropType>(
   (props: ButtonPropType, ref) => {
     const {
       children,
@@ -171,5 +171,3 @@ const Button = React.forwardRef<any, ButtonPropType>(
     );
   }
 );
-
-export default Button;

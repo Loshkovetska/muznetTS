@@ -1,4 +1,4 @@
-import Label from "@/components/ui/label";
+import { Label } from "@/components/ui";
 import { colors } from "@/tamagui.config";
 import { Check as CheckIcon } from "@tamagui/lucide-icons";
 import { Checkbox, CheckboxProps, XStack, styled } from "tamagui";
@@ -19,7 +19,7 @@ const StyledCheckBox = styled(Checkbox, {
   },
 });
 
-export default function CheckboxWithLabel({
+export function CheckboxWithLabel({
   label,
   id,
   marginBlock,

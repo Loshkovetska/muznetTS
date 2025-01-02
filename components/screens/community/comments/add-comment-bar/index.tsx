@@ -1,8 +1,7 @@
 import BottomBar from "@/components/bottom-bar";
 import CommonImage from "@/components/common-image";
 import { useUser } from "@/components/providers/user-provider";
-import Button from "@/components/ui/button";
-import Input from "@/components/ui/input";
+import { Button, Input } from "@/components/ui";
 import { SCREEN_WIDTH } from "@/lib/constants";
 import { AddCommentType, CommentType } from "@/lib/types/comment";
 import { typography } from "@/tamagui.config";

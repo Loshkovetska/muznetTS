@@ -1,7 +1,7 @@
 import CommonDialogWrapper from "@/components/common-dialog-wrapper";
 import CommonImage from "@/components/common-image";
 import DialogMedia from "@/components/screens/dialog/dialog-media";
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import { SCREEN_WIDTH } from "@/lib/constants";
 import { BaseDialogPropType, UserType } from "@/lib/types";
 import { detectFileType } from "@/lib/utils";

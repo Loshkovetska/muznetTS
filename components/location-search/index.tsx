@@ -1,6 +1,5 @@
 import { useLocationContext } from "@/components/providers/locations-provider";
-import Button from "@/components/ui/button";
-import Input from "@/components/ui/input";
+import { Button, Input } from "@/components/ui";
 import { colors } from "@/tamagui.config";
 import { Settings2 } from "@tamagui/lucide-icons";
 import { useCallback, useState } from "react";

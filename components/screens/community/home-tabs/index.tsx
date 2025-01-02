@@ -1,5 +1,5 @@
 import { HOME_TABS } from "@/components/screens/community/home-tabs/constants";
-import Tabs from "@/components/ui/tabs";
+import { Tabs } from "@/components/ui";
 import { colors } from "@/tamagui.config";
 import { useState } from "react";
 

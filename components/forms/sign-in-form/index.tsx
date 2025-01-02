@@ -1,6 +1,4 @@
-import Button from "@/components/ui/button";
-import { Form, FormElement } from "@/components/ui/form";
-import Text from "@/components/ui/text";
+import { Button, Form, FormElement, Text } from "@/components/ui";
 import useAuth from "@/lib/hooks/auth.hook";
 import { loginScheme } from "@/lib/scheme";
 import { zodResolver } from "@hookform/resolvers/zod";

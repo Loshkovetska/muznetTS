@@ -1,6 +1,5 @@
 import ResultDialog from "@/components/dialogs/result-dialog";
-import OTPInput from "@/components/ui/otp-input";
-import Text from "@/components/ui/text";
+import { OTPInput, Text } from "@/components/ui";
 import { useCallback, useState } from "react";
 import { YStack } from "tamagui";
 

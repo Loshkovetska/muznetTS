@@ -1,4 +1,4 @@
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import { colors } from "@/tamagui.config";
 import { Tabs as TTabs, YStackProps, styled } from "tamagui";
 
@@ -41,7 +41,8 @@ const Tab = styled(TTabs.Tab, {
     },
   },
 });
-export default function Tabs({
+
+export function Tabs({
   defaultValue,
   tabs,
   onValueChange,

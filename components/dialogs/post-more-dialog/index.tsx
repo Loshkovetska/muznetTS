@@ -1,6 +1,4 @@
-import { MobileSheet } from "@/components/ui/mobile-sheet";
-import Separator from "@/components/ui/separator";
-import Text from "@/components/ui/text";
+import { MobileSheet, Separator, Text } from "@/components/ui";
 import { BaseDialogPropType } from "@/lib/types";
 import { colors } from "@/tamagui.config";
 import { YStack } from "tamagui";

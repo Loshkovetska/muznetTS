@@ -12,11 +12,14 @@ import {
 
 import PasswordInput from "@/components/inputs/password-input";
 import LocationSearch from "@/components/location-search";
-import CheckboxWithLabel from "@/components/ui/checkbox";
-import Input, { InputPropType } from "@/components/ui/input";
-import SwitchWithLabel from "@/components/ui/switch";
-import Text from "@/components/ui/text";
-import TextArea from "@/components/ui/textarea";
+import {
+  CheckboxWithLabel,
+  Input,
+  InputPropType,
+  SwitchWithLabel,
+  Text,
+  TextArea,
+} from "@/components/ui";
 import { formateDate, formateTime } from "@/lib/utils";
 import { GetProps, Text as TText, YStack } from "tamagui";
 

@@ -1,5 +1,5 @@
 import { useSelectContext } from "@/components/providers/select-provider";
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/lib/constants";
 import { colors } from "@/tamagui.config";
 import { ChevronDown, ChevronUp } from "@tamagui/lucide-icons";
@@ -88,12 +88,7 @@ export const SelectTrigger = React.forwardRef<View, SelectTriggerPropType>(
   }
 );
 
-export default function Select({
-  value,
-  placeholder,
-  options,
-  name,
-}: SelectPropType) {
+export function Select({ value, placeholder, options, name }: SelectPropType) {
   const triggerRef = useRef<View>(null);
   const { isOpen, ref, setOpen, setOptions, setName, setPosition, ...rest } =
     useSelectContext();

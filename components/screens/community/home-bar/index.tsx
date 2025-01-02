@@ -1,5 +1,4 @@
-import Button from "@/components/ui/button";
-import Text from "@/components/ui/text";
+import { Button, Text } from "@/components/ui";
 import { colors } from "@/tamagui.config";
 import { Plus, Search } from "@tamagui/lucide-icons";
 import { Link } from "expo-router";

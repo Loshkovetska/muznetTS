@@ -1,6 +1,5 @@
 import { OFFER_BUTTON_STRATEGY } from "@/components/screens/dialog/dialog-content/dialog-message/dialog-offer-message/constants";
-import Button from "@/components/ui/button";
-import Text from "@/components/ui/text";
+import { Button, Text } from "@/components/ui";
 import useDeals from "@/lib/hooks/deal.hook";
 import useMessages from "@/lib/hooks/messages.hook";
 import { UserType } from "@/lib/types";

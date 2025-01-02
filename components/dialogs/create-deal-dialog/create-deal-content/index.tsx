@@ -1,9 +1,12 @@
 import BottomBar from "@/components/bottom-bar";
 import DealsItemInfo from "@/components/screens/profile/deals-tab/deals-item-content/deals-item-info";
-import Button from "@/components/ui/button";
-import { MobileSheet } from "@/components/ui/mobile-sheet";
-import Select, { SelectContent } from "@/components/ui/select";
-import Text from "@/components/ui/text";
+import {
+  Button,
+  MobileSheet,
+  Select,
+  SelectContent,
+  Text,
+} from "@/components/ui";
 import useAds from "@/lib/hooks/ads.hook";
 import { BaseDialogPropType } from "@/lib/types";
 import dayjs from "dayjs";

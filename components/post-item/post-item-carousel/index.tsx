@@ -1,7 +1,7 @@
 import CommonImage from "@/components/common-image";
 import CommonVideo from "@/components/common-video";
 import IndicatorBlock from "@/components/indicator-block";
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import { SCREEN_WIDTH } from "@/lib/constants";
 import { detectFileType } from "@/lib/utils";
 import { BlurView } from "expo-blur";

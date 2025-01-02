@@ -1,4 +1,4 @@
-import Input, { InputPropType } from "@/components/ui/input";
+import { Input, InputPropType } from "@/components/ui";
 import { Eye, EyeOff } from "@tamagui/lucide-icons";
 import React, { useMemo, useState } from "react";
 import { TextInput } from "react-native";

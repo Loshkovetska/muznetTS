@@ -4,7 +4,7 @@ import LocationSearch from "@/components/location-search";
 import LocationsProvider from "@/components/providers/locations-provider";
 import MapList from "@/components/screens/map/map-list";
 import MapMarkers from "@/components/screens/map/map-markers";
-import Button from "@/components/ui/button";
+import { Button } from "@/components/ui";
 import { SCREEN_WIDTH } from "@/lib/constants";
 import useMap from "@/lib/hooks/map.hook";
 import useSearch from "@/lib/hooks/search.hook";

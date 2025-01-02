@@ -1,6 +1,6 @@
 import CommonActions from "@/components/dialogs/post-func-dialog/common-actions";
 import OwnerActions from "@/components/dialogs/post-func-dialog/owner-actions";
-import { MobileSheet } from "@/components/ui/mobile-sheet";
+import { MobileSheet } from "@/components/ui";
 import { BaseDialogPropType } from "@/lib/types";
 import { PostType } from "@/lib/types/post";
 

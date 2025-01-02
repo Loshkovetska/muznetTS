@@ -1,6 +1,6 @@
 import QueryProvider from "@/components/providers/query-provider";
 import UserProvider from "@/components/providers/user-provider";
-import toastConfig from "@/components/ui/toast";
+import { toastConfig } from "@/components/ui";
 import tamaguiConfig from "@/tamagui.config";
 import Toast from "react-native-toast-message";
 import { PortalProvider, TamaguiProvider } from "tamagui";

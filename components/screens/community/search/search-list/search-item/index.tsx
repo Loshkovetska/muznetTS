@@ -1,4 +1,4 @@
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import { SearchPostItemType } from "@/lib/types/post";
 import { colors } from "@/tamagui.config";
 import AsyncStorage from "@react-native-async-storage/async-storage";

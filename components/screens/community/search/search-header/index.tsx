@@ -1,4 +1,4 @@
-import Input from "@/components/ui/input";
+import { Input } from "@/components/ui";
 import { ChevronLeft, Search } from "@tamagui/lucide-icons";
 import { router } from "expo-router";
 import { XStack } from "tamagui";

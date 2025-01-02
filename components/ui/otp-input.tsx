@@ -1,9 +1,9 @@
-import Input from "@/components/ui/input";
+import { Input } from "@/components/ui";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { TextInput } from "react-native";
 import { XStack } from "tamagui";
 
-export default function OTPInput({
+export function OTPInput({
   onCodeChange,
 }: {
   onCodeChange: (val: string[]) => void;

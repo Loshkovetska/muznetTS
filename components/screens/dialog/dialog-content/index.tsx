@@ -1,5 +1,5 @@
 import DialogMessage from "@/components/screens/dialog/dialog-content/dialog-message";
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import useMessages from "@/lib/hooks/messages.hook";
 import { MessageItemType, UserType } from "@/lib/types";
 import dayjs from "dayjs";

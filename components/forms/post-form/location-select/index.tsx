@@ -1,5 +1,5 @@
 import LocationSelectDialog from "@/components/dialogs/location-select-dialog";
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import { setValueToForm } from "@/lib/utils";
 import { colors } from "@/tamagui.config";
 import { ChevronRight, MapPin } from "@tamagui/lucide-icons";

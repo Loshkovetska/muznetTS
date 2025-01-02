@@ -1,6 +1,6 @@
 import CommonHeader from "@/components/common-header";
 import PostsTape from "@/components/screens/community/posts-tape";
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import usePostsByFilter from "@/lib/hooks/posts-by-filter.hook";
 import usePosts from "@/lib/hooks/posts.hook";
 import { colors } from "@/tamagui.config";

@@ -5,7 +5,11 @@ type LabelPropType = GetProps<typeof LabelT> & {
   typo?: keyof typeof typography;
 };
 
-const Label = ({ children, typo = "medium-16", ...props }: LabelPropType) => {
+export const Label = ({
+  children,
+  typo = "medium-16",
+  ...props
+}: LabelPropType) => {
   return (
     <LabelT
       {...typography[typo]}
@@ -15,5 +19,3 @@ const Label = ({ children, typo = "medium-16", ...props }: LabelPropType) => {
     </LabelT>
   );
 };
-
-export default Label;

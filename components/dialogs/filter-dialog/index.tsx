@@ -9,11 +9,14 @@ import SkillsList from "@/components/forms/skills-list";
 import DatePickerInput from "@/components/inputs/date-picker-input";
 import SelectProvider from "@/components/providers/select-provider";
 import SearchWithSelect from "@/components/search-with-select";
-import Button from "@/components/ui/button";
-import CheckboxWithLabel from "@/components/ui/checkbox";
-import Input from "@/components/ui/input";
-import Select, { SelectContent } from "@/components/ui/select";
-import Text from "@/components/ui/text";
+import {
+  Button,
+  CheckboxWithLabel,
+  Input,
+  Select,
+  SelectContent,
+  Text,
+} from "@/components/ui";
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/lib/constants";
 import { GENRES, INSTRUMENTS } from "@/lib/constants/lists";
 import { BaseDialogPropType, FiltersType } from "@/lib/types";

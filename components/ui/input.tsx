@@ -1,4 +1,4 @@
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import { useInput } from "@/lib/hooks/input.hook";
 import { colors } from "@/tamagui.config";
 import { AlertCircle, CircleCheck } from "@tamagui/lucide-icons";
@@ -103,7 +103,7 @@ export type InputPropType = Omit<
     getWrapperRef?: (ref: View) => void;
   };
 
-const Input = React.forwardRef<TextInput, InputPropType>(
+export const Input = React.forwardRef<TextInput, InputPropType>(
   (
     {
       iconLeft,
@@ -175,5 +175,3 @@ const Input = React.forwardRef<TextInput, InputPropType>(
     );
   }
 );
-
-export default Input;

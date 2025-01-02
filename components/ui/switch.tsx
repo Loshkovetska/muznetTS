@@ -1,4 +1,4 @@
-import Label from "@/components/ui/label";
+import { Label } from "@/components/ui";
 import { colors } from "@/tamagui.config";
 import { Switch, XStack, styled } from "tamagui";
 
@@ -43,7 +43,7 @@ const StyledSwitchThumb = styled(Switch.Thumb, {
   shadowColor: colors["black-6"],
 });
 
-export default function SwitchWithLabel(props: SwitchWithLabelPropType) {
+export function SwitchWithLabel(props: SwitchWithLabelPropType) {
   return (
     <XStack
       alignItems="center"

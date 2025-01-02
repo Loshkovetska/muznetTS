@@ -1,4 +1,4 @@
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/lib/constants";
 import { PredictionType } from "@/lib/types";
 import { colors } from "@/tamagui.config";

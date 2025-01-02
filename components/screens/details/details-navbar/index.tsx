@@ -1,4 +1,4 @@
-import Button from "@/components/ui/button";
+import { Button } from "@/components/ui";
 import useShare from "@/lib/hooks/share.hook";
 import { ChevronLeft, Share2 } from "@tamagui/lucide-icons";
 import { useNavigation } from "expo-router";

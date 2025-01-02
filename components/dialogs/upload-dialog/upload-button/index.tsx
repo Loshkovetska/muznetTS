@@ -1,4 +1,4 @@
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import { SCREEN_WIDTH } from "@/lib/constants";
 import { colors } from "@/tamagui.config";
 import { TouchableOpacity } from "react-native";

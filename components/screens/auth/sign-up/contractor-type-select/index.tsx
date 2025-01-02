@@ -1,5 +1,5 @@
 import { CONTRACTOR_POSITIONS } from "@/components/screens/auth/sign-up/contractor-type-select/constants";
-import Select from "@/components/ui/select";
+import { Select } from "@/components/ui";
 
 type ContractorTypeSelectPropType = {
   position: string;

@@ -1,8 +1,6 @@
 import RateBlock from "@/components/dialogs/add-review-dialog/rate-block";
 import { useUser } from "@/components/providers/user-provider";
-import Button from "@/components/ui/button";
-import { Form, FormElement } from "@/components/ui/form";
-import { MobileSheet } from "@/components/ui/mobile-sheet";
+import { Button, Form, FormElement, MobileSheet } from "@/components/ui";
 import { QUERY_TAGS } from "@/lib/constants";
 import { addReviewScheme } from "@/lib/scheme";
 import { ReviewService } from "@/lib/services";

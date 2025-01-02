@@ -1,6 +1,5 @@
 import PriceRangeIcon from "@/components/dialogs/filter-dialog/price-range/price-range-icon";
-import Slider from "@/components/ui/slider";
-import Text from "@/components/ui/text";
+import { Slider, Text } from "@/components/ui";
 import { XStack, YStack } from "tamagui";
 
 type PriceRangePropType = {

@@ -2,7 +2,8 @@ import SignInForm from "@/components/forms/sign-in-form";
 import AuthBottomText from "@/components/screens/auth/auth-bottom-text";
 import AuthContent from "@/components/screens/auth/auth-content";
 import AuthSocial from "@/components/screens/auth/auth-socials";
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
+
 import { YStack, styled } from "tamagui";
 
 const Content = styled(YStack, {

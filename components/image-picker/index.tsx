@@ -1,5 +1,4 @@
-import Button from "@/components/ui/button";
-import Text from "@/components/ui/text";
+import { Button, Text } from "@/components/ui";
 import useImagePicker from "@/lib/hooks/image-picker.hook";
 import { setValueToForm } from "@/lib/utils";
 import { colors } from "@/tamagui.config";

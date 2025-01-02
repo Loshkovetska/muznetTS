@@ -1,4 +1,4 @@
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import { UserType } from "@/lib/types";
 import { colors } from "@/tamagui.config";
 import { User } from "@tamagui/lucide-icons";

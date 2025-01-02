@@ -6,7 +6,7 @@ type TextPropType = Omit<GetProps<typeof TText>, "color"> & {
   color?: keyof typeof colors;
 };
 
-export default function Text({
+export function Text({
   color = "black",
   typo = "reg-14",
   ...props

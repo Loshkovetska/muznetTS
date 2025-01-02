@@ -1,4 +1,4 @@
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import { colors } from "@/tamagui.config";
 import { ChevronLeft } from "@tamagui/lucide-icons";
 import { useNavigation } from "expo-router";

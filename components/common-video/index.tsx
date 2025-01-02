@@ -1,4 +1,4 @@
-import Button from "@/components/ui/button";
+import { Button } from "@/components/ui";
 import VideoTime from "@/components/video-time";
 import { colors } from "@/tamagui.config";
 import { Volume2, VolumeX } from "@tamagui/lucide-icons";

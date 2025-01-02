@@ -1,5 +1,5 @@
-import Separator from "@/components/ui/separator";
-import Text from "@/components/ui/text";
+import { Separator } from "@/components/ui";
+import { Text } from "@/components/ui";
 import { PostType } from "@/lib/types/post";
 import { colors } from "@/tamagui.config";
 import { YStack } from "tamagui";

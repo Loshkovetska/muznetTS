@@ -1,6 +1,5 @@
 import { ALBUMS_ICONS } from "@/components/dialogs/select-album-dialog/constants";
-import { MobileSheet } from "@/components/ui/mobile-sheet";
-import Text from "@/components/ui/text";
+import { MobileSheet, Text } from "@/components/ui";
 import { BaseDialogPropType } from "@/lib/types";
 import { colors } from "@/tamagui.config";
 import { X } from "@tamagui/lucide-icons";

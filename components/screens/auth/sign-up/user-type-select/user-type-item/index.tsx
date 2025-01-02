@@ -1,7 +1,6 @@
 import ContractorImage from "@/assets/images/screens/add-profile-info/select_contractor.png";
 import MusicianImage from "@/assets/images/screens/add-profile-info/select_musician.png";
-import { Radio, RadioGroupItem } from "@/components/ui/radio";
-import Text from "@/components/ui/text";
+import { Radio, RadioGroupItem, Text } from "@/components/ui";
 import { SCREEN_WIDTH } from "@/lib/constants";
 import { Image, Stack, YStack, styled } from "tamagui";
 

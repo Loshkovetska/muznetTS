@@ -1,6 +1,6 @@
 import CommonDialogWrapper from "@/components/common-dialog-wrapper";
 import SingleCarousel from "@/components/single-carousel";
-import Button from "@/components/ui/button";
+import { Button } from "@/components/ui";
 import { SCREEN_WIDTH } from "@/lib/constants";
 import { colors } from "@/tamagui.config";
 import { ChevronLeft } from "@tamagui/lucide-icons";

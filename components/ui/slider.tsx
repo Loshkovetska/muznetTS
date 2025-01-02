@@ -54,7 +54,7 @@ type SliderPropType = {
 
 const SLIDER_WIDTH = SCREEN_WIDTH - 32;
 
-export default function Slider({
+export function Slider({
   min,
   max,
   defaultValues,

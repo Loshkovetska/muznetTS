@@ -1,4 +1,4 @@
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import { SCREEN_WIDTH } from "@/lib/constants";
 import { colors } from "@/tamagui.config";
 import { CircleCheck, CircleX } from "@tamagui/lucide-icons";
@@ -36,9 +36,7 @@ const Toast = (props: { type: "error" | "success"; text1: string }) => (
   </ToastWrapper>
 );
 
-const toastConfig = {
+export const toastConfig = {
   error: (props: any) => <Toast {...props} />,
   success: (props: any) => <Toast {...props} />,
 };
-
-export default toastConfig;

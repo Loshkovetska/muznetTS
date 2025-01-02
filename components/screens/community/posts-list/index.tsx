@@ -1,7 +1,6 @@
 import PostItemUser from "@/components/post-item/post-item-user";
 import PostsTile from "@/components/screens/community/posts-tile";
-import Button from "@/components/ui/button";
-import Text from "@/components/ui/text";
+import { Button, Text } from "@/components/ui";
 import usePosts from "@/lib/hooks/posts.hook";
 import { Plus } from "@tamagui/lucide-icons";
 import { Link } from "expo-router";

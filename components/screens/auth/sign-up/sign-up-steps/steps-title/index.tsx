@@ -1,5 +1,5 @@
 import { STEPS_TITLE } from "@/components/screens/auth/sign-up/sign-up-steps/steps-title/constants";
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import { YStack } from "tamagui";
 
 type StepsTitlePropType = {

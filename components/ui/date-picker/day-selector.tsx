@@ -4,7 +4,7 @@ import DatePickerResize from "@/components/ui/date-picker/date-picker-resize";
 import Day from "@/components/ui/date-picker/day";
 import DaysHZList from "@/components/ui/date-picker/days-hz-list";
 import DaysVerticalList from "@/components/ui/date-picker/days-vertical-list";
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui/text";
 import { SCREEN_WIDTH } from "@/lib/constants";
 import {
   areDatesOnSameDay,
@@ -18,15 +18,6 @@ import {
 } from "@/lib/utils/date-picker";
 import { Stack, XStack, YStack, styled } from "tamagui";
 import { useCalendarContext } from "./calendar-context";
-
-const WeekDay = styled(Text, {
-  typo: "bold-12",
-  textTransform: "uppercase",
-  color: "light-p-gray",
-  textAlign: "center",
-  minWidth: 35,
-  maxWidth: 35,
-});
 
 const Wrapper = styled(Stack, {
   alignItems: "center",
@@ -161,7 +152,16 @@ const DaySelector = ({ resize }: { resize?: boolean }) => {
             key={item}
             width={(width - 28) / 7}
           >
-            <WeekDay>{item}</WeekDay>
+            <Text
+              typo="bold-12"
+              textTransform="uppercase"
+              color="light-p-gray"
+              textAlign="center"
+              minWidth={35}
+              maxWidth={35}
+            >
+              {item}
+            </Text>
           </Wrapper>
         ))}
       </XStack>

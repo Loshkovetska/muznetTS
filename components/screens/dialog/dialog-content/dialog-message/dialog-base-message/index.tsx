@@ -1,5 +1,5 @@
 import DialogMedia from "@/components/screens/dialog/dialog-media";
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import { MessageItemType } from "@/lib/types";
 import { XStack } from "tamagui";
 

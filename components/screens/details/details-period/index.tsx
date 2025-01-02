@@ -1,4 +1,4 @@
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui";
 import { getPeriod } from "@/lib/utils";
 import { colors } from "@/tamagui.config";
 import { Clock } from "@tamagui/lucide-icons";

@@ -1,8 +1,7 @@
 import CommonImage from "@/components/common-image";
 import PricePerHour from "@/components/price-per-hour";
 import ProfileLocation from "@/components/profile-location";
-import Button from "@/components/ui/button";
-import Text from "@/components/ui/text";
+import { Button, Text } from "@/components/ui";
 import { AdType } from "@/lib/types";
 import { colors } from "@/tamagui.config";
 import { Pencil } from "@tamagui/lucide-icons";

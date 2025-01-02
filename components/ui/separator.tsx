@@ -1,7 +1,7 @@
 import { colors } from "@/tamagui.config";
 import { Separator as SeparatorT } from "tamagui";
 
-export default function Separator() {
+export function Separator() {
   return (
     <SeparatorT
       borderColor={colors["gray-100"]}

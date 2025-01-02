@@ -1,4 +1,4 @@
-import { RadioGroupItemWithLabel } from "@/components/ui/radio";
+import { RadioGroupItemWithLabel } from "@/components/ui";
 import { setValueToForm } from "@/lib/utils";
 import { UseFormReturn } from "react-hook-form";
 import { RadioGroup } from "tamagui";

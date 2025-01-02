@@ -1,6 +1,4 @@
-import Button from "@/components/ui/button";
-import Separator from "@/components/ui/separator";
-import Text from "@/components/ui/text";
+import { Button, Separator, Text } from "@/components/ui";
 import { SCREEN_WIDTH } from "@/lib/constants";
 import { useCallback, useMemo } from "react";
 import { Image, Stack, XStack, YStack, styled } from "tamagui";

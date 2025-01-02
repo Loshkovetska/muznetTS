@@ -1,6 +1,6 @@
 import CameraDialog from "@/components/dialogs/camera-dialog";
 import SelectAlbumDialog from "@/components/dialogs/select-album-dialog";
-import Button from "@/components/ui/button";
+import { Button } from "@/components/ui";
 import { typography } from "@/tamagui.config";
 import { Camera, ChevronDown } from "@tamagui/lucide-icons";
 import { Album } from "expo-media-library";

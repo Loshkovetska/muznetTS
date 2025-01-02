@@ -1,4 +1,4 @@
-import Dialog from "@/components/ui/dialog";
+import { Dialog } from "@/components/ui";
 import { BaseDialogPropType } from "@/lib/types";
 
 type InfoDialogPropType = {

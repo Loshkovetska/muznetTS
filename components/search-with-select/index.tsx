@@ -1,6 +1,5 @@
 import SearchOption from "@/components/search-with-select/search-option";
-import Input from "@/components/ui/input";
-import Separator from "@/components/ui/separator";
+import { Input, Separator } from "@/components/ui";
 import { setValueToForm } from "@/lib/utils";
 import { colors } from "@/tamagui.config";
 import { Search, X } from "@tamagui/lucide-icons";

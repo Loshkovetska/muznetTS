@@ -1,8 +1,6 @@
 import BottomBar from "@/components/bottom-bar";
 import { useUser } from "@/components/providers/user-provider";
-import Button from "@/components/ui/button";
-import { Form, FormElement } from "@/components/ui/form";
-import Text from "@/components/ui/text";
+import { Button, Form, FormElement, Text } from "@/components/ui";
 import { updatePasswordScheme } from "@/lib/scheme";
 import { AuthService } from "@/lib/services";
 import { UpdatePasswordRequestType, UserType } from "@/lib/types";
