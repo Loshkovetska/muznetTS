@@ -1,21 +1,21 @@
 import { colors, typography } from "@/tamagui.config";
-import { GetProps, Text as TText } from "tamagui";
+import React from "react";
+import { GetProps, Text as TText, TamaguiTextElement } from "tamagui";
 
 type TextPropType = Omit<GetProps<typeof TText>, "color"> & {
   typo?: keyof typeof typography;
   color?: keyof typeof colors;
 };
 
-export function Text({
-  color = "black",
-  typo = "reg-14",
-  ...props
-}: TextPropType) {
-  return (
-    <TText
-      {...props}
-      {...typography[typo]}
-      color={colors[color]}
-    />
-  );
-}
+export const Text = React.forwardRef<TamaguiTextElement, TextPropType>(
+  ({ color = "black", typo = "reg-14", ...props }, ref) => {
+    return (
+      <TText
+        ref={ref}
+        {...props}
+        {...typography[typo]}
+        color={colors[color]}
+      />
+    );
+  }
+);

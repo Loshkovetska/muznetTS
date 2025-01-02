@@ -4,7 +4,8 @@ import LocationsProvider from "@/components/providers/locations-provider";
 import { useUser } from "@/components/providers/user-provider";
 import MediaSelect from "@/components/screens/profile/personal-tab/media-select";
 import SearchWithSelect from "@/components/search-with-select";
-import { Button, Form } from "@/components/ui";
+import { Button } from "@/components/ui";
+import { Form } from "@/components/ui/form";
 import { GENRES, GROUP_MEMBERS, INSTRUMENTS } from "@/lib/constants/lists";
 import {
   updateContractorInfoScheme,
